@@ -1,0 +1,53 @@
+div bgcolor="#eaeced" style="background-color:#eaeced" 
+  table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#eaeced" style="background-color:#eaeced"
+    tbody
+      tr
+        td align="center" valign="top" bgcolor="#eaeced"
+          table align="center" width="600" border="0" cellpadding="0" cellspacing="0"
+            tbody
+              tr
+                td height="20" bgcolor="#eaeced" style="font-size:0px!important;line-height:20px!important"  
+              tr
+                td align="center" valign="top" bgcolor="#eaeced"
+                  p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center'" 
+                    | Vous recevez cet email suite à votre visite sur CONFIGURE
+
+              tr
+                td height="20" bgcolor="#eaeced" style="font-size:0px!important;line-height:20px!important" 
+
+          // HEADER
+          table align="center" width="600" border="0" cellpadding="0" cellspacing="0"
+            tbody
+              tr
+                td height="30" bgcolor="#fff" style="font-size:0px!important;line-height:30px!important" 
+              tr
+                td align="center" valign="top" bgcolor="#fff"
+                  | LOGO
+                  /= image_tag "logo.png", alt: "", width:'190px'
+              tr
+                td height="30" bgcolor="#fff" style="font-size:0px!important;line-height:30px!important" 
+
+          // CONTENT
+          table align="center" width="600" border="0" cellpadding="20" cellspacing="0"
+            tbody
+              tr
+                td valign="top" bgcolor="#fff" style='font-family:OpenSans, Arial,Helvetica,sans-serif;color:#4d4d4d;'
+                  = yield
+              tr 
+                td valign="top" bgcolor="#fff" style='font-family:OpenSans, Arial,Helvetica,sans-serif;color:#4d4d4d;'
+                  hr style='padding: 0; margin: 0; border-top: 1px solid #eee; border-bottom:1px solid #eee'
+
+          // FOOTER
+          table align="center" width="600" border="0" cellpadding="0" cellspacing="0"
+            tbody
+
+              tr
+
+                td align="center" valign="top" bgcolor="#fff" 
+                    p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center"  © 2015 A CONFIGURE
+             
+                  
+              tr
+                td height="20" bgcolor="#fff" style="font-size:0px!important;line-height:20px!important"  
+              tr
+                td height="20" bgcolor="#eaeced" style="font-size:0px!important;line-height:20px!important"  

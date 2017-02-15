@@ -1,0 +1,25 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Page
+        th titre SEO
+        th Meta-keywords
+        th Meta-description
+        th 
+    tbody
+      - @seos.each do |seo| 
+        tr
+          td= I18n.t("static_pages.param.#{seo.param}")
+          td= seo.title.to_s.truncate(50)
+          td= seo.keywords.to_s.truncate(50)
+          td= seo.description.to_s.truncate(50)
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_seo_path(seo),
+              class: "btn btn-sm btn-info", title: "Editer"
+                  
+      - if @seos.empty?
+        tr
+          td colspan="7"
+            p.text-xs-center: em.text-muted Aucun résultat

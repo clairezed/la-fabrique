@@ -1,0 +1,38 @@
+//          - Component FORM - Studio HB 2016
+
+////////////////////
+/// FORM
+////////////////////
+.form-control
+  font-size: 1.5rem
+
+////////////////////
+/// HELPERS BACK-END
+////////////////////
+
+.required
+  label:after
+    content: " *" 
+    color: #000
+  label
+    font-weight: bold
+
+.error_explanation
+  @extend .alert
+  @extend .alert-danger
+  border-radius: 0
+  border: none
+
+.field_with_errors
+  @extend .has-danger
+  display: inline
+
+#flash
+  position: fixed
+  z-index: 1500
+  top: 70px
+  font-size: 1.2em
+  width: 100%
+  text-align: center
+  span.alert
+    padding: 10px 14px  

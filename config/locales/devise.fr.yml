@@ -1,0 +1,66 @@
+fr:
+  errors:
+    messages:
+      not_found: "n'a pas été pas trouvé"
+      already_confirmed: "est déja confirmé"
+      not_locked: "n'est pas bloqué"
+      confirmation_period_expired: "doit être confirmé pendant %{period}, veuillez faire une nouvelle demande"
+      expired: "a expiré, veullez faire une nouvelle demande"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+
+  devise:
+    failure:
+      unauthenticated: 'Veuillez vous connecter ou vous enregistrer pour continuer.'
+      unconfirmed: 'Veuillez confirmer votre compte pour continuer.'
+      locked: 'Votre compte est bloqué.'
+      invalid: 'Email ou mot de passe invalides.'
+      invalid_token: "Clef d'authentification invalide."
+      timeout: 'Votre session a expiré, veuillez vous reconnecter pour continuer.'
+      inactive: "Votre compte n'a pas encore été activé."
+      not_found_in_database: "Email ou mot de passe invalides."
+      already_authenticated: "Vous êtes déjà connecté."
+      not_approved: "Votre compte n'a pas encore été validé par un administrateur. Vous recevrez un e-mail à ce moment-là."
+    sessions:
+      admin:
+        signed_in: 'Connecté avec succès.'
+        signed_out: 'Déconnecté avec succès.'
+      user:
+        signed_in: 'Connecté avec succès.'
+        signed_out: 'Déconnecté avec succès.'
+    passwords:
+      send_instructions: 'Vous allez recevoir un email contenant les instructions nécessaires au renouvellement de votre mot de passe.'
+      updated: 'Votre mot de passe a été changé avec succès. Vous êtes maintenant connecté.'
+      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un email de remise à jour de votre mot de passe."
+      send_paranoid_instructions: "Si votre addresse email est reconnue, vous recevrez dans quelques minutes un email contenant les instructions pour récupérer votre mots de passe."
+      updated_not_active: "Votre mot de passe a bien été mis à jour."
+    confirmations:
+      send_instructions: 'Vous allez recevoir un email contenant les instructions nécessaires pour confirmer votre compte.'
+      confirmed: 'Votre compte a été confirmé avec succès.'
+      send_paranoid_instructions: "Si votre Email est dans notre base de données vous recervrez dans quelques minutes un email avec les instructions pour confirmer votre compte"
+    registrations:
+      signed_up: 'Vous vous êtes enregistré avec succès.'
+      updated: 'Vous avez mis à jour votre compte avec succès.'
+      destroyed: "Votre compte a été supprimé avec succès."
+      signed_up_but_inactive: "Vous ne pouvez pas encore vous connecter tant que vous n'avez pas activé votre compte. Un email de confirmation vous a été envoyé."
+      signed_up_but_locked: "Votre compte a été temporairement verrouillé."
+      signed_up_but_unconfirmed: "Un email de confirmation vous a été envoyé. Suivez le lien qu'il contient pour activer votre compte."
+      signed_up_but_not_approved: "Votre compte n'a pas encore été validé par un administrateur. Vous recevrez un e-mail à ce moment-là."
+      update_needs_confirmation: "Vous avez mis à jour votre compte, mais votre nouvel e-mail n'a pas encore été vérifié. Un email de confirmation vous a été envoyé."
+    unlocks:
+      send_instructions: 'Vous allez recevoir un email contenant les instructions nécessaires pour débloquer votre compte.'
+      unlocked: 'Votre compte a été débloqué avec succès. Vous êtes maintenant connecté.'
+      send_paranoid_instructions: "Si votre compte existe, vous recevrez dans quelques minutes un email avec les instructions pour le débloquer"
+    mailer:
+      confirmation_instructions:
+        subject: 'Instructions pour confirmer votre compte'
+      reset_password_instructions:
+        subject: 'Instructions pour renouveler votre mot de passe'
+      unlock_instructions:
+        subject: 'Instructions pour débloquer votre compte'
+    omniauth_callbacks:
+      failure: "Nous ne pouvons vous authentifier depuis %{kind} car \"%{reason}\"."
+      success: "Vous êtes bien authentifier via votre compte %{kind}."
+
+      

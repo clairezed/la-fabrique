@@ -1,0 +1,33 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th Email
+        th 
+    tbody
+      - @admins.each do |admin| 
+        tr
+          td= admin.email
+          td.action-btns
+            => link_to edit_admin_admin_path(admin), 
+                        class: "btn btn-sm btn-info", 
+                        title: "Editer" do
+
+              span.glyphicon.glyphicon-pencil
+            - if admin.id != current_admin.id
+              = link_to admin_admin_path(admin),
+                        method: :delete, 
+                        data: {confirm: "Confirmer la suppression ?"}, 
+                        title: "Supprimer", 
+                        class: "btn btn-sm btn-danger" do 
+
+                span.glyphicon.glyphicon-trash
+      
+      - if @admins.empty?
+        tr
+          td colspan="7"
+            p.text-xs-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @admins, renderer: WillPaginateBoostrap4Renderer

@@ -1,0 +1,171 @@
+fr:
+  support:
+    array:
+      two_words_connector: ", "
+      words_connector: ", "
+      last_word_connector: " et "
+  number:
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: ","
+      # Delimets thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: " "
+      # Number of decimals, behind the separator (1 with a precision of 2 gives: 1.00)
+      precision: 2
+
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%n %u"
+        unit: "€"
+        # These three are to override number.format and are optional
+        precision: 0
+
+    # Used in number_to_percentage()
+    percentage:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        # precision:
+
+    # Used in number_with_precision()
+    precision:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        # precision:
+
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        delimiter: ""
+        precision: 1
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Octet"
+            other: "Octets"
+          kb: "Ko"
+          mb: "Mo"
+          gb: "Go"
+          tb: "To"
+
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    formats:
+      default: "%d/%m/%Y"
+      normal: "%d %B %Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
+
+    prompts:
+      day: Jour
+      month: Mois
+      year: Année
+
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one:  "moins d'une seconde"
+        other: "moins de %{count} secondes"
+      x_seconds:
+        one:  "une seconde"
+        other: "%{count} secondes"
+      less_than_x_minutes:
+        one:  "moins d'une minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one:  "une minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:  "environ une heure"
+        other: "environ %{count} heures"
+      x_days:
+        one:  "un jour"
+        other: "%{count} jours"
+      about_x_months:
+        one:  "environ un mois"
+        other: "environ %{count} mois"
+      x_months:
+        one:  "un mois"
+        other: "%{count} mois"
+      about_x_years:
+        one:  "environ une année"
+        other: "environ %{count} années"
+      over_x_years:
+        one:  "supérieure à une année"
+        other: "supérieure à %{count} années"
+
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%d/%m/%Y"
+      short: "%Y"
+      long: "%d %B %Y"
+      long_with_day: "%A %d %B %Y"
+
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Jui, Jui, Aou, Sep, Oct, Nov, Déc]
+    # Used in date_select and datime_select.
+    order: "[ :day, :month, :year ]"
+
+  time:
+    formats:
+      default: "%d/%m/%Y à %Hh%M"
+      time: "%Hh%M"
+      hour_min: "%H:%M"
+      long: "%d %B %Y à %Hh%M"
+    am: "am"
+    pm: "pm"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "1 erreur est survenue"
+          other:  "%{count}  erreurs sont survenues:"
+        # The variable :count is also available
+        body: "Les champs suivants sont incorrects :"
+      # The values :model, :attribute and :value are always available for interpolation
+      # The value :count is available when applicable. Can be used for pluralization.
+      messages:
+        inclusion: "n'est pas inclus dans la liste"
+        exclusion: "est réservé"
+        invalid: "est invalide"
+        record_invalid: "est invalide"
+        confirmation: "ne correspond pas à la confirmation"
+        accepted: "doit être accepté"
+        empty: "est obligatoire"
+        blank: "est obligatoire"
+        too_high: "est trop élevé"
+        too_long: "est trop long (le maximum est %{count}  caractères)"
+        too_short: "est trop court (le minimum est %{count}  caractères)"
+        wrong_length: "n'est pas de la bonne longueur (doit être de %{count} caractères)"
+        taken: "est déjà pris"
+        not_a_number: "n'est pas un nombre"
+        greater_than: "doit être supérieur à %{count} "
+        greater_than_or_equal_to: "doit être supérieur ou égal à %{count} "
+        equal_to: "doit être égal à %{count} "
+        less_than: "doit être inférieur à %{count} "
+        less_than_or_equal_to: "doit être inférieur ou égal à %{count} "
+
+  
+  form_errors: Des erreurs ont été rencontrées
+
+  will_paginate:
+    next_label: Suivant
+    previous_label: Précédent

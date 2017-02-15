@@ -1,0 +1,45 @@
+// Front Mixins - Studio HB 2015
+
+
+// UNDERLINE
+// Usage : @include underline(color)
+// Argument : couleur du trait. Par défaut : noir
+// Retourne un trait de la couleur sélectionné sous l'élément
+@mixin underline($color: black, $margin: 0 auto, $border-height: 4px)
+  content: ""
+  display: block
+  margin: $margin
+  height: 15px
+  width: 65px
+  border-bottom: $border-height solid $color
+
+
+//Usage : @include display-flex()
+// Pas d'arguments
+// Met un display : flex
+@mixin display-flex()
+  display: -webkit-flex  /* Safari */
+  -webkit-flex-wrap: wrap /* Safari 6.1+ */
+  display: -ms-flexbox // IE10
+  -ms-flex-wrap: wrap // IE10
+  display: flex
+  flex-wrap: wrap
+
+
+//Usage : @include justify-content()
+// Pas d'arguments
+// Met un justify-content : space-between + pour IE10
+@mixin justify-flex($justify: space-between, $justify-ie: justify)
+  justify-content: $justify
+  -ms-flex-pack: $justify-ie // IE10
+
+
+//Usage : @include stripes
+// Arguments: couleur 1, couleur 2, background-size
+// Fond avec bandes inclinées
+@mixin stripes($color1: rgba(255,255,255,.65), $color2: transparent, $background-size: 40px)
+  background-image: linear-gradient(45deg,$color1 25%, $color2 25%, $color2 50%,$color1 50%,$color1 75%, $color2 75%, $color2)
+  background-image: -webkit-linear-gradient(45deg,$color1 25%, $color2 25%, $color2 50%,$color1 50%,$color1 75%, $color2 75%, $color2)
+  background-size: $background-size $background-size
+
+

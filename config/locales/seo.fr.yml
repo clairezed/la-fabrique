@@ -1,0 +1,21 @@
+fr:
+  activerecord:
+    attributes:
+      seo:
+        slug: Le slug
+        title: Le titre (SEO)
+        keywords: Les meta-keywords (SEO)
+        description: La meta-description (SEO)
+
+
+  helpers:
+    label:
+      seo:
+        slug: Slug
+        title: Titre (SEO)
+        keywords: Meta-keywords
+        description: Meta-description
+
+  static_pages:
+    param:
+      home: "Page d'accueil"

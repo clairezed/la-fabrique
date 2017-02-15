@@ -1,0 +1,36 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th= shb_sort 'sort_by_position', label: 'Position'
+        th= shb_sort 'sort_by_title', label: 'Titre'
+        th= shb_sort 'sort_by_enabled', label: 'Affiché?'
+        th 
+    tbody
+      - max_position    = @basic_pages.map( &:position ).compact.max || 1
+      - position_select = (1..max_position).map {|i| [i,i] }
+      - @basic_pages.each do |basic_page| 
+        tr
+          td 
+            = form_tag position_admin_basic_page_path(basic_page), method: :patch do
+              = select_tag  :position, 
+                            options_for_select( position_select, basic_page.position ),
+                            onchange: '$(this).parent().submit();',
+                            class: "form-control input-sm", style: "width:70px", id: nil 
+          td= basic_page.title
+          td
+            span class="label label-#{basic_page.enabled? ? 'success' : 'warning'}" = basic_page.enabled? ? "Oui" : "Non"
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_basic_page_path(basic_page),
+              class: "btn btn-sm btn-info", title: "Editer"
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_basic_page_path(basic_page),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @basic_pages.empty?
+        tr
+          td colspan="7"
+            p.text-xs-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @basic_pages, renderer: WillPaginateBoostrap4Renderer

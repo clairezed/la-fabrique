@@ -51,3 +51,22 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'acts_as_list', '~> 0.7.6'
+gem 'devise', '~> 4.2.0'
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'autoprefixer-rails', '~> 6.3.7'
+gem 'will_paginate', '~> 3.1.0'
+gem 'slim', '~> 3.0.7'
+gem 'htmlentities', '~> 4.3.4'
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'temping'
+end
+
+group :test, :development do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'email_spec'
+end

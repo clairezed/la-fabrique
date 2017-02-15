@@ -1,0 +1,5 @@
+fr:
+  results:
+    zero: "%{count} résultat"
+    one: "%{count} résultat"
+    other: "%{count} résultats"

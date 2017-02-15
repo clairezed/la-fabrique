@@ -1,0 +1,15 @@
+= f.shb_form_errors
+= f.shb_text_field :email, {}, {class: "required"}
+= f.shb_password_field :password
+
+.form-group.row
+  .form-actions
+    hr
+    => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
+    => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
+    = link_to "Annuler", admin_basic_pages_path, class: "btn"
+
+.form-group.row
+  label.form-label-default
+  .controls-default
+    small: em.text-muted Les champs marqués d'une * sont obligatoires

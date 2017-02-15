@@ -1,7 +1,15 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+a1 = Admin.where(email: "technique@studio-hb.com").first_or_initialize
+if ["production","staging"].include?(Rails.env)
+  a1.update_attributes(:password => "password")
+else
+  a1.update_attributes(:password => "password")
+end
+
+seo1 = Seo.where(param: "home").first_or_create

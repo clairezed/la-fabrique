@@ -1,0 +1,31 @@
+- content_for :current_navigation_section, :admins
+
+.card.card-block
+  h1
+    | Gestion des admins
+    = link_to admin_admins_path, class: 'btn btn-default pull-xs-right' do
+      
+      .glyphicon.glyphicon-arrow-left
+      |  Retour
+  hr
+    
+  - if !@admin.new_record?
+
+    h2
+      | Edition de l'admin
+      em=< @admin.email
+    hr
+
+    dl.dl-horizontal
+      dt Date création :
+      dd= l @admin.created_at.to_date
+      dt Dernière mise à jour :
+      dd= l @admin.updated_at
+
+  - else
+    h2 Créer un nouvel admin
+
+  hr
+  .content-main
+    = yield
+

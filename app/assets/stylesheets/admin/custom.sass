@@ -1,0 +1,115 @@
+////////////////////////////
+// FORMULAIRE
+////////////////////////////
+
+.form-label-default
+  @extend .form-control-label
+  @extend .text-xs-right
+  @extend .col-md-2
+  font-weight: normal
+.form-label-large
+  @extend .form-control-label
+  @extend .text-xs-right
+  @extend .col-md-4
+.controls-default
+  @extend .col-md-3
+.controls-small
+  @extend .col-md-2
+.controls-xsmall
+  @extend .col-md-1
+.controls-large
+  @extend .col-md-6
+.controls-xlarge
+  @extend .col-md-8
+.form-actions
+  @extend .offset-md-2
+  @extend .col-md-10
+
+.form-inline
+  .control-label
+    line-height: $input-height-base
+    text-align: right
+
+.required
+  label:after
+    content: " *"
+    color: #000
+  label
+    font-weight: bold
+
+
+.error_explanation
+  @extend .alert
+  @extend .alert-danger
+
+.field_with_errors
+  //@extend .has-error
+  display: inline
+
+.form-control
+  border: 2px solid #ddd
+  box-shadow: none!important
+
+legend 
+  border-bottom: 1px solid #e5e5e5
+  margin-bottom: 18px
+
+
+////////////////////////////
+// DL
+////////////////////////////
+.dl-horizontal 
+  margin-left: 0
+  margin-right: 0
+  dt 
+    float: left
+    width: 160px
+    overflow: hidden
+    clear: left
+    text-align: right
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  dd 
+    margin-left: 180px
+
+////////////////////////////
+// TABLEAUX
+////////////////////////////
+
+td.action-btns
+  text-align: right
+  white-space: nowrap
+td.action-btns-tight
+  a.btn
+    padding-left: 7px
+    padding-right: 7px
+
+#flash
+  position: fixed
+  z-index: 1500
+  top: 70px
+  font-size: 1.2em
+  width: 100%
+  text-align: center
+  span.alert
+    padding: 10px 14px
+
+
+
+////////////////////////////
+// CODE CUSTOM
+////////////////////////////
+
+// ajouter ici le code propre au projet :
+
+
+
+////////////////////////////
+// BUTTONS
+////////////////////////////
+
+.btn-export
+  @extend .btn-info
+  &> .glyphicon
+    padding-right: 5px

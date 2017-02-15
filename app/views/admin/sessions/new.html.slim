@@ -1,0 +1,22 @@
+- content_for :current_navigation_section, :sign_in_admin
+
+.container
+  h1 Connexion à l'espace d'administration
+
+  .card.card-block
+    = form_for resource, as: resource_name, url: session_path(resource_name),\
+      html: {role: "form", class: "form-horizontal"} do |f|
+
+      .form-group.row
+        = f.label :email, class: 'form-control-label text-xs-right col-md-2'
+        .col-md-3
+          = f.email_field :email, autofocus: true, class:'form-control'
+      
+      .form-group.row
+        = f.label :password, class: 'form-control-label text-xs-right col-md-2'
+        .col-md-3
+          = f.password_field :password, class:'form-control'
+      
+      .form-group.row
+        .col-md-offset-2.col-md-10
+          = f.submit "Connexion", class: "btn btn-primary"

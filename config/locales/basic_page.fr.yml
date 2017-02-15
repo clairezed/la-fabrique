@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    attributes:
+      basic_page:
+        title: Le titre
+        content: Le contenu
+
+
+  helpers:
+    label:
+      seo:
+        title: Titre 
+        content: Contenu

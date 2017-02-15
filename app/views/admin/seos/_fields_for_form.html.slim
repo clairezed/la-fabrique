@@ -1,0 +1,7 @@
+fieldset
+  legend SEO
+  = f.fields_for :seo do |f_seo|
+    = f_seo.shb_text_field :slug, {}, {class: "required"}
+    = f_seo.shb_text_field :title
+    = f_seo.shb_text_field :keywords
+    = f_seo.shb_text_area :description

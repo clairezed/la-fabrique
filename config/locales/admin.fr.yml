@@ -1,0 +1,21 @@
+fr:
+  activerecord:
+    attributes:
+      admin:
+        email:                      L'email
+        password:                   Le mot de passe
+        password_confirmation:      Le mot de passe
+        current_password:           Le mot de passe actuel
+        new_password:               Le nouveau mot de passe
+        new_password_confirmation:  Le nouveau mot de passe
+        
+
+  helpers:
+    label:
+      admin:
+        email:                      Email
+        password:                   Mot de passe
+        password_confirmation:      Mot de passe (confirmation)
+        current_password:           Mot de passe actuel
+        new_password:               Nouveau mot de passe
+        new_password_confirmation:  Nouveau mot de passe (confirmation)

@@ -1,0 +1,65 @@
+doctype html
+html lang="#{I18n.locale}"
+  head
+    title= @seo_title 
+    meta name="description" content="#{@seo_description}"
+    meta name="keywords" content="#{@seo_keywords}"
+    meta name="author" content="Studio HB, Agence Web Ruby On Rails Lyon"
+    meta http-equiv="content-type" content="text/html;charset=UTF-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = csrf_meta_tags 
+    = robots_indexation_prevention
+
+    = stylesheet_link_tag 'application', media: 'all' 
+
+    /[if lt IE 9]
+      script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+    /<![endif]
+
+    = favicon_link_tag asset_path 'favicons/favicon.ico'
+
+    = javascript_include_tag "application" 
+    = render_document_ready_scripts 
+  body
+    header.main-header
+      .container
+        nav.navbar.navbar-light.bg-faded
+          button.navbar-toggler.hidden-sm-up data-target="#exCollapsingNavbar2" data-toggle="collapse" type="button" 
+            | &#9776;
+          #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+            = link_to "PROJET", root_path, class: "navbar-brand" 
+            ul.nav.navbar-nav
+              li.nav-item
+                = link_to 'Accueil', root_path, title: "Retour à l'accueil", class:"nav-link"
+              li.nav-item
+                = link_to 'Administration', admin_root_path, title: "Espace administration", class:"nav-link"
+    = raw flash_messages 
+    .container
+      - unless cookies[:cookies_accepted] == "true"
+        #cookies_alert.alert.cookies_alert
+          .col-md-6.col-md-offset-2.col-xs-12
+            a.close data-dismiss="alert" href="#"
+            p
+              | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
+                En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
+          .col-md-3.col-xs-12
+            = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
+            //= link_to "Fermer" , "", class: 'btn btn-secondary' , 'data-dismiss' => "alert"
+
+      = yield
+
+
+    footer.main-footer
+      .container
+        hr 
+        - @basic_pages.each do |basic_page|
+          => link_to basic_page.title, basic_page_path(basic_page)
+          => "-" 
+        | © #{Date.today.year}
+
+        .footer-signature
+          = link_to "http://www.studio-hb.com", target:"_blank", class: "signature-shb" do
+            span.wrapper-signature Réalisé par Studio HB
+
+
