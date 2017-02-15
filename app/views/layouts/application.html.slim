@@ -38,12 +38,12 @@ html lang="#{I18n.locale}"
     .container
       - unless cookies[:cookies_accepted] == "true"
         #cookies_alert.alert.cookies_alert
-          .col-md-6.col-md-offset-2.col-xs-12
+          .col-md-6.col-md-offset-2.col-12
             a.close data-dismiss="alert" href="#"
             p
               | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
                 En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
-          .col-md-3.col-xs-12
+          .col-md-3.col-12
             = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
             //= link_to "Fermer" , "", class: 'btn btn-secondary' , 'data-dismiss' => "alert"
 

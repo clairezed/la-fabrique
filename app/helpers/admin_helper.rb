@@ -5,7 +5,7 @@ module AdminHelper
 
     content_tag(:li, class: "submenu #{toggle_class}") do
       concat(link_to('#') do
-        concat content_tag(:span, '', class: 'glyphicon glyphicon-plus pull-xs-right')
+        concat content_tag(:span, '', class: 'glyphicon glyphicon-plus float-right')
         concat text
       end)
       concat(content_tag(:ul) do

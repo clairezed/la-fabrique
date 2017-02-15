@@ -27,7 +27,7 @@
       - if @admins.empty?
         tr
           td colspan="7"
-            p.text-xs-center: em.text-muted Aucun résultat
+            p.text-center: em.text-muted Aucun résultat
 
 
   = will_paginate @admins, renderer: WillPaginateBoostrap4Renderer

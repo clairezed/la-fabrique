@@ -30,7 +30,7 @@
       - if @basic_pages.empty?
         tr
           td colspan="7"
-            p.text-xs-center: em.text-muted Aucun résultat
+            p.text-center: em.text-muted Aucun résultat
 
 
   = will_paginate @basic_pages, renderer: WillPaginateBoostrap4Renderer
