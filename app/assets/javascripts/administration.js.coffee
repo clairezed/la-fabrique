@@ -1,7 +1,9 @@
 #= require jquery
 #= require jquery_ujs
-#= require shared/tether.min 
+#= require vendor/tether.min 
 #= require bootstrap
+#= require vendor/bootstrap-datepicker 
+#= require vendor/redactor.min 
 
 #= require_tree ./admin
 #= require_tree ./locales

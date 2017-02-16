@@ -25,15 +25,16 @@ Things you may want to cover:
 
 TODO
 
-- [ ] gicler font-awesome
-- [ ] refaire à la main le dropdown de metismenu
+- [x] gicler font-awesome
+- [x] refaire à la main le dropdown de metismenu
 - [ ] supprimer js et css de metismenu
 - [ ] chercher / faire une version sass de lte.css ?
 - [ ] voir fonts ?
-- [ ] remettre les liens admin
+- [x] remettre les liens admin
 - [ ] sources : nommer https://github.com/modularcode/modular-admin-html
 - [ ] readme code open source
 - [ ] licence code
 - [ ] revoir nommage lib shb
 - [ ] clone du repo clean comme starter
 - [ ] réorga assets
+- [ ] Revoir .brand
