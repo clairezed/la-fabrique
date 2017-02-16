@@ -5,9 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-a1 = Admin.where(email: "technique@studio-hb.com").first_or_initialize
+a1 = Admin.where(email: "clairezuliani+admin@gmail.com").first_or_initialize
 if ["production","staging"].include?(Rails.env)
-  a1.update_attributes(:password => "password")
+  a1.update_attributes(:password => "aqwxsz21")
 else
   a1.update_attributes(:password => "password")
 end

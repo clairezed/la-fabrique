@@ -87,6 +87,8 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.17)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     htmlentities (4.3.4)
@@ -234,6 +236,7 @@ DEPENDENCIES
   devise (~> 4.2.0)
   email_spec
   factory_girl_rails
+  font-awesome-rails
   htmlentities (~> 4.3.4)
   jbuilder (~> 2.5)
   jquery-rails

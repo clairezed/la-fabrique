@@ -8,34 +8,86 @@ html lang="#{I18n.locale}"
     = csrf_meta_tag 
 
   body
-    header.nav.navbar-fixed-top
-      = link_to "Bienvenue sur le back-office PROJET", admin_root_path, class: "navbar-brand"
-      ul
-        = menu_link root_path, section: nil, title: "Retour au site" do
-          span.glyphicon.glyphicon-eject
-        = menu_link destroy_admin_session_path, section: nil, title: "Se déconnecter", method: :delete do
-          span.glyphicon.glyphicon-off
+    .main-wrapper
+      #app.app
+        header.header
+          .header-block.header-block-nav
+            ul.nav-profile
+              li.profile.dropdown
+                a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+                  span.name
+                    = current_admin.email
+                .dropdown-menu.profile-dropdown-menu aria-labelledby="dropdownMenu1"
+                  ul
+                    = menu_link root_path, section: nil, title: "Retour au site", class:"dropdown-item" do
+                      i.fa.fa-external-link.icon
+                      | Retour au site
+                    .dropdown-divider
+                    = menu_link destroy_admin_session_path, section: nil, title: "Se déconnecter", class:"dropdown-item", method: :delete do
+                      i.fa.fa-power-off.icon
+                      | Se déconnecter
+        aside.sidebar
+          .sidebar-container
+            .sidebar-header
+              .brand
+                .logo
+                = link_to "Bib Num", admin_root_path, class: "navbar-brand"
 
+       
+            nav.menu
+              ul#sidebar-menu.nav.metismenu.flex-column
+                = menu_link admin_root_path, section: :home, title: "Retour à l'accueil" do 
+                    i.fa.fa-home
+                    | Accueil
+                li
+                  a href="" 
+                    i.fa.fa-th-large
+                    | Fiches 
+                    i.fa.arrow
+                  ul
+                    li
+                      a href="items-list.html" 
+                        | Items List
+                    li
+                      a href="item-editor.html" 
+                        | Item Editor
+                li
+                  a href="" 
+                    i.fa.fa-bar-chart
+                    | Axes
+                    i.fa.arrow
+                  ul
+                    li
+                      a href="charts-flot.html" 
+                        | Flot Charts
+                    li
+                      a href="charts-morris.html" 
+                        | Morris Charts
+                li
+                  a href="" 
+                    i.fa.fa-table
+                    | Thématiques
+                    i.fa.arrow
+                  ul
+                    li
+                      a href="static-tables.html" 
+                        | Static Tables
+                    li
+                      a href="responsive-tables.html" 
+                        | Responsive Tables
+                li
+                  a href="forms.html" 
+                    i.fa.fa-pencil-square-o
+                    | Catégories
 
+                = submenu(raw("<i class='fa fa-cog'></i> Configurations"), %w(basic_pages seos admins))
+                  = menu_link 'Gestion des admins', admin_admins_path, section: :admins
+                  = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages
+                  = menu_link 'SEO pages statiques', admin_seos_path, section: :seos
 
+        article.content.dashboard-page
+          = yield
 
-    .admin-main-wrapper
-      aside.admin-sidebar
-        nav
-          ul.nav
-            li.user-infos-content
-              span style="color:white" LOGO
-              /= image_tag "logo.svg", class: 'admin-avatar'
-            = menu_link 'Accueil', admin_root_path, section: :home, title: "Retour à l'accueil"
-            = submenu("Configurations", %w(basic_pages seos admins))
-              = menu_link 'Gestion des admins', admin_admins_path, section: :admins
-              = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages
-              = menu_link 'SEO pages statiques', admin_seos_path, section: :seos
-
-
-
-      section.admin-main-container
-        = yield
 
   = raw flash_messages
 

@@ -59,6 +59,7 @@ gem 'autoprefixer-rails', '~> 6.3.7'
 gem 'will_paginate', '~> 3.1.0'
 gem 'slim', '~> 3.0.7'
 gem 'htmlentities', '~> 4.3.4'
+gem "font-awesome-rails"
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'

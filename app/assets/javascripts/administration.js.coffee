@@ -13,9 +13,10 @@ $ ->
   $(".datepicker").datepicker(format: 'dd/mm/yyyy', language: 'fr', autoclose: true)
   $('.tooltip_bottom').tooltip(placement: 'bottom')
 
-  #Submenu : faire descendre les sous menus dans la sidebar (ajout de la classe toggled)
+  #Submenu
   $('body .submenu > a').on 'click', (e) ->
     e.preventDefault()
-    $(this).next().slideToggle 200
-    $(this).parent().toggleClass 'toggled'
+    $submenuContainer = $(this).parent()
+    $submenuContainer.toggleClass 'open'
+    if $submenuContainer.hasClass 'open' then $(this).next().slideDown 200 else $(this).next().slideUp 200
     return
