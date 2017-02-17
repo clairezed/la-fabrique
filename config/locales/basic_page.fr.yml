@@ -8,6 +8,6 @@ fr:
 
   helpers:
     label:
-      seo:
+      basic_page:
         title: Titre 
         content: Contenu

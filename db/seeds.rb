@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 a1 = Admin.where(email: "clairezuliani+admin@gmail.com").first_or_initialize
+
 if ["production","staging"].include?(Rails.env)
   a1.update_attributes(:password => "aqwxsz21")
 else
@@ -13,3 +14,15 @@ else
 end
 
 seo1 = Seo.where(param: "home").first_or_create
+
+
+# Thèmes ======================================================
+[
+  "Mobilité"
+].each do |title|
+  s = Theme.where(title: title).first_or_create!(enabled: true)
+end
+
+
+# Axes ========================================================
+

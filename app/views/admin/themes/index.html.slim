@@ -1,0 +1,36 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead.thead-inverse
+      tr
+        th= hm_sort 'sort_by_position', label: 'Position'
+        th= hm_sort 'sort_by_title', label: 'Titre'
+        th= hm_sort 'sort_by_enabled', label: 'Affiché?'
+        th 
+    tbody
+      - max_position    = @themes.map( &:position ).compact.max || 1
+      - position_select = (1..max_position).map {|i| [i,i] }
+      - @themes.each do |theme| 
+        tr
+          td 
+            = form_tag position_admin_theme_path(theme), method: :patch do
+              = select_tag  :position, 
+                            options_for_select( position_select, theme.position ),
+                            onchange: '$(this).parent().submit();',
+                            class: "form-control input-sm", style: "width:70px", id: nil 
+          td= theme.title
+          td
+            span class="label label-#{theme.enabled? ? 'success' : 'warning'}" = theme.enabled? ? "Oui" : "Non"
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_theme_path(theme),
+              class: "btn btn-sm btn-info", title: "Editer"
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_theme_path(theme),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @themes.empty?
+        tr
+          td colspan="7"
+            p.text-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @themes, renderer: WillPaginateBoostrap4Renderer

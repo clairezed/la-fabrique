@@ -76,7 +76,7 @@ Your website should be accessile at [localhost:3000](http://localhost:3000/).
 
 ## Authors
 
-* **Claire Zuliani**
+* **Claire Zuliani** - [github account](https://github.com/clairezed)
 
 ## License
 
@@ -92,7 +92,7 @@ Your website should be accessile at [localhost:3000](http://localhost:3000/).
 ## TODO
 - [ ] régler le slideToggle 'open' du submenu
 
-### open source docs
+### end writing open source docs
 
 - Open source license : MIT, Apache 2.0, and GPLv3
 - README : 

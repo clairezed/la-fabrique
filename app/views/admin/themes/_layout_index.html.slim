@@ -1,0 +1,15 @@
+- content_for :current_navigation_section, :themes
+
+.title-block
+  h1
+    | Gestion des Thématiques
+
+    = link_to new_admin_theme_path, class: "btn btn-info float-right" do
+     span.glyphicon.glyphicon-plus>
+     | Ajouter une Thématique
+
+.card.card-block
+  .content-main
+    small = I18n.t("results", count: @themes.count)
+    = yield
+

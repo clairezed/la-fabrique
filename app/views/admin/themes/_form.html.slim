@@ -1,4 +1,5 @@
 = f.hm_form_errors
+
 .form-group.row
   .form-label-default
     | Affiché ?
@@ -12,7 +13,7 @@
         | Non
 
 = f.hm_text_field :title, {}, {class: "required"}
-= f.hm_text_area :content, {rows: 15}
+
 = render partial: "admin/seos/fields_for_form", locals: {f: f}
 
 .form-group.row
@@ -20,17 +21,9 @@
     hr
     => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
     => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
-    = link_to "Annuler", admin_basic_pages_path, class: "btn"
+    = link_to "Annuler", admin_themes_path, class: "btn"
 
 .form-group.row
   label.form-label-default
   .controls-default
     small: em.text-muted Les champs marqués d'une * sont obligatoires
-
-coffee:
-  $ ->
-    $('#basic_page_content').redactor({ 
-      lang: 'fr',
-      buttons: ['formatting', '|', 'bold', 'italic', 'underline', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'video', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignment'], 
-      minHeight: 500
-    })

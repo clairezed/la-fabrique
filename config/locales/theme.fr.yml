@@ -1,0 +1,11 @@
+fr:
+  activerecord:
+    attributes:
+      theme:
+        title: Le titre
+
+
+  helpers:
+    label:
+      theme:
+        title: Titre 

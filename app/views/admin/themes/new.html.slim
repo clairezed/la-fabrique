@@ -1,0 +1,4 @@
+= render layout: 'layout_form' do 
+  = form_for @theme, as: :theme, url: admin_themes_path, html: {class: "form-horizontal"} do |f| 
+    = render partial: "form", locals: {f: f, button_name: "Créer la page", button_name_2: "Créer et continuer l'édition"}
+

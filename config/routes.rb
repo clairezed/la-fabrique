@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :themes
   devise_for :admin
 
   # Concerns ======================================
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :admins
     resources :basic_pages, concerns: :positionable
+    resources :themes, concerns: :positionable
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'
   end
