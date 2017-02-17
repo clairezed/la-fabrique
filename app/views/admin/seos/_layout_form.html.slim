@@ -1,20 +1,18 @@
 - content_for :current_navigation_section, :seos
 
-.card.card-block
+.title-block
   h1
     | Gestion des SEO des pages statiques
     = link_to admin_seos_path, class: 'btn btn-default float-right' do
       .glyphicon.glyphicon-arrow-left
       |  Retour
 
-  hr
 
-  h2 
-    | Edition des la page statique
+.card
+  h2.card-header
+    | Edition de la page statique
     em=< I18n.t("static_pages.param.#{@seo.param}")
 
-  hr
-
-  .content-main
+  .card-block
     = yield
 

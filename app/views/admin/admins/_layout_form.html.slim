@@ -1,31 +1,34 @@
 - content_for :current_navigation_section, :admins
 
-.card.card-block
+.title-block
   h1
     | Gestion des admins
     = link_to admin_admins_path, class: 'btn btn-default float-right' do
       
       .glyphicon.glyphicon-arrow-left
       |  Retour
-  hr
-    
+
+.card
   - if !@admin.new_record?
 
-    h2
+    h2.card-header
       | Edition de l'admin
       em=< @admin.email
-    hr
 
-    dl.dl-horizontal
-      dt Date création :
-      dd= l @admin.created_at.to_date
-      dt Dernière mise à jour :
-      dd= l @admin.updated_at
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @admin.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @admin.updated_at
+        .col-md-10
+          = yield
 
   - else
-    h2 Créer un nouvel admin
+    h2.card-header Créer un nouvel admin
 
-  hr
-  .content-main
-    = yield
+    .card-block
+      = yield
 

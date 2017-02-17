@@ -1,6 +1,6 @@
 - content_for :current_navigation_section, :basic_pages
 
-.card.card-block
+.title-block
   h1
     | Gestion des Pages
 
@@ -8,6 +8,7 @@
     /  span.glyphicon.glyphicon-plus>
     /  | Ajouter une Page
 
+.card.card-block
   .content-main
     small = I18n.t("results", count: @basic_pages.count)
     = yield

@@ -1,13 +1,20 @@
 = f.hm_form_errors
 = f.hm_text_field :email, {}, {class: "required"}
-= f.hm_password_field :password
+/ = f.hm_password_field :password
+
+.form-group.row
+  .form-label-default
+    = f.label :password
+  .controls-default
+    = f.password_field :password, class: "required form-control"
+
 
 .form-group.row
   .form-actions
     hr
     => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
     => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
-    = link_to "Annuler", admin_basic_pages_path, class: "btn"
+    = link_to "Annuler", admin_admins_path, class: "btn"
 
 .form-group.row
   label.form-label-default

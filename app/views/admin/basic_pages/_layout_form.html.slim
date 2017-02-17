@@ -1,30 +1,33 @@
 - content_for :current_navigation_section, :basic_pages
 
-.card.card-block
+.title-block
   h1
     | Gestion des Pages Basiques
     = link_to admin_basic_pages_path, class: 'btn btn-default float-right' do
       .glyphicon.glyphicon-arrow-left
       |  Retour
-  hr
-    
+
+.card
   - if !@basic_page.new_record?
 
-    h2
+    h2.card-header
       | Edition de la page
       em=< @basic_page.title
-    hr
 
-    dl.dl-horizontal
-      dt Date création :
-      dd= l @basic_page.created_at.to_date
-      dt Dernière mise à jour :
-      dd= l @basic_page.updated_at
-
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @basic_page.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @basic_page.updated_at
+        .col-md-10
+          = yield
+          
   - else
-    h2 Créer une nouvelle page
+    h2.card-header Créer une nouvelle page
 
-  hr
-  .content-main
-    = yield
+    .card-block
+      = yield
 

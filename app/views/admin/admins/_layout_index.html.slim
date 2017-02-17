@@ -1,14 +1,15 @@
 - content_for :current_navigation_section, :admins
 
-.card.card-block
-  h1
-    | Gestion des admin
+.title-block
+  h1 
+    | Gestion des admins
 
     = link_to new_admin_admin_path, class: "btn btn-info float-right" do
       span.glyphicon.glyphicon-plus>
       | Ajouter un admin
 
+.card.card-block
   .content-main
-    small = I18n.t("results", count: @admins.count)
+    small.float-right = I18n.t("results", count: @admins.count)
     = yield
 

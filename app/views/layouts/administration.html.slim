@@ -30,7 +30,7 @@ html lang="#{I18n.locale}"
           .sidebar-container
             .sidebar-header
               .brand
-                = link_to "Bib Num", admin_root_path
+                = link_to "Admin Projet", admin_root_path
 
        
             nav.menu
@@ -42,40 +42,16 @@ html lang="#{I18n.locale}"
                   a href="" 
                     i.fa.fa-th-large
                     | Fiches 
-                    i.fa.arrow
-                  ul
-                    li
-                      a href="items-list.html" 
-                        | Items List
-                    li
-                      a href="item-editor.html" 
-                        | Item Editor
                 li
                   a href="" 
                     i.fa.fa-bar-chart
                     | Axes
-                    i.fa.arrow
-                  ul
-                    li
-                      a href="charts-flot.html" 
-                        | Flot Charts
-                    li
-                      a href="charts-morris.html" 
-                        | Morris Charts
                 li
                   a href="" 
                     i.fa.fa-table
                     | Thématiques
-                    i.fa.arrow
-                  ul
-                    li
-                      a href="static-tables.html" 
-                        | Static Tables
-                    li
-                      a href="responsive-tables.html" 
-                        | Responsive Tables
                 li
-                  a href="forms.html" 
+                  a href="" 
                     i.fa.fa-pencil-square-o
                     | Catégories
 
@@ -84,7 +60,7 @@ html lang="#{I18n.locale}"
                   = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages
                   = menu_link 'SEO pages statiques', admin_seos_path, section: :seos
 
-        article.content.dashboard-page
+        article.content
           = yield
 
 
