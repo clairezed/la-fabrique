@@ -1,6 +1,3 @@
-// // Layout Back Office 
-
-
 // ////////////////////////////
 // // GENERAL
 // ////////////////////////////
@@ -12,8 +9,8 @@
 // html  
 //   font-size: 14px
 
-// a:focus
-//   outline: none
+a:focus
+  outline: none
 
 // header, .admin-main-wrapper
 //   min-width: map-get($grid-breakpoints, lg)
@@ -49,123 +46,637 @@
 //   font-size: 92%
 
 
-// ////////////////////////////
-// // ASIDE : barre de menu gauche
-// ////////////////////////////
+// // Layout Back Office 
+// Fortement inspiré de https://github.com/modularcode/modular-admin-html
 
 
+
+// _main.scss =======================================================
+
+html, body 
+  padding: 0
+  margin: 0
+  height: 100%
+  min-height: 100%
+  font-family: 'Open Sans', sans-serif
+  color: $color-text
+  overflow-x: hidden
+
+.main-wrapper 
+  width: 100%
+  position: absolute
+  height: 100%
+  overflow-y: auto
+  overflow-x: hidden
+
+
+// app/app.scss =====================================================
+
+.app 
+  position: relative
+  width: 100%
+  padding-left: $sidebar-width
+  min-height: 100vh
+  margin: 0 auto
+  left: 0
+  background-color: $color-bg
+  box-shadow: 0 0 3px #ccc
+  transition: left 0.3s ease, padding-left 0.3s ease 
+  overflow: hidden
+
+  .content 
+    $padding-x: $content-padding-x-md
+    $padding-y: $content-padding-y-md
+    padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x
+    min-height: 100vh  
+
+    @include media(xl) 
+      $padding-x: $content-padding-x-xl
+      $padding-y: $content-padding-y-xl
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x
+    
+    @include media(lg) 
+      $padding-x: $content-padding-x-lg
+      $padding-y: $content-padding-y-lg
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x
+    
+
+    @include media(md) 
+      $padding-x: $content-padding-x-md
+      $padding-y: $content-padding-y-md
+      padding: $header-height + $padding-y $padding-x $footer-height + $padding-y $padding-x
+    
+
+    @include media-down(sm) 
+      $padding-x: $content-padding-x-sm
+      $padding-y: $content-padding-y-sm
+      padding: $header-height-xs + $padding-y $padding-x $footer-height + $padding-y $padding-x
+    
+
+  @include media-down(md) 
+    padding-left: 0
+    // background-color: #ccc
+    // left: -$sidebar-width
+    // width: calc(100% + #$sidebar-width)
+  
+  
+  &.sidebar-open 
+    // Disable content scrolling when sidebar is open
+    @include media-down(md) 
+      left: 0
+      // position: absolute
+      // height: 100%
+      // overflow: hidden
+    
+  &.blank 
+    background-color: #667380
+  
+
+// src/_common/_styles/layout.scss =====================================================
+
+.row
+  .col
+    padding-left: $grid-gutter-width-base / 2
+    padding-right: $grid-gutter-width-base / 2
+    float: left
+
+.row-sm
+  margin-left: -10px
+  margin-right: -10px
+
+  [class^='col']
+    padding-left: 10px
+    padding-right: 10px
+
+.title-block
+  padding-bottom: 15px
+  margin-bottom: 30px
+  border-bottom: 1px solid $color-divider
+
+  +clearfix
+
+  +media-down(sm)
+    margin-bottom: 20px
+
+.subtitle-block
+  padding-bottom: 10px
+  margin-bottom: 20px
+  border-bottom: 1px dashed lighten($color-divider, 3%)
+
+.section
+  display: block
+  margin-bottom: $content-padding-y-md - $card-margin-bottom
+
+  +media(xl)
+    margin-bottom: $content-padding-y-xl - $card-margin-bottom
+
+
+  +media(lg)
+    margin-bottom: $content-padding-y-lg - $card-margin-bottom
+
+
+  +media(md)
+    margin-bottom: $content-padding-y-md - $card-margin-bottom
+
+
+  +media-down(sm)
+    margin-bottom: $content-padding-y-sm - $card-margin-bottom
+
+
+  &:last-of-type
+    margin-bottom: 0
+
+.box-placeholder
+  margin-bottom: 15px
+  padding: 20px
+  border: 1px dashed #ddd
+  background: #fafafa
+  color: #444
+  cursor: pointer
+
+
+////////////////////////////
+// HEADER : src/app/_common/header/header.scss 
+////////////////////////////
+
+.header 
+  background-color: $color-divider
+  height: $header-height
+  position: absolute
+  left: $sidebar-width
+  right: 0
+  transition: left 0.3s ease
+  z-index: 10
+
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+
+  @include media-down(md) 
+    left: 0
+
+  @include media-down(sm) 
+    left: 0
+    height: $header-height-xs
+
+  .header-fixed & 
+    position: fixed
+
+  .header-block 
+    @include media-down(sm) 
+      padding: 5px
+
+// src/app/_common/header/nav/nav.scss  -----------------------------------------------------
+
+.header .header-block-nav
+  margin-left: auto
+  white-space: nowrap
+  padding-right: 15px
+
+  @include media-down(sm)
+    padding-right: 25px
+  
+  @include clearfix()
+
+  a
+    text-decoration: none
+  
+  // All lists
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+  
+  & > ul
+    display: table
+  
+  // First level items
+  & > ul > li
+    display: table-cell
+    position: relative
+    &:before
+      display: block
+      content: " "
+      width: 1px
+      height: 24px
+      top: 50%
+      margin-top: -12px
+      background-color: darken($color-divider, 25%)
+      position: absolute
+      left: 0
+    &:first-child:before
+      display: none
+    
+  
+  // First leve items links
+  & > ul > li > a
+    padding: 0 15px
+    color: $color-text
+    &:hover
+      color: $color-primary
+    
+  // Dropdown menus
+  .dropdown-menu
+    margin-top: 15px
+  
+
+  // src/app/_common/header/nav/profile/profile.scss  ------------------------------------------------------------
+  .header .header-block-nav
+  .profile
+    .img
+      display: inline-block
+      width: 30px
+      height: 30px
+      line-height: 30px
+      border-radius: 4px
+      background-color: darken($color-divider, 25%)
+      color: $color-text-inverse
+      text-align: center
+      margin-right: 10px
+      background-repeat: no-repeat
+      background-position: center
+      background-size: cover
+      vertical-align: middle
+    
+    .name
+      display: inline-block  
+      margin-right: 9px
+      font-weight: bold
+
+      @include media-down(sm)
+        display: none
+
+    .arrow
+      color: $color-primary
+
+  .profile-dropdown-menu
+    left: auto
+    right: 0
+    min-width: 180px
+    white-space: normal
+
+    &:before
+      position: absolute
+      right: 10px
+      bottom: 100%
+      margin-right: -1px
+      // @include triangle(up, 10px, $dropdown-border)
+    
+    &:after
+      position: absolute
+      right: 10px
+      bottom: 100%
+      // @include triangle(up, 9px, $dropdown-bg)
+
+    a
+      padding: 10px 15px
+      .icon
+        color: $color-primary
+        text-align: center
+        width: 16px
+
+      span
+        display: inline-block
+        padding-left: 5px
+        text-align: left
+        color: $color-text-light
+      
+    .profile-dropdown-menu-icon
+      padding: 0
+    
+    .profile-dropdown-menu-topic
+      color: #7e8e9f
+      padding: 0
+    
+    .dropdown-divider
+      margin: 0
+    
+    .logout
+      border-top: 1px solid $dropbown-color-border
+    
+
+    @include media-down(sm)
+      margin-top: 8px
+
+
+// ////////////////////////////
+// ASIDE : barre de menu gauche 
+// src/app/_common/sidebar/sidebar.scss 
+// ////////////////////////////
+
+.sidebar
+  background-color: $sidebar-color-primary
+  width: $sidebar-width
+  padding-bottom: 60px
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  transition: left 0.3s ease
+  z-index: 20
+
+  @include media-down(md)
+    position: fixed
+    left: -$sidebar-width
+
+  .sidebar-fixed &
+    position: fixed
+  
+  .sidebar-open &
+    left: 0
+
+  .sidebar-container
+    position: absolute
+    top: 0
+    bottom: 51px
+    width: 100%
+    left: 0
+    overflow-y: auto
+    overflow-x: hidden
+
+    &::-webkit-scrollbar-track
+      background-color: darken($sidebar-color-primary, 6.5%)
+  
+  .nav
+    font-size: 14px
+
+    // Common styles
+    li
+      a:focus,
+      .open & a:focus
+        background-color: inherit
+  
+    // Second + menu items
+    ul
+      padding: 0
+      display: none
+      overflow: hidden
+  
+    li.active ul, li.open ul
+      display: block
+
+
+    // All links which are not active
+    // have subdued color
+    li a
+      color: $sidebar-color-text
+      text-decoration: none
+
+    // All links which are not active
+    // On hover bg become darker
+    // Their color become lighter
+    li a:hover,
+    li.open > a,
+    li.open a:hover
+      color: $sidebar-color-text-active
+      background-color: $sidebar-color-secondary
+
+
+    // First level items
+    &> li
+
+      // First level items links
+      & > a
+        padding-top: 15px
+        padding-bottom: 15px
+        padding-left: 20px
+        padding-right: 10px
+  
+      // First level active links have primary background
+      &.active > a,
+      &.active > a:hover
+        background-color: $color-primary !important
+        color: $color-text-inverse !important
+  
+      // First level active links have bit darker background
+      &.open > a
+        background-color: darken($sidebar-color-primary, 3%)
+  
+      // Open items links
+      &.open > a
+        i.arrow
+          transform: rotate(90deg)
+      
+      // First level item links arrow 
+      & > a
+        i
+          margin-right: 5px
+          font-size: 16px
+
+          &.arrow
+            float: right
+            font-size: 20px
+            line-height: initial
+            transition: all 0.3s ease
+
+            &:before
+              content: "\f105" !important              
+
+    // Second level items
+    & > li > ul > li
+
+      // Second level and deeper items links
+      // Have bit darker background and more padding 
+      // from left side
+      a
+        padding-top: 10px
+        padding-bottom: 10px
+        padding-left: 50px
+        background-color: darken($sidebar-color-primary, 3%)
+  
+      // Second level active items links
+      // Have brighter color
+      &.active a
+        color: $sidebar-color-text-active
+
+
+// Custom ----------------------------------------------
 // barre de gauche
 aside.sidebar
-  // nav
-  nav
-    // ul contenant les liens 
-    .nav
-      > li 
-        // sous-menus
-        &.submenu
-          > a
-            i:nth-child(1)
-              transition: all 250ms ease
-              -webkit-transition: all 250ms ease
+  &.submenu
+    > a
+      i:nth-child(1)
+        transition: all 250ms ease
+        -webkit-transition: all 250ms ease
 
-          &.open
-            > a
-              i:nth-child(1)
-                transform: rotateZ(90deg)
-                -webkit-transform: rotateZ(90deg)
-                -ms-transform: rotateZ(90deg)
+    &.open
+      > a
+        i:nth-child(1)
+          transform: rotateZ(90deg)
+          -webkit-transform: rotateZ(90deg)
+          -ms-transform: rotateZ(90deg)
+  
+// src/app/_common/sidebar/header/header.scss  ---------------------------------
 
-
-// ////////////////////////////
-// // COMPONENTS
-// ////////////////////////////
-
-// .card
-//   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
-//   border: 0
-//   background-color: #fff
-//   border-radius: 3px
-
-
-// .control-label
-//   font-weight: normal
-
-// ////////////////////////////
-// // TABLES
-// ////////////////////////////
-
-// // table striped: surcharge bootstrap
-// .table-striped 
-//   > tbody > tr > td 
-//     border-top: none
-
-// ////////////////////////////
-// // BOUTON
-// ////////////////////////////
-
-// .btn:not(.btn-link)
-//   border: 0
-//   text-transform: uppercase
-//   &.btn-default
-//     color: #333333
-//     background-color: #ffffff
-//     border: 1px solid #eee
-
-
-
-// ////////////////////////////
-// // FORM
-// ////////////////////////////
-
-
-
-// ////////////////////////////
-// // WELL SEARCH
-// ////////////////////////////
-
-// .card-gray
-//   background-color: #eee
-//   .lead
-//     margin-bottom: 5px
-//   .form-control
-//     width: 100%
-
+.sidebar-header 
+  .brand 
+    color: #fff
+    text-align: left
+    padding-left: 25px
+    line-height: $header-height
+    font-size: 1.5rem
+    font-weight: bold
+    a 
+      color: inherit
+      text-decoration: none
+      &:hover
+        text-decoration: none
     
-// .content-main 
-//   margin-top: 10px
+    @include media-down(sm) 
+      line-height: $header-height-xs
+      font-size: 16px
 
 
-// ////////////////////////////
-// // NAV TAB
-// ////////////////////////////
+// Header collapse 
+// src/app/_common/header/collapse/collapse.scss --------------------------------------------------
+.header .header-block-collapse
 
-// .nav.nav-tabs
-//   margin-bottom: 0px  
-//   background: #d7d7d3
-//   border-bottom: 1px solid #d7d7d3
-//   border-top: 5px solid #d7d7d3
-//   border-left: 5px solid #d7d7d3
-//   border-right: 5px solid #d7d7d3
-//   font-size: 13px
-//   border-top-width: 8px
+  padding-right: 5px
 
-// .nav-tabs > li > a
-//   color: $gray-dark
-//   margin-bottom: 0px
+  @include media-down(sm)
+    width: 155px
 
-// .nav-tabs > li > .nav-link:hover, 
-// .nav-tabs > li > .nav-link:focus,
-// .nav-tabs > li.active > a, 
-// .nav-tabs > li.active > a:hover, 
-// .nav-tabs > li.active > a:focus
-//   background: #fff
-//   border-color: #fff
+  .collapse-btn
+    background: none
+    border: none
+    box-shadow: none
+    color: $color-primary
+    font-size: 24px
+    line-height: 40px
+    border-radius: 0
+    outline: none
+    padding: 0
+    padding-left: 10px
+    padding-right: 10px
+    vertical-align: initial
 
+// Header buttons 
+// src/app/_common/header/buttons/buttons.scss ------------------------------------------------
 
+.header .header-block-buttons
+  text-align: center
+  margin-left: auto
+  margin-right: auto
+  white-space: nowrap
 
-// .nav.nav-tabs + .card
-//   border-left: 5px solid #eee
-//   border-right: 5px solid #eee
-//   border-bottom: 5px solid #eee
-//   border-radius: 0 0 3px 3px
-//   box-shadow: none
+  .btn.header-btn
+    background-color: transparent
+    border: 1px solid lighten($color-text, 10%)
+    color: lighten($color-text, 10%)
+    margin: 0 5px
+    border-radius: 0.2rem
+    // border-radius: 25px
+    &:hover,
+    &:focus
+      border: 1px solid darken($color-text, 10%)
+      color: darken($color-text, 10%)
+    
+    @include media-down(sm)
+      span
+        display: none
+
+////////////////////////////
+// NAVIGATION 
+// _common/navigation/navigation.scss
+////////////////////////////
+
+a:not(.btn) 
+  // display: inline-block
+  // position: relative
+  // overflow: hidden
+  // vertical-align: top
+  // z-index: 0
+  transition: $link-transition
+  text-decoration: $link-decoration
+  color: $link-color
+
+  // &:before 
+  //  &:extend(.underline-animation)
+  // 
+
+  &:hover
+    text-decoration: $link-hover-decoration
+    color: $link-hover-color
+    &:before 
+      transform: scaleX(1)
+  &:focus 
+    text-decoration: none
+
+span a 
+  vertical-align: text-bottom      
+
+[class^='nav'],
+[class*=' nav'] 
+  li > a 
+    // Display these anchors as block
+    display: block
+
+    // Hide underline in anchors which are inside LI tag
+    &:before 
+      display: none
+
+.nav 
+  &.nav-tabs-bordered 
+    border-color: $color-primary
+    & + .tab-content 
+      border-style: solid
+        border-width: 0 1px 1px 1px
+        border-color: $color-primary
+        padding: 10px 20px 0
+    .nav-item 
+      .nav-link 
+        text-decoration: none
+        &:hover 
+          color: #ffffff 
+          background-color: $color-primary
+          border: 1px solid $color-primary
+        &.active 
+          border-color: $color-primary
+          border-bottom-color: transparent
+          &:hover 
+            background-color: #ffffff
+            color: inherit
+          
+  &.nav-pills 
+    & + .tab-content 
+      border: 0
+      padding: 5px
+    .nav-item 
+      .nav-link 
+        text-decoration: none
+        &:hover 
+          color: $color-text 
+          background-color: transparent
+          border: 0
+        &.active 
+          border-color: $color-primary
+          border-bottom-color: transparent
+          background-color: $color-primary
+
+          &:hover 
+            background-color: $color-primary
+            color: #ffffff 
+
+// scrollbar.scss
+
+/* Let's get this party started */
+::-webkit-scrollbar 
+  width: 7px
+  height: 7px
+ 
+/* Track */
+::-webkit-scrollbar-track 
+  // -webkit-box-shadow: inset 0 0 6px #626d77 
+  // background: #626d77
+  -webkit-border-radius: 0
+  border-radius: 0
+ 
+/* Handle */
+::-webkit-scrollbar-thumb 
+  -webkit-border-radius: 0
+  border-radius: 0
+  background: darken($color-primary, 5%) 
+    // -webkit-box-shadow: inset 0 0 6px $color-primary 
+::-webkit-scrollbar-thumb:window-inactive 
+  background: $color-primary      
