@@ -23,7 +23,7 @@ module Sortable
       
       #==========================================================================
       # Application des filtres de tri à l'envoi d'un params[:sort] 
-      # (à coupler avec l'utilisation du helper shb_sort)
+      # (à coupler avec l'utilisation du helper hm_sort)
       # Utilisation :
       #   User.apply_sorts(params, lastname: :asc) => Si pas de sort, tri par nom par défaut
       #==========================================================================

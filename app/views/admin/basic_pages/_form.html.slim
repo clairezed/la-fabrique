@@ -1,4 +1,4 @@
-= f.shb_form_errors
+= f.hm_form_errors
 .form-group.row
   .form_actions
     label.form-label-default Affiché ?
@@ -9,8 +9,8 @@
       label.radio-inline
         = f.radio_button :enabled, false
         | Non
-= f.shb_text_field :title, {}, {class: "required"}
-= f.shb_text_area :content, {rows: 15}
+= f.hm_text_field :title, {}, {class: "required"}
+= f.hm_text_area :content, {rows: 15}
 = render partial: "admin/seos/fields_for_form", locals: {f: f}
 .form-group.row
   .form-actions

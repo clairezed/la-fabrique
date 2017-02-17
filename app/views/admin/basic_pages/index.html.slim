@@ -3,9 +3,9 @@
   table.table.table-striped.table-hover.table-sm
     thead
       tr
-        th= shb_sort 'sort_by_position', label: 'Position'
-        th= shb_sort 'sort_by_title', label: 'Titre'
-        th= shb_sort 'sort_by_enabled', label: 'Affiché?'
+        th= hm_sort 'sort_by_position', label: 'Position'
+        th= hm_sort 'sort_by_title', label: 'Titre'
+        th= hm_sort 'sort_by_enabled', label: 'Affiché?'
         th 
     tbody
       - max_position    = @basic_pages.map( &:position ).compact.max || 1

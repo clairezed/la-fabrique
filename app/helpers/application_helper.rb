@@ -115,7 +115,7 @@ module ApplicationHelper
   #   descend: boolean
   #   default: boolean
   #
-  def shb_sort(field, options={})
+  def hm_sort(field, options={})
     dir = 'asc'
     dir = 'desc' if options[:descend]
     fld = field.to_s

@@ -1,4 +1,4 @@
-module Shb
+module HomeMade
   module FormBuilder
 
     # Affiche les erreurs du formulaire
@@ -6,7 +6,7 @@ module Shb
     # - show_title: boolean (true par défaut)
     # - only: <nested_attributes>
     # - except: <nested_attributes>
-    def shb_form_errors(params = {})
+    def hm_form_errors(params = {})
       if (errors = self.object.errors).any?
         @template.content_tag :div, class: "error_explanation" do
           content = []
@@ -38,7 +38,7 @@ module Shb
     end
 
     # Génère un input text formaté pour bootstrap (pour les formulaire form-horizontal) :
-    #     shb_text_field f, :lastname, {id: "lastname_input", placeholder: "Nom"}, {id: "lastname_div"}, "Coucou"
+    #     hm_text_field f, :lastname, {id: "lastname_input", placeholder: "Nom"}, {id: "lastname_div"}, "Coucou"
     # Donnera:
     #     <div class="form-group" id="lastname_div">
     #       <label for="lastname_input" class="form-label-default">Coucou</label>
@@ -46,7 +46,7 @@ module Shb
     #         <input type="text" class="form-control" id="lastname_input" placeholder="Nom">
     #       </div>
     #     </div>
-    def shb_text_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_text_field attribute, input_options = {}, div_options = {}, label = nil
       input_options[:class], controls_class = set_form_and_controls_class(input_options[:class])
 
       input = self.text_field attribute, input_options
@@ -62,50 +62,50 @@ module Shb
         end
       end
 
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
-    def shb_email_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_email_field attribute, input_options = {}, div_options = {}, label = nil
       input_options[:class], controls_class = set_form_and_controls_class(input_options[:class])
       input = self.email_field attribute, input_options
 
       input_controls = @template.content_tag :div, input, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
     
-    def shb_password_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_password_field attribute, input_options = {}, div_options = {}, label = nil
       input_options[:class], controls_class = set_form_and_controls_class(input_options[:class])
       input = self.password_field attribute, input_options
 
       input_controls = @template.content_tag :div, input, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
-    def shb_file_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_file_field attribute, input_options = {}, div_options = {}, label = nil
       nothing, controls_class = set_form_and_controls_class(input_options[:class])
       input = self.file_field attribute, input_options
 
       input_controls = @template.content_tag :div, input, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
-    def shb_text_area attribute, input_options = {}, div_options = {}, label = nil
+    def hm_text_area attribute, input_options = {}, div_options = {}, label = nil
       input_options[:class], controls_class = set_form_and_controls_class(input_options[:class], "controls-xlarge")
       input = self.text_area attribute, input_options
 
       input_controls = @template.content_tag :div, input, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
-    def shb_select attribute, collection, select_options = {}, input_options = {}, div_options = {}, label = nil
+    def hm_select attribute, collection, select_options = {}, input_options = {}, div_options = {}, label = nil
       input_options[:class], controls_class = set_form_and_controls_class(input_options[:class])
       input = self.select attribute, collection, select_options, input_options
 
       input_controls = @template.content_tag :div, input, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
-    def shb_date_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_date_field attribute, input_options = {}, div_options = {}, label = nil
       classes = input_options[:class].try(:split, ' ') || []
       classes << "form-control" if !classes.include?("form-control")
       classes << "datepicker" if !classes.include?("datepicker")
@@ -113,10 +113,10 @@ module Shb
       input_options[:class] = classes.join(' ')
       input_options[:value] ||= I18n.l(self.object.send(attribute).to_date) if self.object.send(attribute)
 
-      shb_text_field attribute, input_options, div_options, label
+      hm_text_field attribute, input_options, div_options, label
     end
 
-    def shb_datetime_field attribute, input_options = {}, div_options = {}, label = nil
+    def hm_datetime_field attribute, input_options = {}, div_options = {}, label = nil
       inputs = []
 
       # champ de date
@@ -143,7 +143,7 @@ module Shb
       end
 
       input_controls = @template.content_tag :div, inputs.join(' ').html_safe, class: controls_class
-      shb_bootstrap_field_block attribute, input_controls, div_options, label
+      hm_bootstrap_field_block attribute, input_controls, div_options, label
     end
 
     private
@@ -158,7 +158,7 @@ module Shb
       [classes.join(' '), controls_class]
     end
 
-    def shb_bootstrap_field_block(attribute, input_controls, div_options = {}, custom_label = nil)
+    def hm_bootstrap_field_block(attribute, input_controls, div_options = {}, custom_label = nil)
       label = self.label attribute, custom_label, class: "form-label-default"
       div_options[:class] = ["form-group row", div_options[:class]].compact.join(' ')
 
@@ -168,4 +168,4 @@ module Shb
   end
 end
 
-ActionView::Helpers::FormBuilder.send :include, Shb::FormBuilder
+ActionView::Helpers::FormBuilder.send :include, HomeMade::FormBuilder

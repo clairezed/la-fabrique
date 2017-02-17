@@ -1,40 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Open source license : MIT, Apache 2.0, and GPLv3
+- README : 
+  - What does this project do? 
+  - Why is this project useful?
+  - How do I get started?
+  - Where can I get more help, if I need it?
+- Contributing guidelines
+  - How to file a bug report (try using issue and pull request templates)
+  - How to suggest a new feature
+  - How to set up your environment and run tests
+- Code of conduct
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-TODO
+## TODO
 
 - [x] gicler font-awesome
 - [x] refaire à la main le dropdown de metismenu
-- [ ] supprimer js et css de metismenu
-- [ ] chercher / faire une version sass de lte.css ?
-- [ ] voir fonts ?
+- [x] supprimer js et css de metismenu
+- [x] chercher / faire une version sass de lte.css ?
 - [x] remettre les liens admin
-- [ ] sources : nommer https://github.com/modularcode/modular-admin-html
+- [x] réorga assets
+- [x] Revoir .brand
+- [ ] voir fonts ?
 - [ ] readme code open source
 - [ ] licence code
 - [ ] revoir nommage lib shb
 - [ ] clone du repo clean comme starter
-- [ ] réorga assets
-- [ ] Revoir .brand
+
+
+## SOURCES 
+
+- back office inspired by https://github.com/modularcode/modular-admin-html
