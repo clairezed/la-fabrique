@@ -38,23 +38,25 @@ html lang="#{I18n.locale}"
                 = menu_link admin_root_path, section: :home, title: "Retour à l'accueil" do 
                     i.fa.fa-home
                     | Accueil
+                .sidebar-divider
                 li
                   a href="" 
-                    i.fa.fa-th-large
+                    i.fa.fa-address-card
                     | Fiches 
                 li
                   a href="" 
-                    i.fa.fa-bar-chart
+                    i.fa.fa-list
+                    | Catégories
+                .sidebar-divider
+                li
+                  = menu_link admin_axes_path, section: :axes
+                    i.fa.fa-list
                     | Axes
                 li
                   = menu_link admin_themes_path, section: :themes
-                    i.fa.fa-table
+                    i.fa.fa-list
                     | Thématiques
-                li
-                  a href="" 
-                    i.fa.fa-pencil-square-o
-                    | Catégories
-
+                .sidebar-divider
                 = submenu(raw("<i class='fa fa-cog'></i> Configurations"), %w(basic_pages seos admins))
                   = menu_link 'Gestion des admins', admin_admins_path, section: :admins
                   = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages

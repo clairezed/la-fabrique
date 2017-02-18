@@ -6,10 +6,10 @@
 
     = link_to new_admin_theme_path, class: "btn btn-info float-right" do
      span.glyphicon.glyphicon-plus>
-     | Ajouter une Thématique
+     | Ajouter une thématique
 
 .card.card-block
   .content-main
-    small = I18n.t("results", count: @themes.count)
+    small.float-right = I18n.t("results", count: @themes.count)
     = yield
 

@@ -17,12 +17,75 @@ seo1 = Seo.where(param: "home").first_or_create
 
 
 # Thèmes ======================================================
-[
-  "Mobilité"
-].each do |title|
-  s = Theme.where(title: title).first_or_create!(enabled: true)
-end
 
+[
+  {
+    title: "Mobilité",
+    id_key: "mobility",
+    enabled: true
+  }
+].each do |option|
+  Theme.where(title: option[:title]).first_or_create(id_key: option[:id_key], enabled: option[:enabled])
+end
 
 # Axes ========================================================
 
+mobility_theme = Theme.where(id_key: "mobility").first
+
+[
+  {
+    title: "Interculturalité", 
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  },
+    {
+    title: "Préparation au départ",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  },
+    {
+    title: "Préparation au retour",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  },
+    {
+    title: "Dispositifs de la mobilité",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  }, 
+  {
+    title: "Valorisation des compétences",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  }, 
+  {
+    title: "Gestion des conflits",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  }, 
+  {
+    title: "Animation de groupe",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  }, 
+  {
+    title: "Méthodologie de projets",
+    description: "",
+    theme_id: mobility_theme.id,
+    enabled: true
+  }
+
+].each do |option|
+  Axis.where(title: option[:title]).first_or_create(
+    theme_id: option[:theme_id], 
+    description: option[:description], 
+    enabled: option[:enabled]
+  )
+end

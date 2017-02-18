@@ -45,10 +45,19 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def destroy
-    @theme.destroy
-    flash[:notice] = "La thématique a été supprimée avec succès"
+    begin
+      flash[:notice] = "La thématique a été supprimée avec succès" if @theme.destroy
+    rescue ActiveRecord::DeleteRestrictionError => e
+      flash[:error] = "Cette thématique ne peut être supprimée car des éléments lui sont dépendants"
+    end
     redirect_to admin_themes_path
   end
+
+  # def destroy
+  #   @theme.destroy
+  #   flash[:notice] = "La thématique a été supprimée avec succès"
+  #   redirect_to admin_themes_path
+  # end
 
 
   private

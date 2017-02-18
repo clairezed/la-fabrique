@@ -4,6 +4,7 @@ class CreateThemes < ActiveRecord::Migration[5.0]
       t.string :title
       t.integer :position
       t.boolean :enabled, default: false
+      t.string :id_key
 
       t.timestamps
     end

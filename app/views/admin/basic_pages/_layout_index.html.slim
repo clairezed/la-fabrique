@@ -10,6 +10,6 @@
 
 .card.card-block
   .content-main
-    small = I18n.t("results", count: @basic_pages.count)
+    small.float-right = I18n.t("results", count: @basic_pages.count)
     = yield
 

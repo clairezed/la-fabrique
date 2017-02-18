@@ -1,4 +1,4 @@
-class Theme < ApplicationRecord
+class Axis < ApplicationRecord
   
   # Configurations =============================================================
   include Sortable
@@ -7,20 +7,26 @@ class Theme < ApplicationRecord
   acts_as_list
   
   # Associations ===============================================================
-
-  has_many :axes, dependent: :restrict_with_exception
+  belongs_to :theme
 
   # Callbacks ==================================================================
   validates :title, presence: true
+  validates :theme, presence: true
   
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }
+  scope :by_theme, ->(val) { where theme: val }
+  scope :by_title, ->(val) { 
+    val.downcase!
+    where(arel_table[:title].matches("%#{val}%"))
+  }
   
   # Class Methods ==============================================================
   def self.apply_filters(params)
     klass = self
 
     klass = klass.by_title(params[:by_title]) if params[:by_title].present?
+    klass = klass.by_theme(params[:by_theme]) if params[:by_theme].present?
 
     klass.apply_sorts(params)
   end

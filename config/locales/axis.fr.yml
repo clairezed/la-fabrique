@@ -1,0 +1,17 @@
+fr:
+  activerecord:
+    attributes:
+      axis:
+        title: Le titre
+        description: La description
+        theme: La thématique
+        theme_id: La thématique
+
+
+  helpers:
+    label:
+      axis:
+        title: Titre
+        description: Description
+        theme: Thématique
+        theme_id: Thématique
