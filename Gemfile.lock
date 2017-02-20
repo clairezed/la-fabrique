@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/smartinez87/exception_notification.git
+  revision: 3b3ee06b0ea48a504f5d8be2dcfd6ce8de9dc2a8
+  specs:
+    exception_notification (4.2.1)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -266,6 +274,7 @@ DEPENDENCIES
   database_cleaner
   devise (~> 4.2.0)
   email_spec
+  exception_notification!
   factory_girl_rails
   font-awesome-rails
   htmlentities (~> 4.3.4)

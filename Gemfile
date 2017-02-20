@@ -41,8 +41,8 @@ gem 'prawn'
 gem 'prawn-svg'
 gem 'prawn-table'
 
-
-# gem 'capistrano-rails', group: :development
+#= NOTIFS =================================
+gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
 
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
