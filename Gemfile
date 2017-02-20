@@ -41,18 +41,18 @@ gem 'prawn'
 gem 'prawn-svg'
 gem 'prawn-table'
 
-
-# gem 'capistrano-rails', group: :development
-
+#= NOTIFS =================================
+gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "capistrano"
+  gem "rvm-capistrano", require: false
 end
 
 group :development, :test do
