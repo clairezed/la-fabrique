@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :http_authentication
   before_action :set_default_seos!, :get_basic_pages
   after_action :flash_to_headers, if: ->{ request.xhr? && flash.present? }
 
@@ -43,5 +44,13 @@ class ApplicationController < ActionController::Base
 
   def get_basic_pages
     @basic_pages = BasicPage.where(enabled: true).order(position: :asc)
+  end
+
+  def http_authentication
+    if Rails.env.staging? || Rails.env.production?
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "mirador" && password == "mirador2017"
+      end
+    end
   end
 end
