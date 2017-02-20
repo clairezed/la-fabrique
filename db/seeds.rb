@@ -89,3 +89,70 @@ mobility_theme = Theme.where(id_key: "mobility").first
     enabled: option[:enabled]
   )
 end
+
+
+# Catégories d'outil ========================================================
+
+[
+  {
+    title: "Présentation", enabled: true,
+    description: "name game…"
+  },
+  {
+    title: "Energizers", enabled: true,
+    description: ""
+  },
+  {
+    title: "Ice-breakers", enabled: true,
+    description: ""
+  },
+  {
+    title: "Team building", enabled: true,
+    description: ""
+  },
+  {
+    title: "Jeux de rôle / Simulation", enabled: true,
+    description: ""
+  },
+  {
+    title: "Création", enabled: true,
+    description: ""
+  },
+  {
+    title: "Débriefing", enabled: true,
+    description: ""
+  },
+  {
+    title: "Retour d’expérience", enabled: true,
+    description: ""
+  },
+  {
+    title: "Communication / Débat / Discussion", enabled: true,
+    description: "bâton de parole…"
+  },
+  {
+    title: "Evaluation", enabled: true,
+    description: ""
+  },
+  {
+    title: "Pour soi", enabled: true,
+    description: "pour se préparer / ex: respiration…"
+  },
+  {
+    title: "Gestion de groupe", enabled: true,
+    description: ""
+  },
+  {
+    title: "Témoignage", enabled: true,
+    description: ""
+  },
+  {
+    title: "Brainstorming", enabled: true,
+    description: ""
+  },
+].each do |option|
+  ToolCategory.where(title: option[:title]).first_or_create(
+    description: option[:description], 
+    enabled: option[:enabled]
+  )
+end

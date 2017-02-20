@@ -1,0 +1,35 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead.thead-inverse
+      tr
+        th= hm_sort 'sort_by_created', label: 'Date création'
+        th= hm_sort 'sort_by_title', label: 'Titre'
+        th= hm_sort 'sort_by_axis_id', label: 'Axe'
+        th= hm_sort 'sort_by_tool_category_id', label: 'Catégorie'
+        th= hm_sort 'sort_by_state', label: 'Etat'
+        th 
+    tbody
+      - @tools.each do |tool| 
+        tr
+          td= l tool.created_at.to_date
+          td= link_to tool.title, edit_admin_tool_path(tool)
+          td= link_to tool.axis.title, edit_admin_axis_path(tool.axis)
+          td= link_to tool.tool_category.title, edit_admin_tool_category_path(tool.tool_category)
+          td
+            span class="badge badge-#{tool_state_style(tool.state)}"= tool_state_title(tool.state)
+          / td
+            / span class="label label-#{tool.enabled? ? 'success' : 'warning'}" = tool.enabled? ? "Oui" : "Non"
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_tool_path(tool),
+              class: "btn btn-sm btn-info", title: "Editer"
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_tool_path(tool),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @tools.empty?
+        tr
+          td colspan="7"
+            p.text-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @tools, renderer: WillPaginateBoostrap4Renderer

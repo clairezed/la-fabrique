@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    attributes:
+      tool_category:
+        title: Le titre
+        description: La description
+
+
+  helpers:
+    label:
+      tool_category:
+        title: Titre
+        description: Description

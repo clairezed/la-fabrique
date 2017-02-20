@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217204457) do
+ActiveRecord::Schema.define(version: 20170218155517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,5 +70,39 @@ ActiveRecord::Schema.define(version: 20170217204457) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "tool_categories", force: :cascade do |t|
+    t.string   "title",                       null: false
+    t.text     "description"
+    t.integer  "position"
+    t.boolean  "enabled",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "tools", force: :cascade do |t|
+    t.integer  "axis_id",                          null: false
+    t.integer  "tool_category_id",                 null: false
+    t.integer  "state",            default: 0,     null: false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "group_size",       default: 0
+    t.integer  "duration",         default: 0
+    t.integer  "level",            default: 0
+    t.integer  "public",           default: 0
+    t.integer  "licence",          default: 0
+    t.string   "goal"
+    t.text     "material"
+    t.string   "source"
+    t.string   "source_url"
+    t.string   "submitter_email"
+    t.boolean  "enabled",          default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["axis_id"], name: "index_tools_on_axis_id", using: :btree
+    t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
+  end
+
   add_foreign_key "axes", "themes"
+  add_foreign_key "tools", "axes"
+  add_foreign_key "tools", "tool_categories"
 end

@@ -1,0 +1,4 @@
+= render layout: 'layout_form' do 
+  = form_for @tool, as: :tool, url: admin_tools_path, html: {class: "form-horizontal"} do |f| 
+    = render partial: "form", locals: {f: f, button_name: "Créer la page", button_name_2: "Créer et continuer l'édition"}
+

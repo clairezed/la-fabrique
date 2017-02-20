@@ -22,7 +22,7 @@
           td= link_to axis.title, edit_admin_axis_path(axis)
           td= link_to axis.theme.title, edit_admin_theme_path(axis.theme)
           td
-            span class="label label-#{axis.enabled? ? 'success' : 'warning'}" = axis.enabled? ? "Oui" : "Non"
+            span class="badge badge-#{boolean_class(axis.enabled)}" = boolean_title(axis.enabled)
           td.action-btns
             => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_axis_path(axis),
               class: "btn btn-sm btn-info", title: "Editer"

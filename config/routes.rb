@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :basic_pages, concerns: :positionable
     resources :themes, concerns: :positionable
     resources :axes, concerns: :positionable
+    resources :tool_categories, concerns: :positionable
+    resources :tools
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'
   end

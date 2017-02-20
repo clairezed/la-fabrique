@@ -1,0 +1,28 @@
+fr:
+  activerecord:
+    attributes:
+      tool:
+        title: Le titre
+        description: La description
+
+
+  helpers:
+    label:
+      tool:
+        title: Titre
+        description: Description
+
+  tool_states:
+    title:
+      pending: en attente
+      accepted: accepté
+      rejected: rejeté
+    style:
+      pending: warning
+      accepted: success
+      rejected: danger
+
+  tool_group_sizes:
+    size_1: "2-10"
+    size_2: "10-40" 
+    size_3: "+40"    

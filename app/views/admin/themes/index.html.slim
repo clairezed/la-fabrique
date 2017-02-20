@@ -24,7 +24,7 @@
             i.fa.fa-list>
             => theme.axes.count
           td
-            span class="label label-#{theme.enabled? ? 'success' : 'warning'}" = theme.enabled? ? "Oui" : "Non"
+            span class="badge badge-#{boolean_class(theme.enabled)}" = boolean_title(theme.enabled)
           td.action-btns
             => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_theme_path(theme),
               class: "btn btn-sm btn-info", title: "Editer"

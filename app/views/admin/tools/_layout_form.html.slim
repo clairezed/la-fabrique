@@ -1,0 +1,33 @@
+- content_for :current_navigation_section, :tools
+
+.title-block
+  h1
+    | Gestion des fiches outils
+    = link_to admin_tools_path, class: 'btn btn-default float-right' do
+      .glyphicon.glyphicon-arrow-left
+      |  Retour
+
+.card
+  - if !@tool.new_record?
+
+    h2.card-header
+      | Edition de la fiche
+      em=< @tool.title
+
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @tool.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @tool.updated_at
+        .col-md-10
+          = yield
+          
+  - else
+    h2.card-header Créer une nouvelle fiche
+
+    .card-block
+      = yield
+

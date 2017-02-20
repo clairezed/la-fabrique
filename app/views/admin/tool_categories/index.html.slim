@@ -1,0 +1,40 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead.thead-inverse
+      tr
+        th= hm_sort 'sort_by_position', label: 'Position'
+        th= hm_sort 'sort_by_title', label: 'Titre'
+        th Nb fiches
+        th= hm_sort 'sort_by_enabled', label: 'Affiché?'
+        th 
+    tbody
+      - max_position    = @tool_categories.map( &:position ).compact.max || 1
+      - position_select = (1..max_position).map {|i| [i,i] }
+      - @tool_categories.each do |tool_category| 
+        tr
+          td 
+            = form_tag position_admin_tool_category_path(tool_category), method: :patch do
+              = select_tag  :position, 
+                            options_for_select( position_select, tool_category.position ),
+                            onchange: '$(this).parent().submit();',
+                            class: "form-control input-sm", style: "width:70px", id: nil 
+          td= tool_category.title
+          td= link_to admin_tools_path(by_tool_category: tool_category.id), class: "btn btn-default btn-sm" do
+            i.fa.fa-list>
+            => tool_category.tools.count
+          td
+            span class="badge badge-#{boolean_class(tool_category.enabled)}" = boolean_title(tool_category.enabled)
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_tool_category_path(tool_category),
+              class: "btn btn-sm btn-info", title: "Editer"
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_tool_category_path(tool_category),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @tool_categories.empty?
+        tr
+          td colspan="7"
+            p.text-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @tool_categories, renderer: WillPaginateBoostrap4Renderer

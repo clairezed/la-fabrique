@@ -1,0 +1,33 @@
+- content_for :current_navigation_section, :tool_categories
+
+.title-block
+  h1
+    | Gestion des catégories d'outils
+    = link_to admin_tool_categories_path, class: 'btn btn-default float-right' do
+      .glyphicon.glyphicon-arrow-left
+      |  Retour
+
+.card
+  - if !@tool_category.new_record?
+
+    h2.card-header
+      | Edition de la catégorie
+      em=< @tool_category.title
+
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @tool_category.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @tool_category.updated_at
+        .col-md-10
+          = yield
+          
+  - else
+    h2.card-header Créer une nouvelle catégorie
+
+    .card-block
+      = yield
+

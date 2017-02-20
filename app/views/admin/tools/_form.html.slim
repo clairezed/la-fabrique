@@ -1,0 +1,34 @@
+= f.hm_form_errors
+
+.form-group.row
+  .form-label-default
+    | Affiché ?
+  .controls-default
+    .form-check.form-check-inline
+      label.form-check-label
+        => f.radio_button :enabled, true
+        | Oui
+      label.form-check-label
+        => f.radio_button :enabled, false
+        | Non
+= f.hm_text_field :title, {}, {class: "required"}
+
+= f.hm_select :axis_id, axis_options, {include_blank: "Sélectionner un axe"}, {}, {class: "required"}
+= f.hm_select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, {}, {class: "required"}
+= f.hm_select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, {}, {class: "required"}
+
+= f.hm_text_area :description, {rows: 15}
+
+= render partial: "admin/seos/fields_for_form", locals: {f: f}
+
+.form-group.row
+  .form-actions
+    hr
+    => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
+    => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
+    = link_to "Annuler", admin_tools_path, class: "btn"
+
+.form-group.row
+  label.form-label-default
+  .controls-default
+    small: em.text-muted Les champs marqués d'une * sont obligatoires
