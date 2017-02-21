@@ -8,7 +8,7 @@
         th= hm_sort 'sort_by_axis_id', label: 'Axe'
         th= hm_sort 'sort_by_tool_category_id', label: 'Catégorie'
         th= hm_sort 'sort_by_state', label: 'Etat'
-        th 
+        th Actions
     tbody
       - @tools.each do |tool| 
         tr
@@ -20,7 +20,13 @@
             span class="badge badge-#{tool_state_style(tool.state)}"= tool_state_title(tool.state)
           / td
             / span class="label label-#{tool.enabled? ? 'success' : 'warning'}" = tool.enabled? ? "Oui" : "Non"
-          td.action-btns
+          td.action-btns.border-left
+            - if tool.may_accept?
+              => link_to accept_admin_tool_path(tool, search_params), class: 'btn btn-sm btn-success', method: :patch, title: "Accepter" do
+                i.fa.fa-check
+            - if tool.may_reject?
+              => link_to reject_admin_tool_path(tool, search_params), class: 'btn btn-sm btn-danger', method: :patch, title: "Rejeter" do
+                i.fa.fa-ban
             => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_tool_path(tool),
               class: "btn btn-sm btn-info", title: "Editer"
             = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_tool_path(tool),

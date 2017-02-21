@@ -16,7 +16,12 @@ Rails.application.routes.draw do
     resources :themes, concerns: :positionable
     resources :axes, concerns: :positionable
     resources :tool_categories, concerns: :positionable
-    resources :tools
+    resources :tools do
+      member do
+        patch :accept 
+        patch :reject
+      end
+    end
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'
   end

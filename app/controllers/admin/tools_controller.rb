@@ -1,6 +1,6 @@
 class Admin::ToolsController < Admin::BaseController
 
-  before_action :find_tool, only: [ :edit, :update, :position, :destroy ]
+  before_action :find_tool, only: [ :edit, :update, :accept, :reject, :position, :destroy ]
 
   def index
     params[:sort] ||= "sort_by_created_at asc"
@@ -35,6 +35,26 @@ class Admin::ToolsController < Admin::BaseController
       render :edit
     end
   end
+
+  def accept
+    flash[:notice] = "Fiche validée avec succès"
+    begin
+      @tool.accept!
+    rescue AASM::InvalidTransition
+      # admin click too fast and send 2 times the request. We ignore the second and send the same flash message than a success
+    end
+    redirect_to(current_search_path)
+  end
+
+  def reject
+    flash[:notice] = "Fiche refusée avec succès"
+    begin
+      @tool.reject!
+    rescue AASM::InvalidTransition
+      # admin click too fast and send 2 times the request. We ignore the second and send the same flash message than a success
+    end
+    redirect_to(current_search_path)
+  end
   
   def position
     if params[:position].present?
@@ -51,7 +71,7 @@ class Admin::ToolsController < Admin::BaseController
   end
 
 
-  private
+  private # ==================================================
 
   def find_tool
     @tool = Tool.from_param params[:id]
@@ -64,5 +84,15 @@ class Admin::ToolsController < Admin::BaseController
       :group_size, :duration, :level, :public, :licence, :goal, :material, :source, :source_url, :submitter_email,
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end
+
+  def current_search_path
+    url_for(search_params.merge(action: :index))
+  end
+
+  def search_params
+    params.permit(:sort, :page, :by_title, :by_axis, :by_tool_category, :by_state, 
+      :by_duration, :by_group_size)
+  end
+  helper_method :search_params
   
 end
