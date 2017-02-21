@@ -78,11 +78,22 @@ class Tool < ApplicationRecord
   
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }
-  scope :by_axis, ->(val) { where theme: val }
+
   scope :by_title, ->(val) { 
     val.downcase!
     where(arel_table[:title].matches("%#{val}%"))
   }
+
+  scope :by_axis, ->(val) { where axis: val }
+  scope :by_tool_category, ->(val) { where tool_category: val }
+
+  scope :by_state, ->(state){ 
+    where(state: states.fetch(state.to_sym) )
+  }
+
+  scope :by_duration, ->(val){ where(duration: durations.fetch(val.to_sym) ) }
+  scope :by_group_size, ->(val){ where(group_size: group_sizes.fetch(val.to_sym) ) }
+  scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
   
   # Class Methods ==============================================================
   def self.apply_filters(params)
@@ -90,6 +101,11 @@ class Tool < ApplicationRecord
 
     klass = klass.by_title(params[:by_title]) if params[:by_title].present?
     klass = klass.by_axis(params[:by_axis]) if params[:by_axis].present?
+    klass = klass.by_tool_category(params[:by_tool_category]) if params[:by_tool_category].present?
+    klass = klass.by_state(params[:by_state]) if params[:by_state].present?
+    klass = klass.by_duration(params[:by_duration]) if params[:by_duration].present?
+    klass = klass.by_group_size(params[:by_group_size]) if params[:by_group_size].present?
+    klass = klass.by_level(params[:by_level]) if params[:by_level].present?
 
     klass.apply_sorts(params)
   end

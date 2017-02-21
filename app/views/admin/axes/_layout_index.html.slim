@@ -9,7 +9,7 @@
      | Ajouter un axe
 
 .card.card-block.card-search
-  = form_tag admin_axes_path, method: :get do
+  = form_tag admin_axes_path, method: :get, data: {is_filter_form: true} do
 
     .lead
       | Filtrer votre recherche
@@ -24,7 +24,7 @@
               options_for_select(theme_options, params[:by_theme]), \
               prompt: "Tous les thèmes",\
               class: "form-control", \
-              onchange: "$(this).form.submit()"
+              onchange: "$('[data-is-filter-form]').submit()"
 
       .form-group.col-5
         = submit_tag "Appliquer", class: "btn btn-success"

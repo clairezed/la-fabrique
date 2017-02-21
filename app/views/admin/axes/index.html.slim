@@ -6,6 +6,7 @@
         th= hm_sort 'sort_by_position', label: 'Position'
         th= hm_sort 'sort_by_title', label: 'Titre'
         th= hm_sort 'sort_by_theme_id', label: 'Thématique'
+        th Nb fiches
         th= hm_sort 'sort_by_enabled', label: 'Affiché?'
         th 
     tbody
@@ -21,6 +22,9 @@
                             class: "form-control input-sm", style: "width:70px", id: nil 
           td= link_to axis.title, edit_admin_axis_path(axis)
           td= link_to axis.theme.title, edit_admin_theme_path(axis.theme)
+          td= link_to admin_tools_path(by_axis: axis.id), class: "btn btn-default btn-sm" do
+            i.fa.fa-list>
+            => axis.tools.count
           td
             span class="badge badge-#{boolean_class(axis.enabled)}" = boolean_title(axis.enabled)
           td.action-btns

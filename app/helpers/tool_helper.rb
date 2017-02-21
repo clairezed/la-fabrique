@@ -10,6 +10,12 @@ module ToolHelper
     I18n.t(state, scope: [:tool_states, :style])
   end
 
+  def tool_state_options(states = Tool.states.keys)
+    states.map do |state| 
+      [tool_state_title(state), state.to_s]
+    end
+  end
+
   # Taille groupe -----------------------------------
 
   def tool_group_size(group_size)

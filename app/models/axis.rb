@@ -8,6 +8,7 @@ class Axis < ApplicationRecord
   
   # Associations ===============================================================
   belongs_to :theme
+  has_many :tools, dependent: :restrict_with_exception
 
   # Callbacks ==================================================================
   validates :title, presence: true
