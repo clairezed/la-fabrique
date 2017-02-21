@@ -84,12 +84,13 @@ ActiveRecord::Schema.define(version: 20170218155517) do
     t.integer  "tool_category_id",                 null: false
     t.integer  "state",            default: 0,     null: false
     t.string   "title"
+    t.string   "teaser"
     t.text     "description"
-    t.integer  "group_size",       default: 0
-    t.integer  "duration",         default: 0
-    t.integer  "level",            default: 0
-    t.integer  "public",           default: 0
-    t.integer  "licence",          default: 0
+    t.integer  "group_size"
+    t.integer  "duration"
+    t.integer  "level"
+    t.integer  "public"
+    t.integer  "licence"
     t.string   "goal"
     t.text     "material"
     t.string   "source"

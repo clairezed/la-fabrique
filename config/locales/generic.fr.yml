@@ -143,6 +143,7 @@ fr:
       # The values :model, :attribute and :value are always available for interpolation
       # The value :count is available when applicable. Can be used for pluralization.
       messages:
+        required: "est obligatoire"
         inclusion: "n'est pas inclus dans la liste"
         exclusion: "est réservé"
         invalid: "est invalide"

@@ -5,12 +5,13 @@ class CreateTool < ActiveRecord::Migration[5.0]
       t.references  :tool_category, index: true, foreign_key: true, null: false
       t.integer     :state, null: false, default: 0
       t.string      :title
+      t.string      :teaser
       t.text        :description
-      t.integer     :group_size, default: 0
-      t.integer     :duration, default: 0
-      t.integer     :level, default: 0
-      t.integer     :public, default: 0
-      t.integer     :licence, default: 0
+      t.integer     :group_size
+      t.integer     :duration
+      t.integer     :level
+      t.integer     :public
+      t.integer     :licence
       t.string      :goal
       t.text        :material
       t.string      :source

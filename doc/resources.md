@@ -32,7 +32,11 @@ Articles :
 
 ### Todo 
 
-**TOOLS**
+#### Tools
 
 - state = accepted when by_admin
-- btn accepter / rejeter
+- btn accepter / rejeter ds index
+
+#### Hosting
+
+- destroy old releases ?

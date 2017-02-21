@@ -42,29 +42,29 @@ class Tool < ApplicationRecord
     size_3:  2  # + 40
   }
 
-  # enum duration: {
-  #   pending:   0, # en attente de validation
-  #   accepted:  1, # accepté
-  #   rejected:  2  # rejeté
-  # }
+  enum duration: {
+    duration_1:   0, # en attente de validation
+    duration_2:  1, # accepté
+    duration_3:  2,  # rejeté
+    duration_4:  3  # rejeté
+  }
 
-  # enum level: {
-  #   pending:   0, # en attente de validation
-  #   accepted:  1, # accepté
-  #   rejected:  2  # rejeté
-  # }
+  enum level: {
+    easy:   0, # en attente de validation
+    medium: 1, # accepté
+    hard:   2  # rejeté
+  }
 
-  # enum public: {
-  #   pending:   0, # en attente de validation
-  #   accepted:  1, # accepté
-  #   rejected:  2  # rejeté
-  # }
+  enum public: {
+    young:  0, # en attente de validation
+    pro:    1, # accepté
+  }
 
-  # enum licence: {
-  #   pending:   0, # en attente de validation
-  #   accepted:  1, # accepté
-  #   rejected:  2  # rejeté
-  # }
+  enum licence: {
+    mine:           0, # en attente de validation
+    known_source:   1, # accepté
+    unknown_source: 2  # rejeté
+  }
   
   # Associations ===============================================================
   belongs_to :axis
@@ -72,7 +72,9 @@ class Tool < ApplicationRecord
 
   # Callbacks ==================================================================
   validates :title, presence: true
-  validates :axis, presence: true
+  validates :group_size, :duration, :level, :public, :licence, presence: true
+
+  # validation de présence de axe et catégorie -> directement en base
   
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }

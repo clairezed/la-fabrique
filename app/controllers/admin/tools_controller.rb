@@ -60,8 +60,8 @@ class Admin::ToolsController < Admin::BaseController
   # strong parameters
   def tool_params
     params.require(:tool).permit(
-      :title, :description, :axis_id, :tool_category_id,
-      :enabled, 
+      :axis_id, :tool_category_id, :title, :description, :teaser, :enabled, 
+      :group_size, :duration, :level, :public, :licence, :goal, :material, :source, :source_url, :submitter_email,
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end
   
