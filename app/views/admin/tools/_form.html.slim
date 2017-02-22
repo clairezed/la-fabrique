@@ -41,6 +41,27 @@ fieldset
   = f.hm_select :public, tool_public_options, {include_blank: "Sélectionner un public"}, {}, {class: "required"}
 
 
+fieldset
+  legend Descriptif
+
+  .form-group.row
+    .form-label-default
+      = f.label :goal
+    .controls-xlarge
+      = f.text_field :goal, class: "form-control"
+
+  .form-group.row
+    .form-label-default
+      = f.label :teaser
+    .controls-xlarge
+      = f.text_field :teaser, class: "form-control"
+
+  = f.hm_text_area :description, {rows: 15}
+  = f.hm_text_area :material, {rows: 15}
+
+fieldset
+  legend Source
+
   .form-group.row.required
     .form-label-default
       = f.label :licence
@@ -51,26 +72,6 @@ fieldset
             => f.radio_button :licence, licence.to_s
             => tool_licence(licence)
             i.fa.fa-question-circle data-toggle="tooltip" data-placement="right" title="#{tool_licence_explanation(licence)}"
-
-  .form-group.row
-    .form-label-default
-      = f.label :goal
-    .controls-xlarge
-      = f.text_field :goal, class: "form-control"
-
-fieldset
-  legend Descriptif
-
-  .form-group.row
-    .form-label-default
-      = f.label :teaser
-    .controls-xlarge
-      = f.text_field :teaser, class: "form-control"
-  = f.hm_text_area :description, {rows: 15}
-  = f.hm_text_area :material, {rows: 15}
-
-fieldset
-  legend Source
   = f.hm_text_field :source, {}, {class: ""}
   = f.hm_text_field :source_url, {}, {class: ""}
   = f.hm_text_field :submitter_email, {}, {class: ""}

@@ -37,7 +37,8 @@ Articles :
 #### Tools
 
 - state = accepted when by_admin
-- btn accepter / rejeter ds index
+- soumis par : niet quand par admin
+- formattage automatique de l'url ac http
 
 #### Hosting
 

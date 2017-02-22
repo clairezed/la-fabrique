@@ -1,6 +1,6 @@
 class Admin::ToolsController < Admin::BaseController
 
-  before_action :find_tool, only: [ :edit, :update, :accept, :reject, :position, :destroy ]
+  before_action :find_tool, except: [ :index, :new, :create ]
 
   def index
     params[:sort] ||= "sort_by_created_at asc"
@@ -33,6 +33,16 @@ class Admin::ToolsController < Admin::BaseController
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
       render :edit
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Pdf::Tool.new(@tool)
+        send_data pdf.to_pdf, filename: pdf.filename, type: 'application/pdf'
+      end
     end
   end
 

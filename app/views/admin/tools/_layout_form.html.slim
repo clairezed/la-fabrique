@@ -24,6 +24,10 @@
             dd= l @tool.created_at.to_date
             dt Dernière mise à jour :
             dd= l @tool.updated_at
+          div
+            = link_to admin_tool_path(@tool, format: :pdf), class: "btn btn-default" do
+              i.fa.fa-upload
+              | Télécharger
           
   - else
     h2.card-header Créer une nouvelle fiche
