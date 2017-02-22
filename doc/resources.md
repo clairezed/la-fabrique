@@ -25,11 +25,6 @@ Articles :
 - Monitoring your app regularly and fixing low hanging fruit like n+1s, lack of pagination, etc.
 
 
-### Questions
-
-- régler cette histoire de docs joints
-
-
 ### Todo 
 
 - tests ?
@@ -38,7 +33,6 @@ Articles :
 
 - state = accepted when by_admin
 - soumis par : niet quand par admin
-- formattage automatique de l'url ac http
 
 #### Hosting
 
