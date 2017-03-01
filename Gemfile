@@ -16,8 +16,8 @@ gem 'devise', '~> 4.2.0'
 gem 'aasm'
 
 # Uploads ------------------------------------------------
-# gem 'paperclip', '~> 4.2'
-# gem 'jquery-fileupload-rails'
+gem 'paperclip', '~> 5.0'
+gem 'jquery-fileupload-rails'
 # gem 'aws-sdk', '< 2.0' # compatibilité paperclip
 
 # View ====================================================

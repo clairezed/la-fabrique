@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    attributes:
+      tool_attachment:
+        custom_file_name: Le titre à afficher
+        format_type: Le format
+
+
+  helpers:
+    label:
+      asset/tool_attachment:
+        custom_file_name: Titre à afficher
+        format_type: Format

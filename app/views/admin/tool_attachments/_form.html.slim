@@ -1,0 +1,20 @@
+= f.hm_form_errors
+/ = f.hidden_field :asset
+= f.hidden_field :assetable_id, value: @tool.id, data: {is_ta_attribute: 'assetable_id'}
+
+.form-group 
+  .row
+    .col-md-2.col-label-valign
+      = f.label :custom_file_name, class: 'form-label'
+    .col-md-10
+      = f.text_field :custom_file_name, class: "form-control", placeholder: "Titre", data: {is_ta_attribute: 'custom_file_name'}
+
+.form-group.row
+  .form-label-default
+    = f.label :format_type
+  .col-md-8
+    .form-check.form-check-inline
+      - Asset::ToolAttachment.format_types.keys.each do |format_type|
+        label.form-check-label
+          => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}
+          => format_type

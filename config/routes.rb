@@ -21,7 +21,9 @@ Rails.application.routes.draw do
         patch :accept 
         patch :reject
       end
+      # resources :tool_attachments, as: :attachments, controller: "tools/attachments"
     end
+    resources :tool_attachments
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'
   end

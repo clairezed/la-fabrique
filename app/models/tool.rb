@@ -69,6 +69,13 @@ class Tool < ApplicationRecord
   # Associations ===============================================================
   belongs_to :axis
   belongs_to :tool_category
+  
+  has_many :attachments,
+            class_name: :'::Asset::ToolAttachment',
+            as:         :assetable,
+            dependent:  :destroy
+  accepts_nested_attributes_for :attachments, allow_destroy: true
+
 
   # Callbacks ==================================================================
   validates :title, presence: true

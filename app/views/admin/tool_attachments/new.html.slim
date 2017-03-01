@@ -1,0 +1,26 @@
+.modal-body
+  button.close aria-label="Close" data-dismiss="modal" type="button" 
+    span aria-hidden="true"  &times;
+
+  h4.modal-title
+    div Nouvelle pièce jointe
+
+  = form_for @attachment, url: admin_tool_attachments_path, method: :post, html: {multipart: true}, data: {is_form: 'attachment' } do |f|
+
+    = render partial: "admin/tool_attachments/form", locals: { f: f }
+  
+    .text-xs-center
+      = f.submit "Créer", class: "btn btn-brandsecondary uppercase btn-wrap"
+    
+  /   = af.file_field :asset, name: "document[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: admin_tool_attachments_path, method: 'POST'}
+  
+  / = form_for [:practitioner, @appointment], remote: true, data: {is: "appointment-modal-form"}, html: {class: 'form-white'} do |f|
+    
+    - unless @appointment.new_record?
+      = f.hidden_field :patient_record_id, data: {is: "patient-record-id"}
+
+
+
+
+/ coffee:
+/   new PractitionerFormModal

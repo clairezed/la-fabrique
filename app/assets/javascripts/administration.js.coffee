@@ -2,6 +2,8 @@
 #= require jquery_ujs
 #= require vendor/tether.min 
 #= require bootstrap
+#= require jquery-fileupload/basic
+#= require jquery-fileupload/vendor/tmpl
 #= require vendor/bootstrap-datepicker 
 #= require vendor/redactor.min 
 
@@ -9,6 +11,7 @@
 #= require_tree ./locales
 
 #= require ./shared/flash-messages
+#= require ./shared/file-uploader
 
 
 $ ->

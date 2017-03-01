@@ -11,3 +11,17 @@ fr:
       tool_category:
         title: Titre
         description: Description
+
+  tool_attachment_format_types:
+    title:
+      picture:  Image
+      document: Document
+      slide:    Présentation type powerpoint
+      sound:    Fichier son
+      video:    Vidéo
+    icon:
+      picture:  file-image-o
+      document: file-text-o
+      slide:    file-powerpoint-o
+      sound:    file-audio-o
+      video:    file-video-o

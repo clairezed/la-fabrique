@@ -9,6 +9,7 @@ class Admin::ToolsController < Admin::BaseController
 
   def new
     @tool = Tool.new
+    @attachment = Asset::ToolAttachment.new
     @tool.build_seo
   end
   
@@ -24,6 +25,7 @@ class Admin::ToolsController < Admin::BaseController
   end
   
   def edit
+    @attachment = Asset::ToolAttachment.new
   end
   
   def update
