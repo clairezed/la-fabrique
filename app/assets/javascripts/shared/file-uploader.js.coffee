@@ -15,11 +15,9 @@ class @FileUploader
 
     @options.scope
       .on "ajax:success", "[data-delete-attachment]", (e, data, status, xhr) =>
-        console.log "delegate"
         console.log data['id']
         @getMediaNode(data['id']).remove()
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
-        console.log "uho, error"
         errors = JSON.parse(xhr.responseText)['errors']
         console.log errors
         flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
@@ -29,7 +27,7 @@ class @FileUploader
   initFileUpload: =>
     # need to specify formData : https://stackoverflow.com/questions/26633538/jquery-file-upload-post-and-nested-route-getting-no-route-matches-patch
     @fileInput.fileupload
-      dataType: 'script'
+      dataType: 'json'
       type: 'POST'
       autoUpload: false
       filesContainer: $("[data-is-media-list]")
@@ -38,6 +36,7 @@ class @FileUploader
       ]
       add: (e, data) =>
         console.log "add"
+        @populateForm(data.files[0])
         $("[data-is-modal='attachment']").modal('show')
         $("[data-is-modal-submit]").off('click').on 'click', =>
           console.log data
@@ -62,9 +61,10 @@ class @FileUploader
         console.log data
         $("[data-is-modal='attachment']").modal('hide')
         $(data.context).remove()
+        console.log data.result
         data.context = @prependNode(
           template: @options.templateSelector['download'], 
-          data: JSON.parse(data.result)[0],
+          data: data.result,
           dataContainer: "[data-is-media-list]"
         )
 
@@ -75,3 +75,16 @@ class @FileUploader
 
   getMediaNode: (id) ->
     $("[data-is-download='#{id}']")
+
+
+  # Form ---------------------------------------------------------
+  populateForm: (file) =>
+    format = @getFormat(file.type)
+    $("[data-is-ta-attribute='custom_file_name']").val(file.name)
+    $("[data-is-ta-attribute='format_type']:input[value='#{format}']").prop('checked', true)
+  
+  getFormat: (type) ->
+    switch type
+      when "image/jpeg", "image/png", "image/gif" then 'picture'
+      when "application/pdf" then 'document'
+      else null

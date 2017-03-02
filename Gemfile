@@ -14,6 +14,7 @@ gem 'puma', '~> 3.0'
 gem 'acts_as_list', '~> 0.7.6'
 gem 'devise', '~> 4.2.0'
 gem 'aasm'
+gem 'active_model_serializers'
 
 # Uploads ------------------------------------------------
 gem 'paperclip', '~> 5.0'

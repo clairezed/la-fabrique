@@ -157,7 +157,6 @@ fieldset
         img.img-fluid src="{{thumbnail_url}}"
       | {{/if}}
       .card-block
-        / h4.card-title = attachment.custom_file_name
         p.card-text.font-weight-bold
           => link_to "{{name}}", "{{url}}", target: :blank
         p.small.text-muted
@@ -165,7 +164,7 @@ fieldset
           => "{{format_title}}"
         = link_to "#", class: "btn btn-sm btn-info mr-1" do 
           i.fa.fa-edit
-        = link_to "{{delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
+        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
           i.fa.fa-trash
 
 javascript:

@@ -16,18 +16,7 @@ class Admin::ToolAttachmentsController < Admin::BaseController
     end
     p @attachment
     if @attachment.save
-      p "SAVED"
-      p @attachment.to_jq_upload
-      respond_to do |format|
-        format.html {  
-          render :json => [@attachment.to_jq_upload].to_json, 
-          :content_type => 'text/html',
-          :layout => false
-        }
-        format.json {
-          render :json => { :files => [@attachment.to_jq_upload] }
-        }
-      end
+      render json: @attachment, serializer: ToolAttachmentSerializer 
     else
       render status: 304, json: {errors: @attachment.errors.full_messages}
     end
