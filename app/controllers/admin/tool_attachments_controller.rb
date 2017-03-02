@@ -1,5 +1,5 @@
 class Admin::ToolAttachmentsController < Admin::BaseController
-
+  respond_to :json
 
   def index
     @attachments = Asset::ToolAttachment.all
@@ -46,7 +46,7 @@ class Admin::ToolAttachmentsController < Admin::BaseController
     if @attachment.destroy
       render json: {id: params[:id]}
     else
-      render status: status, json: {errors: @attachment.errors.full_messages}
+      render status: :unprocessable_entity, json: {errors: @attachment.errors.full_messages}
     end
   end
 

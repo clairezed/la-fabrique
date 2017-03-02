@@ -10,8 +10,23 @@ class @FileUploader
     console.log "init!"
     @options = $.extend(true, {}, @DEFAULT_OPTIONS, options)
     @fileInput = $("[data-file-upload]")
-    self = @
 
+    @initFileUpload()
+
+    @options.scope
+      .on "ajax:success", "[data-delete-attachment]", (e, data, status, xhr) =>
+        console.log "delegate"
+        console.log data['id']
+        @getMediaNode(data['id']).remove()
+      .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
+        console.log "uho, error"
+        errors = JSON.parse(xhr.responseText)['errors']
+        console.log errors
+        flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
+
+
+
+  initFileUpload: =>
     # need to specify formData : https://stackoverflow.com/questions/26633538/jquery-file-upload-post-and-nested-route-getting-no-route-matches-patch
     @fileInput.fileupload
       dataType: 'script'
@@ -48,13 +63,15 @@ class @FileUploader
         $("[data-is-modal='attachment']").modal('hide')
         $(data.context).remove()
         data.context = @prependNode(
-          template: self.options.templateSelector['download'], 
+          template: @options.templateSelector['download'], 
           data: JSON.parse(data.result)[0],
           dataContainer: "[data-is-media-list]"
         )
-
 
   prependNode: (args = {}) ->
     template = $(args['template']).html()
     compiledTemplate = Handlebars.compile(template)(args['data'])
     return $(compiledTemplate).prependTo(args['dataContainer'])
+
+  getMediaNode: (id) ->
+    $("[data-is-download='#{id}']")

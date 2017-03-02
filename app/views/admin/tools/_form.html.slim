@@ -103,7 +103,7 @@ fieldset
 
             = link_to "#", class: "btn btn-sm btn-info mr-1" do 
               i.fa.fa-edit
-            = link_to "#", class: "btn btn-sm btn-danger" do
+            = link_to admin_tool_attachment_path(attachment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: attachment.id} do
               i.fa.fa-trash
 
 
@@ -165,7 +165,7 @@ fieldset
           => "{{format_title}}"
         = link_to "#", class: "btn btn-sm btn-info mr-1" do 
           i.fa.fa-edit
-        = link_to "#", class: "btn btn-sm btn-danger" do
+        = link_to "{{delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
           i.fa.fa-trash
 
 javascript:
