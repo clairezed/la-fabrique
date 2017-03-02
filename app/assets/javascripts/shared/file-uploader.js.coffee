@@ -21,38 +21,40 @@ class @FileUploader
       formData: [
         {name: '_method', value: 'post' }
       ]
-      add: (e, data) ->
+      add: (e, data) =>
         console.log "add"
         $("[data-is-modal='attachment']").modal('show')
-        $("[data-is-modal-submit]").off('click').on 'click', ->
+        $("[data-is-modal-submit]").off('click').on 'click', =>
           console.log data
           data.formData = {
             "asset_tool_attachment[custom_file_name]": $("[data-is-ta-attribute='custom_file_name']").val(),
             "asset_tool_attachment[assetable_id]": $("[data-is-ta-attribute='assetable_id']").val(),
             "asset_tool_attachment[format_type]": $("[data-is-ta-attribute='format_type']:checked").val()
           }
-          file = data.files[0]
-          template = $(self.options.templateSelector['upload']).html()
-          @content = Handlebars.compile(template)(file)
-          data.context = $(@content).prependTo("[data-is-media-list]")
+          data.context = @prependNode(
+            template: @options.templateSelector['upload'], 
+            data: data.files[0],
+            dataContainer: "[data-is-media-list]"
+          )
           data.submit()
           return false
       progress: (e, data) ->
         if data.context
           progress = parseInt(data.loaded / data.total * 100, 10)
           data.context.find('.bar').css('width', progress + '%')
-      done: (e, data) ->
+      done: (e, data) =>
         console.log "done"
         console.log data
         $("[data-is-modal='attachment']").modal('hide')
         $(data.context).remove()
-        
-        file = JSON.parse(data.result)[0]
-        template = $(self.options.templateSelector['download']).html()
-        @content = Handlebars.compile(template)(file)
-        $("[data-is-media-list]").prepend(@content)
+        data.context = @prependNode(
+          template: self.options.templateSelector['download'], 
+          data: JSON.parse(data.result)[0],
+          dataContainer: "[data-is-media-list]"
+        )
 
-    @fileInput.on 'fileuploadstart', ->
-      console.log 'fileuploadstart'
-    @fileInput.on 'fileuploaddone', ->
-      console.log 'fileuploaddone'
+
+  prependNode: (args = {}) ->
+    template = $(args['template']).html()
+    compiledTemplate = Handlebars.compile(template)(args['data'])
+    return $(compiledTemplate).prependTo(args['dataContainer'])

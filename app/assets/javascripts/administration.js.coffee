@@ -7,6 +7,7 @@
 #= require vendor/bootstrap-datepicker 
 #= require vendor/redactor.min
 #= require vendor/handlebars-v4.0.5
+#= require ./shared/handlebars_helper
 
 #= require_tree ./admin
 #= require_tree ./locales
