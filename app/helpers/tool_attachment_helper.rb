@@ -7,7 +7,7 @@ module ToolAttachmentHelper
     I18n.t(format, scope: [:tool_attachment_format_types, :title])
   end
 
-    def tool_attachment_format_type_icon(format=nil)
+  def tool_attachment_format_type_icon(format=nil)
     return '' unless format.present?
     I18n.t(format, scope: [:tool_attachment_format_types, :icon])
   end

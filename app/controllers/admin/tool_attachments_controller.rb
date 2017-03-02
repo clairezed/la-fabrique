@@ -1,6 +1,10 @@
 class Admin::ToolAttachmentsController < Admin::BaseController
 
-  respond_to :js
+
+  def index
+    @attachments = Asset::ToolAttachment.all
+    render :json => @attachments.collect { |p| p.to_jq_upload }.to_json
+  end
 
   def create
     p attachment_params
@@ -11,8 +15,21 @@ class Admin::ToolAttachmentsController < Admin::BaseController
       @attachment = Asset::ToolAttachment.new(attachment_params)
     end
     p @attachment
-    if !@attachment.save
-      render status: status, json: {errors: @attachment.errors.full_messages}
+    if @attachment.save
+      p "SAVED"
+      p @attachment.to_jq_upload
+      respond_to do |format|
+        format.html {  
+          render :json => [@attachment.to_jq_upload].to_json, 
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json {
+          render :json => { :files => [@attachment.to_jq_upload] }
+        }
+      end
+    else
+      render status: 304, json: {errors: @attachment.errors.full_messages}
     end
   end
 
@@ -25,9 +42,11 @@ class Admin::ToolAttachmentsController < Admin::BaseController
 
 
   def destroy
-    @attachment = @event.attachments.find(params[:id])
-    if !@attachment.destroy
-      @errors = @attachment.errors.full_messages
+    @attachment = Asset::ToolAttachment.find(params[:id])
+    if @attachment.destroy
+      render json: {id: params[:id]}
+    else
+      render status: status, json: {errors: @attachment.errors.full_messages}
     end
   end
 

@@ -1,4 +1,6 @@
 class Asset::ToolAttachment < Asset
+  include Rails.application.routes.url_helpers
+  include ToolAttachmentHelper
 
   # Configs ====================================================================
 
@@ -12,10 +14,12 @@ class Asset::ToolAttachment < Asset
 
   VALID_CONTENT_TYPES = [*DOCUMENT_MIME_TYPES, *IMAGE_MIME_TYPES].freeze
 
+  acts_as_list
+
   #====== Si stockage dédié ========
   has_attached_file :asset,
     styles: {
-        thumb: "80x80#",
+        thumb: "100x100#",
         preview: "300x300>"
     },
     url: "/uploads/tool_attachments/:id/:style/:custom_file_name.:extension",
@@ -31,10 +35,10 @@ class Asset::ToolAttachment < Asset
 
 
   enum format_type: {
-    picture:  0, # en attente de validation
-    document: 1, # accepté
-    slide:    2, # accepté
-    sound:    3, # accepté
+    picture:  0, # 
+    document: 1, # 
+    slide:    2, # 
+    sound:    3, # 
     video:    4
   }
 
@@ -59,4 +63,20 @@ class Asset::ToolAttachment < Asset
   def to_s
     self.asset_file_name
   end
+
+  def to_jq_upload
+    {
+      "name" => self.custom_file_name,
+      "size" => self.asset_file_size,
+      "url" => self.asset.url,
+      "thumbnail_url" => self.asset.url(:preview),
+      "delete_url" => admin_tool_attachment_path(self.id),
+      "delete_type" => "DELETE",
+      "displayable" => self.displayable?,
+      "format_icon" => tool_attachment_format_type_icon(self.format_type),
+      "format_title" => tool_attachment_format_type_title(self.format_type),
+      "id" => self.id
+    }
+  end
+
 end

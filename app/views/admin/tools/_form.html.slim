@@ -28,7 +28,6 @@ fieldset
     .controls-default
       = f.select :axis_id, axis_options, {include_blank: "Sélectionner un axe"}, class: "required form-control"
 
-  / = f.hm_select :axis_id, axis_options, {include_blank: "Sélectionner un axe"}, {}, {class: "required"}
 
   = f.hm_select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, {}, {class: "required"}
 
@@ -87,40 +86,18 @@ fieldset
       | Ajouter
     = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: admin_tool_attachments_path, method: 'POST', type: 'script'}, style: "display:none"
 
-  / = form_for Asset::ToolAttachment.new, url: admin_tool_attachments_path, method: :post, html: {multipart: true}, data: {is_form: 'attachment' } do |af| 
-  /   = af.file_field :asset, name: "document[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: admin_tool_attachments_path, method: 'POST'}
-
-  .modal.fade.info-modal.planning-modal data-is-modal='attachment'
-    .modal-dialog role="document"
-      .modal-content
-        .modal-body
-          button.close aria-label="Close" data-dismiss="modal" type="button" 
-            span aria-hidden="true"  &times;
-
-          h4.modal-title
-            div Nouvelle pièce jointe
-
-          = form_for @attachment, url: admin_tool_attachments_path, method: :post, html: {multipart: true}, data: {is_form: 'attachment' } do |f|
-
-            = render partial: "admin/tool_attachments/form", locals: { f: f }
-        .modal-footer
-          .text-xs-center
-            = link_to "Créer", "javascript:void()", class: "btn btn-primary uppercase btn-wrap", data: {is_modal_submit: true}
-
   div.row data-is-media-list=true
-    - @tool.attachments.each do |attachment|
-      .col-md-3
+    - @tool.attachments.order(position: :desc).each do |attachment|
+      .col-md-3 data-is-download="#{attachment.id}"
         .card
           - if attachment.displayable?
             = link_to attachment.asset.url(:original), target: "_blank", class: "card-img-top img-fluid" do 
               = image_tag attachment.asset.url(:preview), class: 'img-fluid'
           .card-block
-            / h4.card-title = attachment.custom_file_name
-            p.card-text.bold
+
+            p.card-text.font-weight-bold
               => link_to attachment.custom_file_name, attachment.asset.url, target: :blank
-              / => link_to raw("<span class='glyphicon glyphicon-file'></span> #{attachment.to_s}"),\
-              /   attachment.asset.url, target: :blank
-              br
+            p.small.text-muted
               i.fa> class="fa-#{tool_attachment_format_type_icon(attachment.format_type)}"
               => tool_attachment_format_type_title(attachment.format_type)
 
@@ -143,6 +120,54 @@ fieldset
   label.form-label-default
   .controls-default
     small: em.text-muted Les champs marqués d'une * sont obligatoires
+
+
+/ Modal nouvelle pj
+.modal.fade.info-modal.planning-modal data-is-modal='attachment'
+  .modal-dialog role="document"
+    .modal-content
+      .modal-body
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title
+          div Nouvelle pièce jointe
+
+        = form_for @attachment, url: admin_tool_attachments_path, method: :post, html: {multipart: true}, data: {is_form: 'attachment' } do |f|
+
+          = render partial: "admin/tool_attachments/form", locals: { f: f }
+      .modal-footer
+        .text-xs-center
+          = link_to "Créer", "javascript:void()", class: "btn btn-primary uppercase btn-wrap", data: {is_modal_submit: true}
+
+
+= handlebars_template(:AttachmentUpload) do
+  .col-md-3 data-is-upload=true
+    .card
+      .card-block
+        p.card-text.font-weight-bold
+        => "{{name}}"
+        .progress
+          .progress-bar.bar style="width: 0%"
+
+= handlebars_template(:AttachmentDownload) do
+  .col-md-3 data-is-download="{{id}}"
+    .card
+      | {{#if displayable }}
+      = link_to "{{url}}", target: "_blank", class: "card-img-top img-fluid" do 
+        img.img-fluid src="{{thumbnail_url}}"
+      | {{/if}}
+      .card-block
+        / h4.card-title = attachment.custom_file_name
+        p.card-text.font-weight-bold
+          => link_to "{{name}}", "{{url}}", target: :blank
+        p.small.text-muted
+          i.fa> class="fa-{{format_icon}}"
+          => "{{format_title}}"
+
+        = link_to "#", class: "btn btn-sm btn-info mr-1" do 
+          i.fa.fa-edit
+        = link_to "#", class: "btn btn-sm btn-danger" do
+          i.fa.fa-trash
 
 javascript:
   $(function () {

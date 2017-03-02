@@ -5,7 +5,8 @@
 #= require jquery-fileupload/basic
 #= require jquery-fileupload/vendor/tmpl
 #= require vendor/bootstrap-datepicker 
-#= require vendor/redactor.min 
+#= require vendor/redactor.min
+#= require vendor/handlebars-v4.0.5
 
 #= require_tree ./admin
 #= require_tree ./locales
