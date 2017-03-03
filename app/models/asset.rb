@@ -23,7 +23,7 @@ class Asset < ActiveRecord::Base
 
   before_validation :set_custom_file_name
 
-  after_update :rename_uploded_files, if: :custom_file_name_changed?
+  # after_update :rename_uploded_files, if: :custom_file_name_changed?
 
   # Instance Methods ===========================================================
 
@@ -50,4 +50,5 @@ class Asset < ActiveRecord::Base
       end
     end
   end
+  
 end

@@ -1,9 +1,12 @@
 class Admin::ToolAttachmentsController < Admin::BaseController
   respond_to :json
 
+  before_action :find_attachement, only: [ :edit, :update, :destroy ]
+
+
   def index
     @attachments = Asset::ToolAttachment.all
-    render :json => @attachments.collect { |p| p.to_jq_upload }.to_json
+    render json: @attachment, eachSerializer: ToolAttachmentSerializer 
   end
 
   def create
@@ -22,16 +25,21 @@ class Admin::ToolAttachmentsController < Admin::BaseController
     end
   end
 
+  def edit
+    @tool = @attachment.assetable
+    render layout: !request.xhr?
+  end
+
   def update
-    @attachment = @event.attachments.find(params[:id])
-    if !@attachment.update(attachment_params)
-      @errors = @event.errors.full_messages
+    if @attachment.update(attachment_params)
+      render json: @attachment, serializer: ToolAttachmentSerializer 
+    else
+      render status: 304, json: {errors: @attachment.errors.full_messages}
     end
   end
 
 
   def destroy
-    @attachment = Asset::ToolAttachment.find(params[:id])
     if @attachment.destroy
       render json: {id: params[:id]}
     else
@@ -39,7 +47,7 @@ class Admin::ToolAttachmentsController < Admin::BaseController
     end
   end
 
-  private
+  private # ----------------------------------------
   
   def attachment_params
     # params.require(:attachment_asset)
@@ -49,7 +57,12 @@ class Admin::ToolAttachmentsController < Admin::BaseController
               :asset,
               :title,
               :custom_file_name,
-              :format_type
+              :format_type,
+              :assetable_id
+  end
+
+  def find_attachement
+    @attachment = Asset::ToolAttachment.find(params[:id])
   end
 
 end

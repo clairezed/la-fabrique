@@ -13,6 +13,7 @@ class @FileUploader
 
     @initFileUpload()
 
+    # Attachement deletion ---------------------------------------
     @options.scope
       .on "ajax:success", "[data-delete-attachment]", (e, data, status, xhr) =>
         console.log data['id']
@@ -22,6 +23,37 @@ class @FileUploader
         console.log errors
         flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
 
+    # Attachement edit modal ---------------------------------------
+    @options.scope
+      .on "ajax:success", "[data-edit-attachment]", (e, data, status, xhr) =>
+        console.log data
+        $("[data-is-modal-container]").html(data)
+        $("[data-is-modal='edit-attachment']").modal('show')
+      .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
+        # errors = JSON.parse(xhr.responseText)['errors']
+        console.log error
+        console.log xhr
+        flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
+    
+    # Attachement update form ---------------------------------------
+    @options.scope
+      .on "ajax:success", "[data-is-form='update-attachment']", (e, data, status, xhr) =>
+        console.log data
+        currentNode = @getMediaNode(data['id'])
+        template = $(@options.templateSelector['download']).html()
+        compiledTemplate = Handlebars.compile(template)(data)
+        currentNode.replaceWith(compiledTemplate)
+        # @prependNode(
+        #   template: @options.templateSelector['download'], 
+        #   data: data,
+        #   dataContainer: "[data-is-media-list]"
+        # )
+        $("[data-is-modal='edit-attachment']").modal('hide')
+      .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
+        # errors = JSON.parse(xhr.responseText)['errors']
+        console.log error
+        console.log xhr
+        flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
 
 
   initFileUpload: =>

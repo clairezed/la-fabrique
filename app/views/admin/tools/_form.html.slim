@@ -101,7 +101,7 @@ fieldset
               i.fa> class="fa-#{tool_attachment_format_type_icon(attachment.format_type)}"
               => tool_attachment_format_type_title(attachment.format_type)
 
-            = link_to "#", class: "btn btn-sm btn-info mr-1" do 
+            = link_to edit_admin_tool_attachment_path(attachment), remote: true, class: "btn btn-sm btn-info mr-1", data:{edit_attachment: attachment.id} do 
               i.fa.fa-edit
             = link_to admin_tool_attachment_path(attachment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: attachment.id} do
               i.fa.fa-trash
@@ -139,6 +139,8 @@ fieldset
         .text-xs-center
           = link_to "Créer", "javascript:void()", class: "btn btn-primary uppercase btn-wrap", data: {is_modal_submit: true}
 
+div data-is-modal-container=true
+
 
 = handlebars_template(:AttachmentUpload) do
   .col-md-3 data-is-upload=true
@@ -162,7 +164,7 @@ fieldset
         p.small.text-muted
           i.fa> class="fa-{{format_icon}}"
           => "{{format_title}}"
-        = link_to "#", class: "btn btn-sm btn-info mr-1" do 
+        = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-1", data:{edit_attachment: "{{id}}"}  do 
           i.fa.fa-edit
         = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
           i.fa.fa-trash

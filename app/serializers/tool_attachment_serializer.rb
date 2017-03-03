@@ -10,6 +10,8 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
               :thumbnail_url,
               :delete_url,
               :admin_delete_url,
+              :edit_url,
+              :admin_edit_url,
               :format_icon,
               :format_title
 
@@ -31,6 +33,15 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
 
   def thumbnail_url
     object.asset.url(:preview)
+  end
+
+  #TODO
+  def edit_url
+    edit_admin_tool_attachment_path(object.id)
+  end
+
+  def admin_edit_url
+    edit_admin_tool_attachment_path(object.id)
   end
 
   #TODO
