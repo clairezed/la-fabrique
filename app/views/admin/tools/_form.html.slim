@@ -76,7 +76,19 @@ fieldset
   = f.hm_text_field :submitter_email, {}, {class: ""}
 
 fieldset
-  legend Mots-clé
+  legend Mots-clés
+
+  .form-group.row
+    .form-label-default
+      = f.label :tag_ids
+    .controls-xlarge.form-check.form-check-inline
+      = f.collection_check_boxes :tag_ids, tool_tags_options, :last, :first do |builder|
+        label.form-check-label.col-md-4
+          = builder.label do
+            => builder.check_box
+            => builder.text
+
+
 
 fieldset
   legend Média

@@ -1,0 +1,15 @@
+- content_for :current_navigation_section, :tags
+
+.title-block
+  h1
+    | Gestion des mots-clés
+
+    = link_to new_admin_tag_path, class: "btn btn-info float-right" do
+     span.glyphicon.glyphicon-plus>
+     | Ajouter un mot-clé
+
+.card.card-block
+  .content-main
+    small.float-right = I18n.t("results", count: @tags.count)
+    = yield
+

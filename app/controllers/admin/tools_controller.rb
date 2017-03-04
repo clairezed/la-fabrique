@@ -93,7 +93,8 @@ class Admin::ToolsController < Admin::BaseController
   def tool_params
     params.require(:tool).permit(
       :axis_id, :tool_category_id, :title, :description, :teaser, :enabled, 
-      :group_size, :duration, :level, :public, :licence, :goal, :material, :source, :source_url, :submitter_email,
+      :group_size, :duration, :level, :public, :licence, :goal, :material, 
+      :source, :source_url, :submitter_email, tag_ids: [],
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end
 

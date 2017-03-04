@@ -26,7 +26,7 @@ class @FileUploader
     # Attachement edit modal ---------------------------------------
     @options.scope
       .on "ajax:success", "[data-edit-attachment]", (e, data, status, xhr) =>
-        console.log data
+        # console.log data
         $("[data-is-modal-container]").html(data)
         $("[data-is-modal='edit-attachment']").modal('show')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
@@ -43,11 +43,6 @@ class @FileUploader
         template = $(@options.templateSelector['download']).html()
         compiledTemplate = Handlebars.compile(template)(data)
         currentNode.replaceWith(compiledTemplate)
-        # @prependNode(
-        #   template: @options.templateSelector['download'], 
-        #   data: data,
-        #   dataContainer: "[data-is-media-list]"
-        # )
         $("[data-is-modal='edit-attachment']").modal('hide')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
         # errors = JSON.parse(xhr.responseText)['errors']

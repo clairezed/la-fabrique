@@ -87,6 +87,10 @@ module ToolHelper
     raw array.join("</br>")
   end
 
+  # Tool Tag ===============================================================
 
+  def tool_tags_options(tags = Tag.all)
+    tags.order(:title).map{|tag| [tag.title, tag.id]}
+  end
 
 end

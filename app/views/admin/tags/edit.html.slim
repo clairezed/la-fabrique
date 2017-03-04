@@ -1,0 +1,4 @@
+= render layout: 'layout_form' do
+  = form_for @tag, as: :tag, url: admin_tag_path(@tag), html: {class: "form-horizontal"} do |f| 
+    = render partial: "form", locals: {f: f, button_name: "Enregistrer les modifications", button_name_2: "Enregistrer et continuer l'édition"}
+

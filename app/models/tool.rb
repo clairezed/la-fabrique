@@ -76,6 +76,9 @@ class Tool < ApplicationRecord
             dependent:  :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
+  has_many :tool_tags, dependent: :restrict_with_exception
+  has_many :tags, through: :tool_tags
+
 
   # Callbacks ==================================================================
   validates :title, presence: true
@@ -99,6 +102,14 @@ class Tool < ApplicationRecord
   scope :by_axis, ->(val) { where axis: val }
   scope :by_tool_category, ->(val) { where tool_category: val }
 
+  scope :by_tag_ids, ->(id) { 
+    tt = ToolTag.arel_table
+    condition = ToolTag
+                  .where(tt[:tag_id].in(id).and tt[:tool_id].eq(arel_table[:id]))
+                  .exists
+    where(condition)
+  }
+
   scope :by_state, ->(state){ 
     where(state: states.fetch(state.to_sym) )
   }
@@ -114,6 +125,7 @@ class Tool < ApplicationRecord
     klass = klass.by_title(params[:by_title]) if params[:by_title].present?
     klass = klass.by_axis(params[:by_axis]) if params[:by_axis].present?
     klass = klass.by_tool_category(params[:by_tool_category]) if params[:by_tool_category].present?
+    klass = klass.by_tag_ids(params[:by_tag_ids]) if params[:by_tag_ids].present?
     klass = klass.by_state(params[:by_state]) if params[:by_state].present?
     klass = klass.by_duration(params[:by_duration]) if params[:by_duration].present?
     klass = klass.by_group_size(params[:by_group_size]) if params[:by_group_size].present?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226100517) do
+ActiveRecord::Schema.define(version: 20170303205304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 20170226100517) do
     t.index ["seoable_type", "seoable_id"], name: "index_seos_on_seoable_type_and_seoable_id", using: :btree
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "enabled",    default: true
+    t.integer  "position"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "themes", force: :cascade do |t|
     t.string   "title"
     t.integer  "position"
@@ -94,6 +102,16 @@ ActiveRecord::Schema.define(version: 20170226100517) do
     t.boolean  "enabled",     default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "tool_tags", force: :cascade do |t|
+    t.integer  "tool_id",    null: false
+    t.integer  "tag_id",     null: false
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tool_tags_on_tag_id", using: :btree
+    t.index ["tool_id"], name: "index_tool_tags_on_tool_id", using: :btree
   end
 
   create_table "tools", force: :cascade do |t|
@@ -121,6 +139,8 @@ ActiveRecord::Schema.define(version: 20170226100517) do
   end
 
   add_foreign_key "axes", "themes"
+  add_foreign_key "tool_tags", "tags"
+  add_foreign_key "tool_tags", "tools"
   add_foreign_key "tools", "axes"
   add_foreign_key "tools", "tool_categories"
 end

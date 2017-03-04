@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :basic_pages, concerns: :positionable
     resources :themes, concerns: :positionable
     resources :axes, concerns: :positionable
+    resources :tags, concerns: :positionable
     resources :tool_categories, concerns: :positionable
     resources :tools do
       member do

@@ -55,6 +55,14 @@
               onchange: "$('[data-is-filter-form]').submit()"
 
       .form-group.col-3
+        = select_tag :by_tag_ids, \
+              options_for_select(tool_tags_options, params[:by_tag_ids]), \
+              prompt: "Tous les mots-clés",\
+              class: "form-control", \
+              data: {is_autocomplete_select: true},
+              onchange: "$('[data-is-filter-form]').submit()"
+
+      .form-group.col-3
         = submit_tag "Appliquer", class: "btn btn-success"
         = link_to admin_tools_path, class: "btn btn-sm" do
           span.glyphicon.glyphicon-repeat>
@@ -65,3 +73,5 @@
     small.float-right = I18n.t("results", count: @tools.count)
     = yield
 
+coffee:
+  $('[data-is-autocomplete-select]').select2()

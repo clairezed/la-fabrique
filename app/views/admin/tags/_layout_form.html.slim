@@ -1,0 +1,33 @@
+- content_for :current_navigation_section, :tags
+
+.title-block
+  h1
+    | Gestion des mots-clés
+    = link_to admin_tags_path, class: 'btn btn-default float-right' do
+      .glyphicon.glyphicon-arrow-left
+      |  Retour
+
+.card
+  - if !@tag.new_record?
+
+    h2.card-header
+      | Edition du mot-clé
+      em=< @tag.title
+
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @tag.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @tag.updated_at
+        .col-md-10
+          = yield
+          
+  - else
+    h2.card-header Créer un nouveau mot-clé
+
+    .card-block
+      = yield
+
