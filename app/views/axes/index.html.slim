@@ -1,0 +1,13 @@
+- content_for :current_navigation_section, :axes
+
+
+= render "tools/search"
+
+.card-wrapper
+  - @axes.each do |axis|
+    .card.axis-card
+      .card-block
+        h3.card-title= axis.title
+      .card-footer
+        span.card-cartel
+          = I18n.t("tools", count: axis.tools.count)

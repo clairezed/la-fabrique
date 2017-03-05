@@ -3,3 +3,7 @@ fr:
     zero: "%{count} résultat"
     one: "%{count} résultat"
     other: "%{count} résultats"
+  tools:
+    zero: "%{count} outil"
+    one: "%{count} outil"
+    other: "%{count} outils"

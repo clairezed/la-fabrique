@@ -24,6 +24,10 @@ class Theme < ApplicationRecord
 
     klass.apply_sorts(params)
   end
+
+  def self.default
+    self.where(id_key: "mobility").first || self.first
+  end
   
   # Instance Methods ===========================================================
 
