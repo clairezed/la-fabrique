@@ -11,8 +11,6 @@
   .col 
     text-align: center
 
-.explanation_main--hidden
-  max-height: 0
 
 .explanation_header
   text-align: center
@@ -30,11 +28,23 @@
   margin: 0 auto
   font-size: 1.2rem
   cursor: pointer
-
-.explanation_label
   text-align: center
   background-color: $brand-inverse
   text-transform: uppercase
   border-radius: 0 0 50px 50px
   margin-top: -5px
   padding-bottom: 7px
+  height: 22px
+
+.explanation_label
+  &:after
+    font-family: FontAwesome
+    content: "\f106"
+
+.explanation--hidden 
+  .explanation_main
+    max-height: 0
+
+  .explanation_label:after
+    font-family: $font-family-sans-serif
+    content: "Comment ça marche ?"

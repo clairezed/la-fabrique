@@ -44,8 +44,8 @@ html lang="#{I18n.locale}"
           /       = link_to 'Administration', admin_root_path, title: "Espace administration", class:"nav-link"
     
 
-    section.explanation
-      .explanation_main class="#{'explanation_main--hidden' if cookies[:visited] == 'true'}" data-is-explanation-collapse="true" 
+    section.explanation class="#{'explanation--hidden' if cookies[:visited] == 'true'}" data-is-explanation-collapse="true" 
+      .explanation_main 
         .container
           header.explanation_header Laboratoire de ressources numériques
           .row.explanation_content
@@ -58,7 +58,7 @@ html lang="#{I18n.locale}"
       .explanation_collapser
         .explanation_edge
         .explanation_strip data-for-explanation-collapse="true"
-          .explanation_label Comment ça marche ?
+          .explanation_label
 
 
     secion.main-section

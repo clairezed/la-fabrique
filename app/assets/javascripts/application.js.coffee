@@ -11,7 +11,7 @@ $ ->
 
   # explanation section show / hide
   $("[data-for-explanation-collapse]").on 'click', ->
-    $("[data-is-explanation-collapse]").toggleClass('explanation_main--hidden')
+    $("[data-is-explanation-collapse]").toggleClass('explanation--hidden')
 
 @ajax_accept_cookies = (path) ->
   $.ajax
