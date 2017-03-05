@@ -9,6 +9,9 @@
 $ ->
   $('.tooltip_bottom').tooltip(placement: 'bottom')
 
+  # explanation section show / hide
+  $("[data-for-explanation-collapse]").on 'click', ->
+    $("[data-is-explanation-collapse]").toggleClass('explanation_main--hidden')
 
 @ajax_accept_cookies = (path) ->
   $.ajax
@@ -18,4 +21,3 @@ $ ->
     success: (json) ->  
       if json.cookies_accepted
         $('#cookies_alert').remove()
-

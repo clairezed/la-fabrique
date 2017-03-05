@@ -1,4 +1,23 @@
 //          - Component BTN 
 
+html [type="button"]
+  -webkit-appearance: initial // override
+
+button:focus, .btn:focus, .btn:active:focus
+  outline: none
+
 .btn 
-  font-size: 1.5rem
+  font-size: 1.4rem
+  font-weight: 500
+  transition: all $transition-default
+  line-height: 1
+  padding: 1rem 1.4rem
+  border-radius: 0.80rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+
+.btn-inverse
+  @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border)
+
+
+.btn-outline-inverse
+  @include button-outline-variant($btn-inverse-bg)

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :http_authentication
   before_action :set_default_seos!, :get_basic_pages
   after_action :flash_to_headers, if: ->{ request.xhr? && flash.present? }
+  after_action :check_visited
 
   protected
   
@@ -52,5 +53,9 @@ class ApplicationController < ActionController::Base
         username == "mirador" && password == "mirador2017"
       end
     end
+  end
+
+  def check_visited
+    cookies.permanent["visited"] = true
   end
 end

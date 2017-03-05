@@ -13,6 +13,9 @@ html lang="#{I18n.locale}"
 
     = stylesheet_link_tag 'application', media: 'all' 
 
+    //Google Font
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Montserrat:400,600,800', rel: 'stylesheet', type: 'text/css'
+
     /[if lt IE 9]
       script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
     /<![endif]
@@ -22,40 +25,74 @@ html lang="#{I18n.locale}"
     = javascript_include_tag "application" 
     = render_document_ready_scripts 
   body
+    = raw flash_messages
     header.main-header
+      nav.navbar.navbar-light.navbar-toggleable-md.bg-white
+        / button.navbar-toggler.navbar-toggler-right data-target="#navbarSupportedContent" data-toggle="collapse" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        /   span.navbar-toggler-icon
+        .container
+          = link_to root_path, class: "navbar-brand" do
+            = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
+            ' Labo Labo
+          = link_to 'Proposer un outil', "#", class: "btn btn-inverse uppercase ml-auto"
+
+          / #navbarSupportedContent.collapse.navbar-collapse
+          /   ul.nav.navbar-nav.mr-auto
+          /     li.nav-item
+          /       = link_to 'Accueil', root_path, title: "Retour à l'accueil", class:"nav-link"
+          /     li.nav-item
+          /       = link_to 'Administration', admin_root_path, title: "Espace administration", class:"nav-link"
+    
+
+    section.explanation
+      .explanation_main class="#{'explanation_main--hidden' if cookies[:visited] == 'true'}" data-is-explanation-collapse="true" 
+        .container
+          header.explanation_header Laboratoire de ressources numériques
+          .row.explanation_content
+            .col
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            .col
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            .col
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      .explanation_collapser
+        .explanation_edge
+        .explanation_strip data-for-explanation-collapse="true"
+          .explanation_label Comment ça marche ?
+
+
+    secion.main-section
       .container
-        nav.navbar.navbar-light.bg-faded
-          button.navbar-toggler.hidden-sm-up data-target="#exCollapsingNavbar2" data-toggle="collapse" type="button" 
-            | &#9776;
-          #exCollapsingNavbar2.collapse.navbar-toggleable-xs
-            = link_to "PROJET", root_path, class: "navbar-brand" 
-            ul.nav.navbar-nav
-              li.nav-item
-                = link_to 'Accueil', root_path, title: "Retour à l'accueil", class:"nav-link"
-              li.nav-item
-                = link_to 'Administration', admin_root_path, title: "Espace administration", class:"nav-link"
-    = raw flash_messages 
-    .container
-      - unless cookies[:cookies_accepted] == "true"
-        #cookies_alert.alert.cookies_alert
-          .col-md-6.col-md-offset-2.col-12
-            a.close data-dismiss="alert" href="#"
-            p
-              | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
-                En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
-          .col-md-3.col-12
-            = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
-            //= link_to "Fermer" , "", class: 'btn btn-secondary' , 'data-dismiss' => "alert"
 
-      = yield
+        - unless cookies[:cookies_accepted] == "true"
+          #cookies_alert.alert.cookies_alert
+            .container
+              .row
+                .col-lg-6.offset-lg-1.col-md-8.col-12
+                  a.close data-dismiss="alert" href="#"
+                  p
+                    | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
+                      En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
+                .col-lg-3.col-md-4.col-12
+                  = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
+                  = link_to "En savoir plus" , "/cookies_info", class: 'btn btn-secondary'
+
+        = yield
 
 
-    footer.main-footer
+    footer.footer.bg-white
       .container
-        hr 
-        - @basic_pages.each do |basic_page|
-          => link_to basic_page.title, basic_page_path(basic_page)
-          => "-" 
-        | © #{Date.today.year}
+        .row
+          .col-6
+            = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 50, height: 50
+            p.footer_text.ml-3
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          .col-6.text-right
+            = link_to 'A propos', "#", class: "btn btn-inverse uppercase"
+            div.mt-3
+              - @basic_pages.each do |basic_page|
+                => link_to basic_page.title, basic_page_path(basic_page)
+                => "-" 
+              | LaboLabo © #{Date.today.year}
 
 

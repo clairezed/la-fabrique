@@ -10,13 +10,17 @@ html
   font-size: 62.5% // on passe la taille de base à 10px pour les unités en rem : 10px = 1rem (1,4rem = 14px etc)
 
 body
-  font-size: 1.5rem
-
+  font-size: 1.4rem
+  line-height: 1.25 // override 
+  font-family: $font-family-sans-serif
+  
   //// pb scintillement font-weight
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
 
+.bg-white
+  background-color: $white
 
 ///////////////////////
 // TITLES 
@@ -32,3 +36,11 @@ body
 a:hover, a:focus
   text-decoration: none
   outline: none
+
+
+///////////////////////
+//  MAIN SECTION
+///////////////////////
+
+.main-section
+  padding-top: 20px
