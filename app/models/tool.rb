@@ -114,6 +114,14 @@ class Tool < ApplicationRecord
     where(state: states.fetch(state.to_sym) )
   }
 
+  scope :by_format_type, ->(format){
+    format_int  = ::Asset::ToolAttachment.format_types[format]
+    attachment_condition = ::Asset::ToolAttachment.arel_table[:format_type].eq(format_int)
+    #TODO : link_condition
+    eager_load(:attachments)
+      .where(attachment_condition)
+  }
+
   scope :by_duration, ->(val){ where(duration: durations.fetch(val.to_sym) ) }
   scope :by_group_size, ->(val){ where(group_size: group_sizes.fetch(val.to_sym) ) }
   scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
