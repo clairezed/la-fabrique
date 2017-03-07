@@ -1,0 +1,21 @@
+- content_for :current_navigation_section, :tools
+
+
+= render "tools/search"
+
+.card-wrapper
+  - @tools.each do |tool|
+    .card.axis-card
+      = link_to tool_path(tool) do 
+        .card-block
+          h3.card-title= tool.title
+        .card-footer
+          .row
+            .col
+              span.card-cartel
+                i.fa.fa-hourglass>
+                = tool_duration(tool.duration)
+            .col
+              span.card-cartel
+                i.fa.fa-users>
+                = tool_group_size(tool.group_size)

@@ -1,58 +1,66 @@
-= form_tag admin_tools_path, method: :get, data: {is_filter_form: true} do
+= form_tag tools_path, method: :get, data: {is_filter_form: true} do
 
-    .search-bar
-      .row
-        .col
-          label Dans l'axe
-          = select_tag :by_axis, \
-                options_for_select(axis_options, params[:by_axis]), \
-                prompt: "Tous les axes",\
-                class: "form-control", \
-                onchange: "$('[data-is-filter-form]').submit()"
+  .search-bar
+    .row
+      .col
+        label Dans l'axe
+        = select_tag :by_axis, \
+              options_for_select(axis_options, params[:by_axis]), \
+              prompt: "Tous les axes",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
 
-        .col
-          label Type d'outil
-          = select_tag :by_tool_category, \
-                options_for_select(tool_category_options, params[:by_tool_category]), \
-                prompt: "Toutes les catégories",\
-                class: "form-control", \
-                onchange: "$('[data-is-filter-form]').submit()"
+      .col
+        label Type d'outil
+        = select_tag :by_tool_category, \
+              options_for_select(tool_category_options, params[:by_tool_category]), \
+              prompt: "Toutes les catégories",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
 
-        .col
-          label Format d'outil
+      .col
+        label Format d'outil
+        = select_tag :by_format_type, \
+              options_for_select(tool_attachment_format_type_options, params[:by_format_type]), \
+              prompt: "Tous les formats",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
 
 
-        .col
-          label Groupe
-          = select_tag :by_group_size, \
-                options_for_select(tool_group_size_options, params[:by_group_size]), \
-                prompt: "Toutes les tailles de groupe",\
-                class: "form-control", \
-                onchange: "$('[data-is-filter-form]').submit()"
+      .col
+        label Groupe
+        = select_tag :by_group_size, \
+              options_for_select(tool_group_size_options, params[:by_group_size]), \
+              prompt: "Toutes les tailles de groupe",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
 
-        .col
-          label Durée
-          = select_tag :by_duration, \
-                options_for_select(tool_duration_options, params[:by_duration]), \
-                prompt: "Toutes les durées",\
-                class: "form-control", \
-                onchange: "$('[data-is-filter-form]').submit()"
+      .col
+        label Durée
+        = select_tag :by_duration, \
+              options_for_select(tool_duration_options, params[:by_duration]), \
+              prompt: "Toutes les durées",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
 
-        .col
-          label Mots-clés
-          = select_tag :by_tag_ids, \
-                options_for_select(tool_tags_options, params[:by_tag_ids]), \
-                prompt: "Tous les mots-clés",\
-                class: "form-control", \
-                data: {is_autocomplete_select: true},
-                onchange: "$('[data-is-filter-form]').submit()"
+      .col
+        label Mots-clés
+        = select_tag :by_tag_ids, \
+              options_for_select(tool_tags_options, params[:by_tag_ids]), \
+              prompt: "Tous les mots-clés",\
+              class: "form-control", \
+              data: {is_autocomplete_select: true},
+              onchange: "$('[data-is-filter-form]').submit()"
 
-        .col
-          label Nom de l'outil
-          => text_field_tag 'by_title', params[:by_title], \
-            class: "form-control", placeholder: "par titre"
-        / .col
-        /   = submit_tag "Appliquer", class: "btn btn-success"
-        /   = link_to admin_tools_path, class: "btn btn-sm" do
-        /     span.glyphicon.glyphicon-repeat>
-        /     | Réinitialiser
+      .col
+        label Nom de l'outil
+        => text_field_tag 'by_title', params[:by_title], \
+          class: "form-control", placeholder: "par titre"
+      / .col
+      /   = submit_tag "Appliquer", class: "btn btn-success"
+      /   = link_to admin_tools_path, class: "btn btn-sm" do
+      /     span.glyphicon.glyphicon-repeat>
+      /     | Réinitialiser
+
+coffee:
+  $('[data-is-autocomplete-select]').select2()

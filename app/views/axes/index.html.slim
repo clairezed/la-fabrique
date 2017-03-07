@@ -6,7 +6,7 @@
 .card-wrapper
   - @axes.each do |axis|
     .card.axis-card
-      = link_to tools_path(by_axis: axis) do 
+      = link_to tools_path(by_axis: axis.id) do 
         .card-block
           h3.card-title= axis.title
         .card-footer

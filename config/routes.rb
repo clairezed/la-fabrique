@@ -31,7 +31,8 @@ Rails.application.routes.draw do
 
   # Front ======================================
   
-  resources :axes, only: [:index, :show]
+  resources :axes, only: [:index]
+  resources :tools, only: [:index, :show]
   resources :basic_pages, only: [:show]
   put "/accept_cookies", to: "home#accept_cookies"
   get "/:filename", to: "statics#show"

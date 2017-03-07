@@ -92,7 +92,7 @@ class Tool < ApplicationRecord
   before_validation :normalize_url!, if: :source_url_changed?
   
   # Scopes =====================================================================
-  scope :enabled, -> { where(enabled: true) }
+  scope :enabled, -> { accepted }
 
   scope :by_title, ->(val) { 
     val.downcase!
@@ -138,6 +138,7 @@ class Tool < ApplicationRecord
     klass = klass.by_duration(params[:by_duration]) if params[:by_duration].present?
     klass = klass.by_group_size(params[:by_group_size]) if params[:by_group_size].present?
     klass = klass.by_level(params[:by_level]) if params[:by_level].present?
+    klass = klass.by_format_type(params[:by_format_type]) if params[:by_format_type].present?
 
     klass.apply_sorts(params)
   end
