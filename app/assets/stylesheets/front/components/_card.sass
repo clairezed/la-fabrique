@@ -5,13 +5,22 @@
 
 .axis-card
   margin-bottom: 2em
-  // margin: 0 auto 2em
   height: 240px
   width: 240px
   text-align: center  
   background: tomato
   border: 0
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  transition: all $transition-default
+  &:hover, &:focus
+    background: darken(tomato, 10%)
+
+  a
+    position: relative
+    display: flex
+    flex-direction: column
+    height: 240px
+    color: inherit
 
   .card-title
     text-transform: uppercase

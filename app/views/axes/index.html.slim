@@ -6,8 +6,9 @@
 .card-wrapper
   - @axes.each do |axis|
     .card.axis-card
-      .card-block
-        h3.card-title= axis.title
-      .card-footer
-        span.card-cartel
-          = I18n.t("tools", count: axis.tools.count)
+      = link_to tools_path(by_axis: axis) do 
+        .card-block
+          h3.card-title= axis.title
+        .card-footer
+          span.card-cartel
+            = I18n.t("tools", count: axis.tools.count)
