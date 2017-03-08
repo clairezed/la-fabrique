@@ -76,10 +76,11 @@ class Tool < ApplicationRecord
             dependent:  :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
-  has_many :links, dependent: :destroy
-
   has_many :tool_tags, dependent: :restrict_with_exception
   has_many :tags, through: :tool_tags
+
+  has_many :links, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 
   # Callbacks ==================================================================

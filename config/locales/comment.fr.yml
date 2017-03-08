@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    attributes:
+      comment:
+        nickname: Le nom ou pseudo
+        content: Le commentaire
+
+
+  helpers:
+    label:
+      comment:
+        nickname: Nom ou pseudo
+        content: Commentaire

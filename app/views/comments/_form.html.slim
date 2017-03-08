@@ -1,0 +1,17 @@
+= f.hm_form_errors
+.form-group.row
+  .col-2.col-form-label
+    = f.label :nickname
+  .col-6
+    = f.text_field :nickname, class: "form-control"
+
+.form-group.row
+  .col-2.col-form-label
+    = f.label :content
+  .col-10
+    = f.text_area :content, class: "form-control", rows: 10
+
+.form-group.row
+  .col-2
+  .col-10
+    => f.submit "Envoyer", class: "btn btn-primary"

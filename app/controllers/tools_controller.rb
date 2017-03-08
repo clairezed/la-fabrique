@@ -3,11 +3,12 @@ class ToolsController < ApplicationController
 
   def index
     params[:sort] ||= "sort_by_created_at asc"
-    @tools = Tool.apply_filters(params).paginate(per_page: 20, page: params[:page])
+    @tools = Tool.enabled.apply_filters(params).paginate(per_page: 20, page: params[:page])
   end
 
-  def show 
+  def show
     @tool = get_object_from_param_or_redirect(Tool.enabled)
+    @comment = @tool.comments.new
   end
 
 

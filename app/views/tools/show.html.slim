@@ -1,3 +1,19 @@
 - content_for :current_navigation_section, :tools
 
 h1= @tool.title
+
+hr
+
+= form_for @comment, as: :comment, url: tool_comments_path(@tool), \
+  remote: true, html: {class: "form-horizontal"}, data:{comment_form: true} do |f|
+  = render partial: "comments/form", locals: {f: f}
+
+.alert.alert-success role='alert' style='display:none' data-comment-success=true
+  strong> Merci pour votre commentaire ! 
+  br
+  ' Il apparaitra dans la liste des commentaires dès qu'un administrateur l'aura accepté.
+
+
+
+coffee:
+  new ToolShowPage()

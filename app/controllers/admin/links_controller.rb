@@ -8,7 +8,6 @@ class Admin::LinksController < Admin::BaseController
 
   def index
     @links = Link.apply_filters(params)
-    p @links
     render json: @links, eachSerializer: LinkSerializer 
   end
 
@@ -18,17 +17,14 @@ class Admin::LinksController < Admin::BaseController
   end
 
   def create
-    p link_params
     if params[:link][:tool_id].present?
       @tool = Tool.find(params[:link][:tool_id])
       @link = @tool.links.new(link_params) 
     else
       @link = Link.new(link_params)
     end
-    p @link
-    p @link.valid?
     if @link.save
-      render json: @link, serializer: LinkSerializer 
+      render json: @link, serializer: LinkSerializer
     else
       render :new, layout: false, status: 422
     end
@@ -43,7 +39,8 @@ class Admin::LinksController < Admin::BaseController
     if @link.update(link_params)
       render json: @link, serializer: LinkSerializer 
     else
-      render status: 422, json: {errors: @link.errors.full_messages}
+      render :edit, layout: false, status: 422
+      
     end
   end
 

@@ -11,6 +11,7 @@
 #= require ./shared/handlebars_helper
 
 #= require ./shared/flash-messages
+#= require_tree ./front
 
 
 $ ->
