@@ -3,7 +3,7 @@ class CreateLinks < ActiveRecord::Migration[5.0]
     create_table :links do |t|
       t.references :tool
       t.string :url
-      t.string :custom_file_name
+      t.string :title
       t.integer :position
       t.integer :format_type
 

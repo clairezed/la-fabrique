@@ -68,11 +68,11 @@ ActiveRecord::Schema.define(version: 20170307121742) do
   create_table "links", force: :cascade do |t|
     t.integer  "tool_id"
     t.string   "url"
-    t.string   "custom_file_name"
+    t.string   "title"
     t.integer  "position"
     t.integer  "format_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["tool_id"], name: "index_links_on_tool_id", using: :btree
   end
 

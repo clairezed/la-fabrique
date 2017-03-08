@@ -123,7 +123,7 @@ fieldset
   legend Liens
 
   = link_to new_admin_link_path(tool_id: @tool.id), remote: true,
-    data: {link_btn: 'new'}, class: 'btn btn-info' do
+    data: {link_btn: 'new'}, class: 'btn btn-info mb-2' do
     | Ajouter un lien
 
   div.row data-is-link-list="#{admin_links_path(by_tool_id: @tool.id)}"

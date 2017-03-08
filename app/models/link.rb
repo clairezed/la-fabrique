@@ -10,9 +10,13 @@ class Link < ApplicationRecord
 
   belongs_to :tool
 
+  # Validations ================================================================
+  validates :url, 
+            # :title, 
+            presence: true
+
   # Callbacks ==================================================================
-  
-  validates :url, presence: true
+  before_validation :set_title
   
   # Scopes =====================================================================
   scope :by_tool_id, -> (id) { where(tool_id: id) }
@@ -25,8 +29,13 @@ class Link < ApplicationRecord
 
     klass.apply_sorts(params)
   end
+
   # Instance Methods ===========================================================
 
   private #=====================================================================
+
+  def set_title
+    self.title = self.url if self.title.blank?
+  end
   
 end

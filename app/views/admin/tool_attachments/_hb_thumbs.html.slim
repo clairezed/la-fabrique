@@ -25,5 +25,5 @@
           => "{{format_title}}"
         = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-1", data:{edit_attachment: "{{id}}"}  do 
           i.fa.fa-edit
-        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
+        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}", confirm: "Confirmer la suppression ?"} do
           i.fa.fa-trash

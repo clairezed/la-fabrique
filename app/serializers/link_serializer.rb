@@ -3,7 +3,7 @@ class LinkSerializer < ActiveModel::Serializer
   include ToolAttachmentHelper
 
   attributes  :id, 
-              :name,
+              :title,
               :url,
               :delete_url,
               :admin_delete_url,
@@ -11,10 +11,6 @@ class LinkSerializer < ActiveModel::Serializer
               :admin_edit_url,
               :format_icon,
               :format_title
-
-  def name
-    object.custom_file_name
-  end
 
   #TODO
   def edit_url

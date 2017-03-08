@@ -64,7 +64,7 @@ class Admin::LinksController < Admin::BaseController
       .fetch(:link){ {}.with_indifferent_access } # peut être vide
       .permit :id,
               :url,
-              :custom_file_name,
+              :title,
               :format_type,
               :tool_id
   end
