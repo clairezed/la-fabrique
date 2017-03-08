@@ -1,0 +1,42 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead.thead-inverse
+      tr
+        th= hm_sort 'sort_by_created', label: 'Date création'
+        th= hm_sort 'sort_by_tool_id', label: 'Outil'
+        th= hm_sort 'sort_by_nickname', label: 'Pseudo'
+        th= hm_sort 'sort_by_content', label: 'Commentaire'
+        th.text-center= hm_sort 'sort_by_state', label: 'Etat'
+        th.text-right Actions
+    tbody
+      - @comments.each do |comment| 
+        tr
+          td= l comment.created_at.to_date
+          td= link_to comment.tool.title, edit_admin_tool_path(comment.tool)
+          td= comment.nickname || "-"
+          td style="width: 50%;"
+            = comment.content.truncate(100)
+            button.btn.btn-default.btn-sm.pull-right type="button" data-toggle="collapse" data-target="#content-#{comment.id}" aria-expanded="false" aria-controls="collapseExample" title="voir tout le commentaire"
+              i.fa.fa-caret-down
+            .collapse id="content-#{comment.id}"
+              .card.card-block = comment.content
+          td.text-center
+            span class="badge badge-#{tool_state_style(comment.state)}"= tool_state_title(comment.state)
+          td.action-btns.border-left
+            - if comment.may_accept?
+              => link_to accept_admin_comment_path(comment, search_params), class: 'btn btn-sm btn-success', method: :patch, title: "Accepter" do
+                i.fa.fa-check
+            - if comment.may_reject?
+              => link_to reject_admin_comment_path(comment, search_params), class: 'btn btn-sm btn-danger', method: :patch, title: "Rejeter" do
+                i.fa.fa-ban
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_comment_path(comment),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @comments.empty?
+        tr
+          td colspan="7"
+            p.text-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @comments, renderer: WillPaginateBoostrap4Renderer

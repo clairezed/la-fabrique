@@ -46,6 +46,13 @@ html lang="#{I18n.locale}"
                     - if Tool.pending.any?
                       span.badge.badge-warning.float-right = Tool.pending.count
                 li
+                  = menu_link admin_comments_path, section: :comments
+                    i.fa.fa-comments
+                    | Commentaires
+                    - if Comment.pending.any?
+                      span.badge.badge-warning.float-right = Comment.pending.count
+                .sidebar-divider
+                li
                   = menu_link admin_tool_categories_path, section: :tool_categories
                     i.fa.fa-list
                     | Catégories d'outils

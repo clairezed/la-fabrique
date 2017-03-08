@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     resources :tags, concerns: :positionable
     resources :tool_categories, concerns: :positionable
     resources :links, concerns: :positionable
+    resources :comments, only: [:index, :destroy] do
+      member do
+        patch :accept 
+        patch :reject
+      end
+    end
     resources :tools do
       member do
         patch :accept 
