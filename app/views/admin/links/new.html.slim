@@ -1,0 +1,13 @@
+
+= form_for @link, url: admin_links_path(@link), method: :post, remote: true, data: {is_form: 'create-link' } do |f|
+  .modal-header
+    h5.modal-title Nouveau lien
+    button.close aria-label="Close" data-dismiss="modal" type="button" 
+      span aria-hidden="true"  &times;
+  .modal-body
+
+      = render partial: "admin/links/form", locals: { f: f }
+  .modal-footer
+    .text-xs-center
+      = f.submit "Valider", class: "btn btn-primary uppercase btn-wrap"
+      / = link_to "Editer", "javascript:void()", class: "btn btn-primary uppercase btn-wrap", data: {is_modal_submit: true}

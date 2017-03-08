@@ -1,0 +1,29 @@
+
+/ Thumb affiché tant que l'upload est 'in progress'
+= handlebars_template(:AttachmentUpload) do
+  .col-md-3 data-is-upload=true
+    .card
+      .card-block
+        p.card-text.font-weight-bold
+        => "{{name}}"
+        .progress
+          .progress-bar.bar style="width: 0%"
+
+/ Thumb final une fois l'upload effectué
+= handlebars_template(:AttachmentDownload) do
+  .col-md-3 data-is-download="{{id}}"
+    .card
+      | {{#if displayable }}
+      = link_to "{{url}}", target: "_blank", class: "card-img-top img-fluid" do 
+        img.img-fluid src="{{thumbnail_url}}"
+      | {{/if}}
+      .card-block
+        p.card-text.font-weight-bold
+          => link_to "{{name}}", "{{url}}", target: :blank
+        p.small.text-muted
+          i.fa> class="fa-{{format_icon}}"
+          => "{{format_title}}"
+        = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-1", data:{edit_attachment: "{{id}}"}  do 
+          i.fa.fa-edit
+        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
+          i.fa.fa-trash

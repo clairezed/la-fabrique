@@ -1,0 +1,14 @@
+
+/ Thumb link
+= handlebars_template(:LinkThumb) do
+  .col-md-6
+    .card
+      .card-block
+        p.card-text
+          = link_to "{{url}}", target: "_blank" do 
+            i.fa> class="fa-{{format_icon}}"
+            => "{{name}}"
+          = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger pull-right" do
+            i.fa.fa-trash
+          = link_to "{{admin_edit_url}}", remote: true, class: "btn btn-sm btn-info mr-1 pull-right" do
+            i.fa.fa-edit

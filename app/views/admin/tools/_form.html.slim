@@ -80,7 +80,7 @@ fieldset
 
   .form-group.row
     .form-label-default
-      = f.label :tag_ids
+      / = f.label :tag_ids
     .controls-xlarge.form-check.form-check-inline
       = f.collection_check_boxes :tag_ids, tool_tags_options, :last, :first do |builder|
         label.form-check-label.col-md-4
@@ -99,6 +99,7 @@ fieldset
     = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: admin_tool_attachments_path, method: 'POST', type: 'script'}, style: "display:none"
 
   div.row data-is-media-list=true
+
     - @tool.attachments.order(position: :desc).each do |attachment|
       .col-md-3 data-is-download="#{attachment.id}"
         .card
@@ -117,6 +118,15 @@ fieldset
               i.fa.fa-edit
             = link_to admin_tool_attachment_path(attachment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: attachment.id} do
               i.fa.fa-trash
+
+fieldset
+  legend Liens
+
+  = link_to new_admin_link_path(tool_id: @tool.id), remote: true,
+    data: {link_btn: 'new'}, class: 'btn btn-info' do
+    | Ajouter un lien
+
+  div.row data-is-link-list="#{admin_links_path(by_tool_id: @tool.id)}"
 
 
 = render partial: "admin/seos/fields_for_form", locals: {f: f}
@@ -154,32 +164,8 @@ fieldset
 div data-is-modal-container=true
 
 
-= handlebars_template(:AttachmentUpload) do
-  .col-md-3 data-is-upload=true
-    .card
-      .card-block
-        p.card-text.font-weight-bold
-        => "{{name}}"
-        .progress
-          .progress-bar.bar style="width: 0%"
-
-= handlebars_template(:AttachmentDownload) do
-  .col-md-3 data-is-download="{{id}}"
-    .card
-      | {{#if displayable }}
-      = link_to "{{url}}", target: "_blank", class: "card-img-top img-fluid" do 
-        img.img-fluid src="{{thumbnail_url}}"
-      | {{/if}}
-      .card-block
-        p.card-text.font-weight-bold
-          => link_to "{{name}}", "{{url}}", target: :blank
-        p.small.text-muted
-          i.fa> class="fa-{{format_icon}}"
-          => "{{format_title}}"
-        = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-1", data:{edit_attachment: "{{id}}"}  do 
-          i.fa.fa-edit
-        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}"} do
-          i.fa.fa-trash
+= render "admin/tool_attachments/hb_thumbs"
+= render "admin/links/hb_thumb"
 
 javascript:
   $(function () {
@@ -188,4 +174,4 @@ javascript:
 
 coffee:
   $ ->
-    fileUploader = new FileUploader()
+    new ToolForm()

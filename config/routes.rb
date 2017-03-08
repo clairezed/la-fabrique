@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :axes, concerns: :positionable
     resources :tags, concerns: :positionable
     resources :tool_categories, concerns: :positionable
+    resources :links, concerns: :positionable
     resources :tools do
       member do
         patch :accept 

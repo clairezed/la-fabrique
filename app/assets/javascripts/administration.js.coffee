@@ -9,12 +9,13 @@
 #= require vendor/handlebars-v4.0.5
 #= require vendor/select2.min
 #= require ./shared/handlebars_helper
+#= require ./shared/flash-messages
+#= require ./shared/file-uploader
+#= require ./shared/link-modal
 
 #= require_tree ./admin
 #= require_tree ./locales
 
-#= require ./shared/flash-messages
-#= require ./shared/file-uploader
 
 
 $ ->

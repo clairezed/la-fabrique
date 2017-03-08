@@ -1,0 +1,3 @@
+- @links.order(position: :desc).each do |link|
+  .col-md-6
+    = render partial: 'admin/links/thumb', locals: {link: link}

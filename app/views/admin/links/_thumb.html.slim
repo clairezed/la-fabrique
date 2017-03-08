@@ -1,0 +1,10 @@
+.card
+  .card-block
+    p.card-text
+      = link_to link.url do 
+        i.fa> class="fa-#{tool_attachment_format_type_icon(link.format_type)}"
+        => link.custom_file_name
+      = link_to edit_admin_link_path(link), method: :delete, remote: true, class: "btn btn-sm btn-danger pull-right" do
+        i.fa.fa-trash
+      = link_to edit_admin_link_path(link), remote: true, class: "btn btn-sm btn-info mr-1 pull-right" do
+        i.fa.fa-edit
