@@ -7,6 +7,7 @@
         th= hm_sort 'sort_by_title', label: 'Titre'
         th= hm_sort 'sort_by_axis_id', label: 'Axe'
         th= hm_sort 'sort_by_tool_category_id', label: 'Catégorie'
+        th Commentaires
         th= hm_sort 'sort_by_state', label: 'Etat'
         th Actions
     tbody
@@ -16,10 +17,11 @@
           td= link_to tool.title, edit_admin_tool_path(tool)
           td= link_to tool.axis.title, edit_admin_axis_path(tool.axis)
           td= link_to tool.tool_category.title, edit_admin_tool_category_path(tool.tool_category)
+          td= link_to admin_comments_path(by_tool_title: tool.title), class: "btn btn-default btn-sm" do
+            i.fa.fa-list>
+            => tool.comments.count
           td
             span class="badge badge-#{tool_state_style(tool.state)}"= tool_state_title(tool.state)
-          / td
-            / span class="label label-#{tool.enabled? ? 'success' : 'warning'}" = tool.enabled? ? "Oui" : "Non"
           td.action-btns.border-left
             - if tool.may_accept?
               => link_to accept_admin_tool_path(tool, search_params), class: 'btn btn-sm btn-success', method: :patch, title: "Accepter" do

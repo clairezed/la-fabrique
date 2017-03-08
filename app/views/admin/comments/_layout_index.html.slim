@@ -10,10 +10,10 @@
     .lead
       | Filtrer votre recherche
     .row
-      / .form-group.col-3
-      /   label.sr-only Par titre
-      /   => text_field_tag 'by_title', params[:by_title], \
-      /     class: "form-control", placeholder: "par titre"
+      .form-group.col-3
+        label.sr-only Par outil
+        => text_field_tag 'by_tool_title', params[:by_tool_title], \
+          class: "form-control", placeholder: "par outil"
 
       / .form-group.col-3
       /   = select_tag :by_tag_ids, \

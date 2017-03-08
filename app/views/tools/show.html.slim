@@ -3,6 +3,7 @@
 h1= @tool.title
 
 hr
+h3 Commentaires
 
 = form_for @comment, as: :comment, url: tool_comments_path(@tool), \
   remote: true, html: {class: "form-horizontal"}, data:{comment_form: true} do |f|
@@ -13,6 +14,15 @@ hr
   br
   ' Il apparaitra dans la liste des commentaires dès qu'un administrateur l'aura accepté.
 
+- if @tool.comments.accepted.any?
+  - @tool.comments.accepted.each do |comment|
+    .card.card-block.mb-2
+      .row
+        .col-3.text-right
+          p= commenter(comment.nickname)
+          p= time_ago_in_words(comment.created_at)
+        .col-9
+          = comment.content
 
 
 coffee:

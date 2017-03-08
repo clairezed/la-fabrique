@@ -4,7 +4,7 @@
     thead.thead-inverse
       tr
         th= hm_sort 'sort_by_created', label: 'Date création'
-        th= hm_sort 'sort_by_tool_id', label: 'Outil'
+        th= hm_sort 'sort_by_tool_title', label: 'Outil'
         th= hm_sort 'sort_by_nickname', label: 'Pseudo'
         th= hm_sort 'sort_by_content', label: 'Commentaire'
         th.text-center= hm_sort 'sort_by_state', label: 'Etat'
@@ -14,7 +14,7 @@
         tr
           td= l comment.created_at.to_date
           td= link_to comment.tool.title, edit_admin_tool_path(comment.tool)
-          td= comment.nickname || "-"
+          td= comment.nickname.presence || "-"
           td style="width: 50%;"
             = comment.content.truncate(100)
             button.btn.btn-default.btn-sm.pull-right type="button" data-toggle="collapse" data-target="#content-#{comment.id}" aria-expanded="false" aria-controls="collapseExample" title="voir tout le commentaire"
