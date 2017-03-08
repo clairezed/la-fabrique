@@ -53,9 +53,11 @@
               onchange: "$('[data-is-filter-form]').submit()"
 
       .col
-        label Nom de l'outil
-        => text_field_tag 'by_title', params[:by_title], \
-          class: "form-control", placeholder: "par titre"
+        div data-is-tt-container="#{tools_path}"
+          label Nom de l'outil
+          => text_field_tag 'tool_title', params[:tool_title], \
+            class: "form-control", placeholder: "par nom", data: {is_tt_input: true}, autocomplete: 'off' 
+           / = hidden_field_tag :tool_id, params[:tool_id], data: {is_tt_elt: 'tool_id'}
       / .col
       /   = submit_tag "Appliquer", class: "btn btn-success"
       /   = link_to admin_tools_path, class: "btn btn-sm" do
@@ -63,4 +65,4 @@
       /     | Réinitialiser
 
 coffee:
-  $('[data-is-autocomplete-select]').select2()
+  new ToolSearch()

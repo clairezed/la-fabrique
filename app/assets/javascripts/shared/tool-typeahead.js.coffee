@@ -17,7 +17,7 @@ class @ToolTypeahead
     @options = $.extend(true, {}, @DEFAULT_OPTIONS, options)
     @$container = $(@options.container)
     @$input     = @$container.find(@options.inputIdentifier)
-    engine      = @createEngine(@$container.data('autocomplete-path'))
+    engine      = @createEngine(@$container.data('is-tt-container'))
     
     @$input.typeahead({
       hint: true
@@ -44,11 +44,10 @@ class @ToolTypeahead
         Bloodhound.tokenizers.whitespace(d.formatted_address)
       queryTokenizer: Bloodhound.tokenizers.whitespace
       remote:
-        url: "#{url}?place=%QUERY"
+        url: "#{url}?by_title=%QUERY"
         wildcard: '%QUERY'
     engine.initialize()
-    engine suggestion: Handlebars.compile(@options.templates.suggestion)
-    })
+    engine
 
 
   # Events =================================================================
@@ -63,11 +62,10 @@ class @ToolTypeahead
         $('.tt-dataset').find('.tt-suggestion').removeClass('tt-cursor').first().addClass('tt-cursor')
       .on 'typeahead:selected typeahead:autocompleted', (evt, elt) =>
         console.log elt
+        window.location.replace(elt.show_url)
 
   clearAutocomplete:  =>
-    @data = {}
     @$input.val('')
-    element.val('') for key, element of @elements
     
 
   # $input

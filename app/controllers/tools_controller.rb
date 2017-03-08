@@ -3,7 +3,15 @@ class ToolsController < ApplicationController
 
   def index
     params[:sort] ||= "sort_by_created_at asc"
-    @tools = Tool.enabled.apply_filters(params).paginate(per_page: 20, page: params[:page])
+    @tools = Tool.enabled.apply_filters(params)
+    respond_to do |format|
+      format.html do
+        @tools = @tools.paginate(per_page: 20, page: params[:page])
+      end
+      format.json do
+        render json: @tools.map { |tool| { title: tool.title, show_url: tool_path(tool) }}
+      end
+    end
   end
 
   def show

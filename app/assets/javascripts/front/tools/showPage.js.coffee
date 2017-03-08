@@ -4,6 +4,7 @@ class @ToolShowPage
     console.log 'ShowPage'
     @commentFormSelector = '[data-comment-form]'
     @commentSuccessSelector = '[data-comment-success]'
+    
     $(document)
       .on "ajax:success", @commentFormSelector, (e, data, status, xhr) =>
         $(@commentFormSelector).slideUp "slow", =>

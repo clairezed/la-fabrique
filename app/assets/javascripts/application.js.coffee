@@ -8,9 +8,12 @@
 #= require vendor/redactor.min
 #= require vendor/handlebars-v4.0.5
 #= require vendor/select2.min
-#= require ./shared/handlebars_helper
+#= require vendor/typeahead.bundle.min
 
+#= require ./shared/handlebars_helper
 #= require ./shared/flash-messages
+#= require ./shared/tool-typeahead
+
 #= require_tree ./front
 
 
