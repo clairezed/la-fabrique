@@ -118,11 +118,13 @@ class Tool < ApplicationRecord
   }
 
   scope :by_format_type, ->(format){
-    format_int  = ::Asset::ToolAttachment.format_types[format]
-    attachment_condition = ::Asset::ToolAttachment.arel_table[:format_type].eq(format_int)
-    #TODO : link_condition
-    eager_load(:attachments)
-      .where(attachment_condition)
+    # pour que le scope fonctionne qu'on renvoit la clé ou le code numerique du format
+    format = ::Asset::ToolAttachment.format_types[format] unless format.is_a?(Integer)
+    attachment_condition = ::Asset::ToolAttachment.arel_table[:format_type].eq(format)
+    link_condition = ::Link.arel_table[:format_type].eq(format)
+
+    eager_load(:attachments).eager_load(:links)
+      .where(attachment_condition.or(link_condition))
   }
 
   scope :by_duration, ->(val){ where(duration: durations.fetch(val.to_sym) ) }
