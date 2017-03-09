@@ -19,7 +19,10 @@ class Link < ApplicationRecord
   before_validation :set_title
   
   # Scopes =====================================================================
-  scope :by_tool_id, -> (id) { where(tool_id: id) }
+  scope :by_tool_id, -> (id) { 
+    return none unless id.present?
+    where(tool_id: id) 
+  }
   
   # Class Methods ==============================================================
   def self.apply_filters(params)

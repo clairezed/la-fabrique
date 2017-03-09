@@ -1,16 +1,16 @@
 = f.hm_form_errors
 
-.form-group.row
-  .form-label-default
-    | Affiché ?
-  .controls-default
-    .form-check.form-check-inline
-      label.form-check-label
-        => f.radio_button :enabled, true
-        | Oui
-      label.form-check-label
-        => f.radio_button :enabled, false
-        | Non
+/ .form-group.row
+/   .form-label-default
+/     | Affiché ?
+/   .controls-default
+/     .form-check.form-check-inline
+/       label.form-check-label
+/         => f.radio_button :enabled, true
+/         | Oui
+/       label.form-check-label
+/         => f.radio_button :enabled, false
+/         | Non
 
 .form-group.row.required
   .form-label-default
@@ -126,7 +126,7 @@ fieldset
     data: {link_btn: 'new'}, class: 'btn btn-info mb-2' do
     | Ajouter un lien
 
-  div.row data-is-link-list="#{admin_links_path(by_tool_id: @tool.id)}"
+  div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_links_path}"
 
 
 = render partial: "admin/seos/fields_for_form", locals: {f: f}

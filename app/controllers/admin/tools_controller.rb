@@ -4,7 +4,7 @@ class Admin::ToolsController < Admin::BaseController
 
   def index
     params[:sort] ||= "sort_by_created_at asc"
-    @tools = Tool.enabled.apply_filters(params)
+    @tools = Tool.apply_filters(params)
     respond_to do |format|
       format.html do
         @tools = @tools.paginate(per_page: 20, page: params[:page])
@@ -17,23 +17,24 @@ class Admin::ToolsController < Admin::BaseController
 
   def new
     @tool = Tool.new
-    @attachment = Asset::ToolAttachment.new
-    @tool.build_seo
+    build_tool_relations
   end
   
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
+      @tool.accept!
       flash[:notice] = "La fiche a été créé avec succès"
       redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
     else
       flash[:error] = "Une erreur s'est produite lors de la création de la fiche"
+      build_tool_relations
       render :new
     end
   end
   
   def edit
-    @attachment = Asset::ToolAttachment.new
+    build_tool_relations
   end
   
   def update
@@ -41,6 +42,7 @@ class Admin::ToolsController < Admin::BaseController
       flash[:notice] = "La fiche a été mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
     else
+      build_tool_relations
       flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
       render :edit
     end
@@ -95,6 +97,11 @@ class Admin::ToolsController < Admin::BaseController
 
   def find_tool
     @tool = Tool.from_param params[:id]
+  end
+
+  def build_tool_relations
+    @attachment = @tool.attachments.build
+    @tool.build_seo unless @tool.seo.present?
   end
 
   # strong parameters

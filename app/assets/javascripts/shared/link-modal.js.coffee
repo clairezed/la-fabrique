@@ -71,16 +71,19 @@ class @LinkModal
 
   # Loading lists ===================================================
   loadLinks: =>
-    url = $(@options.selectors.linkList).data('is-link-list')
-    $.get(url, {}, null, 'json'
-    ).done((links) =>
-      # console.log(links)
-      for link in links
-        @renderLink(link, 'thumbTemplate')
-    ).fail((error) =>
-      console.log error
-      flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
-    )
+    toolId = @getToolId()
+    if !!toolId # Si l'outil est persisté
+      url = $(@options.selectors.linkList).data('list-url')
+      console.log url
+      $.get(url, {by_tool_id: toolId}, null, 'json'
+      ).done((links) =>
+        console.log(links)
+        for link in links
+          @renderLink(link, 'thumbTemplate')
+      ).fail((error) =>
+        console.log error
+        flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
+      )
 
   renderLink: (data, templateSelector) =>
     compiledTemplate = @compileTemplate(data, templateSelector)
@@ -99,3 +102,6 @@ class @LinkModal
 
   getNode: (id) ->
     $("[data-is-link='#{id}']")
+
+  getToolId: =>
+    return $(@options.selectors.linkList).data('is-link-list')

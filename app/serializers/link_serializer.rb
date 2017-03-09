@@ -10,7 +10,8 @@ class LinkSerializer < ActiveModel::Serializer
               :edit_url,
               :admin_edit_url,
               :format_icon,
-              :format_title
+              :format_title,
+              :tool_id
 
   #TODO
   def edit_url
