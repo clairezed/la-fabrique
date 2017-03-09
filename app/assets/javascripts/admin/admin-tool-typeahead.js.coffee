@@ -7,9 +7,15 @@ class @AdminToolTypeahead extends @ToolTypeahead
 
   bindEvents: =>
     super()
+
     @$input.on 'typeahead:close', (evt, elt) =>
       console.log 'typeahead:close'
       @clearAutocomplete()
+
+    $(document).on 'click', '[data-trigger-deletion]', ->
+      id = $(this).data('trigger-deletion')
+      $("[data-is-tool='#{id}']").remove()
+
 
   manageResult: (evt, elt) =>
     @renderTool(elt)
@@ -18,3 +24,5 @@ class @AdminToolTypeahead extends @ToolTypeahead
     template = $(@toolTemplateSelector).html()
     compiledTemplate =  Handlebars.compile(template)(data)
     $(@toolList).append(compiledTemplate)
+
+

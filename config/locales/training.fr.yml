@@ -1,0 +1,10 @@
+fr:
+  activerecord:
+    attributes:
+      training:
+        title: Le titre 
+
+  helpers:
+    label:
+      training:
+        title: Titre

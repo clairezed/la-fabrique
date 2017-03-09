@@ -64,6 +64,7 @@ class @ToolTypeahead
       .on 'typeahead:selected typeahead:autocompleted', (evt, elt) =>
         console.log 'autocompleted'
         @manageResult(evt, elt)
+        @clearAutocomplete()
       # .on 'typeahead:select', (evt, elt) =>
       #   console.log 'select'
       # .on 'typeahead:autocomplete', (evt, elt) =>
