@@ -1,4 +1,4 @@
-class Tools::BaseController < ApplicationController
+class Admin::Tools::BaseController < Admin::BaseController
 
   before_action :load_tool
 
