@@ -1,0 +1,33 @@
+- content_for :current_navigation_section, :trainings
+
+.title-block
+  h1
+    | Gestion des parcours de formation
+    = link_to admin_trainings_path, class: 'btn btn-default float-right' do
+      .glyphicon.glyphicon-arrow-left
+      |  Retour
+
+.card
+  - if !@training.new_record?
+
+    h2.card-header
+      | Edition du parcours
+      em=< @training.title
+
+    .card-block
+      .row
+        .col-md-2.border-right
+          dl
+            dt Date création :
+            dd= l @training.created_at.to_date
+            dt Dernière mise à jour :
+            dd= l @training.updated_at
+        .col-md-10
+          = yield
+          
+  - else
+    h2.card-header Créer un nouveau parcours
+
+    .card-block
+      = yield
+

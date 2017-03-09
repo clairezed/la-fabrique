@@ -1,0 +1,40 @@
+= render layout: 'layout_index' do 
+
+  table.table.table-striped.table-hover.table-sm
+    thead.thead-inverse
+      tr
+        / th= hm_sort 'sort_by_position', label: 'Position'
+        th= hm_sort 'sort_by_title', label: 'Titre'
+        th Nb fiches
+        th= hm_sort 'sort_by_enabled', label: 'Affiché?'
+        th 
+    tbody
+      / - max_position    = @trainings.map( &:position ).compact.max || 1
+      / - position_select = (1..max_position).map {|i| [i,i] }
+      - @trainings.each do |training| 
+        tr
+          / td 
+          /   = form_tag position_admin_training_path(training), method: :patch do
+          /     = select_tag  :position, 
+          /                   options_for_select( position_select, training.position ),
+          /                   onchange: '$(this).parent().submit();',
+          /                   class: "form-control input-sm", style: "width:70px", id: nil 
+          td= link_to training.title, edit_admin_training_path(training)
+          td
+            i.fa.fa-list>
+            => training.tools.count
+          td
+            span class="badge badge-#{boolean_class(training.enabled)}" = boolean_title(training.enabled)
+          td.action-btns
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_training_path(training),
+              class: "btn btn-sm btn-info", title: "Editer"
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_training_path(training),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+      
+      - if @trainings.empty?
+        tr
+          td colspan="7"
+            p.text-center: em.text-muted Aucun résultat
+
+
+  = will_paginate @trainings, renderer: WillPaginateBoostrap4Renderer

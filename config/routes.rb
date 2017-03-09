@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :tags, concerns: :positionable
     resources :tool_categories, concerns: :positionable
     resources :links, concerns: :positionable
+    resources :tool_attachments
+    resources :trainings
+    resources :training_tools, only: [:destroy], concerns: :positionable
     resources :comments, only: [:index, :destroy] do
       member do
         patch :accept 
@@ -31,7 +34,6 @@ Rails.application.routes.draw do
       end
       # resources :tool_attachments, as: :attachments, controller: "tools/attachments"
     end
-    resources :tool_attachments
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'
   end

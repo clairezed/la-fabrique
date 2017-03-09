@@ -1,0 +1,4 @@
+= render layout: 'layout_form' do 
+  = form_for @training, as: :training, url: admin_trainings_path, html: {class: "form-horizontal"} do |f| 
+    = render partial: "form", locals: {f: f, button_name: "Créer", button_name_2: "Créer et continuer l'édition"}
+

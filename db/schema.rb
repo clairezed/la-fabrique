@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308142950) do
+ActiveRecord::Schema.define(version: 20170309093020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,9 +159,29 @@ ActiveRecord::Schema.define(version: 20170308142950) do
     t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
   end
 
+  create_table "training_tools", force: :cascade do |t|
+    t.integer  "tool_id",     null: false
+    t.integer  "training_id", null: false
+    t.integer  "position"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["tool_id"], name: "index_training_tools_on_tool_id", using: :btree
+    t.index ["training_id"], name: "index_training_tools_on_training_id", using: :btree
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "enabled",    default: true
+    t.integer  "position"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   add_foreign_key "axes", "themes"
   add_foreign_key "tool_tags", "tags"
   add_foreign_key "tool_tags", "tools"
   add_foreign_key "tools", "axes"
   add_foreign_key "tools", "tool_categories"
+  add_foreign_key "training_tools", "tools"
+  add_foreign_key "training_tools", "trainings"
 end

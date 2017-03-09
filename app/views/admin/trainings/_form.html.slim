@@ -1,0 +1,74 @@
+= f.hm_form_errors
+
+.form-group.row
+  .form-label-default
+    | Affiché ?
+  .controls-default
+    .form-check.form-check-inline
+      label.form-check-label
+        => f.radio_button :enabled, true
+        | Oui
+      label.form-check-label
+        => f.radio_button :enabled, false
+        | Non
+
+
+= f.hm_text_field :title, {}, {class: "required"}
+
+.form-group.row data-is-tt-container="#{admin_tools_path}"
+  .form-label-default
+    label Ajouter un outil
+  .controls-xlarge
+    => text_field_tag 'tool_title', params[:tool_title], \
+          class: "form-control", placeholder: "Recherchez par titre", data: {is_tt_input: true}, autocomplete: 'off' 
+
+table.table.table-hover.table-sm
+    thead
+      tr
+        th= hm_sort 'sort_by_title', label: 'Outil'
+        th= hm_sort 'sort_by_axis_id', label: 'Axe'
+        th= hm_sort 'sort_by_tool_category_id', label: 'Catégorie'
+        th= hm_sort 'sort_by_state', label: 'Etat'
+        th= hm_sort 'sort_by_position', label: 'Position'
+        th Actions
+    tbody data-is-tool-list=true
+      - max_position    = f.object.training_tools.map( &:position ).compact.max || 1
+      - position_select = (1..max_position).map {|i| [i,i] }
+      - f.object.training_tools.order(position: :asc).each do |training_tool| 
+        - tool = training_tool.tool
+        tr
+          = f.hidden_field :tool_ids, multiple: true, value: [training_tool.tool_id]
+          td= tool.title
+          td= tool.axis.title
+          td= tool.tool_category.title
+          td
+            span class="badge badge-#{tool_state_style(tool.state)}"= tool_state_title(tool.state)
+          td 
+            = form_tag position_admin_training_tool_path(training_tool), method: :patch, data: {is_position_form: true} do
+              = select_tag  :position, 
+                            options_for_select( position_select, training_tool.position ),
+                            onchange: '$("[data-is-position-form]").submit();',
+                            class: "form-control input-sm", style: "width:70px", id: nil 
+          td.action-btns.border-left
+            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_training_tool_path(training_tool),
+              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+
+= render partial: "admin/seos/fields_for_form", locals: {f: f}
+
+.form-group.row
+  .form-actions
+    hr
+    => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
+    => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
+    = link_to "Annuler", admin_trainings_path, class: "btn"
+
+.form-group.row
+  label.form-label-default
+  .controls-default
+    small: em.text-muted Les champs marqués d'une * sont obligatoires
+
+= render "admin/trainings/hb_training_tool"
+
+
+coffee:
+  new TrainingForm()

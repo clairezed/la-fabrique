@@ -58,26 +58,27 @@ class @ToolTypeahead
           if @$input.typeahead('val') == ''
             @clearAutocomplete()
       .on 'typeahead:render', (evt, suggestions) ->
+        console.log 'render'
         # Small hack to highlight the first suggestion by default
         $('.tt-dataset').find('.tt-suggestion').removeClass('tt-cursor').first().addClass('tt-cursor')
       .on 'typeahead:selected typeahead:autocompleted', (evt, elt) =>
-        console.log elt
-        window.location.replace(elt.show_url)
+        console.log 'autocompleted'
+        @manageResult(evt, elt)
+      # .on 'typeahead:select', (evt, elt) =>
+      #   console.log 'select'
+      # .on 'typeahead:autocomplete', (evt, elt) =>
+      #   console.log 'autocomplete'
+      # .on 'typeahead:asyncrequest', (evt, elt) =>
+      #   console.log 'typeahead:asyncrequest'
+      # .on 'typeahead:asyncreceive', (evt, elt) =>
+      #   console.log 'typeahead:asyncreceive'
+      # .on 'typeahead:close', (evt, elt) =>
+      #   console.log 'typeahead:close'
+      #   @clearAutocomplete()
 
   clearAutocomplete:  =>
     @$input.val('')
+
+  manageResult: (evt, elt) =>
+    window.location.replace(elt.show_url)
     
-
-  # $input
-  #   .on 'keyup', (e) ->
-  #     if $input.typeahead('val') == ''
-  #       $id_input.val('')
-  #       $input.val('')
-  #   .on 'typeahead:render', (evt, suggestions) ->
-  #     # Small hack to highlight the first suggestion by default
-  #     $('.tt-dataset').find('.tt-suggestion').removeClass('tt-cursor').first().addClass('tt-cursor')
-  #   .on 'typeahead:selected typeahead:autocompleted', (evt, elt) ->
-  #     $id_input.val(elt.id).trigger('change')
-  #     # on redirige vers la page show du praticien cliqué
-  #     window.location.replace(elt.show_url)
-

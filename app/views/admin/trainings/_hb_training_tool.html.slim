@@ -1,0 +1,11 @@
+= handlebars_template(:TrainingTool) do
+  tr.table-warning data-is-tool="{{id}}"
+    = hidden_field_tag "training[tool_ids][]", "{{id}}" ,multiple: true
+    td= "{{title}}"
+    td= "{{axis_title}}"
+    td= "{{tool_category_title}}"
+    td colspan=2
+      em Enregistrer les modifications du parcours pour valider l'outil et pouvoir changer sa position 
+    td.action-btns.border-left
+      = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), "javascript:void(0)",
+        method: :delete, data: {confirm: "Confirmer la suppression ?", trigger_deletion: "{{id}}"}, title: "Supprimer", class: "btn btn-sm btn-danger"
