@@ -85,7 +85,13 @@ class Tool < ApplicationRecord
 
   # Callbacks ==================================================================
   validates :title, presence: true
-  validates :group_size, :duration, :level, :public, :licence, presence: true
+  validates :group_size, 
+            :duration, 
+            :level, 
+            :goal,
+            :teaser,
+            :description,
+    presence: true
 
   # validation de présence de axe et catégorie -> directement en base
 
