@@ -4,6 +4,7 @@ class Admin::AxesController < Admin::BaseController
 
   def index
     params[:sort] ||= "sort_by_position asc"
+    params[:by_theme] ||= Theme.order(:position).first.id
     @axes = Axis.apply_filters(params).paginate(per_page: 20, page: params[:page])
   end
 

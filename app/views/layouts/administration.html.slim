@@ -66,13 +66,13 @@ html lang="#{I18n.locale}"
                     | Parcours de formation
                 .sidebar-divider
                 li
-                  = menu_link admin_axes_path, section: :axes
+                  = menu_link admin_axes_path(by_theme: Theme.first.id), section: :axes
                     i.fa.fa-list
                     | Axes
-                / li
-                /   = menu_link admin_themes_path, section: :themes
-                /     i.fa.fa-list
-                /     | Thématiques
+                li
+                  = menu_link admin_themes_path, section: :themes
+                    i.fa.fa-list
+                    | Thématiques
                 .sidebar-divider
                 = submenu(raw("<i class='fa fa-cog'></i> Configurations"), %w(basic_pages seos admins))
                   = menu_link 'Gestion des admins', admin_admins_path, section: :admins

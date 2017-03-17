@@ -32,6 +32,11 @@
           span.glyphicon.glyphicon-repeat>
           | Réinitialiser
 
+
+
+ul.nav.nav-tabs
+  - Theme.order(:position).each do |theme|
+    = menu_link theme.title, admin_axes_path(by_theme: theme.id), sub_section: theme.id, class: "nav-link"
 .card.card-block
   .content-main
     small.float-right = I18n.t("results", count: @axes.count)
