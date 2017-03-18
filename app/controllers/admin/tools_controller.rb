@@ -23,7 +23,6 @@ class Admin::ToolsController < Admin::BaseController
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
-      @tool.accept!
       flash[:notice] = "La fiche a été créé avec succès"
       redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
     else
@@ -39,6 +38,7 @@ class Admin::ToolsController < Admin::BaseController
   
   def update
     if @tool.update_attributes(tool_params)
+      @tool.accept! if @tool.may_accept?
       flash[:notice] = "La fiche a été mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
     else

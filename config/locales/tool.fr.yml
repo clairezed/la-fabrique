@@ -43,10 +43,12 @@ fr:
 
   tool_states:
     title:
+      draft: brouillon
       pending: en attente
       accepted: accepté
       rejected: rejeté
     style:
+      draft: default
       pending: warning
       accepted: success
       rejected: danger

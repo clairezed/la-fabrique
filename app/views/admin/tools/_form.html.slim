@@ -60,52 +60,61 @@ fieldset
     .controls-xlarge
       = f.text_field :teaser, class: "form-control"
 
+  / DECRIPTION =========================================================
+  - if f.object.new_record?
 
-  div#description-wrapper
-    .form-group.row
+    .form-group.row 
       .form-label-default
-        label 
-          = f.label :description
+        = f.label :description
       .col-md-8
-        .btn-group data-toggle="buttons"
-          - Tool.description_types.keys.each do |description_type|
-            - is_selected = f.object.description_type == description_type.to_s
-            = f.label :description, class:"btn btn-secondary #{'active' if is_selected}", \
-              data: {toggle: 'collapse', parent: "#description-wrapper", target: "##{description_type.to_s}"}, \
-              aria: { controls: description_type.to_s, expanded: is_selected} do
-              => f.radio_button :description_type, description_type.to_s
-              => tool_description_type_title(description_type)
-
-    div#description.collapse class="#{'show' if f.object.description_type == 'description'}" data-is-description="#{f.object.steps.count}"
+        em Créez la fiche outil pour pouvoir renseigner la marche à suivre
+ 
+  - else
+    div#description-wrapper
       .form-group.row
-        .form-label-default Description simple
+        .form-label-default
+          label 
+            = f.label :description
         .col-md-8
-          = f.text_area :description, class: "form-control", rows: 15
+          .btn-group data-toggle="buttons"
+            - Tool.description_types.keys.each do |description_type|
+              - is_selected = f.object.description_type == description_type.to_s
+              = f.label :description, class:"btn btn-secondary #{'active' if is_selected}", \
+                data: {toggle: 'collapse', parent: "#description-wrapper", target: "##{description_type.to_s}"}, \
+                aria: { controls: description_type.to_s, expanded: is_selected} do
+                => f.radio_button :description_type, description_type.to_s
+                => tool_description_type_title(description_type)
+
+      div#description.collapse class="#{'show' if f.object.description_type == 'description'}" data-is-description="#{f.object.steps.count}"
+        .form-group.row
+          .form-label-default Description simple
+          .col-md-8
+            = f.text_area :description, class: "form-control", rows: 15
 
 
-    div#steps.collapse class="#{'show' if f.object.description_type == 'steps'}" 
-      div data-is-step-list=true
-        = f.fields_for :steps do |sf|
-          .form-group.row data-is-step-idx="#{sf.index}" data-is-step="#{sf.object.id}"
-            = sf.hidden_field :id
-            .form-label-default
-              label 
-                | Etape 
-                / => sf.index + 1
-            .col-md-6
-              = sf.text_area :description, class: "form-control", rows: 5
-            .col-md-2
-              - if sf.object.new_record?
-                = link_to "javascript:void(0)", data: {delete_step: sf.index}, class: 'btn btn-danger mb-2' do
-                  i.fa.fa-trash  
-              - else
-                = link_to admin_tool_step_path(f.object, sf.object), method: :delete, remote: true, data: {delete_step: 'persisted'}, class: 'btn btn-danger mb-2' do
-                  i.fa.fa-trash
+      div#steps.collapse class="#{'show' if f.object.description_type == 'steps'}" 
+        div data-is-step-list=true
+          = f.fields_for :steps do |sf|
+            .form-group.row data-is-step-idx="#{sf.index}" data-is-step="#{sf.object.id}"
+              = sf.hidden_field :id
+              .form-label-default
+                label 
+                  | Etape 
+                  / => sf.index + 1
+              .col-md-6
+                = sf.text_area :description, class: "form-control", rows: 5
+              .col-md-2
+                - if sf.object.new_record?
+                  = link_to "javascript:void(0)", data: {delete_step: sf.index}, class: 'btn btn-danger mb-2' do
+                    i.fa.fa-trash  
+                - else
+                  = link_to admin_tool_step_path(f.object, sf.object), method: :delete, remote: true, data: {delete_step: 'persisted'}, class: 'btn btn-danger mb-2' do
+                    i.fa.fa-trash
 
-      .form-group.row
-        .col-md-8.offset-md-2
-          = link_to "javascript:void(0)", data: {step_btn: 'delete'}, class: 'btn btn-info mb-2' do
-            | Ajouter une étape
+        .form-group.row
+          .col-md-8.offset-md-2
+            = link_to "javascript:void(0)", data: {step_btn: 'delete'}, class: 'btn btn-info mb-2' do
+              | Ajouter une étape
 
   = f.hm_text_area :advice, {rows: 15}
   = f.hm_text_area :material, {rows: 15}

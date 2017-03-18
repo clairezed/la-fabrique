@@ -19,11 +19,17 @@ class Tool < ApplicationRecord
 
   aasm column: :state, enum: true do
 
-    state :pending, initial: true
+    state :draft, initial: true
+    state :pending
     state :accepted
     state :rejected
 
+    event :submit do
+      transitions from: :draft, to: :pending
+    end
+
     event :accept do
+      transitions from: :draft, to: :accepted, if: :valid?
       transitions from: :pending, to: :accepted
       transitions from: :rejected, to: :accepted
     end
@@ -100,8 +106,15 @@ class Tool < ApplicationRecord
             :level, 
             :goal,
             :teaser,
-            :description,
     presence: true
+
+
+  private def description_exists?
+  return true if self.steps.any? || self.description.present?
+    self.errors.add(:description, "doit être renseignée")
+    false
+  end
+  validate :description_exists?, unless: :new_record?
 
   # validation de présence de axe et catégorie -> directement en base
 
