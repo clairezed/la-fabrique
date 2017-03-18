@@ -54,38 +54,44 @@ module ToolHelper
 
   # Public cible -------------------------------------------
 
-  def tool_public(public)
-    I18n.t(public, scope: [:tool_publics])
-  end
+  # def tool_public(public)
+  #   I18n.t(public, scope: [:tool_publics])
+  # end
 
-  def tool_public_options(publics = Tool.publics.keys)
-    publics.map do |public| 
-      [tool_public(public), public.to_s]
-    end
-  end
+  # def tool_public_options(publics = Tool.publics.keys)
+  #   publics.map do |public| 
+  #     [tool_public(public), public.to_s]
+  #   end
+  # end
 
   # Licence -------------------------------------------
 
-  def tool_licence(licence)
-    I18n.t(licence, scope: [:tool_licences, :short])
-  end
+  # def tool_licence(licence)
+  #   I18n.t(licence, scope: [:tool_licences, :short])
+  # end
 
-  def tool_licence_explanation(licence)
-    I18n.t(licence, scope: [:tool_licences, :explanation])
-  end
+  # def tool_licence_explanation(licence)
+  #   I18n.t(licence, scope: [:tool_licences, :explanation])
+  # end
 
-  def tool_licence_options(licences = Tool.licences.keys)
-    licences.map do |licence| 
-      [tool_licence(licence), licence.to_s]
-    end
-  end
+  # def tool_licence_options(licences = Tool.licences.keys)
+  #   licences.map do |licence| 
+  #     [tool_licence(licence), licence.to_s]
+  #   end
+  # end
 
-  def tool_licence_tooltip(licences = Tool.licences.keys)
-    array = licences.map do |licence|
-      [tool_licence(licence), tool_licence_explanation(licence)].join(" : ")
-    end
-    raw array.join("</br>")
-  end
+  # def tool_licence_tooltip(licences = Tool.licences.keys)
+  #   array = licences.map do |licence|
+  #     [tool_licence(licence), tool_licence_explanation(licence)].join(" : ")
+  #   end
+  #   raw array.join("</br>")
+  # end
+
+  # Description type -------------------------------------------
+
+  def tool_description_type_title(type)
+    I18n.t(type, scope: [:tool_description_types])
+  end  
 
   # Tool Tag ===============================================================
 

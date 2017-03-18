@@ -102,6 +102,7 @@ class Admin::ToolsController < Admin::BaseController
   def build_tool_relations
     @attachment = @tool.attachments.build
     @tool.build_seo unless @tool.seo.present?
+    @tool.steps.build()
   end
 
   # strong parameters
@@ -109,7 +110,8 @@ class Admin::ToolsController < Admin::BaseController
     params.require(:tool).permit(
       :axis_id, :tool_category_id, :title, :description, :teaser, :enabled, 
       :group_size, :duration, :level, :public, :licence, :goal, :material, 
-      :source, :source_url, :submitter_email, tag_ids: [],
+      :source, :advice, :submitter_email, :description_type, tag_ids: [],
+      steps_attributes: [:id, :description, :_destroy],
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end
 

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         patch :accept 
         patch :reject
       end
-      # resources :tool_attachments, as: :attachments, controller: "tools/attachments"
+      resources :steps, controller: "tools/steps", only: [:destroy]
     end
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'

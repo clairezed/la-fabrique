@@ -11,9 +11,10 @@ class Tool < ApplicationRecord
   # états de publication et validation par l'admin
   #
   enum state: {
-    pending:   0, # en attente de validation
-    accepted:  1, # accepté
-    rejected:  2  # rejeté
+    draft:   0, # en attente de validation
+    pending:   1, # en attente de validation
+    accepted:  2, # accepté
+    rejected:  3  # rejeté
   }
 
   aasm column: :state, enum: true do
@@ -55,15 +56,21 @@ class Tool < ApplicationRecord
     hard:   2  # rejeté
   }
 
-  enum public: {
-    young:  0, # en attente de validation
-    pro:    1, # accepté
-  }
+  # enum public: {
+  #   young:  0, # en attente de validation
+  #   pro:    1, # accepté
+  # }
 
-  enum licence: {
-    mine:           0, # en attente de validation
-    known_source:   1, # accepté
-    unknown_source: 2  # rejeté
+  # enum licence: {
+  #   mine:           0, # en attente de validation
+  #   known_source:   1, # accepté
+  #   unknown_source: 2  # rejeté
+  # }
+
+
+  enum description_type: {
+    steps:   0, 
+    description: 1
   }
   
   # Associations ===============================================================
@@ -82,6 +89,9 @@ class Tool < ApplicationRecord
   has_many :links, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many :steps, dependent: :destroy
+  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
+
 
   # Callbacks ==================================================================
   validates :title, presence: true
@@ -95,10 +105,10 @@ class Tool < ApplicationRecord
 
   # validation de présence de axe et catégorie -> directement en base
 
-  private def normalize_url!
-    self.source_url = SanitizationService.normalize_url(source_url)
-  end
-  before_validation :normalize_url!, if: :source_url_changed?
+  # private def normalize_url!
+  #   self.source_url = SanitizationService.normalize_url(source_url)
+  # end
+  # before_validation :normalize_url!, if: :source_url_changed?
   
   # Scopes =====================================================================
   scope :enabled, -> { accepted }
@@ -138,6 +148,7 @@ class Tool < ApplicationRecord
   scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
   
   # Class Methods ==============================================================
+
   def self.apply_filters(params)
     klass = self
 

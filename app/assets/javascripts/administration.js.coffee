@@ -14,6 +14,7 @@
 #= require ./shared/flash-messages
 #= require ./shared/file-uploader
 #= require ./shared/link-modal
+#= require ./shared/step-manager
 #= require ./shared/tool-typeahead
 
 #= require_tree ./admin

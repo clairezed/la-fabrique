@@ -9,7 +9,6 @@ class @AdminToolTypeahead extends @ToolTypeahead
     super()
 
     @$input.on 'typeahead:close', (evt, elt) =>
-      console.log 'typeahead:close'
       @clearAutocomplete()
 
     $(document).on 'click', '[data-trigger-deletion]', ->

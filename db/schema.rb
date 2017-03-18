@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309093020) do
+ActiveRecord::Schema.define(version: 20170317060938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 20170309093020) do
     t.index ["seoable_type", "seoable_id"], name: "index_seos_on_seoable_type_and_seoable_id", using: :btree
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.integer  "tool_id",     null: false
+    t.integer  "position"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["tool_id"], name: "index_steps_on_tool_id", using: :btree
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string   "title"
     t.boolean  "enabled",    default: true
@@ -145,16 +154,17 @@ ActiveRecord::Schema.define(version: 20170309093020) do
     t.integer  "group_size"
     t.integer  "duration"
     t.integer  "level"
-    t.integer  "public"
-    t.integer  "licence"
     t.string   "goal"
     t.text     "material"
     t.string   "source"
-    t.string   "source_url"
     t.string   "submitter_email"
     t.boolean  "enabled",          default: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "licence"
+    t.string   "public"
+    t.text     "advice"
+    t.integer  "description_type", default: 0
     t.index ["axis_id"], name: "index_tools_on_axis_id", using: :btree
     t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
   end
@@ -178,6 +188,7 @@ ActiveRecord::Schema.define(version: 20170309093020) do
   end
 
   add_foreign_key "axes", "themes"
+  add_foreign_key "steps", "tools"
   add_foreign_key "tool_tags", "tags"
   add_foreign_key "tool_tags", "tools"
   add_foreign_key "tools", "axes"

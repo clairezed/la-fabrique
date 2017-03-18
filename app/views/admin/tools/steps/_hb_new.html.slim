@@ -1,0 +1,11 @@
+= handlebars_template(:StepField) do
+  .form-group.row data-is-step-idx="{{idx}}"
+    .form-label-default
+      label 
+        | Etape 
+        / => "{{idxmore}}"
+    .col-md-6
+      = text_area_tag "tool[steps_attributes][{{idx}}][description]", nil, class: "form-control", rows: 5
+    .col-md-2
+      = link_to "javascript:void(0)", data: {delete_step:"{{idx}}"}, class: 'btn btn-danger mb-2' do
+        i.fa.fa-trash  

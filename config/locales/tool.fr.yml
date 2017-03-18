@@ -5,38 +5,41 @@ fr:
         axis: L'axe
         tool_category: La catégorie d'outil
         title: Le titre
-        description: La description
-        teaser: Le teaser
-        group_size: La taille du groupe
+        description: La marche à suivre
+        teaser: Le résumée
+        group_size: Le nombre de personnes
         duration: La durée
         level: Le niveau de difficulté
-        public: Le public cible
+        public: Le public privilégié
         licence: La licence de la source
         goal: L'objectif
         material: Le matériel
         source: La source
         source_url: Le lien de la source
         submitter_email: Soumis par
-
+        advice: Les conseils
+      tool/steps:
+        description: La description de l'étape
 
   helpers:
     label:
       tool:
         axis: Axe
-        tool_category_id: Catégorie
+        tool_category_id: Catégorie d'outil
         title: Titre
-        description: Description
-        teaser: Teaser
-        group_size: Taille du groupe
+        description: Marche à suivre
+        teaser: Résumé
+        group_size: Nombre de pers.
         duration: Durée
         level: Niveau de difficulté
-        public: Public cible
-        licence: Licence de la source
-        goal: Objectif
+        public: Public privilégié
+        licence: Licence d'utilisation
+        goal: Objectif(s)
         material: Matériel
         source: Source
         source_url: Lien de la source
         submitter_email: Soumis par
+        advice: Conseils
 
   tool_states:
     title:
@@ -60,20 +63,24 @@ fr:
     duration_4: "120-240" 
 
   tool_levels:
-    easy: "facile"
-    medium: "intermédiaire  " 
-    hard: "difficile"
+    easy: "Facile"
+    medium: "Intermédiaire  " 
+    hard: "Difficile"
 
-  tool_publics:
-    young: "jeunes"
-    pro: "professionnels"  
+  tool_description_types:
+    description: "Description simple"
+    steps: "Par étapes" 
 
-  tool_licences:
-    short:
-      mine: "Moi"
-      known_source: "Source connue"
-      unknown_source: "Source inconnue"
-    explanation:
-      mine: "Ceci est mon outil. Je l’ai créé et je le mets à disposition de tous sauf commercialisation."
-      known_source: "Ceci n’est pas mon outil, mais je connais la source. J’indique que cet outil ne m’appartient pas et qu’il appartient à X et que je l’ai trouvé à tel endroit." 
-      unknown_source: "Ceci n’est pas mon outil et je ne connais pas la source. Je mentionne que la source m’est inconnue et que l’outil ne m’appartient pas" 
+  # tool_publics:
+  #   young: "jeunes"
+  #   pro: "professionnels"  
+
+  # tool_licences:
+  #   short:
+  #     mine: "Moi"
+  #     known_source: "Source connue"
+  #     unknown_source: "Source inconnue"
+  #   explanation:
+  #     mine: "Ceci est mon outil. Je l’ai créé et je le mets à disposition de tous sauf commercialisation."
+  #     known_source: "Ceci n’est pas mon outil, mais je connais la source. J’indique que cet outil ne m’appartient pas et qu’il appartient à X et que je l’ai trouvé à tel endroit." 
+  #     unknown_source: "Ceci n’est pas mon outil et je ne connais pas la source. Je mentionne que la source m’est inconnue et que l’outil ne m’appartient pas" 

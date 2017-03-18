@@ -33,6 +33,9 @@ Articles :
 
 - state = accepted when by_admin
 - soumis par : niet quand par admin
+- mail notification nl outil / commentaire
+- clean code admin ajax quand ce sera sûr que formulaire 2 étapes
+- revoir champs obligatoires et nom des champs
 
 #### Hosting
 
