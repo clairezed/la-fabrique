@@ -1,8 +1,9 @@
-class @ToolTypeahead
+class @TagTypeahead
 
   DEFAULT_OPTIONS:
-    container: "[data-is-tt-container='tool']"
-    inputIdentifier: "[data-is-tt-input='tool']"
+    container: "[data-is-tt-container='tag']"
+    inputIdentifier: "[data-is-tt-input='tag']"
+    resultElementIdentifier: "[data-is-tt-elt='tag']"
     templates:
       empty:
         """
@@ -58,7 +59,6 @@ class @ToolTypeahead
           if @$input.typeahead('val') == ''
             @clearAutocomplete()
       .on 'typeahead:render', (evt, suggestions) ->
-        console.log 'render'
         # Small hack to highlight the first suggestion by default
         $('.tt-dataset').find('.tt-suggestion').removeClass('tt-cursor').first().addClass('tt-cursor')
       .on 'typeahead:selected typeahead:autocompleted', (evt, elt) =>
@@ -79,7 +79,11 @@ class @ToolTypeahead
 
   clearAutocomplete:  =>
     @$input.val('')
+    $(@options.resultElementIdentifier).val('')
 
   manageResult: (evt, elt) =>
-    window.location.replace(elt.show_url)
+    console.log elt
+    $(@options.resultElementIdentifier).val(elt.id)
+    $('[data-is-filter-form').submit()
+
     

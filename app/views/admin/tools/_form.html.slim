@@ -122,7 +122,7 @@ fieldset
 fieldset
   legend Source
 
-  .form-group.row.required
+  .form-group.row
     .form-label-default
       = f.label :licence
     .controls-xlarge
@@ -135,14 +135,9 @@ fieldset
   legend Mots-clés
 
   .form-group.row
-    .form-label-default
-      / = f.label :tag_ids
-    .controls-xlarge.form-check.form-check-inline
-      = f.collection_check_boxes :tag_ids, tool_tags_options, :last, :first do |builder|
-        label.form-check-label.col-md-4
-          = builder.label do
-            => builder.check_box
-            => builder.text
+    .form-label-default Rechercher un mot clé
+    .controls-xlarge
+      = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag'}
 
 
 
@@ -224,13 +219,6 @@ div data-is-modal-container=true
 = render "admin/links/hb_thumb"
 = render "admin/tools/steps/hb_new"
 
-javascript:
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-  $('[data-toggle="collapse"]').click(function() {
-    $('.collapse.show').collapse('hide')
-  });
 
 coffee:
   $ ->

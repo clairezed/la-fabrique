@@ -15,6 +15,11 @@ class Theme < ApplicationRecord
   
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }
+
+  scope :by_title, ->(val) { 
+    val.downcase!
+    where(arel_table[:title].matches("%#{val}%"))
+  }
   
   # Class Methods ==============================================================
   def self.apply_filters(params)

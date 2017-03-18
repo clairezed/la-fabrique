@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :tools, only: [:index, :show] do
     resources :comments, controller: "tools/comments", only: [:create]
   end
+  resources :tags, only: [:index]
   resources :basic_pages, only: [:show]
   put "/accept_cookies", to: "home#accept_cookies"
   get "/:filename", to: "statics#show"

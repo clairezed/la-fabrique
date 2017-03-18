@@ -48,7 +48,7 @@ class Admin::TagsController < Admin::BaseController
     begin
       flash[:notice] = "Le mot-clé a été supprimé avec succès" if @tag.destroy
     rescue ActiveRecord::DeleteRestrictionError => e
-      flash[:error] = "Ce mot-clé ne peut être supprimée car des éléments lui sont dépendants"
+      flash[:error] = "Ce mot-clé ne peut être supprimé car des éléments lui sont dépendants"
     end
     redirect_to admin_tags_path
   end

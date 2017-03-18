@@ -13,6 +13,7 @@
 #= require ./shared/handlebars_helper
 #= require ./shared/flash-messages
 #= require ./shared/tool-typeahead
+#= require ./shared/tag-typeahead
 
 #= require_tree ./front
 

@@ -44,19 +44,17 @@
               onchange: "$('[data-is-filter-form]').submit()"
 
       .col
-        label Mots-clés
-        = select_tag :by_tag_ids, \
-              options_for_select(tool_tags_options, params[:by_tag_ids]), \
-              prompt: "Tous les mots-clés",\
-              class: "form-control", \
-              data: {is_autocomplete_select: true},
-              onchange: "$('[data-is-filter-form]').submit()"
+        div data-is-tt-container="tag" data-is-tt-path="#{tags_path}"
+          label Mots-clés
+          => text_field_tag 'tag_title', params[:tag_title], \
+            class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tag'}, autocomplete: 'off' 
+          = hidden_field_tag :by_tag_ids, params[:by_tag_ids], data: {is_tt_elt: 'tag'}
 
       .col
-        div data-is-tt-container="#{tools_path}"
+        div data-is-tt-container='tool' data-is-tt-path="#{tools_path}"
           label Nom de l'outil
           => text_field_tag 'tool_title', params[:tool_title], \
-            class: "form-control", placeholder: "par nom", data: {is_tt_input: true}, autocomplete: 'off' 
+            class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
            / = hidden_field_tag :tool_id, params[:tool_id], data: {is_tt_elt: 'tool_id'}
       / .col
       /   = submit_tag "Appliquer", class: "btn btn-success"

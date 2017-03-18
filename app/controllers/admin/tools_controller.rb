@@ -37,7 +37,9 @@ class Admin::ToolsController < Admin::BaseController
   end
   
   def update
-    if @tool.update_attributes(tool_params)
+    @tool = ToolSetter.new(@tool, tool_params).call
+    if @tool.save
+    # if @tool.update_attributes(tool_params)
       @tool.accept! if @tool.may_accept?
       flash[:notice] = "La fiche a été mise à jour avec succès"
       redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
