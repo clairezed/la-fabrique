@@ -113,8 +113,8 @@ fieldset
 
         .form-group.row
           .col-md-8.offset-md-2
-            = link_to "javascript:void(0)", data: {step_btn: 'delete'}, class: 'btn btn-info mb-2' do
-              | Ajouter une étape
+            = link_to "Ajouter une étape", "javascript:void(0)", data: {step_btn: 'delete'}, class: 'btn btn-info mb-2'
+              
 
   = f.hm_text_area :advice, {rows: 15}
   = f.hm_text_area :material, {rows: 15}
@@ -135,9 +135,10 @@ fieldset
   legend Mots-clés
 
   .form-group.row
-    .form-label-default Rechercher un mot clé
+    .form-label-default 
+      | Rechercher un mot clé
     .controls-xlarge
-      = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag'}
+      = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: admin_tags_path}
 
 
 

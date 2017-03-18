@@ -3,8 +3,17 @@ class Admin::TagsController < Admin::BaseController
   before_action :find_tag, only: [ :edit, :update, :position, :destroy ]
 
   def index
-    params[:sort] ||= "sort_by_position asc"
-    @tags = Tag.apply_filters(params).paginate(per_page: 20, page: params[:page])
+    params[:sort] ||= "sort_by_title asc"
+    @tags = Tag.apply_filters(params)
+    respond_to do |format|
+      format.html do
+        @tags = @tags.paginate(per_page: 20, page: params[:page])
+      end
+      format.json do
+        # format spécifique à select2
+        render json: @tags.limit(5).map { |tag| { id: tag.id, text: tag.title }}
+      end
+    end
   end
 
   def new
