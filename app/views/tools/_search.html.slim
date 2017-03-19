@@ -2,65 +2,68 @@
 
   .search-bar
     .row
-      .col
+      .col-12.col-lg-2.col-md-3.search-bar-item.search-bar-item--axis
         label Dans l'axe
         = select_tag :by_axis, \
               options_for_select(axis_options, params[:by_axis]), \
-              prompt: "Tous les axes",\
-              class: "form-control", \
+              prompt: "Tous",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
-      .col
+      .col-12.col-lg-2.col-md-3.search-bar-item.search-bar-item--category
         label Type d'outil
         = select_tag :by_tool_category, \
               options_for_select(tool_category_options, params[:by_tool_category]), \
-              prompt: "Toutes les catégories",\
-              class: "form-control", \
+              prompt: "Tous",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
-      .col
+      .col-12.col-lg-2.col-md-3.search-bar-item.search-bar-item--format
         label Format d'outil
         = select_tag :by_format_type, \
               options_for_select(tool_attachment_format_type_options, params[:by_format_type]), \
-              prompt: "Tous les formats",\
-              class: "form-control", \
+              prompt: "Tous",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
 
-      .col
-        label Groupe
+      .col-md.col-sm-4.search-bar-item.search-bar-item--group-size
+        label Nb de pers.
         = select_tag :by_group_size, \
               options_for_select(tool_group_size_options, params[:by_group_size]), \
-              prompt: "Toutes les tailles de groupe",\
-              class: "form-control", \
+              prompt: "Tous",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
-      .col
-        label Durée
+      .col-md.col-sm-4.search-bar-item.search-bar-item--duration
+        label Durée (min)
         = select_tag :by_duration, \
               options_for_select(tool_duration_options, params[:by_duration]), \
-              prompt: "Toutes les durées",\
-              class: "form-control", \
+              prompt: "Toutes",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
-      .col
+      .col-md.col-sm-4.search-bar-item.search-bar-item--tag
         div data-is-tt-container="tag" data-is-tt-path="#{tags_path}"
           label Mots-clés
           => text_field_tag 'tag_title', params[:tag_title], \
             class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tag'}, autocomplete: 'off' 
           = hidden_field_tag :by_tag_ids, params[:by_tag_ids], data: {is_tt_elt: 'tag'}
 
-      .col
+      .search-bar-item--separator: span OU
+
+      .col-12.col-lg-2.col-md-4.search-bar-item.search-bar-item--title
         div data-is-tt-container='tool' data-is-tt-path="#{tools_path}"
           label Nom de l'outil
           => text_field_tag 'tool_title', params[:tool_title], \
             class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
-           / = hidden_field_tag :tool_id, params[:tool_id], data: {is_tt_elt: 'tool_id'}
-      / .col
-      /   = submit_tag "Appliquer", class: "btn btn-success"
-      /   = link_to admin_tools_path, class: "btn btn-sm" do
-      /     span.glyphicon.glyphicon-repeat>
-      /     | Réinitialiser
 
 coffee:
   new ToolSearch()
+
+

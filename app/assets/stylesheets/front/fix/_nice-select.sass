@@ -1,0 +1,61 @@
+// Default variables
+$ns_font_size: 1.2rem 
+$ns_font_size_small: 1rem 
+
+$ns_input_border_radius: 5px 
+$ns_input_height: 32px 
+$ns_input_height_small: 28px 
+$ns_dropdown_padding: 0.8rem 
+
+$ns_gray_dark: #444 
+$ns_gray: #999 
+$ns_gray_light: #e0e7ee 
+$ns_gray_lighter: #f6f6f6 
+$ns_primary_light: $ns_gray 
+$ns_arrow_color: $ns_gray 
+
+.nice-select
+  font-size: $ns_font_size
+  height: $ns_input_height
+  line-height: $ns_input_height / 2
+  border-radius: $ns_input_border_radius
+  // // Custom properties
+  width: 100%
+  white-space: pre-wrap
+  // // No border config ------------------------
+  padding-left: 0
+  border: 0
+  color: #888
+  text-align: center
+  // // With border config -----------------------
+  // padding-left: $ns_dropdown_padding
+  // padding-right: $ns_dropdown_padding + 12
+  // border: solid 1px $ns_gray_light 
+  &:hover
+    border-color: darken($ns_gray_light, 5%)
+  &:active, &:focus
+    border-color: $ns_primary_light
+  // Arrow
+  &:after
+    top: 30%
+  .list
+    border-radius: $ns_input_border_radius
+    box-shadow: 0 0 0 1px rgba($ns_gray_dark, .11)
+    transform: scale(.75) translateY(- $ns_input_height / 2)
+    margin-top: 20px
+    max-height: 300px
+    overflow: auto
+  .option
+    white-space: nowrap
+    text-align: left
+    line-height: $ns_input_height - 2
+    min-height: $ns_input_height - 2
+    // padding-left: $ns_dropdown_padding
+    // padding-right: $ns_dropdown_padding + 11
+    // padding-top: $ns_dropdown_padding
+    // padding-bottom: $ns_dropdown_padding
+    &:hover, &.focus, &.selected.focus 
+      background-color: $ns_gray_lighter
+    &.selected
+      font-weight: normal
+      color: #888

@@ -9,6 +9,7 @@
 #= require vendor/handlebars-v4.0.5
 #= require vendor/select2.min
 #= require vendor/typeahead.bundle.min
+#= require vendor/jquery.nice-select.min
 
 #= require ./shared/handlebars_helper
 #= require ./shared/flash-messages
@@ -19,6 +20,8 @@
 
 
 $ ->
+  $('[data-is-nice-select]').niceSelect()
+  
   $('.tooltip_bottom').tooltip(placement: 'bottom')
 
   # explanation section show / hide

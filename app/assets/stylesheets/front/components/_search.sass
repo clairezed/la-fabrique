@@ -2,3 +2,67 @@
   margin: 4em 0
   padding: 2rem
   background-color: $white
+  border-radius: 1rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  // display: flex
+  // flex-wrap: wrap
+  // margin-right: -1rem
+  // margin-left: -1rem
+
+.search-bar-item
+  // flex-basis: 1
+  // -webkit-box-flex: 1
+  // flex-grow: 1
+  // position: relative
+  // padding-right: 1rem
+  // padding-left: 1rem
+  // width: 15%
+  label
+    width: 100%
+    text-align: center
+    margin-bottom: 1rem
+
+// .search-bar-item--axis, 
+// .search-bar-item--category, 
+// .search-bar-item--format,
+//   width: 18%
+
+.search-bar-item--tag,
+.search-bar-item--title
+  // width: 10%
+  input 
+    font-size: 1.2rem 
+
+// .search-bar-item--group-size, .search-bar-item--duration
+//   width: 10%
+
+.search-bar-item--tag
+  padding-right: 2rem
+
+.search-bar-item--title
+  padding-left: 2rem
+
+///////////////////////
+// SEPARATOR
+///////////////////////
+
+.search-bar-item--separator
+  // display: inline-block
+  background-color: #ddd
+  width: 1px
+  vertical-align: top
+  padding-left: 0
+  padding-right: 0
+  position: relative
+  z-index: 8
+  span
+    display: block 
+    position: absolute
+    background-color: #fff
+    margin-left: -1.4rem
+    top: 1.5rem
+    width: 3rem
+    height: 3rem
+    font-size: 1.2rem
+    line-height: 3rem
+    text-align: center
