@@ -1,0 +1,18 @@
+/ .modal.fade data-is-modal='edit-attachment'
+/   .modal-dialog role="document"
+/     .modal-content
+= form_for @attachment, url: tool_attachment_path(@tool, @attachment), method: :patch, remote: true, html: {multipart: true}, data: {is_form: 'update-attachment' } do |f|
+  .modal-header
+    h4.modal-title.uppercase Editer le média
+    button.close aria-label="Close" data-dismiss="modal" type="button" 
+      span aria-hidden="true"  &times;
+  .modal-body
+
+
+    = render partial: "tools/tool_attachments/form", locals: { f: f }
+
+
+  .modal-footer
+    .text-xs-center
+      = f.submit "Valider", class: "btn btn-inverse uppercase btn-wrap"
+      / = link_to "Editer", "javascript:void()", class: "btn btn-primary uppercase btn-wrap", data: {is_modal_submit: true}

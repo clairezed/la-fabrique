@@ -1,0 +1,116 @@
+= f.hm_form_errors
+
+.form-group
+  = f.label :goal
+  = f.text_field :goal, class: "form-control"
+
+.form-group
+  = f.label :teaser
+  = f.text_field :teaser, class: "form-control"
+
+
+/ DECRIPTION =========================================================
+
+div#description-wrapper.mt-30
+  / .card-block
+  .form-group.row
+    .col-md-4
+      = f.label :description
+    .col-md-8
+      .btn-group data-toggle="buttons"
+        - Tool.description_types.keys.each do |description_type|
+          - is_selected = f.object.description_type == description_type.to_s
+          = label_tag :description_global, "Marche à suivre", class:"btn btn-secondary #{'active' if is_selected}", \
+            data: {toggle: 'collapse', parent: "#description-wrapper", target: "##{description_type.to_s}"}, \
+            aria: { controls: description_type.to_s, expanded: is_selected} do
+            => f.radio_button :description_type, description_type.to_s
+            => tool_description_type_title(description_type)
+
+  div#description.collapse class="#{'show' if f.object.description_type == 'description'}" data-is-description="#{f.object.steps.count}"
+    .form-group.row
+      .col-md-2: label Description simple
+      .col-md-10
+        = f.text_area :description, class: "form-control", rows: 8
+
+
+  div#steps.collapse class="#{'show' if f.object.description_type == 'steps'}" 
+    div data-is-step-list=true
+      = f.fields_for :steps do |sf|
+        .form-group.row data-is-step-idx="#{sf.index}" data-is-step="#{sf.object.id}"
+          = sf.hidden_field :id
+          .col-md-2: label = "Etape #{sf.index + 1}"
+          .col-md-8
+            = sf.text_area :description, class: "form-control", rows: 5
+          .col-md-2.pull-right
+            - unless sf.object.new_record?
+              = link_to tool_step_path(f.object, sf.object), method: :delete, remote: true, data: {delete_step: 'persisted'}, class: 'btn btn-danger pull-right' do
+                i.fa.fa-trash
+            / - if sf.object.new_record?
+              / = link_to "javascript:void(0)", data: {delete_step: sf.index}, class: 'btn btn-danger mb-2 pull-right' do
+                i.fa.fa-trash  
+
+    .form-group.row
+      .col-md-8.offset-md-2
+        = link_to "Ajouter une étape", "javascript:void(0)", data: {step_btn: 'delete'}, class: 'btn btn-inverse mb-2'
+
+
+.form-group
+  = f.label :advice
+  = f.text_area :advice, class: "form-control", rows: 8
+
+.form-group
+  = f.label :material
+  = f.text_area :material, class: "form-control", rows: 8
+
+.form-group
+  = f.label :source
+  = f.text_field :source, class: "form-control"
+
+.form-group
+  = f.label :licence
+  = f.text_field :licence, class: "form-control"
+
+
+.card.mt-25
+  .card-block
+    h4.card-title.uppercase Média
+    = label_tag :"asset_tool_attachment[asset]"
+      span.btn.btn-info
+        | Ajouter
+      = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
+
+    div.row data-is-media-list=true data-list-url="#{tool_attachments_path(@tool)}"
+
+/ fieldset
+  legend Liens
+
+  = link_to new_admin_link_path(tool_id: @tool.id), remote: true,
+    data: {link_btn: 'new'}, class: 'btn btn-info mb-2' do
+    | Ajouter un lien
+
+  div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_links_path}"
+
+
+.card.mt-25
+  .card-block
+    h4.card-title.uppercase Information de contact
+    .row
+      .col-6
+        .form-group
+          = f.label :submitter_email, "Email"
+          = f.text_field :submitter_email, class: "form-control"
+
+.d-flex.flex-row-reverse
+  .p-6
+    => f.submit name: "continue", value: 'Enregistrer et continuer', class: "btn btn-default uppercase mr-2"
+    => f.submit "Envoyer", class: "btn btn-inverse uppercase"
+
+
+= render "tools/steps/hb_new"
+= render "tools/tool_attachments/new"
+= render "tools/tool_attachments/hb_thumbs"
+
+
+coffee:
+  $ ->
+    new PartTwoForm()

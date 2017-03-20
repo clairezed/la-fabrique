@@ -15,6 +15,8 @@ class @StepManager
     @idx = $(@options.selectors.initialIndex).last().data('is-step-idx')
     @bindAddField()
     @bindDelete()
+    $('[data-toggle="collapse"]').click ->
+      $('.collapse.show').collapse 'hide'
 
 
   # Events -------------------------------------------

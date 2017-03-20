@@ -104,12 +104,16 @@ class Tool < ApplicationRecord
   validates :group_size, 
             :duration, 
             :level, 
-            :goal,
-            :teaser,
     presence: true
 
+  # Etape 2 du formulaire de création ----------------------------
+
+  validates :goal,
+            :teaser,
+    presence: true, unless: :new_record?
 
   private def description_exists?
+  # TODO : depend aussi de si c'es step ou desc_type
   return true if self.steps.any? || self.description.present?
     self.errors.add(:description, "doit être renseignée")
     false

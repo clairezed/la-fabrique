@@ -12,6 +12,7 @@ class ToolSetter
   end
 
   def manage_tags
+    return unless @params["tag_ids"].present?
     # grab eventual new tags (everything that is neither blank nor an id in params[:tag_ids])
     new_tag_titles = @params["tag_ids"]
       .reject!{|t| t.blank?}

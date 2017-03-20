@@ -41,8 +41,17 @@ Rails.application.routes.draw do
   # Front ======================================
   
   resources :axes, only: [:index]
-  resources :tools, only: [:index, :show] do
+  resources :tools, only: [:index, :show, :new, :create, :update] do
+    member do
+      get :edit_part_1
+      put :part_1
+      get :edit_part_2
+      put :part_2
+      get :submission_success
+    end
     resources :comments, controller: "tools/comments", only: [:create]
+    resources :steps, controller: "tools/steps", only: [:destroy]
+    resources :tool_attachments, as: :attachments, controller: "tools/tool_attachments"
   end
   resources :tags, only: [:index]
   resources :basic_pages, only: [:show]

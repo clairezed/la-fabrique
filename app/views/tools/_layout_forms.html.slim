@@ -1,0 +1,13 @@
+h1 Proposer un outil
+
+- if @tool.new_record?
+  ul.breadcrumb
+    = menu_link "Etape 1", new_tool_path, section: :part1, title: "Retour à l'accueil" ,li_class: 'breadcrumb-item'
+    = menu_link "Etape 2", "javascript:void(0)", section: :part2, title: "Retour à l'accueil", li_class: 'breadcrumb-item'
+- else
+  ul.breadcrumb
+    = menu_link "Etape 1", edit_part_1_tool_path(@tool), section: :part1, title: "Retour à l'accueil" ,li_class: 'breadcrumb-item'
+    = menu_link "Etape 2", edit_part_2_tool_path(@tool), section: :part2, title: "Retour à l'accueil" ,li_class: 'breadcrumb-item'
+
+
+= yield

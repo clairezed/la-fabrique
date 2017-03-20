@@ -35,4 +35,66 @@
   width: 100%
   text-align: center
   span.alert
-    padding: 10px 14px  
+    padding: 10px 14px 
+
+
+// Tool Part One Form=========================================
+
+.form-card-col:nth-child(4n)
+  .form-card
+    margin-right: 0
+.form-card-col:nth-child(1), .form-card-col:nth-child(5n)
+  .form-card
+    margin-left: 0
+
+.form-card-col
+  input[type="radio"]
+    display: none
+  input[type="radio"]:checked + label
+    outline: 5px solid gold
+
+.form-card
+  width: 140px
+  margin: 0 auto
+  margin-bottom: 2em
+  text-align: center  
+  border: 0
+  padding: 1rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  transition: all $transition-default
+  box-sizing: border-box
+  span 
+    text-transform: uppercase
+    font-size: 1.2rem
+
+.form-card_axis
+  height: 140px
+  width: 140px
+  span 
+    margin-top: 35%
+
+@mixin form-card-col-color($color)
+  input[type="radio"]:checked + label
+    background-color: darken($color, 10%)
+  .form-card
+    background-color: $color
+    &:hover, &:focus
+      background-color: darken($color, 10%)
+
+// Gestion des couleurs pour les axes
+.form-card-col-interculturality
+  @include form-card-col-color($interculturality-color)
+.form-card-col-departure_preparation
+  @include form-card-col-color($departure_preparation-color)
+.form-card-col-return_preparation
+  @include form-card-col-color($return_preparation-color)
+.form-card-col-mobility_system
+  @include form-card-col-color($mobility_system-color)
+.form-card-col-skill_promotion
+  @include form-card-col-color($skill_promotion-color)
+.form-card-col-conflict_management
+  @include form-card-col-color($conflict_management-color)
+.form-card-col-group_facilitation
+  @include form-card-col-color($group_facilitation-color)
+.form-card-col-project_methodology
+  @include form-card-col-color($project_methodology-color)

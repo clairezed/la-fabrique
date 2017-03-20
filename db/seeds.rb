@@ -36,54 +36,63 @@ mobility_theme = Theme.where(id_key: "mobility").first
   {
     title: "Interculturalité", 
     description: "",
+    id_key: :interculturality,
     theme_id: mobility_theme.id,
     enabled: true
   },
     {
     title: "Préparation au départ",
     description: "",
+    id_key: :departure_preparation,
     theme_id: mobility_theme.id,
     enabled: true
   },
     {
     title: "Préparation au retour",
     description: "",
+    id_key: :return_preparation,
     theme_id: mobility_theme.id,
     enabled: true
   },
     {
     title: "Dispositifs de la mobilité",
     description: "",
+    id_key: :mobility_system,
     theme_id: mobility_theme.id,
     enabled: true
   }, 
   {
     title: "Valorisation des compétences",
     description: "",
+    id_key: :skill_promotion,
     theme_id: mobility_theme.id,
     enabled: true
   }, 
   {
     title: "Gestion des conflits",
     description: "",
+    id_key: :conflict_management,
     theme_id: mobility_theme.id,
     enabled: true
   }, 
   {
     title: "Animation de groupe",
     description: "",
+    id_key: :group_facilitation,
     theme_id: mobility_theme.id,
     enabled: true
   }, 
   {
     title: "Méthodologie de projets",
     description: "",
+    id_key: :project_methodology,
     theme_id: mobility_theme.id,
     enabled: true
   }
 
 ].each do |option|
   Axis.where(title: option[:title]).first_or_create(
+    id_key: option[:id_key],
     theme_id: option[:theme_id], 
     description: option[:description], 
     enabled: option[:enabled]
@@ -95,27 +104,31 @@ end
 
 [
   {
-    title: "Présentation", enabled: true,
+    title: "Méthode de présentation", enabled: true,
     description: "name game…"
   },
   {
     title: "Energizers", enabled: true,
     description: ""
   },
-  {
-    title: "Ice-breakers", enabled: true,
+ {
+    title: "Exercice", enabled: true,
+    description: ""
+  },
+ {
+    title: "Base de données", enabled: true,
     description: ""
   },
   {
-    title: "Team building", enabled: true,
+    title: "Brise glace", enabled: true,
     description: ""
   },
   {
-    title: "Jeux de rôle / Simulation", enabled: true,
+    title: "Jeux de rôle", enabled: true,
     description: ""
   },
   {
-    title: "Création", enabled: true,
+    title: "Technique de créativité", enabled: true,
     description: ""
   },
   {
@@ -123,33 +136,49 @@ end
     description: ""
   },
   {
+    title: "Analyse", enabled: true,
+    description: ""
+  },
+  {
     title: "Retour d’expérience", enabled: true,
     description: ""
   },
   {
-    title: "Communication / Débat / Discussion", enabled: true,
-    description: "bâton de parole…"
+    title: "Echange", enabled: true,
+    description: ""
   },
   {
     title: "Evaluation", enabled: true,
     description: ""
   },
   {
-    title: "Pour soi", enabled: true,
-    description: "pour se préparer / ex: respiration…"
+    title: "Cas pratique", enabled: true,
+    description: "bâton de parole…"
   },
   {
-    title: "Gestion de groupe", enabled: true,
-    description: ""
+    title: "Mise en situation", enabled: true,
+    description: "pour se préparer / ex: respiration…"
   },
   {
     title: "Témoignage", enabled: true,
     description: ""
   },
   {
+    title: "Carte", enabled: true,
+    description: ""
+  },
+  {
     title: "Brainstorming", enabled: true,
     description: ""
   },
+    {
+    title: "Documentation pédagogique", enabled: true,
+    description: ""
+  },
+    {
+    title: "Document de fond", enabled: true,
+    description: ""
+  }
 ].each do |option|
   ToolCategory.where(title: option[:title]).first_or_create(
     description: option[:description], 

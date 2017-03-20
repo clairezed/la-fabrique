@@ -15,7 +15,7 @@ class LinkSerializer < ActiveModel::Serializer
 
   #TODO
   def edit_url
-    edit_admin_link_path(object.id)
+    edit_link_path(object.linkable.id, object.id)
   end
 
   def admin_edit_url
@@ -24,7 +24,7 @@ class LinkSerializer < ActiveModel::Serializer
 
   #TODO
   def delete_url
-    admin_link_path(object.id)
+    link_path(object.linkable.id, object.id)
   end
 
   def admin_delete_url

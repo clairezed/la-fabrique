@@ -40,3 +40,12 @@ Articles :
 #### Hosting
 
 - destroy old releases ?
+
+#### Design
+
+Contextual help :
+- https://github.com/adchsm/Slidebars
+- http://github.hubspot.com/shepherd/docs/welcome/
+- http://github.hubspot.com/drop/docs/welcome/
+- https://heelhook.github.io/chardin.js/
+- un truc custom comme ls desc de projet de http://www.collectif-yay.com/carte-du-ciel ?

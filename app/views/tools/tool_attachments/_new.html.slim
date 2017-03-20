@@ -1,0 +1,16 @@
+.modal.fade data-is-modal='attachment'
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        h4.modal-title.uppercase Nouveau média
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+
+        = form_for @attachment, url: tool_attachments_path(@tool), method: :post, html: {multipart: true}, data: {is_form: 'attachment' } do |f|
+
+          = render partial: "tools/tool_attachments/form", locals: { f: f }
+
+      .modal-footer
+        .text-xs-center
+          = link_to "Ajouter le média", "javascript:void()", class: "btn btn-inverse uppercase btn-wrap", data: {is_modal_submit: true}

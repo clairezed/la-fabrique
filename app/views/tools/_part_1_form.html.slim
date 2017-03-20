@@ -1,0 +1,66 @@
+= f.hm_form_errors
+
+.form-group
+  = f.label :title
+  = f.text_field :title, class: "form-control"
+
+
+.form-group
+  label Axe thématique
+  .row
+    - Theme.default.axes.enabled.each do |axis|
+      .col-md-3.col-12.form-card-col class="form-card-col-#{axis.id_key}"
+        = f.radio_button :axis_id, axis.id
+        = f.label "axis_id", value: axis.id, class: "card form-card form-card_axis" do
+          span= axis.title
+
+.form-group
+  label Durée
+  .row
+    - tool_duration_options.each do |title, id|
+      .col-md-3.col-12.form-card-col
+        = f.radio_button :duration, id
+        = f.label :duration, value: id, class: "card form-card" do
+          span= title
+
+.form-group
+  label Nombre de personnes
+  .row
+    - tool_group_size_options.each do |title, id|
+      .col-md-3.col-12.form-card-col
+        = f.radio_button :group_size, id
+        = f.label :group_size, value: id, class: "card form-card" do
+          span= title
+
+.form-group
+  label Niveau de difficulté
+  .row
+    - tool_level_options.each do |title, id|
+      .col-md-3.col-12.form-card-col
+        = f.radio_button :level, id
+        = f.label :level, value: id, class: "card form-card" do
+          span= title
+
+.form-group
+  = f.label :tool_category_id
+  .row
+    .col-lg-6
+      = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "form-control", data: {is_autocomplete_select: 'tool-category'}
+
+.form-group
+  = f.label :public
+  = f.text_field :public, class: "form-control"
+
+
+.form-group
+  label Mots-clés
+  = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: tags_path}
+
+
+.form-group.row
+  .form-actions
+    hr
+    => f.submit "Etape suivante", class: "btn btn-primary"
+
+coffee:
+  new PartOneForm()

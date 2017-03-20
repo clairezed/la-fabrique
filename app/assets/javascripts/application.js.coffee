@@ -15,6 +15,10 @@
 #= require ./shared/flash-messages
 #= require ./shared/tool-typeahead
 #= require ./shared/tag-typeahead
+#= require ./shared/tag-select
+#= require ./shared/file-uploader
+#= require ./shared/link-modal
+#= require ./shared/step-manager
 
 #= require_tree ./front
 

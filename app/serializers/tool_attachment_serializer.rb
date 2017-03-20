@@ -35,18 +35,16 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
     object.asset.url(:preview)
   end
 
-  #TODO
   def edit_url
-    edit_admin_tool_attachment_path(object.id)
+    edit_tool_attachment_path(object.assetable.id, object.id)
   end
 
   def admin_edit_url
     edit_admin_tool_attachment_path(object.id)
   end
 
-  #TODO
   def delete_url
-    admin_tool_attachment_path(object.id)
+    tool_attachment_path(object.assetable.id, object.id)
   end
 
   def admin_delete_url

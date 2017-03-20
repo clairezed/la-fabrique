@@ -8,7 +8,8 @@ class TagsController < ApplicationController
         @tags = @tags.paginate(per_page: 20, page: params[:page])
       end
       format.json do
-        render json: @tags.map { |tag| { title: tag.title, id: tag.id }}
+        # title: used by typeahead autocomplete / text : used by select2 in form
+        render json: @tags.map { |tag| { title: tag.title, id: tag.id, text: tag.title  }}
       end
     end
   end

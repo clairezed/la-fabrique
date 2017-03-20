@@ -2,17 +2,34 @@ class @FileUploader
 
   DEFAULT_OPTIONS:
     scope: $(document)
+    template:
+      modal: """
+      <div class="modal fade">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" data-is-modal-content>
+          </div>
+      </div>
+    """
     templateSelector:
       upload: '[data-template="AttachmentUpload"]'
       download: '[data-template="AttachmentDownload"]'
+    selectors: 
+      listAnchor: "[data-is-media-list]"
+      modalContent:     '[data-is-modal-content]'
 
   constructor:  (options = {}) ->
     console.log "init!"
     @options = $.extend(true, {}, @DEFAULT_OPTIONS, options)
     @fileInput = $("[data-file-upload]")
+    @$modalContainer = $(@options.template.modal)
 
+    @loadMedias()
     @initFileUpload()
+    @bindEvents()
 
+
+
+  bindEvents: =>
     # Attachement deletion ---------------------------------------
     @options.scope
       .on "ajax:success", "[data-delete-attachment]", (e, data, status, xhr) =>
@@ -26,9 +43,9 @@ class @FileUploader
     # Attachement edit modal ---------------------------------------
     @options.scope
       .on "ajax:success", "[data-edit-attachment]", (e, data, status, xhr) =>
-        # console.log data
-        $("[data-is-modal-container]").html(data)
-        $("[data-is-modal='edit-attachment']").modal('show')
+        console.log data
+        @$modalContainer.find(@options.selectors.modalContent).html(data)
+        @$modalContainer.modal('show')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
         # errors = JSON.parse(xhr.responseText)['errors']
         console.log error
@@ -40,16 +57,30 @@ class @FileUploader
       .on "ajax:success", "[data-is-form='update-attachment']", (e, data, status, xhr) =>
         console.log data
         currentNode = @getMediaNode(data['id'])
-        template = $(@options.templateSelector['download']).html()
-        compiledTemplate = Handlebars.compile(template)(data)
+        compiledTemplate = @compileTemplate(data, 'download')
         currentNode.replaceWith(compiledTemplate)
-        $("[data-is-modal='edit-attachment']").modal('hide')
+        @$modalContainer.modal('hide')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
         # errors = JSON.parse(xhr.responseText)['errors']
         console.log error
         console.log xhr
         flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
 
+  loadMedias: =>
+    url = $(@options.selectors.listAnchor).data('list-url')
+    console.log url
+    $.get(url, {}, null, 'json'
+    ).done((items) =>
+      console.log(items)
+      for item in items
+        @prependNode(
+          template: 'download', 
+          data: item
+        )
+    ).fail((error) =>
+      console.log error
+      flash("Une erreur s'est produite. Veuillez réessayer ultérieurement", 'danger')
+    )
 
   initFileUpload: =>
     # need to specify formData : https://stackoverflow.com/questions/26633538/jquery-file-upload-post-and-nested-route-getting-no-route-matches-patch
@@ -69,13 +100,11 @@ class @FileUploader
           console.log data
           data.formData = {
             "asset_tool_attachment[custom_file_name]": $("[data-is-ta-attribute='custom_file_name']").val(),
-            "asset_tool_attachment[assetable_id]": $("[data-is-ta-attribute='assetable_id']").val(),
             "asset_tool_attachment[format_type]": $("[data-is-ta-attribute='format_type']:checked").val()
           }
           data.context = @prependNode(
-            template: @options.templateSelector['upload'], 
-            data: data.files[0],
-            dataContainer: "[data-is-media-list]"
+            template: 'upload', 
+            data: data.files[0]
           )
           data.submit()
           return false
@@ -90,15 +119,18 @@ class @FileUploader
         $(data.context).remove()
         console.log data.result
         data.context = @prependNode(
-          template: @options.templateSelector['download'], 
-          data: data.result,
-          dataContainer: "[data-is-media-list]"
+          template: 'download', 
+          data: data.result
         )
 
   prependNode: (args = {}) ->
-    template = $(args['template']).html()
-    compiledTemplate = Handlebars.compile(template)(args['data'])
-    return $(compiledTemplate).prependTo(args['dataContainer'])
+    compiledTemplate = @compileTemplate(args['data'], args['template'])
+    return $(compiledTemplate).prependTo(@options.selectors.listAnchor)
+
+  compileTemplate: (data, templateSelector) =>
+    template = $(@options.templateSelector[templateSelector]).html()
+    return Handlebars.compile(template)(data)
+
 
   getMediaNode: (id) ->
     $("[data-is-download='#{id}']")

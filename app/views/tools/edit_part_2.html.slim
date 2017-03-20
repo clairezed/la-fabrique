@@ -1,0 +1,9 @@
+- content_for :current_navigation_section, :part_2
+
+.row
+  .col-lg-8.offset-lg-2.col-12
+    = render layout: 'layout_forms' do 
+
+      = form_for @tool, as: :tool, url: part_2_tool_path(@tool), html: {class: ""}, method: :put do |f| 
+
+        = render partial: "part_2_form", locals: {f: f}
