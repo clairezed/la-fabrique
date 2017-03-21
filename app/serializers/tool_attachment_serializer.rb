@@ -1,6 +1,6 @@
 class ToolAttachmentSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  include ToolAttachmentHelper
+  include ToolFormatTypeHelper
 
   attributes  :id, 
               :name,
@@ -52,11 +52,11 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
   end
 
   def format_icon
-    tool_attachment_format_type_icon(object.format_type)
+    tool_format_type_icon(object.format_type)
   end
 
   def format_title
-    tool_attachment_format_type_title(object.format_type)
+    tool_format_type_title(object.format_type)
   end
 
 

@@ -121,11 +121,6 @@ class Tool < ApplicationRecord
   validate :description_exists?, unless: :new_record?
 
   # validation de présence de axe et catégorie -> directement en base
-
-  # private def normalize_url!
-  #   self.source_url = SanitizationService.normalize_url(source_url)
-  # end
-  # before_validation :normalize_url!, if: :source_url_changed?
   
   # Scopes =====================================================================
   scope :enabled, -> { accepted }

@@ -1,11 +1,11 @@
 
-= form_for @link, url: admin_link_path(@link), method: :patch, remote: true, data: {is_form: 'update-link' } do |f|
+= form_for @link, url: tool_link_path(@link), method: :patch, remote: true, data: {is_form: 'update-link' } do |f|
   .modal-header
-    h5.modal-title Modifier le lien
+    h4.modal-title Modifier le lien
     button.close aria-label="Close" data-dismiss="modal" type="button" 
       span aria-hidden="true"  &times;
   .modal-body
-      = render partial: "admin/links/form", locals: { f: f }
+      = render partial: "tools/links/form", locals: { f: f }
 
   .modal-footer
     .text-xs-center

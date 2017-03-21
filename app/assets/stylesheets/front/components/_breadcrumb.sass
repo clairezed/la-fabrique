@@ -1,0 +1,14 @@
+.breadcrumb
+  background-color: darken($bg, 25%)
+  margin: 2rem auto 3rem
+
+.breadcrumb-item
+  a
+    color: $color-text
+  &.active a
+    color: #fff
+    font-weight: 600
+  a.disabled
+    pointer-events: none
+    cursor: not-allowed
+    opacity: .65

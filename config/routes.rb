@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :comments, controller: "tools/comments", only: [:create]
     resources :steps, controller: "tools/steps", only: [:destroy]
     resources :tool_attachments, as: :attachments, controller: "tools/tool_attachments"
+    resources :links, controller: "tools/links"
   end
   resources :tags, only: [:index]
   resources :basic_pages, only: [:show]

@@ -13,6 +13,7 @@ body
   font-size: 1.4rem
   line-height: 1.25 // override 
   font-family: $font-family-sans-serif
+  color: $color-text
   
   //// pb scintillement font-weight
   -webkit-font-smoothing: antialiased
@@ -33,9 +34,13 @@ body
 //  LINK
 ///////////////////////
 
+a
+  color: lighten($color-text, 10%)
+
 a:hover, a:focus
   text-decoration: none
   outline: none
+  color: $color-text
 
 
 ///////////////////////

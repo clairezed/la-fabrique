@@ -52,6 +52,18 @@ module ToolHelper
     end
   end
 
+  # Description type -------------------------------------------
+
+  def tool_description_type_title(type)
+    I18n.t(type, scope: [:tool_description_types])
+  end  
+
+  # Tool Tag ===============================================================
+
+  def tool_tags_options(tags = Tag.all)
+    tags.order(:title).map{|tag| [tag.title, tag.id]}
+  end
+
   # Public cible -------------------------------------------
 
   # def tool_public(public)
@@ -86,17 +98,5 @@ module ToolHelper
   #   end
   #   raw array.join("</br>")
   # end
-
-  # Description type -------------------------------------------
-
-  def tool_description_type_title(type)
-    I18n.t(type, scope: [:tool_description_types])
-  end  
-
-  # Tool Tag ===============================================================
-
-  def tool_tags_options(tags = Tag.all)
-    tags.order(:title).map{|tag| [tag.title, tag.id]}
-  end
 
 end

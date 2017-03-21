@@ -163,8 +163,8 @@ fieldset
             p.card-text.font-weight-bold
               => link_to attachment.custom_file_name, attachment.asset.url, target: :blank
             p.small.text-muted
-              i.fa> class="fa-#{tool_attachment_format_type_icon(attachment.format_type)}"
-              => tool_attachment_format_type_title(attachment.format_type)
+              i.fa> class="fa-#{tool_format_type_icon(attachment.format_type)}"
+              => tool_format_type_title(attachment.format_type)
 
             = link_to edit_admin_tool_attachment_path(attachment), remote: true, class: "btn btn-sm btn-info mr-1", data:{edit_attachment: attachment.id} do 
               i.fa.fa-edit

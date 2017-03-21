@@ -11,19 +11,3 @@ fr:
       asset/tool_attachment:
         custom_file_name: Titre à afficher
         format_type: Format
-
-  tool_attachment_format_types:
-    title:
-      picture:  Image
-      video:    Vidéo
-      document: Document texte type word / pdf
-      slide:    Présentation type powerpoint
-      sound:    Son
-      other:    Autre
-    icon:
-      picture:  file-image-o
-      document: file-text-o
-      slide:    file-powerpoint-o
-      sound:    file-audio-o
-      video:    file-video-o
-      other:    file-o

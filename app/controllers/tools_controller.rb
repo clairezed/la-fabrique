@@ -30,10 +30,10 @@ class ToolsController < ApplicationController
   def create
     @tool = ToolSetter.new(Tool.new, part_1_params).call
     if @tool.save
-      flash[:notice] = "La fiche a été créé avec succès"
+      flash[:notice] = "Les informations ont bien été enregistrées"
       redirect_to edit_part_2_tool_path(@tool)
     else
-      flash[:error] = "Une erreur s'est produite lors de la création de la fiche"
+      flash[:error] = "Une erreur s'est produite lors de la création de l'outil"
       build_tool_relations
       render :new
     end
@@ -43,15 +43,14 @@ class ToolsController < ApplicationController
   end
 
   def part_1
-    raise params.inspect
     @tool = ToolSetter.new(@tool, part_1_params).call
     if @tool.save
-      flash[:notice] = "La fiche a été mise à jour avec succès"
-      redirect_to params[:continue].present? ? edit_part_1_path(@tool) : edit_part_2_path(@tool)
+      flash[:notice] = "Les informations ont bien été enregistrées"
+      redirect_to params[:continue].present? ? edit_part_1_path(@tool) : edit_part_2_tool_path(@tool)
     else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil"
       build_tool_relations
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
-      render :edit
+      render :edit_part_1
     end
   end
 
@@ -64,15 +63,15 @@ class ToolsController < ApplicationController
     @tool = ToolSetter.new(@tool, part_2_params).call
     if @tool.save
       if params[:continue].present?
-        flash[:notice] = "La fiche a été mise à jour avec succès"
+        flash[:notice] = "Les informations ont bien été enregistrées"
         redirect_to edit_part_2_tool_path(@tool)
       else
         @tool.submit! if @tool.may_submit?
-        redirect_to submission_success_path(@tool)
+        redirect_to submission_success_tool_path(@tool)
       end
     else
       build_tool_relations
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil'"
       render :edit_part_2
     end
   end

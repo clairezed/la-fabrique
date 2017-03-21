@@ -2,7 +2,20 @@ class Asset::ToolAttachment < Asset
 
   # Configs ====================================================================
 
-  DOCUMENT_MIME_TYPES = [Mime[:pdf]].freeze
+  DOCUMENT_MIME_TYPES = %i[
+    pdf
+    doc
+    docx
+    xls
+    xlsx
+    ppt
+    mp3
+    wav
+  ].map{|type| Mime[type] }.compact.freeze
+
+  # DOCUMENT_MIME_TYPES = ['application/pdf', 'application/msword',
+  #       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  #       'application/vnd.oasis.opendocument.text']
 
   IMAGE_MIME_TYPES= %i[
     png

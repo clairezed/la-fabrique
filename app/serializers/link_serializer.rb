@@ -1,6 +1,6 @@
 class LinkSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  include ToolAttachmentHelper
+  include ToolFormatTypeHelper
 
   attributes  :id, 
               :title,
@@ -15,7 +15,7 @@ class LinkSerializer < ActiveModel::Serializer
 
   #TODO
   def edit_url
-    edit_link_path(object.linkable.id, object.id)
+    edit_tool_link_path(object.tool.id, object.id)
   end
 
   def admin_edit_url
@@ -24,7 +24,7 @@ class LinkSerializer < ActiveModel::Serializer
 
   #TODO
   def delete_url
-    link_path(object.linkable.id, object.id)
+    tool_link_path(object.tool.id, object.id)
   end
 
   def admin_delete_url
@@ -32,11 +32,11 @@ class LinkSerializer < ActiveModel::Serializer
   end
 
   def format_icon
-    tool_attachment_format_type_icon(object.format_type)
+    tool_format_type_icon(object.format_type)
   end
 
   def format_title
-    tool_attachment_format_type_title(object.format_type)
+    tool_format_type_title(object.format_type)
   end
 
 

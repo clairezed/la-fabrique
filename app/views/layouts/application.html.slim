@@ -88,7 +88,7 @@ html lang="#{I18n.locale}"
             p.footer_text.ml-3
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           .col-6.text-right
-            = link_to 'A propos', "#", class: "btn btn-inverse uppercase"
+            = link_to 'A propos', "#", class: "btn btn-inverse uppercase", disabled: true
             div.mt-3
               - @basic_pages.each do |basic_page|
                 => link_to basic_page.title, basic_page_path(basic_page)

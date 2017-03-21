@@ -15,6 +15,11 @@ class Link < ApplicationRecord
             # :title, 
             presence: true
 
+  private def normalize_url!
+    self.url = SanitizationService.normalize_url(url)
+  end
+  before_validation :normalize_url!, if: :url_changed?
+
   # Callbacks ==================================================================
   before_validation :set_title
   

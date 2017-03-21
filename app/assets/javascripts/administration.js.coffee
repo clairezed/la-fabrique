@@ -17,6 +17,7 @@
 #= require ./shared/step-manager
 #= require ./shared/tool-typeahead
 #= require ./shared/tag-typeahead
+#= require ./shared/tag-select
 
 #= require_tree ./admin
 #= require_tree ./locales

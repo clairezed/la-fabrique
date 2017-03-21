@@ -15,7 +15,7 @@ div#description-wrapper.mt-30
   / .card-block
   .form-group.row
     .col-md-4
-      = f.label :description
+      = f.label :description, class:"label-title "
     .col-md-8
       .btn-group data-toggle="buttons"
         - Tool.description_types.keys.each do |description_type|
@@ -56,11 +56,11 @@ div#description-wrapper.mt-30
 
 .form-group
   = f.label :advice
-  = f.text_area :advice, class: "form-control", rows: 8
+  = f.text_area :advice, class: "form-control", rows: 6
 
 .form-group
   = f.label :material
-  = f.text_area :material, class: "form-control", rows: 8
+  = f.text_area :material, class: "form-control", rows: 6
 
 .form-group
   = f.label :source
@@ -70,35 +70,34 @@ div#description-wrapper.mt-30
   = f.label :licence
   = f.text_field :licence, class: "form-control"
 
+.row
+  .col-12.col-lg-6
+    div class="d-flex justify-content-between"
+      .label-title  Média
+      = label_tag :"asset_tool_attachment[asset]"
+        span.btn.btn-inverse.btn-sm.uppercase
+          | Ajouter un média
+        = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
 
-.card.mt-25
-  .card-block
-    h4.card-title.uppercase Média
-    = label_tag :"asset_tool_attachment[asset]"
-      span.btn.btn-info
-        | Ajouter
-      = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
+    div.item-list.row data-is-media-list=true data-list-url="#{tool_attachments_path(@tool)}"
 
-    div.row data-is-media-list=true data-list-url="#{tool_attachments_path(@tool)}"
+  .col-12.col-lg-6
+    div class="d-flex justify-content-between"
+      .label-title Liens
+      div
+        = link_to new_tool_link_path(@tool), remote: true,
+          data: {link_btn: 'new'}, class: 'btn btn-inverse btn-sm uppercase' do
+          | Ajouter un lien
 
-/ fieldset
-  legend Liens
-
-  = link_to new_admin_link_path(tool_id: @tool.id), remote: true,
-    data: {link_btn: 'new'}, class: 'btn btn-info mb-2' do
-    | Ajouter un lien
-
-  div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_links_path}"
+    div.item-list.row data-is-link-list="#{@tool.id}" data-list-url="#{tool_links_path(@tool)}"
 
 
-.card.mt-25
-  .card-block
-    h4.card-title.uppercase Information de contact
-    .row
-      .col-6
-        .form-group
-          = f.label :submitter_email, "Email"
-          = f.text_field :submitter_email, class: "form-control"
+.form-group
+  = f.label :submitter_email, "Email"
+  .row 
+    .col-8
+      = f.text_field :submitter_email, class: "form-control"
+      p.form-text.text-muted: em Pour que nous puissions vous recontacter si nécessaire.
 
 .d-flex.flex-row-reverse
   .p-6
@@ -109,6 +108,7 @@ div#description-wrapper.mt-30
 = render "tools/steps/hb_new"
 = render "tools/tool_attachments/new"
 = render "tools/tool_attachments/hb_thumbs"
+= render "tools/links/hb_thumb"
 
 
 coffee:

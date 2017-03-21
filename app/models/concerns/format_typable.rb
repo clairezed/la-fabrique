@@ -8,7 +8,8 @@ module FormatTypable
       document: 1, # 
       slide:    2, # 
       sound:    3, # 
-      video:    4
+      video:    4,
+      other:    5
     }
 
     validates :format_type, presence: true

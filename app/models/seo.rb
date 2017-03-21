@@ -5,7 +5,7 @@ class Seo < ActiveRecord::Base
   belongs_to :seoable, polymorphic: true, optional: true
 
   # Callbacks ==================================================================
-  validates :slug, presence: true, if: -> (a) {a.param.blank?}
+  validates :slug, presence: true, if: -> (a) {a.param.blank? && a.seoable.try(:title).try(:present?)}
 
   before_validation :parameterize_slug, if: -> (a) {a.param.blank?}
   before_save :set_title

@@ -1,27 +1,21 @@
 = f.hm_form_errors
 / = f.hidden_field :asset
-= f.hidden_field :tool_id, value: @tool.id, data: {is_ta_attribute: 'tool_id'}
+/ = f.hidden_field :tool_id, value: @tool.id, data: {is_ta_attribute: 'tool_id'}
 
 .form-group 
-  .row
-    .col-md-2.col-label-valign
-      = f.label :url, class: 'form-label'
-    .col-md-10
-      = f.text_field :url, class: "form-control", placeholder: "url du lien", data: {is_ta_attribute: 'url'}
+  = f.label :url, class: 'form-label'
+  = f.text_field :url, class: "form-control", placeholder: "url du lien"
 
-.form-group 
-  .row
-    .col-md-2.col-label-valign
-      = f.label :title, class: 'form-label'
-    .col-md-10
-      = f.text_field :title, class: "form-control", placeholder: "Titre", data: {is_ta_attribute: 'title'}
+.form-group
+  = f.label :title
+  = f.text_field :title, class: "form-control", placeholder: "Titre", data: {is_ta_attribute: 'title'}
 
 .form-group.row
-  .form-label-default
+  .col-2
     = f.label :format_type
-  .col-md-8
-    .form-check.form-check-inline
-      - Link.format_types.keys.each do |format_type|
-        label.form-check-label
-          => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}
-          => tool_attachment_format_type_title(format_type)
+  .col-10
+    - Link.format_types.keys.each do |format_type|
+      .form-check
+      label.form-check-label
+        => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}, class: "form-check-input"
+        => tool_format_type_title(format_type)

@@ -26,6 +26,8 @@
 .field_with_errors
   @extend .has-danger
   display: inline
+  .form-control
+    @extend .form-control-danger
 
 #flash
   position: fixed
@@ -98,3 +100,14 @@
   @include form-card-col-color($group_facilitation-color)
 .form-card-col-project_methodology
   @include form-card-col-color($project_methodology-color)
+
+
+.label-title
+  font-weight: 600
+  font-size: 1.4rem
+  text-transform: uppercase
+  margin-bottom: 1.5rem
+
+.select2-container--default .select2-selection--single, 
+.select2-container--default .select2-selection--multiple
+  border: 1px solid rgba(0, 0, 0, 0.15)

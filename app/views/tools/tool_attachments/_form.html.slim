@@ -15,9 +15,9 @@
       .form-check
         label.form-check-label
           => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}, class: "form-check-input"
-          => tool_attachment_format_type_title(format_type)
+          => tool_format_type_title(format_type)
 
 
       / - Asset::ToolAttachment.format_types.keys.each do |format_type|
-      /   = f.label :format_type, tool_attachment_format_type_title(format_type), value: format_type.to_s
+      /   = f.label :format_type, tool_format_type_title(format_type), value: format_type.to_s
       /   => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}, class: "form-check-input"

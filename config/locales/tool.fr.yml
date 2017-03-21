@@ -40,6 +40,7 @@ fr:
         source_url: Lien de la source
         submitter_email: Soumis par
         advice: Conseils
+        tag_ids: Mots-clés
 
   tool_states:
     title:
@@ -73,6 +74,22 @@ fr:
     description: "Description simple"
     steps: "Par étapes" 
 
+  tool_format_types:
+    title:
+      picture:  Image
+      video:    Vidéo
+      document: Document texte type word / pdf
+      slide:    Présentation type powerpoint
+      sound:    Son
+      other:    Autre
+    icon:
+      picture:  file-image-o
+      document: file-text-o
+      slide:    file-powerpoint-o
+      sound:    file-audio-o
+      video:    file-video-o
+      other:    file-o
+      
   # tool_publics:
   #   young: "jeunes"
   #   pro: "professionnels"  

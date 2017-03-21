@@ -1,4 +1,11 @@
 //          - Component BTN 
+$btn-padding-x:                  1.4rem
+$btn-padding-y:                  1rem
+$btn-padding-x-sm:               1rem
+$btn-padding-y-sm:               .5rem
+$btn-border-radius:              .8rem
+$btn-border-radius-lg:           1rem
+$btn-border-radius-sm:           .3rem
 
 html [type="button"]
   -webkit-appearance: initial // override
@@ -7,17 +14,23 @@ button:focus, .btn:focus, .btn:active:focus
   outline: none
 
 .btn 
-  font-size: 1.4rem
+  // font-size: 1.4rem
   font-weight: 500
   transition: all $transition-default
   line-height: 1
-  padding: 1rem 1.4rem
-  border-radius: 0.80rem
+  // padding: 1rem 1.4rem
+  // border-radius: .8rem
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius)
+  // @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-border-radius);
+
 
 .btn-inverse
   @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border)
 
-
 .btn-outline-inverse
   @include button-outline-variant($btn-inverse-bg)
+
+.btn-sm 
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $font-size-sm, $btn-border-radius-sm)
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3)
