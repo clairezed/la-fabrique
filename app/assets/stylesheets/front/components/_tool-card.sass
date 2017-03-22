@@ -1,36 +1,52 @@
-.tool-card_col
+// Flipping functionnality -----------------------------------
+// cf https://davidwalsh.name/css-flip
+.flip-container
   perspective: 1000px
-  &:hover .tool-card
+  margin-bottom: 3rem // Rajouté par mes soins
+  /* flip the pane when hovered */
+  &:hover .flipper, &.hover .flipper
     transform: rotateY(180deg)
 
+.flip-container, .front, .back
+  width: 100%
+  height: 240px
+
+/* flip speed goes here */
+.flipper
+  transition: 0.6s
+  transform-style: preserve-3d
+  position: relative
+  // height: 100%
+
+/* hide back of pane during swap */
+.front, .back
+  backface-visibility: hidden
+  position: absolute
+  top: 0
+  left: 0
+.front
+  z-index: 2
+  /* for firefox 31 */
+  transform: rotateY(0deg)
+.back
+  transform: rotateY(180deg)
+
+
+// General design -----------------------------------
 .tool-card
-  // height: 240px
   width: 100%
   margin-bottom: 2em
   border: 0
   text-align: center  
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
   transition: all $transition-default
-  transform-style: preserve-3d
-  position: relative
   a
     display: block
-    // position: relative
-    // // height: 240px
     color: inherit
-
-.tool-card_front, .tool-card_back
-  backface-visibility: hidden
-.tool-card_front
-  z-index: 2
-  transform: rotateY(0deg)
-.tool-card_back
-  transform: rotateY(180deg)
 
 .tool-card_block
   height: 210px
   padding: 2rem
-  // position: relative
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -41,14 +57,18 @@
   font-weight: 600
   padding-top: 10%
   line-height: 2.2rem
-  &:after
-    content: ''
-    display: block
-    background: $white
-    height: 3px
-    max-width: 60px
-    width: 100%
-    margin: 12px auto
+
+.tool-card_tags
+  font-size: 1.2rem
+
+.tool-card_title:after, .tool-card_tags:before
+  content: ''
+  display: block
+  background: $white
+  height: 3px
+  max-width: 60px
+  width: 100%
+  margin: 12px auto
 
 .tool-card_subtitle
   text-transform: uppercase
@@ -58,8 +78,8 @@
   margin: 12px auto
   span
     text-transform: uppercase
-    color: $white
     padding: 4px 
+    color: $white
     border-top: 1px solid $white
     border-bottom: 1px solid $white
 
@@ -78,9 +98,11 @@
 
 
 @mixin tool-card-color($color)
-  background-color: $color
+  .tool-card_block
+    background-color: $color
   &:hover, &:focus
-    background-color: darken($color, 10%)
+    .tool-card_block
+      background-color: darken($color, 10%)
 
 
 // Gestion des couleurs pour les axes

@@ -5,10 +5,13 @@
 
 .card-wrapper
   - @tools.each do |tool|
-    .col-lg-3.col-md-4.col-sm-6.col-12.tool-card_col ontouchstart="this.classList.toggle('hover');"
-      .tool-card class="tool-card--#{tool.axis.id_key}" 
-        = link_to tool_path(tool) do 
-          .tool-card_front
+
+    .col-lg-3.col-md-4.col-sm-6.col-12.flip-container
+
+      .tool-card.flipper class="tool-card--#{tool.axis.id_key}"
+
+        .tool-card_front.front
+          = link_to tool_path(tool) do
             .tool-card_block
               .tool-card_title-block
                 h3.tool-card_title= tool.title
@@ -26,10 +29,14 @@
                   span.tool-card_cartel
                     i.fa.fa-users>
                     = tool_group_size(tool.group_size)
-          .tool-card_back
+
+        .tool-card_back.back
+          = link_to tool_path(tool) do
             .tool-card_block
               .tool-card_title-block
-                p = tool.description.truncate(200)
+                p.tool-card_description = tool.teaser.truncate(150)
+              .tool-card_tags
+                = tool.tags.map(&:title).join(', ').truncate(40)
             .tool-card_footer
               .row
                 .col

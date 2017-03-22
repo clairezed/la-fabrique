@@ -6,7 +6,7 @@
         label Dans l'axe
         = select_tag :by_axis, \
               options_for_select(axis_options, params[:by_axis]), \
-              prompt: "Tous",\
+              prompt: "Filtrer",\
               class: "nice-select", \
               data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
