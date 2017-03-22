@@ -5,18 +5,38 @@
 
 .card-wrapper
   - @tools.each do |tool|
-    .col-lg-3.col-md-4.col-sm-6.col-12
-      .axis-card class="axis-card--#{tool.axis.id_key}"
+    .col-lg-3.col-md-4.col-sm-6.col-12.tool-card_col ontouchstart="this.classList.toggle('hover');"
+      .tool-card class="tool-card--#{tool.axis.id_key}" 
         = link_to tool_path(tool) do 
-          .axis-card_block
-            h3.axis-card_title= tool.title
-          .axis-card_footer
-            .row
-              .col
-                span.axis-card_cartel
-                  i.fa.fa-hourglass>
-                  = tool_duration(tool.duration)
-              .col
-                span.axis-card_cartel
-                  i.fa.fa-users>
-                  = tool_group_size(tool.group_size)
+          .tool-card_front
+            .tool-card_block
+              .tool-card_title-block
+                h3.tool-card_title= tool.title
+                span.tool-card_subtitle = tool.tool_category.title
+              - if tool.axis.id_key == "project_methodology"
+                .tool-card_new 
+                  span Nouveauté
+            .tool-card_footer
+              .row
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-hourglass>
+                    = tool_duration(tool.duration)
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-users>
+                    = tool_group_size(tool.group_size)
+          .tool-card_back
+            .tool-card_block
+              .tool-card_title-block
+                p = tool.description.truncate(200)
+            .tool-card_footer
+              .row
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-hourglass>
+                    = tool_duration(tool.duration)
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-users>
+                    = tool_group_size(tool.group_size)

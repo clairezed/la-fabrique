@@ -1,0 +1,102 @@
+.tool-card_col
+  perspective: 1000px
+  &:hover .tool-card
+    transform: rotateY(180deg)
+
+.tool-card
+  // height: 240px
+  width: 100%
+  margin-bottom: 2em
+  border: 0
+  text-align: center  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  transition: all $transition-default
+  transform-style: preserve-3d
+  position: relative
+  a
+    display: block
+    // position: relative
+    // // height: 240px
+    color: inherit
+
+.tool-card_front, .tool-card_back
+  backface-visibility: hidden
+.tool-card_front
+  z-index: 2
+  transform: rotateY(0deg)
+.tool-card_back
+  transform: rotateY(180deg)
+
+.tool-card_block
+  height: 210px
+  padding: 2rem
+  // position: relative
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.tool-card_title
+  text-transform: uppercase
+  font-size: 1.6rem
+  font-weight: 600
+  padding-top: 10%
+  line-height: 2.2rem
+  &:after
+    content: ''
+    display: block
+    background: $white
+    height: 3px
+    max-width: 60px
+    width: 100%
+    margin: 12px auto
+
+.tool-card_subtitle
+  text-transform: uppercase
+  font-size: 1.2rem
+
+.tool-card_new
+  margin: 12px auto
+  span
+    text-transform: uppercase
+    color: $white
+    padding: 4px 
+    border-top: 1px solid $white
+    border-bottom: 1px solid $white
+
+.tool-card_footer
+  padding: 0.75rem 1.25rem
+  background-color: $white
+  color: $gray-dark
+  border-top: 1px solid rgba(0, 0, 0, 0.125)
+  .tool-card_cartel
+    padding: 0.2rem 0.6rem
+    font-size: 1rem
+    color: lighten($gray, 10%)
+    text-transform: uppercase
+    border: 1px solid lighten($gray, 10%)
+    border-radius: 0.6rem
+
+
+@mixin tool-card-color($color)
+  background-color: $color
+  &:hover, &:focus
+    background-color: darken($color, 10%)
+
+
+// Gestion des couleurs pour les axes
+.tool-card--interculturality
+  @include tool-card-color($interculturality-color)
+.tool-card--departure_preparation
+  @include tool-card-color($departure_preparation-color)
+.tool-card--return_preparation
+  @include tool-card-color($return_preparation-color)
+.tool-card--mobility_system
+  @include tool-card-color($mobility_system-color)
+.tool-card--skill_promotion
+  @include tool-card-color($skill_promotion-color)
+.tool-card--conflict_management
+  @include tool-card-color($conflict_management-color)
+.tool-card--group_facilitation
+  @include tool-card-color($group_facilitation-color)
+.tool-card--project_methodology
+  @include tool-card-color($project_methodology-color)
