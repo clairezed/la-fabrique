@@ -5,17 +5,18 @@
 
 .card-wrapper
   - @tools.each do |tool|
-    .card.axis-card
-      = link_to tool_path(tool) do 
-        .card-block
-          h3.card-title= tool.title
-        .card-footer
-          .row
-            .col
-              span.card-cartel
-                i.fa.fa-hourglass>
-                = tool_duration(tool.duration)
-            .col
-              span.card-cartel
-                i.fa.fa-users>
-                = tool_group_size(tool.group_size)
+    .col-lg-3.col-md-4.col-sm-6.col-12
+      .axis-card class="axis-card--#{tool.axis.id_key}"
+        = link_to tool_path(tool) do 
+          .axis-card_block
+            h3.axis-card_title= tool.title
+          .axis-card_footer
+            .row
+              .col
+                span.axis-card_cartel
+                  i.fa.fa-hourglass>
+                  = tool_duration(tool.duration)
+              .col
+                span.axis-card_cartel
+                  i.fa.fa-users>
+                  = tool_group_size(tool.group_size)
