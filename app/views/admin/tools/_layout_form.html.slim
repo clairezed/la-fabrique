@@ -13,6 +13,10 @@
     h2.card-header
       | Edition de la fiche
       em=< @tool.title
+    div
+      .nav.nav-tabs
+        = menu_link 'Etape 1', edit_part_1_admin_tool_path(@tool), sub_section: :part_1, title: 'Etape 1', li_class: 'nav-item', class:'nav-link'
+        = menu_link "Etape 2", edit_part_2_admin_tool_path(@tool), sub_section: :part_2, title: 'Etape 2', li_class: 'nav-item', class:'nav-link'
 
     .card-block
       .row

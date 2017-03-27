@@ -3,7 +3,7 @@
   table.table.table-striped.table-hover.table-sm
     thead.thead-inverse
       tr
-        th= hm_sort 'sort_by_created', label: 'Date création'
+        th= hm_sort 'sort_by_created_at', label: 'Date création'
         th= hm_sort 'sort_by_title', label: 'Titre'
         th= hm_sort 'sort_by_axis_id', label: 'Axe'
         th= hm_sort 'sort_by_tool_category_id', label: 'Catégorie'
@@ -14,7 +14,7 @@
       - @tools.each do |tool| 
         tr
           td= l tool.created_at.to_date
-          td= link_to tool.title, edit_admin_tool_path(tool)
+          td= link_to tool.title, edit_part_1_admin_tool_path(tool)
           td= link_to tool.axis.title, edit_admin_axis_path(tool.axis)
           td= link_to tool.tool_category.title, edit_admin_tool_category_path(tool.tool_category)
           td= link_to admin_comments_path(by_tool_title: tool.title), class: "btn btn-default btn-sm" do
@@ -29,7 +29,7 @@
             - if tool.may_reject?
               => link_to reject_admin_tool_path(tool, search_params), class: 'btn btn-sm btn-danger', method: :patch, title: "Rejeter" do
                 i.fa.fa-ban
-            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_tool_path(tool),
+            => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_part_1_admin_tool_path(tool),
               class: "btn btn-sm btn-info", title: "Editer"
             = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_tool_path(tool),
               method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"

@@ -13,22 +13,20 @@ class LinkSerializer < ActiveModel::Serializer
               :format_title,
               :tool_id
 
-  #TODO
   def edit_url
     edit_tool_link_path(object.tool.id, object.id)
   end
 
   def admin_edit_url
-    edit_admin_link_path(object.id)
+    edit_admin_tool_link_path(object.tool.id, object.id)
   end
 
-  #TODO
   def delete_url
     tool_link_path(object.tool.id, object.id)
   end
 
   def admin_delete_url
-    admin_link_path(object.id)
+    admin_tool_link_path(object.tool.id, object.id)
   end
 
   def format_icon

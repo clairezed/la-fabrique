@@ -1,0 +1,19 @@
+= f.hm_form_errors
+
+.form-group 
+  = f.label :url, class: 'form-label'
+  = f.text_field :url, class: "form-control", placeholder: "url du lien"
+
+.form-group
+  = f.label :title
+  = f.text_field :title, class: "form-control", placeholder: "Titre", data: {is_ta_attribute: 'title'}
+
+.form-group.row
+  .col-2
+    = f.label :format_type
+  .col-10
+    - Link.format_types.keys.each do |format_type|
+      .form-check
+      label.form-check-label
+        => f.radio_button :format_type, format_type.to_s, data: {is_ta_attribute: 'format_type'}, class: "form-check-input"
+        => tool_format_type_title(format_type)

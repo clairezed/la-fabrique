@@ -1,4 +1,4 @@
-class @PartOneForm
+class @PartOneToolForm
 
   constructor: () ->
     console.log 'PartOneForm'

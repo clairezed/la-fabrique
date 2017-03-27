@@ -3,7 +3,7 @@ class Admin::ToolsController < Admin::BaseController
   before_action :find_tool, except: [ :index, :new, :create ]
 
   def index
-    params[:sort] ||= "sort_by_created_at asc"
+    params[:sort] ||= "sort_by_created_at desc"
     @tools = Tool.apply_filters(params)
     respond_to do |format|
       format.html do
@@ -15,16 +15,18 @@ class Admin::ToolsController < Admin::BaseController
     end
   end
 
+   # Tool form ========================================
+
   def new
     @tool = Tool.new
     build_tool_relations
   end
   
   def create
-    @tool = Tool.new(tool_params)
+    @tool = ToolSetter.new(Tool.new, part_1_params).call
     if @tool.save
       flash[:notice] = "La fiche a été créé avec succès"
-      redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
+      redirect_to params[:continue].present? ? edit_part_2_admin_tool_path(@tool) : edit_part_1_admin_tool_path(@tool)
     else
       flash[:error] = "Une erreur s'est produite lors de la création de la fiche"
       build_tool_relations
@@ -32,21 +34,54 @@ class Admin::ToolsController < Admin::BaseController
     end
   end
   
-  def edit
+  # def edit
+  #   build_tool_relations
+  # end
+  
+  # def update
+  #   @tool = ToolSetter.new(@tool, tool_params).call
+  #   if @tool.save
+  #   # if @tool.update_attributes(tool_params)
+  #     @tool.accept! if @tool.may_accept?
+  #     flash[:notice] = "La fiche a été mise à jour avec succès"
+  #     redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
+  #   else
+  #     build_tool_relations
+  #     flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
+  #     render :edit
+  #   end
+  # end
+
+  def edit_part_1
+  end
+
+  def part_1
+    @tool = ToolSetter.new(@tool, part_1_params).call
+    if @tool.save
+      flash[:notice] = "Les informations ont bien été enregistrées"
+      redirect_to params[:continue].present? ? edit_part_2_admin_tool_path(@tool) : edit_part_1_admin_tool_path(@tool)
+    else
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil"
+      build_tool_relations
+      render :edit_part_1
+    end
+  end
+
+  def edit_part_2
     build_tool_relations
   end
-  
-  def update
-    @tool = ToolSetter.new(@tool, tool_params).call
+
+
+  def part_2
+    @tool = ToolSetter.new(@tool, part_2_params).call
     if @tool.save
-    # if @tool.update_attributes(tool_params)
       @tool.accept! if @tool.may_accept?
-      flash[:notice] = "La fiche a été mise à jour avec succès"
-      redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
+      flash[:notice] = "Les informations ont bien été enregistrées"
+      redirect_to params[:continue].present? ? admin_tools_path : edit_part_2_admin_tool_path(@tool)
     else
       build_tool_relations
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
-      render :edit
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil'"
+      render :edit_part_2
     end
   end
 
@@ -102,17 +137,23 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def build_tool_relations
+    3.times { @tool.steps.build() } if @tool.steps.empty?
     @attachment = @tool.attachments.build
     @tool.build_seo unless @tool.seo.present?
-    @tool.steps.build()
   end
 
   # strong parameters
-  def tool_params
+  def part_1_params
     params.require(:tool).permit(
-      :axis_id, :tool_category_id, :title, :description, :teaser, :enabled, 
-      :group_size, :duration, :level, :public, :licence, :goal, :material, 
-      :source, :advice, :submitter_email, :description_type, tag_ids: [],
+      :axis_id, :tool_category_id, :title,
+      :group_size, :duration, :level, :public, tag_ids: [])
+  end
+
+  def part_2_params
+    params.require(:tool).permit(
+      :description, :teaser, 
+      :public, :licence, :goal, :material, 
+      :source, :advice, :submitter_email, :description_type,
       steps_attributes: [:id, :description, :_destroy],
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end

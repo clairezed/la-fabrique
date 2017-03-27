@@ -40,7 +40,7 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
   end
 
   def admin_edit_url
-    edit_admin_tool_attachment_path(object.id)
+    edit_admin_tool_attachment_path(object.assetable.id, object.id)
   end
 
   def delete_url
@@ -48,7 +48,7 @@ class ToolAttachmentSerializer < ActiveModel::Serializer
   end
 
   def admin_delete_url
-    admin_tool_attachment_path(object.id)
+    admin_tool_attachment_path(object.assetable.id, object.id)
   end
 
   def format_icon

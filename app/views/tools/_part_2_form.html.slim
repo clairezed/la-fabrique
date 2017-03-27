@@ -11,7 +11,7 @@
   = f.text_field :teaser, class: "form-control"
 
 
-/ DECRIPTION =========================================================
+/ DESCRIPTION =========================================================
 
 div#description-wrapper.mt-30
   / .card-block
@@ -87,7 +87,7 @@ div#description-wrapper.mt-30
         = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
         = render partial: 'help_popover', locals: {field: :tool_attachment}
 
-    div.item-list.row data-is-media-list=true data-list-url="#{tool_attachments_path(@tool)}"
+    div.item-list.row data-is-media-list=true data-list-url="#{tool_attachments_path(f.object)}"
 
   .col-12.col-lg-6
     div class="d-flex justify-content-between"
@@ -123,4 +123,4 @@ div#description-wrapper.mt-30
 
 coffee:
   $ ->
-    new PartTwoForm()
+    new PartTwoToolForm()

@@ -21,7 +21,7 @@ class ToolsController < ApplicationController
     @comment = @tool.comments.new
   end
 
-  # Tool proposition ========================================
+  # Tool form ========================================
 
   def new
     @tool = Tool.new
@@ -92,14 +92,13 @@ class ToolsController < ApplicationController
     # @tool.build_seo unless @tool.seo.present?
   end
 
-  # strong parameters
+  # strong parameters -------------------------------------
   def part_1_params
     params.require(:tool).permit(
       :axis_id, :tool_category_id, :title,
       :group_size, :duration, :level, :public, tag_ids: [])
   end
 
-  # strong parameters
   def part_2_params
     params.require(:tool).permit(
       :description, :teaser, 
@@ -109,8 +108,5 @@ class ToolsController < ApplicationController
       seo_attributes: [:slug, :title, :keywords, :description, :id])
   end
 
-  def get_current_part(params_part)
-    p
-  end
 
 end

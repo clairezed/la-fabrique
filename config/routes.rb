@@ -17,8 +17,6 @@ Rails.application.routes.draw do
     resources :axes, concerns: :positionable
     resources :tags, concerns: :positionable
     resources :tool_categories, concerns: :positionable
-    resources :links, concerns: :positionable
-    resources :tool_attachments
     resources :trainings
     resources :training_tools, only: [:destroy], concerns: :positionable
     resources :comments, only: [:index, :destroy] do
@@ -31,8 +29,14 @@ Rails.application.routes.draw do
       member do
         patch :accept 
         patch :reject
+        get :edit_part_1
+        put :part_1
+        get :edit_part_2
+        put :part_2
       end
       resources :steps, controller: "tools/steps", only: [:destroy]
+      resources :tool_attachments, as: :attachments, controller: "tools/tool_attachments"
+      resources :links, controller: "tools/links"
     end
     resources :seos, only: [:index, :edit, :update]
     root to: 'dashboard#index'

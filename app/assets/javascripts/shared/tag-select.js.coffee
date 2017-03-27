@@ -8,6 +8,8 @@ class @TagSelect
 
     tagSelect2 = tagSelect.select2
       tags: true
+      language: "fr"
+      debug: true
       ajax: 
         url: autocompleteUrl
         dataType: 'json'
