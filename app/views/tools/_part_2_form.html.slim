@@ -2,10 +2,12 @@
 
 .form-group
   = f.label :goal
+  = render partial: 'help_popover', locals: {field: :goal}
   = f.text_field :goal, class: "form-control"
 
 .form-group
   = f.label :teaser
+  = render partial: 'help_popover', locals: {field: :teaser}
   = f.text_field :teaser, class: "form-control"
 
 
@@ -25,6 +27,7 @@ div#description-wrapper.mt-30
             aria: { controls: description_type.to_s, expanded: is_selected} do
             => f.radio_button :description_type, description_type.to_s
             => tool_description_type_title(description_type)
+      = render partial: 'help_popover', locals: {field: :description}
 
   div#description.collapse class="#{'show' if f.object.description_type == 'description'}" data-is-description="#{f.object.steps.count}"
     .form-group.row
@@ -56,18 +59,22 @@ div#description-wrapper.mt-30
 
 .form-group
   = f.label :advice
+  = render partial: 'help_popover', locals: {field: :advice}
   = f.text_area :advice, class: "form-control", rows: 6
 
 .form-group
   = f.label :material
+  = render partial: 'help_popover', locals: {field: :material}
   = f.text_area :material, class: "form-control", rows: 6
 
 .form-group
   = f.label :source
+  = render partial: 'help_popover', locals: {field: :source}
   = f.text_field :source, class: "form-control"
 
 .form-group
   = f.label :licence
+  = render partial: 'help_popover', locals: {field: :licence}
   = f.text_field :licence, class: "form-control"
 
 .row
@@ -75,9 +82,10 @@ div#description-wrapper.mt-30
     div class="d-flex justify-content-between"
       .label-title  Média
       = label_tag :"asset_tool_attachment[asset]"
-        span.btn.btn-inverse.btn-sm.uppercase
+        span.btn.btn-inverse.btn-sm.uppercase.mr-2
           | Ajouter un média
         = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
+        = render partial: 'help_popover', locals: {field: :tool_attachment}
 
     div.item-list.row data-is-media-list=true data-list-url="#{tool_attachments_path(@tool)}"
 
@@ -86,14 +94,16 @@ div#description-wrapper.mt-30
       .label-title Liens
       div
         = link_to new_tool_link_path(@tool), remote: true,
-          data: {link_btn: 'new'}, class: 'btn btn-inverse btn-sm uppercase' do
+          data: {link_btn: 'new'}, class: 'btn btn-inverse btn-sm uppercase mr-2' do
           | Ajouter un lien
+        = render partial: 'help_popover', locals: {field: :link}
 
     div.item-list.row data-is-link-list="#{@tool.id}" data-list-url="#{tool_links_path(@tool)}"
 
 
 .form-group
   = f.label :submitter_email, "Email"
+  = render partial: 'help_popover', locals: {field: :submitter_email}
   .row 
     .col-8
       = f.text_field :submitter_email, class: "form-control"

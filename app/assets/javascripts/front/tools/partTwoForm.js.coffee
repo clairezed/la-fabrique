@@ -5,3 +5,4 @@ class @PartTwoForm
     stepManager   = new StepManager()
     fileUploader  = new FileUploader()
     linkModal     = new LinkModal()
+    new Popover()

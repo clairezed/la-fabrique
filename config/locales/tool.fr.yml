@@ -25,6 +25,7 @@ fr:
     label:
       tool:
         axis: Axe
+        axis_id: Axe thématique
         tool_category_id: Catégorie d'outil
         title: Titre
         description: Marche à suivre
@@ -41,6 +42,8 @@ fr:
         submitter_email: Soumis par
         advice: Conseils
         tag_ids: Mots-clés
+        tool_attachment: Média
+        link: Liens
 
   tool_states:
     title:

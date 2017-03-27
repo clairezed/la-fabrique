@@ -64,6 +64,16 @@ module ToolHelper
     tags.order(:title).map{|tag| [tag.title, tag.id]}
   end
 
+  # Tool Help ===============================================================
+
+  def help_title(helpInstance)
+    if helpInstance.present? && !helpInstance.title.blank?
+      return helpInstance.title
+    else
+      return "Comment renseigner le champs #{ I18n.t(helpInstance.field, scope: [:helpers, :label, :tool]).downcase} ?"
+    end
+  end
+
   # Public cible -------------------------------------------
 
   # def tool_public(public)

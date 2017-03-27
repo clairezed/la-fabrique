@@ -19,6 +19,7 @@
 #= require ./shared/file-uploader
 #= require ./shared/link-modal
 #= require ./shared/step-manager
+#= require ./shared/popover
 
 #= require_tree ./front
 

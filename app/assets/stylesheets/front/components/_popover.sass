@@ -1,0 +1,28 @@
+$popover-arrow-outer-color: transparent
+
+
+.popover.popover--help
+  border: none
+  padding: 0
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+
+  .popover-content
+    font-size: 1.2rem
+    min-height: 70px
+
+  .popover-title
+    background-color: $brand-inverse
+    color: $white
+    font-size: 1.4rem
+    font-weight: 600
+
+  // rendre le bord de la flèche transparent
+  &.popover-right,
+  &.bs-tether-element-attached-left
+    &::before
+      border-right-color: $popover-arrow-outer-color
+
+  &.popover-top,
+  &.bs-tether-element-attached-bottom
+    &::before
+      border-top-color: $popover-arrow-outer-color

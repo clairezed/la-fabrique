@@ -4,11 +4,17 @@
 
 .breadcrumb-item
   a
+    transition: all $transition-default
     color: $color-text
   &.active a
-    color: #fff
+    color: $white
     font-weight: 600
   a.disabled
     pointer-events: none
     cursor: not-allowed
     opacity: .65
+  &:hover a
+    color: lighten($color-text, 20%)
+  &.active:hover a
+    color: $white
+
