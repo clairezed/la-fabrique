@@ -16,14 +16,14 @@
 
     .card-block
       .row
+        .col-md-10
+          = yield
         .col-md-2.border-right
           dl
             dt Date création :
             dd= l @training.created_at.to_date
             dt Dernière mise à jour :
             dd= l @training.updated_at
-        .col-md-10
-          = yield
           
   - else
     h2.card-header Créer un nouveau parcours

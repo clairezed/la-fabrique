@@ -15,12 +15,12 @@
 
 = f.hm_text_field :title, {}, {class: "required"}
 
-.form-group.row data-is-tt-container="#{admin_tools_path}"
+.form-group.row data-is-tt-container='tool' data-is-tt-path="#{admin_tools_path}"
   .form-label-default
     label Ajouter un outil
   .controls-xlarge
     => text_field_tag 'tool_title', params[:tool_title], \
-          class: "form-control", placeholder: "Recherchez par titre", data: {is_tt_input: true}, autocomplete: 'off' 
+          class: "form-control", placeholder: "Recherchez par titre", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
 
 table.table.table-hover.table-sm
     thead
@@ -38,16 +38,16 @@ table.table.table-hover.table-sm
         - tool = training_tool.tool
         tr
           = f.hidden_field :tool_ids, multiple: true, value: [training_tool.tool_id]
-          td= tool.title
+          td= link_to tool.title, edit_part_1_admin_tool_path(tool)
           td= tool.axis.title
           td= tool.tool_category.title
           td
             span class="badge badge-#{tool_state_style(tool.state)}"= tool_state_title(tool.state)
           td 
-            = form_tag position_admin_training_tool_path(training_tool), method: :patch, data: {is_position_form: true} do
+            = form_tag position_admin_training_tool_path(training_tool), method: :patch, data: {is_position_form: training_tool.id} do
               = select_tag  :position, 
                             options_for_select( position_select, training_tool.position ),
-                            onchange: '$("[data-is-position-form]").submit();',
+                            onchange: '$(this).parent("[data-is-position-form]").submit();',
                             class: "form-control input-sm", style: "width:70px", id: nil 
           td.action-btns.border-left
             = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_training_tool_path(training_tool),

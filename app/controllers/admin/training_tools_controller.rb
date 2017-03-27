@@ -4,9 +4,13 @@ class Admin::TrainingToolsController < Admin::BaseController
 
   
   def position
+
     if params[:position].present?
-      @training_tool.insert_at params[:position].to_i 
-      flash[:notice] = "Les parcours ont été réordonnés avec succès"
+      if @training_tool.insert_at params[:position].to_i 
+        flash[:notice] = "Les parcours ont été réordonnés avec succès"
+      else
+        flash[:danger] = "Il y a eu un problème lors du réordonnancement"
+      end
     end
     redirect_to edit_admin_training_path(@training_tool.training)
   end

@@ -10,7 +10,7 @@ class Admin::ToolsController < Admin::BaseController
         @tools = @tools.paginate(per_page: 20, page: params[:page])
       end
       format.json do
-        render json: @tools
+        render json: @tools.enabled
       end
     end
   end
