@@ -1,0 +1,70 @@
+// Tool Part One Form=========================================
+.tool-form
+  label
+    margin-bottom: 0.8rem
+// Selects -------------------------------------------------
+
+.form-card-col
+  input[type="radio"]
+    display: none
+  input[type="radio"]:checked + label
+    outline: 3px solid #bbb
+  input[type="radio"]:checked + label.form-axis-card
+    outline: 3px solid #999
+    // border: 3px solid #bbb
+  min-width: 180px
+
+.form-card
+  // margin: 0 auto
+  margin-bottom: 2em
+  text-align: center  
+  padding: 1rem
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  transition: all $transition-default
+  box-sizing: border-box
+  display: flex
+  align-items: center
+  .form-axis-card_title
+    width: 100%
+    text-transform: uppercase
+    font-size: 1.2rem
+
+.form-axis-card
+  height: 140px
+  width: 100%
+// 
+//   margin-top: 35%
+
+@mixin form-card-col-color($color)
+  input[type="radio"]:checked + label
+    background-color: darken($color, 15%)
+  .form-card
+    background-color: $color
+    &:hover, &:focus
+      background-color: darken($color, 15%)
+
+// Gestion des couleurs pour les axes
+.form-card-col-interculturality
+  @include form-card-col-color($interculturality-color)
+.form-card-col-departure_preparation
+  @include form-card-col-color($departure_preparation-color)
+.form-card-col-return_preparation
+  @include form-card-col-color($return_preparation-color)
+.form-card-col-mobility_system
+  @include form-card-col-color($mobility_system-color)
+.form-card-col-skill_promotion
+  @include form-card-col-color($skill_promotion-color)
+.form-card-col-conflict_management
+  @include form-card-col-color($conflict_management-color)
+.form-card-col-group_facilitation
+  @include form-card-col-color($group_facilitation-color)
+.form-card-col-project_methodology
+  @include form-card-col-color($project_methodology-color)
+
+
+// Titre - label ----------------------------------------
+.label-title
+  font-weight: 600
+  font-size: 1.4rem
+  text-transform: uppercase
+  margin-bottom: 1.5rem
