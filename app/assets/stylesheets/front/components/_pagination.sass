@@ -1,0 +1,21 @@
+.pagination-wrapper
+  .pagination 
+    margin: 3rem auto 0
+  a 
+    color: $color-text
+  .page-item
+    min-width: 35px
+    text-align: center
+    &.active .page-link
+      background-color: $brand-inverse
+      border-color: $brand-inverse
+    &.disabled .page-link
+      opacity: .65
+
+  .page-item:first-child:not(:last-child) .page-link
+    border-bottom-left-radius: 0.5rem
+    border-top-left-radius: 0.5rem
+
+  .page-item:last-child:not(:first-child) .page-link
+    border-bottom-right-radius: 0.5rem
+    border-top-right-radius: 0.5rem

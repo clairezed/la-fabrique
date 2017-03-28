@@ -51,3 +51,9 @@
                   span.tool-card_cartel
                     i.fa.fa-users>
                     = tool_group_size(tool.group_size)
+
+.pagination-wrapper
+  = will_paginate @tools, 
+    renderer: WillPaginateBoostrap4Renderer, 
+    previous_label: "<i class='fa fa-angle-left'></i>",
+    next_label: "<i class='fa fa-angle-right'></i>"
