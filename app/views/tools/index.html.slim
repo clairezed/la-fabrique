@@ -16,7 +16,7 @@
               .tool-card_title-block
                 h3.tool-card_title= tool.title
                 span.tool-card_subtitle = tool.tool_category.title
-              - if tool.axis.id_key == "project_methodology"
+              - if tool.recent?
                 .tool-card_new 
                   span Nouveauté
             .tool-card_footer

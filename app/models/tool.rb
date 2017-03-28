@@ -4,6 +4,9 @@ class Tool < ApplicationRecord
   include Sortable
   include Seoable
 
+  # Nb de jours après sa création pdt lesquels un outil est considéré comme "nouveau"
+  NOVELTY_DELAY = 6
+
    # State machine -------------------------------------------------------------
 
   include AASM
@@ -123,8 +126,10 @@ class Tool < ApplicationRecord
   # validation de présence de axe et catégorie -> directement en base
   
   # Scopes =====================================================================
+
   scope :enabled, -> { accepted }
 
+  # Filtres --------------------------------------------------------------------
   scope :by_title, ->(val) { 
     val.downcase!
     where(arel_table[:title].matches("%#{val}%"))
@@ -158,6 +163,13 @@ class Tool < ApplicationRecord
   scope :by_duration, ->(val){ where(duration: durations.fetch(val.to_sym) ) }
   scope :by_group_size, ->(val){ where(group_size: group_sizes.fetch(val.to_sym) ) }
   scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
+
+  # Nouveautés ----------------------------------------------------------------
+
+  scope :recent, -> {
+    novelty_datetime = NOVELTY_DELAY.days.ago
+    where(arel_table[:created_at].gt(novelty_datetime))
+  }
   
   # Class Methods ==============================================================
 
@@ -178,6 +190,10 @@ class Tool < ApplicationRecord
   end
   
   # Instance Methods ===========================================================
+
+  def recent?
+    created_at > NOVELTY_DELAY.days.ago
+  end
 
   private #=====================================================================
   

@@ -5,7 +5,7 @@ class ToolsController < ApplicationController
 
 
   def index
-    params[:sort] ||= "sort_by_created_at asc"
+    params[:sort] ||= "sort_by_created_at desc"
     @tools = Tool.enabled.apply_filters(params)
     respond_to do |format|
       format.html do
