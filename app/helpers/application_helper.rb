@@ -130,24 +130,43 @@ module ApplicationHelper
     end
 
     label = options[:label] || fld.titleize
+
+    icon_lib = options[:icon_lib] || 'glyphicon'
   
     args = params.merge(sort: "#{fld} #{dir}").permit!
     args.delete_if {|k, v| %w(controller action).include?(k) }
 
-    icon_type = case options[:icon_type]
-    when "numeric"
-      "order"
-    when "size"
-      "attributes"
-    else
-      "alphabet"
+    # icon type --------------------------------------
+    if icon_lib == 'glyphicon'
+      icon_type = case options[:icon_type]
+      when "numeric"
+        "order"
+      when "size"
+        "attributes"
+      else
+        "alphabet"
+      end
     end
-    #byebug
+
     result = []
-    result << link_to(label, args, class: dir)
+
+    # Link --------------------------------------------------
+    link_class = "#{'active' if cur_fld == fld} #{dir}"
+    result << link_to(label, args, class: link_class)
+
+    # Icon -------------------------------------------------
     if cur_fld == fld
-      result << content_tag(:span, "", class: "glyphicon glyphicon-sort-by-#{icon_type}#{'-alt' if dir == 'asc'}")
+      case icon_lib
+      when "fa"
+        icon_class = [icon_type, dir].compact.join('-')
+        p "icon_class ===================="
+        p icon_class
+        result << content_tag(:i, "", class: "fa fa-sort-#{icon_class}")
+      else
+        result << content_tag(:span, "", class: "glyphicon glyphicon-sort-by-#{icon_type}#{'-alt' if dir == 'asc'}")
+      end
     end
+
     result.join(' ').html_safe
   end
 

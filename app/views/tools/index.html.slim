@@ -3,6 +3,10 @@
 
 = render "tools/search"
 
+.sort
+  span.sort-item= hm_sort 'sort_by_created_at', label: 'Dernières fiches', icon_lib: 'fa'
+  span.sort-item= hm_sort 'sort_by_title', label: 'A-Z', icon_lib: 'fa'
+
 .card-wrapper
   - @tools.each do |tool|
 
