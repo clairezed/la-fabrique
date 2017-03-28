@@ -77,15 +77,19 @@ div#description-wrapper.mt-30
   = render partial: 'help_popover', locals: {field: :licence}
   = f.text_field :licence, class: "form-control"
 
-.row
+.row.mt-5
   .col-12.col-lg-6
     div class="d-flex justify-content-between"
       .label-title  Média
       = label_tag :"asset_tool_attachment[asset]"
         span.btn.btn-inverse.btn-sm.uppercase.mr-2
           | Ajouter un média
-        = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
+        = file_field_tag :"asset_tool_attachment[asset]", data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
+        / / filtre "accept" mal géré pour certains navigateurs (dont le mien pour les doc, xls, etc)
+        / = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
         = render partial: 'help_popover', locals: {field: :tool_attachment}
+    p.form-text.text-muted.small: em Formats autorisés : .pdf, .jpeg, .gif, .png, .doc, .xls, .ppt, .mp3, .wav
+    p.form-text.text-muted.small: em Taille maximum : 8 Mo
 
     div.item-list.row data-is-media-list=true data-list-url="#{tool_attachments_path(f.object)}"
 
@@ -107,7 +111,7 @@ div#description-wrapper.mt-30
   .row 
     .col-8
       = f.text_field :submitter_email, class: "form-control"
-      p.form-text.text-muted: em Pour que nous puissions vous recontacter si nécessaire.
+      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire.
 
 .d-flex.flex-row-reverse
   .p-6

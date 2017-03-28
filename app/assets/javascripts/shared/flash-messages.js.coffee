@@ -11,3 +11,6 @@ $(document).ajaxComplete (event, request) ->
   if data
     message = decodeURIComponent(escape(data.message))
     flash(message, data.type)
+
+@flashAjaxError = (message = "Une erreur s'est produite. Veuillez réessayer ultérieurement") ->
+  flash(message, 'danger')

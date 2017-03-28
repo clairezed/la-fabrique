@@ -4,24 +4,26 @@ class @FileUploader
     scope: $(document)
     template:
       modal: """
-      <div class="modal fade">
+      <div class="modal fade>
         <div class="modal-dialog" role="document">
           <div class="modal-content" data-is-modal-content>
           </div>
       </div>
     """
     templateSelector:
-      upload: '[data-template="AttachmentUpload"]'
+      upload:   '[data-template="AttachmentUpload"]'
       download: '[data-template="AttachmentDownload"]'
     selectors: 
-      listAnchor: "[data-is-media-list]"
-      modalContent:     '[data-is-modal-content]'
+      listAnchor:   "[data-is-media-list]"
+      modalContent: '[data-is-modal-content]'
+      modalNew:        '[data-is-modal="attachment"]'
 
   constructor:  (options = {}) ->
     console.log "init!"
     @options = $.extend(true, {}, @DEFAULT_OPTIONS, options)
     @fileInput = $("[data-file-upload]")
-    @$modalContainer = $(@options.template.modal)
+    @$modalEditContainer = $(@options.template.modal)
+    @$modalNewContainer = $(@options.selectors.modalNew)
 
     @loadMedias()
     @initFileUpload()
@@ -44,8 +46,8 @@ class @FileUploader
     @options.scope
       .on "ajax:success", "[data-edit-attachment]", (e, data, status, xhr) =>
         console.log data
-        @$modalContainer.find(@options.selectors.modalContent).html(data)
-        @$modalContainer.modal('show')
+        @$modalEditContainer.find(@options.selectors.modalContent).html(data)
+        @$modalEditContainer.modal('show')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
         # errors = JSON.parse(xhr.responseText)['errors']
         console.log error
@@ -59,7 +61,7 @@ class @FileUploader
         currentNode = @getMediaNode(data['id'])
         compiledTemplate = @compileTemplate(data, 'download')
         currentNode.replaceWith(compiledTemplate)
-        @$modalContainer.modal('hide')
+        @$modalEditContainer.modal('hide')
       .on "ajax:error", "[data-delete-attachment]", (e, xhr, status, error)  =>
         # errors = JSON.parse(xhr.responseText)['errors']
         console.log error
@@ -95,12 +97,12 @@ class @FileUploader
       add: (e, data) =>
         console.log "add"
         @populateForm(data.files[0])
-        $("[data-is-modal='attachment']").modal('show')
+        @$modalNewContainer.modal('show')
         $("[data-is-modal-submit]").off('click').on 'click', =>
           console.log data
           data.formData = {
-            "asset_tool_attachment[custom_file_name]": $("[data-is-ta-attribute='custom_file_name']").val(),
-            "asset_tool_attachment[format_type]": $("[data-is-ta-attribute='format_type']:checked").val()
+            "asset_tool_attachment[custom_file_name]": ($("[data-is-ta-attribute='custom_file_name']").val() || ''),
+            "asset_tool_attachment[format_type]": ($("[data-is-ta-attribute='format_type']:checked").val() || '')
           }
           data.context = @prependNode(
             template: 'upload', 
@@ -115,35 +117,72 @@ class @FileUploader
       done: (e, data) =>
         console.log "done"
         console.log data
-        $("[data-is-modal='attachment']").modal('hide')
+        @$modalNewContainer.modal('hide')
         $(data.context).remove()
         console.log data.result
         data.context = @prependNode(
           template: 'download', 
           data: data.result
         )
+      fail: (e, data) =>
+        console.log "fail"
+        console.log data.jqXHR
+        if data.jqXHR.status is 424 # pb de type de média
+          @cancelUpload(data.jqXHR.responseText)
+        else
+          errorsArray = JSON.parse(data.jqXHR.responseText).errors
+          @displayError(errorsArray[0])
+
+
+  # Rendering ---------------------------------------------------------
+  compileTemplate: (data, templateSelector) =>
+    template = $(@options.templateSelector[templateSelector]).html()
+    return Handlebars.compile(template)(data)
 
   prependNode: (args = {}) ->
     compiledTemplate = @compileTemplate(args['data'], args['template'])
     return $(compiledTemplate).prependTo(@options.selectors.listAnchor)
 
-  compileTemplate: (data, templateSelector) =>
-    template = $(@options.templateSelector[templateSelector]).html()
-    return Handlebars.compile(template)(data)
-
-
   getMediaNode: (id) ->
     $("[data-is-download='#{id}']")
+
+
+  # Failure management --------------------------------------------
+  displayError: (message) =>
+    $("[data-is-upload]").remove()
+    flashAjaxError(message)
+
+  cancelUpload: (message) =>
+    @displayError(message)
+    @$modalNewContainer.modal('hide')
 
 
   # Form ---------------------------------------------------------
   populateForm: (file) =>
     format = @getFormat(file.type)
+    console.log format
     $("[data-is-ta-attribute='custom_file_name']").val(file.name)
     $("[data-is-ta-attribute='format_type']:input[value='#{format}']").prop('checked', true)
   
-  getFormat: (type) ->
+  getFormat: (type) =>
+    console.log type
     switch type
-      when "image/jpeg", "image/png", "image/gif" then 'picture'
-      when "application/pdf" then 'document'
+      when "image/jpeg", \
+        "image/png", \
+        "image/gif" \
+        then 'picture'
+      when "application/pdf", \
+        "application/msword", \
+        "application/vnd.oasis.opendocument.text", \
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document", \
+        "application/vnd.ms-excel", \
+        "application/vnd.oasis.opendocument.spreadsheet", \
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"\
+        then 'document'
+      when "application/vnd.ms-powerpoint" \
+        then 'slide'
+      when 'audio/wav', \
+        'audio/mp3'\
+        then 'sound'
       else null
+

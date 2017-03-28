@@ -27,6 +27,8 @@ button:focus, .btn:focus, .btn:active:focus
 
 .btn-inverse
   @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border)
+  &:focus
+    color: $btn-inverse-color
 
 .btn-outline-inverse
   @include button-outline-variant($btn-inverse-bg)

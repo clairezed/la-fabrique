@@ -1,21 +1,36 @@
 class Asset::ToolAttachment < Asset
+  include FormatTypable
 
   # Configs ====================================================================
 
-  DOCUMENT_MIME_TYPES = %i[
-    pdf
-    doc
-    docx
-    xls
-    xlsx
-    ppt
-    mp3
-    wav
-  ].map{|type| Mime[type] }.compact.freeze
+  # DOCUMENT_MIME_TYPES = %i[
+  #   pdf
+  #   odt
+  #   doc
+  #   docx
+  #   ods
+  #   xls
+  #   xlsx
+  #   ppt
+  #   mp3
+  #   wav
+  # ].map{|type| Mime[type] }.compact.freeze
 
-  # DOCUMENT_MIME_TYPES = ['application/pdf', 'application/msword',
-  #       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  #       'application/vnd.oasis.opendocument.text']
+  DOCUMENT_MIME_TYPES = [
+    'application/pdf', 
+    'application/msword',
+    "application/vnd.oasis.opendocument.text",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/x-ole-storage",
+    "application/vnd.oasis.opendocument.spreadsheet",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.ms-powerpoint",
+    'audio/wav', 
+    'audio/mp3',
+    'audio/mpeg',
+    'audio/x-wav'
+  ]
 
   IMAGE_MIME_TYPES= %i[
     png
@@ -45,14 +60,6 @@ class Asset::ToolAttachment < Asset
     #   s3_credentials: "#{Rails.root}/config/s3.yml",
     #   path: "/project/posts/:assetable_id/pictures/:id/:style.:extension"
 
-
-  enum format_type: {
-    picture:  0, # 
-    document: 1, # 
-    slide:    2, # 
-    sound:    3, # 
-    video:    4
-  }
 
   # Validations ================================================================
 
