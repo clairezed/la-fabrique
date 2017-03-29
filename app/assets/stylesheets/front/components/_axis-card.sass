@@ -9,6 +9,7 @@
   text-align: center  
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
   transition: all $transition-default
+  border-radius: $card-border-radius
   a
     display: block
     // position: relative
@@ -34,10 +35,12 @@
       margin: 12px auto
 
 .axis-card_footer
-  padding: 0.75rem 1.25rem
+  padding: 0.75rem 1.25rem 1rem
   background-color: $white
   color: $gray-dark
   border-top: 1px solid rgba(0, 0, 0, 0.125)
+  border-bottom-left-radius: $card-border-radius
+  border-bottom-right-radius: $card-border-radius
   .axis-card_cartel
     padding: 0.2rem 0.6rem
     font-size: 1rem

@@ -24,6 +24,9 @@
   position: absolute
   top: 0
   left: 0
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  border-top-left-radius: $card-border-radius
+  border-top-right-radius: $card-border-radius
 .front
   z-index: 2
   /* for firefox 31 */
@@ -34,12 +37,12 @@
 
 // General design -----------------------------------
 .tool-card
-  width: 100%
-  margin-bottom: 2em
-  border: 0
+  // width: 100%
+  // margin-bottom: 2em
+  // border: 0
   text-align: center  
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
-  transition: all $transition-default
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+  // transition: all $transition-default
   a
     display: block
     color: inherit
@@ -50,6 +53,9 @@
   display: flex
   flex-direction: column
   justify-content: space-between
+  transition: all $transition-default
+  border-top-left-radius: $card-border-radius
+  border-top-right-radius: $card-border-radius
 
 .tool-card_title
   text-transform: uppercase
@@ -84,10 +90,12 @@
     border-bottom: 1px solid $white
 
 .tool-card_footer
-  padding: 0.75rem 1.25rem
+  padding: 0.75rem 1.25rem 1rem
   background-color: $white
   color: $gray-dark
   border-top: 1px solid rgba(0, 0, 0, 0.125)
+  border-bottom-left-radius: $card-border-radius
+  border-bottom-right-radius: $card-border-radius
   .tool-card_cartel
     padding: 0.2rem 0.6rem
     font-size: 1rem
