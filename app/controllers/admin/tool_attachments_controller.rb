@@ -1,25 +1,25 @@
+# frozen_string_literal: true
 # class Admin::ToolAttachmentsController < Admin::BaseController
 #   respond_to :json
 
 #   before_action :find_attachement, only: [ :edit, :update, :destroy ]
 
-
 #   def index
 #     @attachments = Asset::ToolAttachment.all
-#     render json: @attachment, eachSerializer: ToolAttachmentSerializer 
+#     render json: @attachment, eachSerializer: ToolAttachmentSerializer
 #   end
 
 #   def create
 #     p attachment_params
 #     if params[:asset_tool_attachment][:assetable_id].present?
 #       @tool = Tool.find(params[:asset_tool_attachment][:assetable_id])
-#       @attachment = @tool.attachments.new(attachment_params) 
+#       @attachment = @tool.attachments.new(attachment_params)
 #     else
 #       @attachment = Asset::ToolAttachment.new(attachment_params)
 #     end
 #     p @attachment
 #     if @attachment.save
-#       render json: @attachment, serializer: ToolAttachmentSerializer 
+#       render json: @attachment, serializer: ToolAttachmentSerializer
 #     else
 #       render status: 304, json: {errors: @attachment.errors.full_messages}
 #     end
@@ -32,12 +32,11 @@
 
 #   def update
 #     if @attachment.update(attachment_params)
-#       render json: @attachment, serializer: ToolAttachmentSerializer 
+#       render json: @attachment, serializer: ToolAttachmentSerializer
 #     else
 #       render status: 304, json: {errors: @attachment.errors.full_messages}
 #     end
 #   end
-
 
 #   def destroy
 #     if @attachment.destroy
@@ -48,7 +47,7 @@
 #   end
 
 #   private # ----------------------------------------
-  
+
 #   def attachment_params
 #     # params.require(:attachment_asset)
 #     params

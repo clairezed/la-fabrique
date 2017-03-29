@@ -1,7 +1,7 @@
-class ToolHelp < ApplicationRecord
-  
-  # Configurations =============================================================
+# frozen_string_literal: true
 
+class ToolHelp < ApplicationRecord
+  # Configurations =============================================================
 
   # Associations ===============================================================
 
@@ -9,19 +9,17 @@ class ToolHelp < ApplicationRecord
 
   # Scopes =====================================================================
 
-  
   # Class Methods ==============================================================
 
   def self.get(field)
-    self.where(field: field).first
+    where(field: field).first
   end
-  
+
   # Instance Methods ===========================================================
 
   def with_content?
-    return !self.content.blank?
+    content.present?
   end
 
   # private #=====================================================================
-  
 end

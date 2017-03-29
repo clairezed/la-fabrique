@@ -1,5 +1,6 @@
-class Asset < ActiveRecord::Base
+# frozen_string_literal: true
 
+class Asset < ActiveRecord::Base
   # Configs ====================================================================
 
   Paperclip.interpolates :assetable_id do |attachment, _style|
@@ -11,13 +12,12 @@ class Asset < ActiveRecord::Base
   end
 
   # Associations ===============================================================
-  
+
   belongs_to :assetable, polymorphic: true, optional: true
 
   # Validations ================================================================
-  
-  validates :custom_file_name, presence: true
 
+  validates :custom_file_name, presence: true
 
   # Callbacks ================================================================
 
@@ -28,11 +28,10 @@ class Asset < ActiveRecord::Base
   protected #=================================================
 
   # Définition du nom du fichier customiser (utile surtout pour les images)
-  #   Si un custom_file_name est donné, on le parameterize 
+  #   Si un custom_file_name est donné, on le parameterize
   #   Sinon on utilise le nom du fichier uploadé
   def set_custom_file_name
-    self.custom_file_name = self.custom_file_name.try(:parameterize)
-    self.custom_file_name = self.asset_file_name.split(".").first if self.custom_file_name.blank?
+    self.custom_file_name = custom_file_name.try(:parameterize)
+    self.custom_file_name = asset_file_name.split('.').first if custom_file_name.blank?
   end
-  
 end

@@ -1,16 +1,17 @@
-class Admin::AdminsController < Admin::BaseController
+# frozen_string_literal: true
 
-  before_action :find_admin, only: [ :edit, :update, :destroy ]
+class Admin::AdminsController < Admin::BaseController
+  before_action :find_admin, only: %i(edit update destroy)
 
   def index
-    params[:sort] ||= "email ASC"
-    @admins = Admin.where.not(email: "technique@studio-hb.com").paginate(per_page: 20, page: params[:page])
+    params[:sort] ||= 'email ASC'
+    @admins = Admin.where.not(email: 'technique@studio-hb.com').paginate(per_page: 20, page: params[:page])
   end
 
   def new
     @admin = Admin.new
   end
-  
+
   def create
     @admin = Admin.new(admin_params)
     if @admin.save
@@ -21,10 +22,9 @@ class Admin::AdminsController < Admin::BaseController
       render :new
     end
   end
-  
-  def edit
-  end
-  
+
+  def edit; end
+
   def update
     if @admin.update_attributes(admin_params)
       flash[:notice] = "L'admin a été mis à jour avec succès"
@@ -41,7 +41,6 @@ class Admin::AdminsController < Admin::BaseController
     redirect_to admin_admins_path
   end
 
-
   private
 
   def find_admin
@@ -52,5 +51,4 @@ class Admin::AdminsController < Admin::BaseController
   def admin_params
     params.require(:admin).permit(:email, :password)
   end
-  
 end

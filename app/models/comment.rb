@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
-  
   # Configurations =============================================================
   include Sortable
 
-   # State machine -------------------------------------------------------------
+  # State machine -------------------------------------------------------------
 
   include AASM
 
@@ -16,7 +17,6 @@ class Comment < ApplicationRecord
   }
 
   aasm column: :state, enum: true do
-
     state :pending, initial: true
     state :accepted
     state :rejected
@@ -30,33 +30,30 @@ class Comment < ApplicationRecord
       transitions from: :pending, to: :rejected
       transitions from: :accepted, to: :rejected
     end
-
   end
 
   # Enums ----------------------------------------------------------------------
 
-
   # Associations ===============================================================
   belongs_to :tool
-  
+
   # Callbacks ==================================================================
   validates :content, presence: true
 
   # Scopes =====================================================================
 
-  scope :by_state, ->(state){ 
-    where(state: states.fetch(state.to_sym) )
+  scope :by_state, ->(state) {
+    where(state: states.fetch(state.to_sym))
   }
 
   scope :by_tool_title, ->(val) {
-    joins(:tool).merge(Tool.by_title val)
+    joins(:tool).merge(Tool.by_title(val))
   }
 
-  scope :sort_by_tool_title, ->(direction = :asc){
-    joins(:tool).merge(Tool.sort_by_title direction)
+  scope :sort_by_tool_title, ->(direction = :asc) {
+    joins(:tool).merge(Tool.sort_by_title(direction))
   }
 
-  
   # Class Methods ==============================================================
   def self.apply_filters(params)
     klass = self
@@ -66,7 +63,6 @@ class Comment < ApplicationRecord
 
     klass.apply_sorts(params)
   end
-  
-  # Instance Methods ===========================================================
 
+  # Instance Methods ===========================================================
 end

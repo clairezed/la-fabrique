@@ -1,25 +1,23 @@
-class Admin::SeosController < Admin::BaseController
+# frozen_string_literal: true
 
-  before_action :find_seo, only: [ :edit, :update ]
+class Admin::SeosController < Admin::BaseController
+  before_action :find_seo, only: %i(edit update)
 
   def index
     @seos = Seo.where.not(param: nil)
   end
-  
-  def edit
-  end
-  
+
+  def edit; end
+
   def update
     if @seo.update_attributes(seo_params)
-      flash[:notice] = "Les SEO ont été mis à jour avec succès"
+      flash[:notice] = 'Les SEO ont été mis à jour avec succès'
       redirect_to params[:continue].present? ? edit_admin_seo_path(@seo) : admin_seos_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour des SEO"
       render :edit
     end
   end
-
-
 
   private
 
@@ -31,5 +29,4 @@ class Admin::SeosController < Admin::BaseController
   def seo_params
     params.require(:seo).permit(:title, :keywords, :description)
   end
-  
 end

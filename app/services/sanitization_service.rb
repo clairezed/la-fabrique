@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 #
 # Regroupe les fonctionnalités d'assainissement de strings
 #
 module SanitizationService
-
   module_function
 
-  NORMALIZED_URL_REGEX = %r|\Ahttps?://|.freeze
-  DEFAULT_URL_PREFIX = 'http://'.freeze
+  NORMALIZED_URL_REGEX = %r{\Ahttps?://}
+  DEFAULT_URL_PREFIX = 'http://'
 
   # assainit un nom de base de fichier
   #
@@ -35,12 +36,11 @@ module SanitizationService
   def normalize_url(string)
     url = string.to_s
     return url if url.blank?
-    return url if NORMALIZED_URL_REGEX.match(url)
+    return url if NORMALIZED_URL_REGEX.match?(url)
     url.prepend(DEFAULT_URL_PREFIX)
   end
 
   def bank_number(string)
-    string.gsub(/\s+/, "").upcase
+    string.gsub(/\s+/, '').upcase
   end
-
 end

@@ -1,21 +1,22 @@
-class Admin::AxesController < Admin::BaseController
+# frozen_string_literal: true
 
-  before_action :find_axis, only: [ :edit, :update, :position, :destroy ]
+class Admin::AxesController < Admin::BaseController
+  before_action :find_axis, only: %i(edit update position destroy)
 
   def index
-    params[:sort] ||= "sort_by_position asc"
+    params[:sort] ||= 'sort_by_position asc'
     params[:by_theme] ||= Theme.order(:position).first.id
     @axes = Axis
-      .apply_filters(params)
-      .includes(:theme)
-      .paginate(per_page: 20, page: params[:page])
+            .apply_filters(params)
+            .includes(:theme)
+            .paginate(per_page: 20, page: params[:page])
   end
 
   def new
     @axis = Axis.new
     @axis.build_seo
   end
-  
+
   def create
     @axis = Axis.new(axis_params)
     if @axis.save
@@ -26,10 +27,9 @@ class Admin::AxesController < Admin::BaseController
       render :new
     end
   end
-  
-  def edit
-  end
-  
+
+  def edit; end
+
   def update
     if @axis.update_attributes(axis_params)
       flash[:notice] = "L'axe a été mis à jour avec succès"
@@ -39,11 +39,11 @@ class Admin::AxesController < Admin::BaseController
       render :edit
     end
   end
-  
+
   def position
     if params[:position].present?
-      @axis.insert_at params[:position].to_i 
-      flash[:notice] = "Les axes ont été réordonnés avec succès"
+      @axis.insert_at params[:position].to_i
+      flash[:notice] = 'Les axes ont été réordonnés avec succès'
     end
     redirect_to admin_axes_path
   end
@@ -54,7 +54,6 @@ class Admin::AxesController < Admin::BaseController
     redirect_to admin_axes_path
   end
 
-
   private
 
   def find_axis
@@ -63,7 +62,6 @@ class Admin::AxesController < Admin::BaseController
 
   # strong parameters
   def axis_params
-    params.require(:axis).permit(:title, :description, :theme_id, :enabled, seo_attributes: [:slug, :title, :keywords, :description, :id])
+    params.require(:axis).permit(:title, :description, :theme_id, :enabled, seo_attributes: %i(slug title keywords description id))
   end
-  
 end

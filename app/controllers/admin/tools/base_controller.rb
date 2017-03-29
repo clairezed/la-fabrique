@@ -1,5 +1,6 @@
-class Admin::Tools::BaseController < Admin::BaseController
+# frozen_string_literal: true
 
+class Admin::Tools::BaseController < Admin::BaseController
   before_action :load_tool
 
   private
@@ -7,6 +8,4 @@ class Admin::Tools::BaseController < Admin::BaseController
   def load_tool
     @tool = Tool.from_param(params[:tool_id])
   end
-
-
 end

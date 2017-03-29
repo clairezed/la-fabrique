@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class Training < ApplicationRecord
-  
   # Configurations =============================================================
   include Sortable
   include Seoable
-  
+
   acts_as_list
-    
+
   # Associations ===============================================================
 
   has_many :training_tools, dependent: :restrict_with_exception
@@ -13,15 +14,15 @@ class Training < ApplicationRecord
 
   # Callbacks ==================================================================
   validates :title, presence: true
-  
+
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }
-  
-  scope :by_title, ->(val) { 
+
+  scope :by_title, ->(val) {
     val.downcase!
     where(arel_table[:title].matches("%#{val}%"))
   }
-  
+
   # Class Methods ==============================================================
   def self.apply_filters(params)
     klass = self
@@ -30,9 +31,8 @@ class Training < ApplicationRecord
 
     klass.apply_sorts(params)
   end
-  
+
   # Instance Methods ===========================================================
 
   # private #=====================================================================
-  
 end

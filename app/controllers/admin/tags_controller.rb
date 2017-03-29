@@ -1,9 +1,10 @@
-class Admin::TagsController < Admin::BaseController
+# frozen_string_literal: true
 
-  before_action :find_tag, only: [ :edit, :update, :position, :destroy ]
+class Admin::TagsController < Admin::BaseController
+  before_action :find_tag, only: %i(edit update position destroy)
 
   def index
-    params[:sort] ||= "sort_by_title asc"
+    params[:sort] ||= 'sort_by_title asc'
     @tags = Tag.apply_filters(params)
     respond_to do |format|
       format.html do
@@ -11,7 +12,7 @@ class Admin::TagsController < Admin::BaseController
       end
       format.json do
         # format spécifique à select2
-        render json: @tags.limit(5).map { |tag| { id: tag.id, text: tag.title }}
+        render json: @tags.limit(5).map { |tag| { id: tag.id, text: tag.title } }
       end
     end
   end
@@ -20,44 +21,43 @@ class Admin::TagsController < Admin::BaseController
     @tag = Tag.new
     @tag.build_seo
   end
-  
+
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      flash[:notice] = "Le mot-clé a été créé avec succès"
+      flash[:notice] = 'Le mot-clé a été créé avec succès'
       redirect_to params[:continue].present? ? edit_admin_tag_path(@tag) : admin_tags_path
     else
       flash[:error] = "Une erreur s'est produite lors de la création du mot-clé"
       render :new
     end
   end
-  
-  def edit
-  end
-  
+
+  def edit; end
+
   def update
     if @tag.update_attributes(tag_params)
-      flash[:notice] = "Le mot-clé a été mis à jour avec succès"
+      flash[:notice] = 'Le mot-clé a été mis à jour avec succès'
       redirect_to params[:continue].present? ? edit_admin_tag_path(@tag) : admin_tags_path
     else
       flash[:error] = "Une erreur s'est produite lors de la mise à jour du mot-clé"
       render :edit
     end
   end
-  
+
   def position
     if params[:position].present?
-      @tag.insert_at params[:position].to_i 
-      flash[:notice] = "Les mot-clés ont été réordonnés avec succès"
+      @tag.insert_at params[:position].to_i
+      flash[:notice] = 'Les mot-clés ont été réordonnés avec succès'
     end
     redirect_to admin_tags_path
   end
 
   def destroy
     begin
-      flash[:notice] = "Le mot-clé a été supprimé avec succès" if @tag.destroy
+      flash[:notice] = 'Le mot-clé a été supprimé avec succès' if @tag.destroy
     rescue ActiveRecord::DeleteRestrictionError
-      flash[:error] = "Ce mot-clé ne peut être supprimé car des éléments lui sont dépendants"
+      flash[:error] = 'Ce mot-clé ne peut être supprimé car des éléments lui sont dépendants'
     end
     redirect_to admin_tags_path
   end
@@ -70,7 +70,6 @@ class Admin::TagsController < Admin::BaseController
 
   # strong parameters
   def tag_params
-    params.require(:tag).permit(:title, :enabled, seo_attributes: [:slug, :title, :keywords, :description, :id])
+    params.require(:tag).permit(:title, :enabled, seo_attributes: %i(slug title keywords description id))
   end
-  
 end

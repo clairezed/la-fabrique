@@ -1,5 +1,6 @@
-module FormatHelper
+# frozen_string_literal: true
 
+module FormatHelper
   def boolean_class(boolean)
     return '' if boolean.nil?
     boolean ? 'success' : 'danger'
@@ -9,5 +10,4 @@ module FormatHelper
     return '' if boolean.nil?
     boolean ? 'Oui' : 'Non'
   end
-
 end

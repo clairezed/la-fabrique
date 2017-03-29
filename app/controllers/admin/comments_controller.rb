@@ -1,14 +1,15 @@
-class Admin::CommentsController < Admin::BaseController
+# frozen_string_literal: true
 
-  before_action :find_comment, except: [ :index ]
+class Admin::CommentsController < Admin::BaseController
+  before_action :find_comment, except: [:index]
 
   def index
-    params[:sort] ||= "sort_by_created_at asc"
+    params[:sort] ||= 'sort_by_created_at asc'
     @comments = Comment.apply_filters(params).paginate(per_page: 20, page: params[:page])
   end
 
   def accept
-    flash[:notice] = "Commentaire validée avec succès"
+    flash[:notice] = 'Commentaire validée avec succès'
     begin
       @comment.accept!
     rescue AASM::InvalidTransition
@@ -18,7 +19,7 @@ class Admin::CommentsController < Admin::BaseController
   end
 
   def reject
-    flash[:notice] = "Commentaire refusée avec succès"
+    flash[:notice] = 'Commentaire refusée avec succès'
     begin
       @comment.reject!
     rescue AASM::InvalidTransition
@@ -29,10 +30,9 @@ class Admin::CommentsController < Admin::BaseController
 
   def destroy
     @comment.destroy
-    flash[:notice] = "Le commentaire a été supprimé avec succès"
+    flash[:notice] = 'Le commentaire a été supprimé avec succès'
     redirect_to admin_comments_path
   end
-
 
   private # ==================================================
 
@@ -48,5 +48,4 @@ class Admin::CommentsController < Admin::BaseController
     params.permit(:sort, :page, :by_tool)
   end
   helper_method :search_params
-  
 end

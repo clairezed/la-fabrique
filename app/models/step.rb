@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 class Step < ApplicationRecord
-  
   # Configurations =============================================================
   include Sortable
-  
+
   acts_as_list
-    
+
   # Associations ===============================================================
 
   belongs_to :tool
 
   # Callbacks ==================================================================
   validates :description, presence: true
-  
+
   # Scopes =====================================================================
-  
+
   # Class Methods ==============================================================
   def self.apply_filters(params)
     klass = self
@@ -22,9 +23,8 @@ class Step < ApplicationRecord
 
     klass.apply_sorts(params)
   end
-  
+
   # Instance Methods ===========================================================
 
   # private #=====================================================================
-  
 end

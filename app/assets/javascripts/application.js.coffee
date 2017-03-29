@@ -22,7 +22,7 @@
 #= require ./shared/popover
 
 #= require_tree ./front
-
+#= require_tree ./locales
 
 $ ->
   $('[data-is-nice-select]').niceSelect()

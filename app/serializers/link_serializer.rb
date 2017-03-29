@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class LinkSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
   include ToolFormatTypeHelper
 
-  attributes  :id, 
+  attributes  :id,
               :title,
               :url,
               :delete_url,
@@ -36,6 +38,4 @@ class LinkSerializer < ActiveModel::Serializer
   def format_title
     tool_format_type_title(object.format_type)
   end
-
-
 end

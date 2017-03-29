@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc 'Seeds database with dummy tools'
   task dummy_tools: :environment do
@@ -32,6 +34,6 @@ def generate_dummy_tool
     does not have sample; neither does ruby-doc. In your opinion, what is the best \
     reference for Ruby, updated to 1.9?"
   ).first_or_create
-  
+
   tool.accept! if tool.may_accept?
 end

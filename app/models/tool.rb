@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Tool < ApplicationRecord
-  
   # Configurations =============================================================
   include Sortable
   include Seoable
@@ -7,7 +8,7 @@ class Tool < ApplicationRecord
   # Nb de jours après sa création pdt lesquels un outil est considéré comme "nouveau"
   NOVELTY_DELAY = 6
 
-   # State machine -------------------------------------------------------------
+  # State machine -------------------------------------------------------------
 
   include AASM
 
@@ -21,7 +22,6 @@ class Tool < ApplicationRecord
   }
 
   aasm column: :state, enum: true do
-
     state :draft, initial: true
     state :pending
     state :accepted
@@ -41,7 +41,6 @@ class Tool < ApplicationRecord
       transitions from: :pending, to: :rejected
       transitions from: :accepted, to: :rejected
     end
-
   end
 
   # Enums ----------------------------------------------------------------------
@@ -55,8 +54,8 @@ class Tool < ApplicationRecord
   enum duration: {
     duration_1:   0, # en attente de validation
     duration_2:  1, # accepté
-    duration_3:  2,  # rejeté
-    duration_4:  3  # rejeté
+    duration_3:  2, # rejeté
+    duration_4:  3 # rejeté
   }
 
   enum level: {
@@ -76,20 +75,19 @@ class Tool < ApplicationRecord
   #   unknown_source: 2  # rejeté
   # }
 
-
   enum description_type: {
-    steps:   0, 
+    steps:   0,
     description: 1
   }
-  
+
   # Associations ===============================================================
   belongs_to :axis
   belongs_to :tool_category
-  
+
   has_many :attachments,
-            class_name: :'::Asset::ToolAttachment',
-            as:         :assetable,
-            dependent:  :destroy
+           class_name: :'::Asset::ToolAttachment',
+           as:         :assetable,
+           dependent:  :destroy
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
   has_many :tool_tags, dependent: :restrict_with_exception
@@ -101,36 +99,35 @@ class Tool < ApplicationRecord
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
-
   # Callbacks ==================================================================
   validates :title, presence: true
-  validates :group_size, 
-            :duration, 
-            :level, 
-    presence: true
+  validates :group_size,
+            :duration,
+            :level,
+            presence: true
 
   # Etape 2 du formulaire de création ----------------------------
 
   validates :goal,
             :teaser,
-    presence: true, unless: :new_record?
+            presence: true, unless: :new_record?
 
   private def description_exists?
-  # TODO : depend aussi de si c'es step ou desc_type
-  return true if self.steps.any? || self.description.present?
-    self.errors.add(:description, "doit être renseignée")
+    # TODO : depend aussi de si c'es step ou desc_type
+    return true if steps.any? || description.present?
+    errors.add(:description, 'doit être renseignée')
     false
   end
   validate :description_exists?, unless: :new_record?
 
   # validation de présence de axe et catégorie -> directement en base
-  
+
   # Scopes =====================================================================
 
   scope :enabled, -> { accepted }
 
   # Filtres --------------------------------------------------------------------
-  scope :by_title, ->(val) { 
+  scope :by_title, ->(val) {
     val.downcase!
     where(arel_table[:title].matches("%#{val}%"))
   }
@@ -138,33 +135,33 @@ class Tool < ApplicationRecord
   scope :by_axis, ->(val) { where axis: val }
   scope :by_tool_category, ->(val) { where tool_category: val }
 
-  scope :by_tag_ids, ->(id) { 
+  scope :by_tag_ids, ->(id) {
     tt = ToolTag.arel_table
     condition = ToolTag
-                  .where(tt[:tag_id].in(id).and tt[:tool_id].eq(arel_table[:id]))
-                  .exists
+                .where(tt[:tag_id].in(id).and(tt[:tool_id].eq(arel_table[:id])))
+                .exists
     where(condition)
   }
 
-  scope :by_state, ->(state){ 
-    where(state: states.fetch(state.to_sym) )
+  scope :by_state, ->(state) {
+    where(state: states.fetch(state.to_sym))
   }
 
-  scope :by_format_type, ->(format){
+  scope :by_format_type, ->(format) {
     # pour que le scope fonctionne qu'on renvoit la clé ou le code numerique du format
     format = ::Asset::ToolAttachment.format_types[format] unless format.is_a?(Integer)
     attachment_condition = ::Asset::ToolAttachment.arel_table[:format_type].eq(format)
     link_condition = ::Link.arel_table[:format_type].eq(format)
 
     eager_load(:attachments).eager_load(:links)
-      .where(attachment_condition.or(link_condition))
+                            .where(attachment_condition.or(link_condition))
   }
 
-  scope :by_duration, ->(val){ where(duration: durations.fetch(val.to_sym) ) }
-  scope :by_group_size, ->(val){ where(group_size: group_sizes.fetch(val.to_sym) ) }
-  scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
+  scope :by_duration, ->(val) { where(duration: durations.fetch(val.to_sym)) }
+  scope :by_group_size, ->(val) { where(group_size: group_sizes.fetch(val.to_sym)) }
+  scope :by_level, ->(val) { where(level: levels.fetch(val.to_sym)) }
 
-  scope :by_theme, ->(val){
+  scope :by_theme, ->(val) {
     joins(:axis).merge(Axis.by_theme(val))
   }
 
@@ -174,7 +171,7 @@ class Tool < ApplicationRecord
     novelty_datetime = NOVELTY_DELAY.days.ago
     where(arel_table[:created_at].gt(novelty_datetime))
   }
-  
+
   # Class Methods ==============================================================
 
   def self.apply_filters(params)
@@ -193,7 +190,7 @@ class Tool < ApplicationRecord
 
     klass.apply_sorts(params)
   end
-  
+
   # Instance Methods ===========================================================
 
   def recent?
@@ -201,5 +198,4 @@ class Tool < ApplicationRecord
   end
 
   # private #=====================================================================
-  
 end

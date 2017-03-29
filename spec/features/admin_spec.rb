@@ -1,14 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-feature "Connexion/Déconnexion Admin" do
-  scenario "Admin se connecte avec de bons identifiants" do
+require 'rails_helper'
+
+feature 'Connexion/Déconnexion Admin' do
+  scenario 'Admin se connecte avec de bons identifiants' do
     visit admin_root_path
 
     expect(current_path).to eq(new_admin_session_path)
 
-    fill_in "admin_email", with: "clairezuliani+admin@gmail.com"
-    fill_in "admin_password", with: "password"
-    click_button "Connexion"
+    fill_in 'admin_email', with: 'clairezuliani+admin@gmail.com'
+    fill_in 'admin_password', with: 'password'
+    click_button 'Connexion'
 
     expect(current_path).to eq(admin_root_path)
   end
@@ -17,11 +19,11 @@ feature "Connexion/Déconnexion Admin" do
     visit admin_root_path
 
     expect(current_path).to eq(new_admin_session_path)
-    fill_in "admin_email", with: "clairezuliani+admin@gmail.com"
-    fill_in "admin_password", with: "wrong_password"
-    click_button "Connexion"
+    fill_in 'admin_email', with: 'clairezuliani+admin@gmail.com'
+    fill_in 'admin_password', with: 'wrong_password'
+    click_button 'Connexion'
 
-    expect(current_path).to eq(new_admin_session_path) 
+    expect(current_path).to eq(new_admin_session_path)
   end
 
   scenario "Je suis connecté en tant qu'admin, je retourne sur le site et je reviens en admin sans me connecter" do
@@ -31,7 +33,7 @@ feature "Connexion/Déconnexion Admin" do
     visit admin_root_path
     expect(current_path).to eq(admin_root_path)
 
-    click_link "Retour au site"
+    click_link 'Retour au site'
     expect(current_path).to eq(root_path)
 
     visit admin_root_path
@@ -45,7 +47,7 @@ feature "Connexion/Déconnexion Admin" do
     visit admin_root_path
     expect(current_path).to eq(admin_root_path)
 
-    click_link "Se déconnecter"
+    click_link 'Se déconnecter'
     expect(current_path).to eq(root_path)
 
     visit admin_root_path

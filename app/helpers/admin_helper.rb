@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminHelper
   def submenu(text, sub_menu_array, &block)
     content = block_given? ? capture(&block) : ''

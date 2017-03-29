@@ -1,15 +1,15 @@
-FactoryGirl.define do
+# frozen_string_literal: true
 
+FactoryGirl.define do
   trait :pending do
-    state "pending"
+    state 'pending'
   end
 
   trait :accepted do
-    state "accepted"
+    state 'accepted'
   end
 
   trait :rejected do
-    state "rejected"
+    state 'rejected'
   end
-
 end

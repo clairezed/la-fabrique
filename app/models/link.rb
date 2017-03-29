@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 class Link < ApplicationRecord
-  
   # Configurations =============================================================
   include Sortable
   include FormatTypable
 
   acts_as_list scope: [:tool_id]
-  
+
   # Associations ===============================================================
 
   belongs_to :tool
 
   # Validations ================================================================
-  validates :url, 
-            # :title, 
+  validates :url,
+            # :title,
             presence: true
 
   private def normalize_url!
@@ -22,13 +23,13 @@ class Link < ApplicationRecord
 
   # Callbacks ==================================================================
   before_validation :set_title
-  
+
   # Scopes =====================================================================
-  scope :by_tool_id, -> (id) { 
-    return none unless id.present?
-    where(tool_id: id) 
+  scope :by_tool_id, ->(id) {
+    return none if id.blank?
+    where(tool_id: id)
   }
-  
+
   # Class Methods ==============================================================
   def self.apply_filters(params)
     klass = self
@@ -43,7 +44,6 @@ class Link < ApplicationRecord
   private #=====================================================================
 
   def set_title
-    self.title = self.url if self.title.blank?
+    self.title = url if title.blank?
   end
-  
 end

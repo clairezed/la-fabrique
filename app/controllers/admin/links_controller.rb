@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # class Admin::LinksController < Admin::BaseController
 
 #   respond_to :json
@@ -5,10 +6,9 @@
 #   before_action :find_tool, only: [ :new ]
 #   before_action :find_link, only: [ :edit, :update, :destroy ]
 
-
 #   def index
 #     @links = Link.apply_filters(params)
-#     render json: @links, eachSerializer: LinkSerializer 
+#     render json: @links, eachSerializer: LinkSerializer
 #   end
 
 #   def new
@@ -19,7 +19,7 @@
 #   def create
 #     if params[:link][:tool_id].present?
 #       @tool = Tool.find(params[:link][:tool_id])
-#       @link = @tool.links.new(link_params) 
+#       @link = @tool.links.new(link_params)
 #     else
 #       @link = Link.new(link_params)
 #     end
@@ -37,13 +37,12 @@
 
 #   def update
 #     if @link.update(link_params)
-#       render json: @link, serializer: LinkSerializer 
+#       render json: @link, serializer: LinkSerializer
 #     else
 #       render :edit, layout: false, status: 422
-      
+
 #     end
 #   end
-
 
 #   def destroy
 #     if @link.destroy
@@ -54,7 +53,7 @@
 #   end
 
 #   private # ----------------------------------------
-  
+
 #   def link_params
 #     # params.require(:link_asset)
 #     params

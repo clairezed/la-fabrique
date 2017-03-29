@@ -1,17 +1,18 @@
-module ToolHelper
+# frozen_string_literal: true
 
+module ToolHelper
   # Etat -----------------------------------------------
 
   def tool_state_title(state)
-    I18n.t(state, scope: [:tool_states, :title])
+    I18n.t(state, scope: %i(tool_states title))
   end
 
   def tool_state_style(state)
-    I18n.t(state, scope: [:tool_states, :style])
+    I18n.t(state, scope: %i(tool_states style))
   end
 
   def tool_state_options(states = Tool.states.keys)
-    states.map do |state| 
+    states.map do |state|
       [tool_state_title(state), state.to_s]
     end
   end
@@ -23,7 +24,7 @@ module ToolHelper
   end
 
   def tool_group_size_options(group_sizes = Tool.group_sizes.keys)
-    group_sizes.map do |group_size| 
+    group_sizes.map do |group_size|
       [tool_group_size(group_size), group_size.to_s]
     end
   end
@@ -35,7 +36,7 @@ module ToolHelper
   end
 
   def tool_duration_options(durations = Tool.durations.keys)
-    durations.map do |duration| 
+    durations.map do |duration|
       [tool_duration(duration), duration.to_s]
     end
   end
@@ -47,7 +48,7 @@ module ToolHelper
   end
 
   def tool_level_options(levels = Tool.levels.keys)
-    levels.map do |level| 
+    levels.map do |level|
       [tool_level(level), level.to_s]
     end
   end
@@ -56,21 +57,21 @@ module ToolHelper
 
   def tool_description_type_title(type)
     I18n.t(type, scope: [:tool_description_types])
-  end  
+  end
 
   # Tool Tag ===============================================================
 
   def tool_tags_options(tags = Tag.all)
-    tags.order(:title).map{|tag| [tag.title, tag.id]}
+    tags.order(:title).map { |tag| [tag.title, tag.id] }
   end
 
   # Tool Help ===============================================================
 
   def help_title(helpInstance)
-    if helpInstance.present? && !helpInstance.title.blank?
-      return helpInstance.title
+    if helpInstance.present? && helpInstance.title.present?
+      helpInstance.title
     else
-      return "Comment renseigner le champs #{ I18n.t(helpInstance.field, scope: [:helpers, :label, :tool]).downcase} ?"
+      "Comment renseigner le champs #{I18n.t(helpInstance.field, scope: %i(helpers label tool)).downcase} ?"
     end
   end
 
@@ -81,7 +82,7 @@ module ToolHelper
   # end
 
   # def tool_public_options(publics = Tool.publics.keys)
-  #   publics.map do |public| 
+  #   publics.map do |public|
   #     [tool_public(public), public.to_s]
   #   end
   # end
@@ -97,7 +98,7 @@ module ToolHelper
   # end
 
   # def tool_licence_options(licences = Tool.licences.keys)
-  #   licences.map do |licence| 
+  #   licences.map do |licence|
   #     [tool_licence(licence), licence.to_s]
   #   end
   # end
@@ -108,5 +109,4 @@ module ToolHelper
   #   end
   #   raw array.join("</br>")
   # end
-
 end
