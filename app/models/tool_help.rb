@@ -22,6 +22,6 @@ class ToolHelp < ApplicationRecord
     return !self.content.blank?
   end
 
-  private #=====================================================================
+  # private #=====================================================================
   
 end

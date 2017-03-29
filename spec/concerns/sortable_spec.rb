@@ -14,9 +14,9 @@ RSpec.describe Sortable do
   end
 
   before(:each) do
-    object1 = SortableModel.create(my_string: "aa1", my_integer: 1)
-    object2 = SortableModel.create(my_string: "Aa2", my_integer: 2)
-    object3 = SortableModel.create(my_string: "aA3", my_integer: 3)
+    SortableModel.create(my_string: "aa1", my_integer: 1)
+    SortableModel.create(my_string: "Aa2", my_integer: 2)
+    SortableModel.create(my_string: "aA3", my_integer: 3)
   end
 
   it "tri ascendant de string avec gestion de la casse" do

@@ -47,7 +47,7 @@ class Admin::ToolCategoriesController < Admin::BaseController
   def destroy
     begin
       flash[:notice] = "La catégorie a été supprimée avec succès" if @tool_category.destroy
-    rescue ActiveRecord::DeleteRestrictionError => e
+    rescue ActiveRecord::DeleteRestrictionError
       flash[:error] = "Cette catégorie ne peut être supprimée car des éléments lui sont dépendants"
     end
     redirect_to admin_tool_categories_path

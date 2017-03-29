@@ -118,7 +118,6 @@ class Pdf::Tool < Pdf::Base
 
       bs_row do
         bs_span(12) do
-          text = %(Fiche fournie par MobiMagic)
           styled_text [text: tool_licence_explanation(@tool.licence)], {styles: [:italic], size: 8}, align: :center
         end
       end

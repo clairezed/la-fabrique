@@ -16,7 +16,4 @@ module FormatTypable
 
   end
 
-  private
-
-
 end

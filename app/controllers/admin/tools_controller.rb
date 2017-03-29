@@ -6,6 +6,9 @@ class Admin::ToolsController < Admin::BaseController
     params[:sort] ||= "sort_by_created_at desc"
     # params[:by_theme] ||= Theme.order(:position).first.id
     @tools = Tool.apply_filters(params)
+      .includes(:axis)
+      .includes(:seo)
+      .includes(:tool_category)
     respond_to do |format|
       format.html do
         @tools = @tools.paginate(per_page: 20, page: params[:page])

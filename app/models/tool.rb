@@ -166,7 +166,7 @@ class Tool < ApplicationRecord
 
   scope :by_theme, ->(val){
     joins(:axis).merge(Axis.by_theme(val))
-   }
+  }
 
   # Nouveautés ----------------------------------------------------------------
 
@@ -200,6 +200,6 @@ class Tool < ApplicationRecord
     created_at > NOVELTY_DELAY.days.ago
   end
 
-  private #=====================================================================
+  # private #=====================================================================
   
 end

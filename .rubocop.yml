@@ -8,6 +8,10 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'script/**/*'
+    - 'app/helpers/application_helper.rb'
+    - 'app/models/concerns/sortable.rb'
+    - 'lib/will_paginate_boostrap4_renderer.rb'
+    - 'lib/hm_form_builder.rb'
 
 
 Rails:
@@ -15,3 +19,6 @@ Rails:
 
 Metrics/LineLength:
   Max: 100
+
+Metrics/MethodLength:
+  Max: 20
