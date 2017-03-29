@@ -8,9 +8,9 @@
   input[type="radio"]
     display: none
   input[type="radio"]:checked + label
-    outline: 3px solid #bbb
+    border: 3px solid #AAA
   input[type="radio"]:checked + label.form-axis-card
-    outline: 3px solid #999
+    border: 3px solid #777
     // border: 3px solid #bbb
   min-width: 180px
 
@@ -24,6 +24,9 @@
   box-sizing: border-box
   display: flex
   align-items: center
+  background-color: $white
+  border: 3px solid transparent
+  border-radius: $card-border-radius
   .form-axis-card_title
     width: 100%
     text-transform: uppercase
