@@ -9,6 +9,7 @@ class Theme < ApplicationRecord
   # Associations ===============================================================
 
   has_many :axes, dependent: :restrict_with_exception
+  has_many :tools, through: :axes
 
   # Callbacks ==================================================================
   validates :title, presence: true

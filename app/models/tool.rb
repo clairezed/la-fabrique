@@ -164,6 +164,10 @@ class Tool < ApplicationRecord
   scope :by_group_size, ->(val){ where(group_size: group_sizes.fetch(val.to_sym) ) }
   scope :by_level, ->(val){ where(level: levels.fetch(val.to_sym) ) }
 
+  scope :by_theme, ->(val){
+    joins(:axis).merge(Axis.by_theme(val))
+   }
+
   # Nouveautés ----------------------------------------------------------------
 
   scope :recent, -> {
@@ -177,6 +181,7 @@ class Tool < ApplicationRecord
     klass = self
 
     klass = klass.by_title(params[:by_title]) if params[:by_title].present?
+    klass = klass.by_theme(params[:by_theme]) if params[:by_theme].present?
     klass = klass.by_axis(params[:by_axis]) if params[:by_axis].present?
     klass = klass.by_tool_category(params[:by_tool_category]) if params[:by_tool_category].present?
     klass = klass.by_tag_ids(params[:by_tag_ids]) if params[:by_tag_ids].present?

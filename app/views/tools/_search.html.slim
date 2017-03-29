@@ -5,7 +5,7 @@
       .col-12.col-lg-2.col-md-3.search-bar-item.search-bar-item--axis
         label Dans l'axe
         = select_tag :by_axis, \
-              options_for_select(axis_options, params[:by_axis]), \
+              options_for_select(axis_options(current_theme.axes), params[:by_axis]), \
               prompt: "Filtrer",\
               class: "nice-select", \
               data: {is_nice_select: true}, \

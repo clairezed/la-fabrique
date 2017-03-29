@@ -20,6 +20,13 @@
           class: "form-control", placeholder: "par titre"
 
       .form-group.col-3
+        = select_tag :by_theme, \
+              options_for_select(theme_options, params[:by_theme]), \
+              prompt: "Tous les thèmes",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
+
+      .form-group.col-3
         = select_tag :by_axis, \
               options_for_select(axis_options, params[:by_axis]), \
               prompt: "Tous les axes",\
@@ -40,19 +47,19 @@
               class: "form-control", \
               onchange: "$('[data-is-filter-form]').submit()"
 
-      .form-group.col-3
-        = select_tag :by_group_size, \
-              options_for_select(tool_group_size_options, params[:by_group_size]), \
-              prompt: "Toutes les tailles de groupe",\
-              class: "form-control", \
-              onchange: "$('[data-is-filter-form]').submit()"
+      / .form-group.col-3
+      /   = select_tag :by_group_size, \
+      /         options_for_select(tool_group_size_options, params[:by_group_size]), \
+      /         prompt: "Toutes les tailles de groupe",\
+      /         class: "form-control", \
+      /         onchange: "$('[data-is-filter-form]').submit()"
 
-      .form-group.col-3
-        = select_tag :by_duration, \
-              options_for_select(tool_duration_options, params[:by_duration]), \
-              prompt: "Toutes les durées",\
-              class: "form-control", \
-              onchange: "$('[data-is-filter-form]').submit()"
+      / .form-group.col-3
+      /   = select_tag :by_duration, \
+      /         options_for_select(tool_duration_options, params[:by_duration]), \
+      /         prompt: "Toutes les durées",\
+      /         class: "form-control", \
+      /         onchange: "$('[data-is-filter-form]').submit()"
 
       .form-group.col-3
         = select_tag :by_tag_ids, \
@@ -68,6 +75,9 @@
           span.glyphicon.glyphicon-repeat>
           | Réinitialiser
 
+/ ul.nav.nav-tabs
+/   - Theme.order(:position).each do |theme|
+/     = menu_link theme.title, admin_tools_path(by_theme: theme.id), sub_section: theme.id, class: "nav-link", li_class: "#{'active' if params[:by_theme] == theme.id}"
 .card.card-block
   .content-main
     small.float-right = I18n.t("results", count: @tools.count)

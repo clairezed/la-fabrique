@@ -6,7 +6,7 @@ class ToolsController < ApplicationController
 
   def index
     params[:sort] ||= "sort_by_created_at desc"
-    @tools = Tool.enabled.apply_filters(params)
+    @tools = current_theme.tools.enabled.apply_filters(params)
     respond_to do |format|
       format.html do
         @tools = @tools.paginate(per_page: 20, page: params[:page])

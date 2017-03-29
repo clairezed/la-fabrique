@@ -59,8 +59,9 @@ class ApplicationController < ActionController::Base
     cookies.permanent["visited"] = true
   end
 
-  def default_theme
+  def current_theme
     Theme.where(id_key: "mobility").first || Theme.first
   end
+  helper_method :current_theme
 
 end

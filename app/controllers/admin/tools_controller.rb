@@ -4,6 +4,7 @@ class Admin::ToolsController < Admin::BaseController
 
   def index
     params[:sort] ||= "sort_by_created_at desc"
+    # params[:by_theme] ||= Theme.order(:position).first.id
     @tools = Tool.apply_filters(params)
     respond_to do |format|
       format.html do
