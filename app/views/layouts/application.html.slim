@@ -34,7 +34,7 @@ html lang="#{I18n.locale}"
           = link_to root_path, class: "navbar-brand" do
             = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
             ' Labo Labo
-          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse uppercase ml-auto"
+          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse uppercase ml-auto pull-right"
 
           / #navbarSupportedContent.collapse.navbar-collapse
           /   ul.nav.navbar-nav.mr-auto
@@ -62,23 +62,20 @@ html lang="#{I18n.locale}"
 
 
     section.main-section
-      .container
+      = yield
 
-        - unless cookies[:cookies_accepted] == "true"
-          #cookies_alert.alert.cookies_alert
-            .container
-              .row
-                .col-lg-6.offset-lg-1.col-md-8.col-12
-                  a.close data-dismiss="alert" href="#"
-                  p
-                    | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
-                      En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
-                .col-lg-3.col-md-4.col-12
-                  = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
-                  = link_to "En savoir plus" , "/cookies_info", class: 'btn btn-secondary'
-
-        = yield
-
+      - unless cookies[:cookies_accepted] == "true"
+        #cookies_alert.alert.cookies_alert
+          .container
+            .row
+              .col-lg-6.offset-lg-1.col-md-8.col-12
+                a.close data-dismiss="alert" href="#"
+                p
+                  | Afin de vous proposer des services et offres adaptés à vos centres d'intérêts, nous utilisons des cookies.
+                    En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
+              .col-lg-3.col-md-4.col-12
+                = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
+                = link_to "En savoir plus" , "/cookies_info", class: 'btn btn-secondary'
 
     footer.footer.bg-white
       .container

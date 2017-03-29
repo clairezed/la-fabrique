@@ -1,10 +1,11 @@
 - content_for :current_navigation_section, :part_1
 
-.row
-  .col-lg-8.offset-lg-2.col-12
-    = render layout: 'layout_forms' do 
+.container
+  .row
+    .col-lg-8.offset-lg-2.col-12
+      = render layout: 'layout_forms' do 
 
-      = form_for @tool, as: :tool, url: tools_path, html: {class: ""} do |f| 
+        = form_for @tool, as: :tool, url: tools_path, html: {class: ""} do |f| 
 
 
-        = render partial: "part_1_form", locals: {f: f, button_name: "Créer", button_name_2: "Créer et continuer l'édition"}
+          = render partial: "part_1_form", locals: {f: f, button_name: "Créer", button_name_2: "Créer et continuer l'édition"}

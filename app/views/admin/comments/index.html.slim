@@ -20,7 +20,7 @@
             button.btn.btn-default.btn-sm.pull-right type="button" data-toggle="collapse" data-target="#content-#{comment.id}" aria-expanded="false" aria-controls="collapseExample" title="voir tout le commentaire"
               i.fa.fa-caret-down
             .collapse id="content-#{comment.id}"
-              .card.card-block = comment.content
+              .card.card-block = text_to_html comment.content
           td.text-center
             span class="badge badge-#{tool_state_style(comment.state)}"= tool_state_title(comment.state)
           td.action-btns.border-left

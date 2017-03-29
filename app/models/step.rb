@@ -4,7 +4,7 @@ class Step < ApplicationRecord
   # Configurations =============================================================
   include Sortable
 
-  acts_as_list
+  acts_as_list scope: [:tool_id]
 
   # Associations ===============================================================
 

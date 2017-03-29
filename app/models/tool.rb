@@ -64,6 +64,11 @@ class Tool < ApplicationRecord
     hard:   2  # rejeté
   }
 
+
+  enum description_type: {
+    steps:   0,
+    description: 1
+  }
   # enum public: {
   #   young:  0, # en attente de validation
   #   pro:    1, # accepté
@@ -74,11 +79,6 @@ class Tool < ApplicationRecord
   #   known_source:   1, # accepté
   #   unknown_source: 2  # rejeté
   # }
-
-  enum description_type: {
-    steps:   0,
-    description: 1
-  }
 
   # Associations ===============================================================
   belongs_to :axis

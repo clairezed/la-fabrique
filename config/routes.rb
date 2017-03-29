@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :steps, controller: "tools/steps", only: [:destroy]
     resources :tool_attachments, as: :attachments, controller: "tools/tool_attachments"
     resources :links, controller: "tools/links"
+    resources :trainings, controller: "tools/trainings", only: [:show]
   end
   resources :tags, only: [:index]
   resources :basic_pages, only: [:show]

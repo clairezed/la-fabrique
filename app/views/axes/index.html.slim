@@ -1,15 +1,15 @@
 - content_for :current_navigation_section, :axes
 
+.container
+  = render "tools/search"
 
-= render "tools/search"
-
-.card-wrapper
-  - @axes.each do |axis|
-    .col-lg-3.col-md-4.col-sm-6.col-12
-      .axis-card class="axis-card--#{axis.id_key}"
-        = link_to tools_path(by_axis: axis.id) do 
-          .axis-card_block
-            h3.axis-card_title= axis.title
-          .axis-card_footer
-            span.axis-card_cartel
-              = I18n.t("tools", count: axis.tools.enabled.count)
+  .card-wrapper
+    - @axes.each do |axis|
+      .col-lg-3.col-md-4.col-sm-6.col-12
+        .axis-card class="axis-card--#{axis.id_key}"
+          = link_to tools_path(by_axis: axis.id) do 
+            .axis-card_block
+              h3.axis-card_title= axis.title
+            .axis-card_footer
+              span.axis-card_cartel
+                = I18n.t("tools", count: axis.tools.enabled.count)

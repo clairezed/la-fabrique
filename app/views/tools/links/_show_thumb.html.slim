@@ -1,0 +1,6 @@
+.card.link_card
+  .card-block
+    p.card-text
+      = link_to link.url, target: "_blank" do 
+        i.fa> class="fa-#{tool_format_type_icon(link.format_type)}"
+        => link.title

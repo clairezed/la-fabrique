@@ -107,6 +107,16 @@ module ApplicationHelper
     html.gsub("\n", " ")
   end
 
+  def text_to_html(text, &block)
+    text.to_s.split(/[\r\n]+/).map do |paragraph|
+      if block
+        capture(paragraph, &block)
+      else
+        content_tag :p, paragraph
+      end
+    end.join.html_safe
+  end
+
   # Gestionnaire du lien pour tri de colonne.
   #
   # Options :

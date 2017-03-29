@@ -10,4 +10,8 @@ module FormatHelper
     return '' if boolean.nil?
     boolean ? 'Oui' : 'Non'
   end
+
+  def leading_zero(int, precision = 2)
+    int.to_s.rjust(precision, '0')
+  end
 end

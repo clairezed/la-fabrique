@@ -26,7 +26,14 @@ class ToolsController < ApplicationController
   end
 
   def show
-    @comment = @tool.comments.new
+    respond_to do |format|
+      format.html
+        @comment = @tool.comments.new
+      format.pdf do
+        pdf = Pdf::Tool.new(@tool)
+        send_data pdf.to_pdf, filename: pdf.filename, type: 'application/pdf'
+      end
+    end
   end
 
   # Tool form ========================================

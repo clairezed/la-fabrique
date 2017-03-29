@@ -1,28 +1,132 @@
 - content_for :current_navigation_section, :tools
 
-h1= @tool.title
+- axis_color = @tool.axis.id_key
 
-hr
-h3 Commentaires
-
-= form_for @comment, as: :comment, url: tool_comments_path(@tool), \
-  remote: true, html: {class: "form-horizontal"}, data:{comment_form: true} do |f|
-  = render partial: "comments/form", locals: {f: f}
-
-.alert.alert-success role='alert' style='display:none' data-comment-success=true
-  strong> Merci pour votre commentaire ! 
-  br
-  ' Il apparaitra dans la liste des commentaires dès qu'un administrateur l'aura accepté.
-
-- if @tool.comments.accepted.any?
-  - @tool.comments.accepted.each do |comment|
-    .card.card-block.mb-2
+#tool-show class="tool-show--#{axis_color}"
+  
+  / Header -------------------------------------------------
+  header.tool-header
+    .container
       .row
-        .col-3.text-right
-          p= commenter(comment.nickname)
-          p= time_ago_in_words(comment.created_at)
-        .col-9
-          = comment.content
+        .col-md-4.col-12
+          h1.tool-header_title= @tool.title
+          h2.tool-header_subtitle= @tool.axis.title
+        .col-md-8.col-12
+          section.light-section
+            h3.section_title Objectifs
+            p = @tool.goal
+          .row
+            .col-lg-3.col-sm-6
+              .tool-header_badge
+                i.fa.fa-hourglass>
+                = tool_duration(@tool.duration)
+            .col-lg-3.col-sm-6
+              .tool-header_badge
+                i.fa.fa-users>
+                = tool_group_size(@tool.group_size)
+            .col-lg-3.col-sm-6
+              .tool-header_badge
+                i.fa.fa-signal>
+                = tool_level(@tool.level)
+            .col-lg-3.col-sm-6
+              .tool-header_badge
+                i.fa.fa-bullseye>
+                = @tool.tool_category.title
+
+  .container
+    / Utilities -------------------------------------------------
+    section.utility-section.pb-5
+      .row
+        .col-md-8
+          = link_to tool_path(@tool, format: :pdf), class: "btn btn-inverse uppercase" do
+                i.fa.fa-upload>
+                | Télécharger
+          = link_to tool_training_path(@tool), class: "btn btn-secondary uppercase ml-3" do
+                i.fa.fa-magic>
+                | Formule magique
+        .col-md-4
+
+    / Main content ----------------------------------------------
+    section.tool-content.row.mt-5
+
+      .col-md-8    
+        section.full-section
+          h3.section_title Résumé
+          p = @tool.teaser
+
+        section.full-section
+          h3.section_title Marche à suivre
+          - if @tool.steps?
+            - @tool.steps.each do |step|
+              .row
+                .col-1
+                  span.section_step-number= leading_zero(step.position)
+                .col-11
+                  p = step.description
+          - else
+            p = @tool.description
+
+        section.full-section
+          h3.section_title Conseils
+          p = @tool.advice
+
+        section.full-section
+          h3.section_title Médias
+          .row
+            - @tool.attachments.each do |attachment|
+              .col-4
+                = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
+
+        section.full-section
+          h3.section_title Liens
+          - @tool.links.each do |link|
+            = render partial: "tools/links/show_thumb", locals: {link: link}
+
+      / Aside ----------------------------------------------
+      .col-md-4
+        section.light-section
+          h3.section_title Public privilégié
+          p = @tool.public
+
+        section.light-section
+          h3.section_title Source
+          p = @tool.source
+
+        section.light-section
+          h3.section_title Copyright
+          p = @tool.licence
+
+        section.light-section
+          h3.section_title Matériel
+          p = @tool.material
+
+        section.light-section
+          h3.section_title Mot-clés
+          - @tool.tags.each do |tag|
+            span.badge.badge-default.mr-3 = tag.title
+
+        section.light-section
+          h3.section_title Proposé par
+
+    / Comment ----------------------------------------------
+    section.comment-section
+      h3.section_title Commentaires
+
+      = form_for @comment, as: :comment, url: tool_comments_path(@tool), \
+        remote: true, html: {class: "form-horizontal mb-5"}, data:{comment_form: true} do |f|
+        = render partial: "comments/form", locals: {f: f}
+
+      .alert.alert-success role='alert' style='display:none' data-comment-success=true
+        strong> Merci pour votre commentaire ! 
+        br
+        ' Il apparaitra dans la liste des commentaires dès qu'un administrateur l'aura validé.
+
+      - if @tool.comments.accepted.any?
+        - @tool.comments.accepted.each do |comment|
+          .card.card-block.mb-2.comment
+            p.comment_submitter= commenter(comment.nickname)
+            p.comment_date= time_ago_in_words(comment.created_at)
+            p.comment_content= text_to_html comment.content
 
 
 coffee:
