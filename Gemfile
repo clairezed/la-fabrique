@@ -61,6 +61,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'email_spec'
+  gem 'rubocop', require: false
+  gem 'bullet'
 end
 
 group :test do

@@ -53,6 +53,13 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # Bullet config =====================================================
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.console = true
+    Bullet.add_footer = true
+  end
+
 
   HOST = "localhost:3000"
   URL = "http://#{HOST}"
