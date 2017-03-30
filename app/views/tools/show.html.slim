@@ -57,14 +57,14 @@
         section.full-section
           h3.section_title Marche à suivre
           - if @tool.steps?
-            - @tool.steps.each do |step|
+            - @tool.steps.order(:position).each do |step|
               .row
                 .col-1
                   span.section_step-number= leading_zero(step.position)
                 .col-11
-                  p = step.description
+                  p = text_to_html step.description
           - else
-            p = @tool.description
+            p = text_to_html @tool.description
 
         section.full-section
           h3.section_title Conseils

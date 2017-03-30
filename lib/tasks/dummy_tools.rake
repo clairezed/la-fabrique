@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
-namespace :db do
+namespace :seeds do
   desc 'Seeds database with dummy tools'
   task dummy_tools: :environment do
     generate_dummy_tools
   end
+
+  desc 'Seeds database with credible tools'
+  task credible_tools: :environment do
+    SeedTools.call
+  end
 end
+
+
 
 TITLES = [
   'Abigaïl', 'Avion de compétences', 'Fishbowl', 'Encore des mots', 'Rapport machin chose',
@@ -18,6 +25,9 @@ def generate_dummy_tools
   20.times { generate_dummy_tool }
 end
 
+
+private # ================================================================
+
 def generate_dummy_tool
   tool = Tool.where(
     title: TITLES.sample,
@@ -28,11 +38,13 @@ def generate_dummy_tool
     level: Tool.levels.keys.sample,
     goal: 'Objectifs du machin',
     teaser: 'Résumé du bidule',
+    description_type: :description, 
     description: "I should have known that you would have a perfect answer for me \
     (since most Ruby questions I browse here have your input somewhere). I am glad \
     you pointed out the versioning; I am using 1.9.2. apidock (mladen's comment) \
     does not have sample; neither does ruby-doc. In your opinion, what is the best \
-    reference for Ruby, updated to 1.9?"
+    reference for Ruby, updated to 1.9?",
+    created_at: 15.days.ago
   ).first_or_create
 
   tool.accept! if tool.may_accept?
