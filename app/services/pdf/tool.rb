@@ -5,6 +5,7 @@
 #
 class Pdf::Tool < Pdf::Base
   include ToolHelper
+  include ApplicationHelper
 
   attr_reader :tool
 
@@ -58,7 +59,7 @@ class Pdf::Tool < Pdf::Base
         move_down 6
         styled_text [{ text: 'Catégorie : ', styles: [:bold] }, @tool.tool_category.title], size: 10
         move_down 6
-        styled_text [{ text: 'Public : ', styles: [:bold] }, tool_public(@tool.public)], size: 10
+        styled_text [{ text: 'Public : ', styles: [:bold] }, @tool.public], size: 10
       end
       bs_span(6, 6) do
         styled_text [{ text: 'Taille du groupe : ', styles: [:bold] }, tool_group_size(@tool.group_size)], size: 10
@@ -72,7 +73,7 @@ class Pdf::Tool < Pdf::Base
 
     bs_row do
       bs_span(12) do
-        styled_text [{ text: 'Mots-clés : ', styles: [:bold] }, 'motclé1, motclé2, long mots clé numero 3, motmotclé 4'], size: 10
+        styled_text [{ text: 'Mots-clés : ', styles: [:bold] }, @tool.tags.pluck(:title).join(", ")], size: 10
       end
     end
   end
@@ -87,10 +88,20 @@ class Pdf::Tool < Pdf::Base
       bs_span(12) do
         styled_text [{ text: 'Objectif : ', styles: [:bold] }, @tool.goal], size: 10
         move_down 6
-        styled_text [{ text: 'Description : ', styles: [:bold] }, @tool.description], size: 10
+        description_text
         move_down 6
         styled_text [{ text: 'Matériel : ', styles: [:bold] }, @tool.material], size: 10
       end
+    end
+  end
+
+  def description_text
+    if @tool.steps?
+      @tool.steps.each do |step|
+        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, step.description], size: 10
+      end
+    else
+        styled_text [{ text: 'Description : ', styles: [:bold] }, @tool.description], size: 10
     end
   end
 
@@ -111,14 +122,14 @@ class Pdf::Tool < Pdf::Base
         end
         bs_span(6, 6) do
           styled_text [text: 'Source :'], { size: 9 }, align: :right
-          styled_text [text: @tool.source, link: @tool.source_url], { size: 9 }, align: :right
+          styled_text [text: @tool.source], { size: 9 }, align: :right
         end
         move_down 6
       end
 
       bs_row do
         bs_span(12) do
-          styled_text [text: tool_licence_explanation(@tool.licence)], { styles: [:italic], size: 8 }, align: :center
+          styled_text [text: @tool.licence], { styles: [:italic], size: 8 }, align: :center
         end
       end
     end
