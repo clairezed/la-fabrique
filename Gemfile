@@ -30,6 +30,7 @@ gem 'font-awesome-rails'
 gem 'htmlentities', '~> 4.3.4'
 gem 'slim', '~> 3.0.7'
 gem 'will_paginate', '~> 3.1.0'
+gem 'social-share-button'
 
 # Assets --------------------------------------------------
 gem 'coffee-rails', '~> 4.2'
