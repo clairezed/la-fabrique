@@ -169,8 +169,6 @@ module ApplicationHelper
       case icon_lib
       when "fa"
         icon_class = [icon_type, dir].compact.join('-')
-        p "icon_class ===================="
-        p icon_class
         result << content_tag(:i, "", class: "fa fa-sort-#{icon_class}")
       else
         result << content_tag(:span, "", class: "glyphicon glyphicon-sort-by-#{icon_type}#{'-alt' if dir == 'asc'}")

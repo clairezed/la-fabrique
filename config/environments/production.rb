@@ -106,7 +106,7 @@ Rails.application.configure do
   config.middleware.use ExceptionNotification::Rack,
   email: {
       email_prefix: "[Mirador Mobility Toolbox] ",
-      sender_address: %{"Error Notification" <error@clairezuliani.com>},
+      sender_address: %{"Error Notification" <error@studio-hb.com>},
       exception_recipients: %w{clairezuliani@gmail.com},
       sections: %w{request backtrace session environment}
   }

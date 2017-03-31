@@ -98,10 +98,10 @@ class Pdf::Tool < Pdf::Base
   def description_text
     if @tool.steps?
       @tool.steps.each do |step|
-        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, step.description], size: 10
+        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, html_to_text step.description], size: 10
       end
     else
-        styled_text [{ text: 'Description : ', styles: [:bold] }, @tool.description], size: 10
+        styled_text [{ text: 'Description : ', styles: [:bold] }, html_to_text @tool.description], size: 10
     end
   end
 
