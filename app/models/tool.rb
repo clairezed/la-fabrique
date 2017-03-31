@@ -114,7 +114,7 @@ class Tool < ApplicationRecord
 
   private def description_exists?
     # TODO : depend aussi de si c'es step ou desc_type
-    return true if steps.any? || description.present?
+    return true if (self.steps? and steps.any?) || (self.description? and description.present?)
     errors.add(:description, 'doit être renseignée')
     false
   end
