@@ -13,7 +13,6 @@ class Pdf::Tool < Pdf::Base
     raise ArgumentError, 'expecting a tool object' unless tool.is_a?(Tool)
     super(options, &block)
     @tool = tool
-    raise "test"
   end
 
   def filename
