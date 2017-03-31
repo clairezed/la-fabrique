@@ -93,15 +93,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => HOST }
   config.action_mailer.asset_host = URL
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :address => "smtp.sendgrid.net",
-  #   :port => '587',
-  #   :domain => HOST,
-  #   :authentication => :plain,
-  #   :user_name => "studiohb",
-  #   :password => "90plokij"
-  # }
+
 
   config.middleware.use ExceptionNotification::Rack,
   email: {
