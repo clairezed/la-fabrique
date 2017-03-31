@@ -75,6 +75,7 @@ module ToolHelper
     end
   end
 
+
   # Public cible -------------------------------------------
 
   # def tool_public(public)

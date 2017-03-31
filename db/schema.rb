@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326181113) do
+ActiveRecord::Schema.define(version: 20170331114807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,9 +70,10 @@ ActiveRecord::Schema.define(version: 20170326181113) do
     t.integer  "tool_id"
     t.string   "nickname"
     t.text     "content"
-    t.integer  "state",      default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "state",        default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "organization"
     t.index ["tool_id"], name: "index_comments_on_tool_id", using: :btree
   end
 
@@ -154,26 +155,29 @@ ActiveRecord::Schema.define(version: 20170326181113) do
   end
 
   create_table "tools", force: :cascade do |t|
-    t.integer  "axis_id",                          null: false
-    t.integer  "tool_category_id",                 null: false
-    t.integer  "state",            default: 0,     null: false
+    t.integer  "axis_id",                                null: false
+    t.integer  "tool_category_id",                       null: false
+    t.integer  "state",                  default: 0,     null: false
     t.string   "title"
-    t.string   "teaser"
+    t.text     "teaser"
     t.text     "description"
     t.integer  "group_size"
     t.integer  "duration"
     t.integer  "level"
-    t.string   "goal"
+    t.text     "goal"
     t.text     "material"
     t.string   "source"
     t.string   "submitter_email"
-    t.boolean  "enabled",          default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "enabled",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "licence"
     t.string   "public"
     t.text     "advice"
-    t.integer  "description_type", default: 0
+    t.integer  "description_type",       default: 0
+    t.string   "submitter_firstname"
+    t.string   "submitter_lastname"
+    t.string   "submitter_organization"
     t.index ["axis_id"], name: "index_tools_on_axis_id", using: :btree
     t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
   end

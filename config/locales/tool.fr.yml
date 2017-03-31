@@ -39,7 +39,10 @@ fr:
         material: Matériel
         source: Source
         source_url: Lien de la source
-        submitter_email: Soumis par
+        submitter_email: Email
+        submitter_firstname: Prénom
+        submitter_lastname: Nom
+        submitter_organization: Structure
         advice: Conseils
         tag_ids: Mots-clés
         tool_attachment: Média

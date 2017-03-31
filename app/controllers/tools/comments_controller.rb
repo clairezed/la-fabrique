@@ -14,6 +14,6 @@ class Tools::CommentsController < Tools::BaseController
   private
 
   def comment_params
-    params.require(:comment).permit(:nickname, :content)
+    params.require(:comment).permit(:nickname, :organization, :content)
   end
 end

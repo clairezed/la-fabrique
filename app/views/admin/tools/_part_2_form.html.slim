@@ -7,13 +7,13 @@ fieldset
     .form-label-default
       = f.label :goal
     .controls-xlarge
-      = f.text_field :goal, class: "form-control"
+      = f.text_area :goal, class: "form-control", rows: 3
 
   .form-group.row
     .form-label-default
       = f.label :teaser
     .controls-xlarge
-      = f.text_field :teaser, class: "form-control"
+      = f.text_area :teaser, class: "form-control", rows: 3
 
   / DESCRIPTION =========================================================
 
@@ -77,6 +77,9 @@ fieldset
 
   = f.hm_text_field :source, {}, {class: ""}
   = f.hm_text_field :submitter_email, {}, {class: ""}
+  = f.hm_text_field :submitter_organization, {}, {class: ""}
+  = f.hm_text_field :submitter_firstname, {}, {class: ""}
+  = f.hm_text_field :submitter_lastname, {}, {class: ""}
 
 .row
   .col-12.col-lg-6

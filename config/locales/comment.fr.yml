@@ -10,4 +10,5 @@ fr:
     label:
       comment:
         nickname: Nom ou pseudo
+        organization: Structure
         content: Commentaire

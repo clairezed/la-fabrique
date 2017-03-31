@@ -78,7 +78,7 @@ class Admin::ToolsController < Admin::BaseController
   def part_2
     @tool = ToolSetter.new(@tool, part_2_params).call
     if @tool.save
-      @tool.accept! if @tool.may_accept?
+      # @tool.accept! if @tool.may_accept?
       flash[:notice] = 'Les informations ont bien été enregistrées'
       redirect_to params[:continue].present? ? admin_tools_path : edit_part_2_admin_tool_path(@tool)
     else
@@ -154,9 +154,9 @@ class Admin::ToolsController < Admin::BaseController
 
   def part_2_params
     params.require(:tool).permit(
-      :description, :teaser,
-      :public, :licence, :goal, :material,
-      :source, :advice, :submitter_email, :description_type,
+      :description, :teaser, :description_type,
+      :public, :licence, :goal, :material, :source, :advice,
+      :submitter_email, :submitter_organization, :submitter_firstname, :submitter_lastname,
       steps_attributes: %i(id description _destroy),
       seo_attributes: %i(slug title keywords description id)
     )

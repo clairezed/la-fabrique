@@ -197,5 +197,9 @@ class Tool < ApplicationRecord
     created_at > NOVELTY_DELAY.days.ago
   end
 
+  def submitter_info_present?
+    [submitter_firstname, submitter_lastname, submitter_organization].any? { |field| !field.blank? }
+  end
+
   # private #=====================================================================
 end

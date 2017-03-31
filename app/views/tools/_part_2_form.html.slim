@@ -3,12 +3,12 @@
 .form-group
   = f.label :goal
   = render partial: 'help_popover', locals: {field: :goal}
-  = f.text_field :goal, class: "form-control"
+  = f.text_area :goal, class: "form-control", rows: 3
 
 .form-group
   = f.label :teaser
   = render partial: 'help_popover', locals: {field: :teaser}
-  = f.text_field :teaser, class: "form-control"
+  = f.text_area :teaser, class: "form-control", rows: 3
 
 
 / DESCRIPTION =========================================================
@@ -105,13 +105,35 @@ div#description-wrapper.mt-30
     div.item-list.row data-is-link-list="#{@tool.id}" data-list-url="#{tool_links_path(@tool)}"
 
 
-.form-group
-  = f.label :submitter_email, "Email"
-  = render partial: 'help_popover', locals: {field: :submitter_email}
-  .row 
-    .col-8
+.row
+  .col-6
+    .form-group
+      = f.label :submitter_email
+      = render partial: 'help_popover', locals: {field: :submitter_email}
       = f.text_field :submitter_email, class: "form-control"
-      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire.
+      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
+
+  .col-6
+    .form-group
+      = f.label :submitter_organization
+      = render partial: 'help_popover', locals: {field: :submitter_organization}
+      = f.text_field :submitter_organization, class: "form-control"
+      p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
+
+.row
+  .col-6
+    .form-group
+      = f.label :submitter_firstname
+      = render partial: 'help_popover', locals: {field: :submitter_firstname}
+      = f.text_field :submitter_firstname, class: "form-control"
+      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
+
+  .col-6
+    .form-group
+      = f.label :submitter_lastname
+      = render partial: 'help_popover', locals: {field: :submitter_lastname}
+      = f.text_field :submitter_lastname, class: "form-control"
+      p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
 .d-flex.flex-row-reverse
   .p-6

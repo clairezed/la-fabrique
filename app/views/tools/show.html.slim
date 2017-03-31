@@ -14,7 +14,7 @@
         .col-md-8.col-12
           section.light-section
             h3.section_title Objectifs
-            p = @tool.goal
+            p = text_to_html @tool.goal
           .row
             .col-lg-3.col-sm-6
               .tool-header_badge
@@ -54,7 +54,7 @@
       .col-md-8    
         section.full-section
           h3.section_title Résumé
-          p = @tool.teaser
+          p = text_to_html @tool.teaser
 
         section.full-section
           h3.section_title Marche à suivre
@@ -68,47 +68,58 @@
           - else
             p = text_to_html @tool.description
 
-        section.full-section
-          h3.section_title Conseils
-          p = @tool.advice
+        - unless @tool.advice.blank?
+          section.full-section
+            h3.section_title Conseils
+            p = @tool.advice
 
-        section.full-section
-          h3.section_title Médias
-          .row
-            - @tool.attachments.each do |attachment|
-              .col-4
-                = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
+        - if @tool.attachments.any?
+          section.full-section
+            h3.section_title Médias
+            .row
+              - @tool.attachments.each do |attachment|
+                .col-4
+                  = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
 
-        section.full-section
-          h3.section_title Liens
-          - @tool.links.each do |link|
-            = render partial: "tools/links/show_thumb", locals: {link: link}
+        - if @tool.links.any?
+          section.full-section
+            h3.section_title Liens
+            - @tool.links.each do |link|
+              = render partial: "tools/links/show_thumb", locals: {link: link}
 
       / Aside ----------------------------------------------
       .col-md-4
-        section.light-section
-          h3.section_title Public privilégié
-          p = @tool.public
+        - unless @tool.public.blank?
+          section.light-section
+            h3.section_title Public privilégié
+            p = @tool.public
 
-        section.light-section
-          h3.section_title Source
-          p = @tool.source
+        - unless @tool.source.blank?
+          section.light-section
+            h3.section_title Source
+            p = @tool.source
 
-        section.light-section
-          h3.section_title Copyright
-          p = @tool.licence
+        - unless @tool.licence.blank?
+          section.light-section
+            h3.section_title Copyright
+            p = @tool.licence
 
-        section.light-section
-          h3.section_title Matériel
-          p = @tool.material
+        - unless @tool.material.blank?
+          section.light-section
+            h3.section_title Matériel
+            p = @tool.material
 
-        section.light-section
-          h3.section_title Mot-clés
-          - @tool.tags.each do |tag|
-            span.badge.badge-default.mr-3 = tag.title
+        - if @tool.tags.any?
+          section.light-section
+            h3.section_title Mot-clés
+            - @tool.tags.each do |tag|
+              span.badge.badge-default.mr-3 = tag.title
 
-        section.light-section
-          h3.section_title Proposé par
+        - if @tool.submitter_info_present?
+          section.light-section
+            h3.section_title Proposé par
+            p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")
+            p = @tool.submitter_organization
 
     / Comment ----------------------------------------------
     section.comment-section
