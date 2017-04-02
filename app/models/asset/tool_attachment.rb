@@ -83,4 +83,5 @@ class Asset::ToolAttachment < Asset
   def to_s
     asset_file_name
   end
+
 end

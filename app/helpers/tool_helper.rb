@@ -76,6 +76,13 @@ module ToolHelper
   end
 
 
+  # Embedded Link ===============================================
+
+  def embedded_content(link)
+    raw(link.oembed_resource.html)
+  end
+
+
   # Public cible -------------------------------------------
 
   # def tool_public(public)

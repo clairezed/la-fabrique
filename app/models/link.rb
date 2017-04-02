@@ -41,9 +41,23 @@ class Link < ApplicationRecord
 
   # Instance Methods ===========================================================
 
+  # true si lien géré par oembed (video, photo, rich..)
+  def displayable?
+    return !!oembed_resource
+  end
+
+  def oembed_resource
+    begin
+      @oembed_resource ||= OEmbed::Providers.get(self.url)
+    rescue OEmbed::NotFound
+      return nil
+    end
+  end
   private #=====================================================================
 
   def set_title
     self.title = url if title.blank?
   end
+
+
 end

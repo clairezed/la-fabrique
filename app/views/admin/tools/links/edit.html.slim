@@ -1,5 +1,5 @@
 
-= form_for @link, url: admin_tool_link_path(@link), method: :patch, remote: true, data: {is_form: 'update-link' } do |f|
+= form_for @link, url: admin_tool_link_path(@tool, @link), method: :patch, remote: true, data: {is_form: 'update-link' } do |f|
   .modal-header
     h4.modal-title Modifier le lien
     button.close aria-label="Close" data-dismiss="modal" type="button" 
