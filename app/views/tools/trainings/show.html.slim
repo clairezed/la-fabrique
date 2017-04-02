@@ -1,0 +1,11 @@
+- content_for :current_navigation_section, :trainings
+
+.container
+
+  = render "tools/search"
+
+  h1.training-title = @training.title
+
+  = render "tools/list"
+
+ 

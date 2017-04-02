@@ -6,7 +6,7 @@ class Tool < ApplicationRecord
   include Seoable
 
   # Nb de jours après sa création pdt lesquels un outil est considéré comme "nouveau"
-  NOVELTY_DELAY = 6
+  NOVELTY_DELAY = 15
 
   # State machine -------------------------------------------------------------
 
@@ -52,21 +52,20 @@ class Tool < ApplicationRecord
   }
 
   enum duration: {
-    duration_1:   0, # en attente de validation
-    duration_2:  1, # accepté
-    duration_3:  2, # rejeté
-    duration_4:  3 # rejeté
+    duration_1:  0, # "5-30"
+    duration_2:  1, # "30-60"
+    duration_3:  2, # "60-120"
+    duration_4:  3  # "120-240"
   }
 
   enum level: {
-    easy:   0, # en attente de validation
-    medium: 1, # accepté
-    hard:   2  # rejeté
+    easy:   0, 
+    medium: 1, 
+    hard:   2  
   }
 
-
   enum description_type: {
-    steps:   0,
+    steps:       0,
     description: 1
   }
   # enum public: {
@@ -99,7 +98,13 @@ class Tool < ApplicationRecord
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
+  has_many :training_tools, dependent: :destroy
+  has_many :trainings, through: :training_tools
+
   # Callbacks ==================================================================
+  
+  # validation de présence de axe et catégorie -> directement en base
+
   validates :title, presence: true
   validates :group_size,
             :duration,
@@ -113,14 +118,12 @@ class Tool < ApplicationRecord
             presence: true, unless: :new_record?
 
   private def description_exists?
-    # TODO : depend aussi de si c'es step ou desc_type
     return true if (self.steps? and steps.any?) || (self.description? and description.present?)
     errors.add(:description, 'doit être renseignée')
     false
   end
   validate :description_exists?, unless: :new_record?
 
-  # validation de présence de axe et catégorie -> directement en base
 
   # Scopes =====================================================================
 
@@ -199,6 +202,11 @@ class Tool < ApplicationRecord
 
   def submitter_info_present?
     [submitter_firstname, submitter_lastname, submitter_organization].any? { |field| !field.blank? }
+  end
+
+  def random_training
+    return nil unless trainings.any?
+    @random_training ||= self.trainings.order('random()').first
   end
 
   # private #=====================================================================

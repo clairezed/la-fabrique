@@ -94,8 +94,8 @@ class ToolsController < ApplicationController
   private # ==================================================
 
   def find_tool
-    @tool = Tool.from_param params[:id]
-    # @tool = get_object_from_param_or_redirect(Tool.enabled)
+    # @tool = Tool.from_param params[:id]
+    @tool = get_object_from_param_or_redirect(Tool)
   end
 
   def build_tool_relations

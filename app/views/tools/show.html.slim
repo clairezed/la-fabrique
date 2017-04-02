@@ -41,9 +41,10 @@
           = link_to tool_path(@tool, format: :pdf), class: "btn btn-inverse uppercase" do
                 i.fa.fa-upload>
                 | Télécharger
-          = link_to tool_training_path(@tool), class: "btn btn-secondary uppercase ml-3" do
-                i.fa.fa-magic>
-                | Formule magique
+          - if @tool.trainings.any?
+            = link_to tool_training_path(@tool, @tool.random_training), class: "btn btn-secondary uppercase ml-3" do
+                  i.fa.fa-magic>
+                  | Formule magique
         .col-md-4
           p Partagez sur les réseaux
           = social_share_button_tag(@tool.title)

@@ -1,0 +1,51 @@
+
+.card-wrapper
+  - @tools.each do |tool|
+
+    .col-lg-3.col-md-4.col-sm-6.col-12.flip-container
+
+      .tool-card.flipper class="tool-card--#{tool.axis.id_key}"
+
+        .tool-card_front.front
+          = link_to tool_path(tool) do
+            .tool-card_block
+              .tool-card_title-block
+                h3.tool-card_title= tool.title
+                span.tool-card_subtitle = tool.tool_category.title
+              - if tool.recent?
+                .tool-card_new 
+                  span Nouveauté
+            .tool-card_footer
+              .row
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-hourglass>
+                    = tool_duration(tool.duration)
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-users>
+                    = tool_group_size(tool.group_size)
+
+        .tool-card_back.back
+          = link_to tool_path(tool) do
+            .tool-card_block
+              .tool-card_title-block
+                p.tool-card_description = tool.teaser.truncate(150)
+              .tool-card_tags
+                = tool.tags.map(&:title).join(', ').truncate(40)
+            .tool-card_footer
+              .row
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-hourglass>
+                    = tool_duration(tool.duration)
+                .col
+                  span.tool-card_cartel
+                    i.fa.fa-users>
+                    = tool_group_size(tool.group_size)
+
+.pagination-wrapper
+  = will_paginate @tools, 
+    renderer: WillPaginateBoostrap4Renderer, 
+    previous_label: "<i class='fa fa-angle-left'></i>",
+    next_label: "<i class='fa fa-angle-right'></i>"
