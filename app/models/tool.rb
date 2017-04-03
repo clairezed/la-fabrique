@@ -27,7 +27,7 @@ class Tool < ApplicationRecord
     state :accepted
     state :rejected
 
-    event :submit do
+    event :submit, after: [:notify_submission] do
       transitions from: :draft, to: :pending
     end
 
@@ -41,6 +41,10 @@ class Tool < ApplicationRecord
       transitions from: :pending, to: :rejected
       transitions from: :accepted, to: :rejected
     end
+  end
+
+  private def notify_submission
+    AdminMailer.tool_submitted(self).deliver_later
   end
 
   # Enums ----------------------------------------------------------------------

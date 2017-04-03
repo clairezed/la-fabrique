@@ -1,0 +1,13 @@
+p Bonjour,
+
+p Un nouvel outil a été proposé :
+ul
+  li
+    ' Outil :
+    strong= @tool.title
+  li
+    ' Axe :
+    strong= @tool.axis.title
+
+br
+p Retrouvez et gérez cet outil dans #{link_to "votre espace administrateur", edit_part_1_admin_tool_url(@tool)}.
