@@ -2,9 +2,11 @@ class @ToolShowPage
 
   constructor: () ->
     console.log 'ShowPage'
+    new Popover()
     @commentFormSelector = '[data-comment-form]'
     @commentSuccessSelector = '[data-comment-success]'
     
+    # comments ======================================
     $(document)
       .on "ajax:success", @commentFormSelector, (e, data, status, xhr) =>
         $(@commentFormSelector).slideUp "slow", =>

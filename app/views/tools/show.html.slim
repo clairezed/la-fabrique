@@ -37,14 +37,18 @@
     / Utilities -------------------------------------------------
     section.utility-section.pb-5
       .row
-        .col-md-8
-          = link_to tool_path(@tool, format: :pdf), class: "btn btn-inverse uppercase" do
-                i.fa.fa-upload>
-                | Télécharger
+        .col-md-8.d-flex.flex-row
+          .btn-modul
+            = link_to tool_path(@tool, format: :pdf), class: "btn btn-inverse uppercase" do
+                  i.fa.fa-upload>
+                  | Télécharger
           - if @tool.trainings.any?
-            = link_to tool_training_path(@tool, @tool.random_training), class: "btn btn-secondary uppercase ml-3" do
-                  i.fa.fa-magic>
-                  | Formule magique
+            .btn-modul.ml-3
+              = link_to tool_training_path(@tool, @tool.random_training), class: "btn btn-secondary uppercase" do
+                    i.fa.fa-magic>
+                    | Formule magique
+      
+              p.mt-1.small= link_to "C'est magique ?", "javascript:void(0)", class:"btn-modul_help", data: {is_popover: true, content: "Grâce à la formule magique, découvrez des trucs fous !"}, title: "Qu'est-ce que la formule magique ?"
         .col-md-4
           p Partagez sur les réseaux
           = social_share_button_tag(@tool.title)
