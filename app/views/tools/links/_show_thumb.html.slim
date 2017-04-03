@@ -1,7 +1,8 @@
 .link-card
 
   - if link.displayable?
-    = embedded_content(link)
+    .embed-responsive.embed-responsive-16by9
+      = embedded_content(link)
 
   - else
     .card

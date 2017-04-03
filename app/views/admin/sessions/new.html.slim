@@ -1,9 +1,9 @@
 - content_for :current_navigation_section, :sign_in_admin
 
 .container
-  h1 Connexion à l'espace d'administration
 
   .card.card-block
+    h1.card-title Connexion à l'espace d'administration
     = form_for resource, as: resource_name, url: session_path(resource_name),\
       html: {role: "form", class: "form-horizontal"} do |f|
 
@@ -19,4 +19,4 @@
       
       .form-group.row
         .col-md-offset-2.col-md-10
-          = f.submit "Connexion", class: "btn btn-primary"
+          = f.submit "Connexion", class: "btn btn-inverse"

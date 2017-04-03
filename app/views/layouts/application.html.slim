@@ -34,7 +34,10 @@ html lang="#{I18n.locale}"
           = link_to root_path, class: "navbar-brand" do
             = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
             ' Labo Labo
-          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse uppercase ml-auto pull-right"
+          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse uppercase ml-auto pull-right hidden-sm-down"
+
+          = link_to "#search-bar", class: "btn btn-secondary ml-auto pull-right hidden-md-up", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "search-bar"} do
+            i.fa.fa-search
 
           / #navbarSupportedContent.collapse.navbar-collapse
           /   ul.nav.navbar-nav.mr-auto

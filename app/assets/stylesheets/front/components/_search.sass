@@ -1,5 +1,5 @@
 .search-bar
-  margin: 4em 0
+  margin: 6rem 0
   padding: 2rem
   background-color: $white
   border-radius: 1rem
@@ -46,7 +46,7 @@
 // SEPARATOR
 ///////////////////////
 
-.search-bar-item--separator
+.search-bar-item_separator
   // display: inline-block
   background-color: #ddd
   width: 1px
@@ -66,3 +66,19 @@
     font-size: 1.2rem
     line-height: 3rem
     text-align: center
+
+.search-bar-item_separator--horizontal
+  width: 100%
+  margin: 1rem auto 2.5rem
+  text-align: center
+  &:after
+    content: ''
+    display: block
+    background: #ddd
+    height: 1px
+    width: 90%
+    margin: -10px auto
+  span
+    display: inline-block
+    background-color: $white
+    min-width: 60px

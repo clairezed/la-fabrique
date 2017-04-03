@@ -17,7 +17,9 @@
 
 // // MD & >
 // ///////////////////////
-// @media (min-width: $grid-md)
+@media (min-width: $grid-md)
+  .search-bar
+    display: block
 
 // // MD & LG
 // ///////////////////////
@@ -41,3 +43,15 @@
 // // MD & <
 // ///////////////////////
 // @media (max-width: $grid-lg - 1px)
+
+// // SM & <
+// ///////////////////////
+@media (max-width: $grid-sm - 1px)
+  .main-header
+    .container
+      margin-left: 0.5rem
+      margin-right: 0.5rem
+  .navbar
+    height: 50px
+  .search-bar
+    margin: 2rem 0
