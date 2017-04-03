@@ -12,3 +12,13 @@ fr:
         nickname: Nom ou pseudo
         organization: Structure
         content: Commentaire
+
+  comment_states:
+    title:
+      pending: en attente
+      accepted: accepté
+      rejected: rejeté
+    style:
+      pending: warning
+      accepted: success
+      rejected: danger

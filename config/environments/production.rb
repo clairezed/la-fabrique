@@ -88,7 +88,7 @@ Rails.application.configure do
   URL = "http://#{HOST}"
 
   SYSTEM_MAILER     = "CZ <noreply@clairezuliani.com>"
-  DEFAULT_RECIPIENT = "Contact <clairezuliani@gmail.com>"
+  DEFAULT_RECIPIENT = ["contact@project-mirador.org", "Contact <clairezuliani@gmail.com>"] 
   routes.default_url_options = { :host => HOST }
   config.action_mailer.default_url_options = { :host => HOST }
   config.action_mailer.asset_host = URL

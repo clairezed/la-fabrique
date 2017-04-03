@@ -15,6 +15,13 @@
         => text_field_tag 'by_tool_title', params[:by_tool_title], \
           class: "form-control", placeholder: "par outil"
 
+      .form-group.col-3
+        = select_tag :by_state, \
+              options_for_select(comment_state_options, params[:by_state]), \
+              prompt: "Tous les états",\
+              class: "form-control", \
+              onchange: "$('[data-is-filter-form]').submit()"
+
       / .form-group.col-3
       /   = select_tag :by_tag_ids, \
       /         options_for_select(tool_tags_options, params[:by_tag_ids]), \

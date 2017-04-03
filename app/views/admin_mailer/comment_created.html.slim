@@ -1,0 +1,17 @@
+p Bonjour,
+
+p Un nouveau commentaire a été effectué :
+ul
+  li
+    ' Outil :
+    strong= @comment.tool.title
+  li
+    ' Commentaire :
+    strong= @comment.content
+  li
+    ' Auteur :
+    strong = full_commenter(@comment)
+
+br
+p Retrouvez et gérez ce commentaire dans #{link_to "votre espace administrateur", admin_comments_url(by_state: 'pending')}.
+

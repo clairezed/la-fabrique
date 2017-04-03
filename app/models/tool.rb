@@ -15,7 +15,7 @@ class Tool < ApplicationRecord
   # états de publication et validation par l'admin
   #
   enum state: {
-    draft:   0, # en attente de validation
+    draft:     0, # en attente de validation
     pending:   1, # en attente de validation
     accepted:  2, # accepté
     rejected:  3  # rejeté

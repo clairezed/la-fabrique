@@ -37,8 +37,14 @@ class Comment < ApplicationRecord
   # Associations ===============================================================
   belongs_to :tool
 
-  # Callbacks ==================================================================
+  # Validations ==================================================================
   validates :content, presence: true
+
+  # Callbacks ==================================================================
+  private def notify_admin
+    AdminMailer.comment_created(self).deliver_later
+  end
+  after_create :notify_admin
 
   # Scopes =====================================================================
 
