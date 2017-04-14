@@ -1,0 +1,8 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: mobility_toolbox_production
+  pool: 5
+  username: mirador
+  password: aqwxszedcvfr4321
+  host: localhost

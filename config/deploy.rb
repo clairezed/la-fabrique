@@ -7,16 +7,11 @@ require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 
 #= Application ==============================================
-set :application, "mobility_toolbox"
+set :application, "fabrique-mobilite"
 
 #= Git ======================================================
 set :scm, "git"
 set :repository, "git@github.com:clairezed/mobility-toolbox.git"
-
-
-# before "bundle:install" do
-#   run "gem install bundler" 
-# end
 
 #= Liens symboliques vers shared ============================
 after "bundle:install" do

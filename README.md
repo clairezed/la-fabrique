@@ -34,7 +34,7 @@ rake db:setup
 rails server
 ```
 
-Your website should be accessile at [localhost:3000](http://localhost:3000/).
+Your website should be accessible at [localhost:3000](http://localhost:3000/).
 
 
 *End with an example of getting some data out of the system or using it for a little demo*

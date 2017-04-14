@@ -84,20 +84,21 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  HOST = "fabrique-mobilite.clairezuliani.com"
+  HOST = "mirador-mt.clairezuliani.com"
   URL = "http://#{HOST}"
 
-  SYSTEM_MAILER     = "contact <noreply@project-mirador.org>"
+  SYSTEM_MAILER     = "CZ <noreply@clairezuliani.com>"
   DEFAULT_RECIPIENT = ["contact@project-mirador.org", "Contact <clairezuliani@gmail.com>"] 
   routes.default_url_options = { :host => HOST }
   config.action_mailer.default_url_options = { :host => HOST }
   config.action_mailer.asset_host = URL
 
 
+
   config.middleware.use ExceptionNotification::Rack,
   email: {
-      email_prefix: "[Mirador - Fabrique Mobilité] ",
-      sender_address: %{"Error Notification" <error@clairezuliani.com>},
+      email_prefix: "[Mirador Mobility Toolbox] ",
+      sender_address: %{"Error Notification" <error@studio-hb.com>},
       exception_recipients: %w{clairezuliani@gmail.com},
       sections: %w{request backtrace session environment}
   }

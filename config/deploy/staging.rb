@@ -3,6 +3,7 @@ require "rvm/capistrano"
 set :rvm_ruby_string, 'RUBY-VERSION@GEMSET'
 
 #= Application ==============================================
+set :application, "mobility_toolbox" #nom différent en staging pour le moment
 set :deploy_to, "/home/deploy/www/stagings/#{application}"
 set :rails_env, 'staging'
 
@@ -11,7 +12,7 @@ set :branch, "master"
 
 #= Serveur ==================================================
 set :user, "deploy"
-set :domain, "ADDRESSE_IP"
+set :domain, "51.254.118.128"
 server domain, :app, :web
 role :db, domain, :primary => true
 set :use_sudo, false

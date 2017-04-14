@@ -11,7 +11,7 @@ set :branch, "production"
 
 #= Serveur ==================================================
 set :user, "deploy"
-set :domain, "51.254.118.128"
+set :domain, "94.23.32.222"
 server domain, :app, :web
 role :db, domain, :primary => true
 set :use_sudo, false
