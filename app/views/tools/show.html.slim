@@ -49,9 +49,6 @@
                     | Formule magique
       
               p.mt-1.small= link_to "C'est magique ?", "javascript:void(0)", class:"btn-modul_help", data: {is_popover: true, content: "Grâce à la formule magique, découvrez des trucs fous !"}, title: "Qu'est-ce que la formule magique ?"
-        .col-md-4
-          p Partagez sur les réseaux
-          = social_share_button_tag(@tool.title)
 
     / Main content ----------------------------------------------
     section.tool-content.row.mt-5
@@ -125,6 +122,10 @@
             h3.section_title Proposé par
             p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")
             p = @tool.submitter_organization
+
+        section.light-section
+          h3.section_title Partagez sur les réseaux
+          = social_share_button_tag(@tool.title)
 
     / Comment ----------------------------------------------
     section.comment-section
