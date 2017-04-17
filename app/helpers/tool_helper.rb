@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ToolHelper
+
+  DEFAULT_BLANK = "/"
   
   # Etat -----------------------------------------------
 
@@ -21,6 +23,7 @@ module ToolHelper
   # Taille groupe -----------------------------------
 
   def tool_group_size(group_size)
+    return DEFAULT_BLANK if group_size.blank?
     I18n.t(group_size, scope: [:tool_group_sizes])
   end
 
@@ -33,6 +36,7 @@ module ToolHelper
   # Durée -------------------------------------------
 
   def tool_duration(duration)
+    return DEFAULT_BLANK if duration.blank?
     I18n.t(duration, scope: [:tool_durations])
   end
 
@@ -45,6 +49,7 @@ module ToolHelper
   # Niveau difficulté -------------------------------------------
 
   def tool_level(level)
+    return DEFAULT_BLANK if level.blank?
     I18n.t(level, scope: [:tool_levels])
   end
 

@@ -69,8 +69,8 @@ class Tool < ApplicationRecord
   }
 
   enum description_type: {
-    steps:       0,
-    description: 1
+    description: 0,
+    steps:       1
   }
   # enum public: {
   #   young:  0, # en attente de validation
@@ -110,10 +110,10 @@ class Tool < ApplicationRecord
   # validation de présence de axe et catégorie -> directement en base
 
   validates :title, presence: true
-  validates :group_size,
-            :duration,
-            :level,
-            presence: true
+  # validates :group_size,
+  #           :duration,
+  #           :level,
+  #           presence: true
 
   # Etape 2 du formulaire de création ----------------------------
 
