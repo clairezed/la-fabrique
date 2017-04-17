@@ -1,8 +1,10 @@
+$explanation-bg-color: lighten($brand-inverse, 10%)
+
 .explanation 
   color: $white
   
 .explanation_main
-  background-color: $brand-inverse
+  background-color: $explanation-bg-color
   overflow-y: hidden
   max-height: 250px
   transition: max-height 1s ease-in-out
@@ -20,7 +22,7 @@
   padding: 2.5em 0 2.5em
 
 .explanation_edge
-  background-color: $brand-inverse
+  background-color: $explanation-bg-color
   height: 10px
 
 .explanation_strip
@@ -29,7 +31,7 @@
   font-size: 1.2rem
   cursor: pointer
   text-align: center
-  background-color: $brand-inverse
+  background-color: $explanation-bg-color
   text-transform: uppercase
   border-radius: 0 0 50px 50px
   margin-top: -5px
