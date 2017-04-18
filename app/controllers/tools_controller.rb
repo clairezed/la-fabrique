@@ -29,6 +29,7 @@ class ToolsController < ApplicationController
     respond_to do |format|
       format.html
         @comment = @tool.comments.new
+        set_back_path
       format.pdf do
         pdf = Pdf::Tool.new(@tool)
         send_data pdf.to_pdf, filename: pdf.filename, type: 'application/pdf'
@@ -121,4 +122,5 @@ class ToolsController < ApplicationController
       seo_attributes: %i(slug title keywords description id)
     )
   end
+
 end

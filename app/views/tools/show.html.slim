@@ -36,6 +36,9 @@
   .container
     / Utilities -------------------------------------------------
     section.utility-section.pb-5
+      => link_to back_path, class: 'btn btn-secondary pull-right', title: "Retourner à la page de recherche" do
+        i.fa.fa-chevron-left>
+        ' Retour
       .row
         .col-md-8.d-flex.flex-row
           .btn-modul
@@ -49,6 +52,7 @@
                     | Formule magique
       
               p.mt-1.small= link_to "C'est magique ?", "javascript:void(0)", class:"btn-modul_help", data: {is_popover: true, content: "Grâce à la formule magique, découvrez des trucs fous !"}, title: "Qu'est-ce que la formule magique ?"
+              
 
     / Main content ----------------------------------------------
     section.tool-content.row.mt-5

@@ -4,7 +4,29 @@
 
   = render "tools/search"
   
-  .sort
-    span.sort-item= hm_sort 'sort_by_created_at', label: 'Dernières fiches', icon_lib: 'fa'
-    span.sort-item= hm_sort 'sort_by_title', label: 'A-Z', icon_lib: 'fa'
-  = render "tools/list"
+  - if @tools.any?
+    .sort
+      span.sort-item= hm_sort 'sort_by_created_at', label: 'Dernières fiches', icon_lib: 'fa'
+      span.sort-item= hm_sort 'sort_by_title', label: 'A-Z', icon_lib: 'fa'
+    = render "tools/list"
+
+  - else
+    / Empty state desktop
+    .tool-empty.hidden-sm-down
+      p L’outil que vous recherchez n’existe pas. 
+      p Vous souhaitez le créer ?
+
+      = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse btn-bold uppercase"
+
+    / Empty state mobile
+    .tool-empty.hidden-sm-up
+      p L’outil que vous recherchez n’existe pas. 
+      p Vous pourrez le créer en revenant sur le site depuis un ordinateur.
+      p Vous souhaitez faire une nouvelle recherche ?
+
+      = link_to "#search-bar", class: "btn btn-secondary ml-auto hidden-md-up", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "search-bar"} do
+          i.fa.fa-search>
+          ' Rechercher
+
+
+      / = link_to 'Rechercher un outil', new_tool_path, class: "btn btn-inverse btn-bold uppercase"

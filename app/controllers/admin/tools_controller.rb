@@ -171,4 +171,5 @@ class Admin::ToolsController < Admin::BaseController
                   :by_duration, :by_group_size)
   end
   helper_method :search_params
+  
 end

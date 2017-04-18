@@ -51,6 +51,8 @@ class Link < ApplicationRecord
       @oembed_resource ||= OEmbed::Providers.get(self.url)
     rescue OEmbed::NotFound
       return nil
+    rescue
+      return nil # pour éviter 500 si je bosse en local, hors ligne
     end
   end
   private #=====================================================================

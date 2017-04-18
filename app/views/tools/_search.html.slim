@@ -1,12 +1,12 @@
-= form_tag tools_path, method: :get, data: {is_filter_form: true} do
+= form_tag tools_path, method: :get, data: {is_filter_form: true}, class:"search-bar_wrapper" do
 
-  #search-bar.search-bar.collapse
+  .search-bar.collapse#search-bar
     .row
       .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--axis
         label Dans l'axe
         = select_tag :by_axis, \
               options_for_select(axis_options(current_theme.axes), params[:by_axis]), \
-              prompt: "Filtrer",\
+              prompt: "Tous",\
               class: "nice-select", \
               data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
@@ -15,6 +15,15 @@
         label Type d'outil
         = select_tag :by_tool_category, \
               options_for_select(tool_category_options, params[:by_tool_category]), \
+              prompt: "Tous",\
+              class: "nice-select", \
+              data: {is_nice_select: true}, \
+              onchange: "$('[data-is-filter-form]').submit()"
+
+      .col-md.col-sm-6.search-bar-item.search-bar-item--group-size
+        label Nb de pers.
+        = select_tag :by_group_size, \
+              options_for_select(tool_group_size_options, params[:by_group_size]), \
               prompt: "Tous",\
               class: "nice-select", \
               data: {is_nice_select: true}, \
@@ -29,15 +38,6 @@
               data: {is_nice_select: true}, \
               onchange: "$('[data-is-filter-form]').submit()"
 
-
-      .col-md.col-sm-6.search-bar-item.search-bar-item--group-size
-        label Nb de pers.
-        = select_tag :by_group_size, \
-              options_for_select(tool_group_size_options, params[:by_group_size]), \
-              prompt: "Tous",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
 
       .col-md.col-sm-6.search-bar-item.search-bar-item--duration
         label Durée (min)
@@ -64,6 +64,10 @@
           label Nom de l'outil
           => text_field_tag 'tool_title', params[:tool_title], \
             class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
+  .search-reinit_strip
+    = link_to root_path, class: "search-reinit_label" do
+      i.fa.fa-search>
+      ' Réinitialiser
 
 coffee:
   new ToolSearch()
