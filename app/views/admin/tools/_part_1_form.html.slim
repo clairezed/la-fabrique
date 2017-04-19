@@ -41,8 +41,6 @@ fieldset
     .controls-xlarge
       = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: admin_tags_path}
 
-= render partial: "admin/seos/fields_for_form", locals: {f: f}
-
 .form-group.row
   .form-actions
     hr

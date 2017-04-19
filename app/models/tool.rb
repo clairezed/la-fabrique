@@ -201,5 +201,9 @@ class Tool < ApplicationRecord
     @random_training ||= self.trainings.order('random()').first
   end
 
+  def description_for_seo
+    self.teaser
+  end
+
   # private #=====================================================================
 end

@@ -104,11 +104,13 @@ fieldset
       div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_tool_links_path(f.object)}"
 
 
+= render partial: "admin/seos/fields_for_form", locals: {f: f}
+
 hr
 .form-group.row
   .form-actions
-    => f.submit button_name, class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_leave"
-    => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_stay"
+    => f.submit button_name, class: "btn btn-default", style: "margin-right: 2px", id: "submit_and_leave"
+    => f.submit name: "continue", value: "#{button_name_2}", class: "btn btn-primary", style: "margin-right: 2px", id: "submit_and_stay"
     = link_to "Annuler", admin_tools_path, class: "btn"
 
 .form-group.row
