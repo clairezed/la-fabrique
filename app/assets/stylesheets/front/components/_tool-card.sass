@@ -6,6 +6,7 @@
   /* flip the pane when hovered */
   &:hover .flipper, &.hover .flipper
     transform: rotateY(180deg)
+    transition-delay: 0.6s
 
 .flip-container, .front, .back
   width: 100%
@@ -13,10 +14,10 @@
 
 /* flip speed goes here */
 .flipper
-  transition: 0.6s
+  transition: 1s
   transform-style: preserve-3d
   position: relative
-  // height: 100%
+  transition-delay: 0s
 
 /* hide back of pane during swap */
 .front, .back
