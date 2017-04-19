@@ -196,10 +196,6 @@ class Tool < ApplicationRecord
     created_at > NOVELTY_DELAY.days.ago
   end
 
-  def submitter_info_present?
-    [submitter_firstname, submitter_lastname, submitter_organization].any? { |field| !field.blank? }
-  end
-
   def random_training
     return nil unless trainings.any?
     @random_training ||= self.trainings.order('random()').first

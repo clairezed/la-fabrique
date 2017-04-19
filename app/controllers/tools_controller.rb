@@ -102,7 +102,6 @@ class ToolsController < ApplicationController
   def build_tool_relations
     3.times { @tool.steps.build } if @tool.steps.empty?
     @attachment = @tool.attachments.build
-    # @tool.build_seo unless @tool.seo.present?
   end
 
   # strong parameters -------------------------------------
@@ -116,7 +115,7 @@ class ToolsController < ApplicationController
   def part_2_params
     params.require(:tool).permit(
       :description, :teaser, :description_type,
-      :public, :licence, :goal, :material, :source, :advice,
+      :public, :licence, :goal, :material, :source, :advice, :display_contact,
       :submitter_email, :submitter_organization, :submitter_firstname, :submitter_lastname,
       steps_attributes: %i(id description _destroy),
       seo_attributes: %i(slug title keywords description id)

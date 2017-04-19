@@ -18,19 +18,19 @@
           .row
             .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge.align-middle
-                i.fa.fa-hourglass>
+                i.fa.fa-hourglass.mr-2>
                 = tool_duration(@tool.duration)
             .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-users>
+                i.fa.fa-users.mr-2>
                 = tool_group_size(@tool.group_size)
             .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-signal>
+                i.fa.fa-signal.mr-2>
                 = tool_level(@tool.level)
             .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-tags>
+                i.fa.fa-tags.mr-2>
                 = @tool.tool_category.title
 
   .container
@@ -121,7 +121,7 @@
             - @tool.tags.each do |tag|
               span.badge.badge-default.mr-3 = tag.title
 
-        - if @tool.submitter_info_present?
+        - if @tool.display_contact?
           section.light-section
             h3.section_title Proposé par
             p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")

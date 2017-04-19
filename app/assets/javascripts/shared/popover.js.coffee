@@ -23,9 +23,6 @@ class @Popover
         </div>
       </div>
     """
-    title: () ->
-      field = $(this).data('title')
-      return "Comment renseigner le champs #{field} ?"
     constraints: [
       to: 'scrollParent'  
       attachment: 'together'
@@ -38,7 +35,6 @@ class @Popover
     # console.log "init Link modal!"
     @options = $.extend(true, {}, @DEFAULT_OPTIONS, options)
     @popoverOptions = $.extend(true, {}, @POPOVER_OPTIONS, popoverOptions)
-    # @$container = $(@options.template)
     @$element = $(@options.selectors.elementSelector)
 
     @bindEvents()

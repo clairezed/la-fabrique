@@ -281,7 +281,7 @@ end
     content: "Ceci est un texte expliquant comment remplir le champs"
   },
   {
-    field: "submitter_email",
+    field: "contact",
     title: "",
     content: "Ceci est un texte expliquant comment remplir le champs"
   }

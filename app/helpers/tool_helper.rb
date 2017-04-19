@@ -77,7 +77,7 @@ module ToolHelper
     if helpInstance.present? && helpInstance.title.present?
       helpInstance.title
     else
-      "Comment renseigner le champs #{I18n.t(helpInstance.field, scope: %i(helpers label tool)).downcase} ?"
+      "Comment renseigner le champs \"#{I18n.t(helpInstance.field, scope: %i(helpers label tool)).downcase}\" ?"
     end
   end
 

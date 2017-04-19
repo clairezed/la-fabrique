@@ -1,3 +1,3 @@
 - help = ToolHelp.get(field)
 - if help.present? && help.with_content?
-  = link_to "?", "javascript:void(0)", class:"help-link", data: {is_popover: true, content: help.content}, title: help_title(help)
+  = link_to "?", "javascript:void(0)", class:"help-link", data: {is_popover: true, content: help.content}, title: help_title(help), tabindex: -1

@@ -2,13 +2,13 @@
   = f.hm_form_errors
   = f.hidden_field :current_step, value: 1
 
-  .form-group
+  .form-group.required
     = f.label :title, class:" form-control-label"
     = render partial: 'help_popover', locals: {field: :title}
-    = f.text_field :title, class: "form-control"
+    = f.text_field :title, class: "form-control required", autofocus: true
 
 
-  .form-group
+  .form-group.required
     = f.label :axis_id, value: "Axe thématique", class:" form-control-label"
     = render partial: 'help_popover', locals: {field: :axis_id}
     .row.lg-gutter
@@ -48,12 +48,12 @@
           = f.label :level, value: id, class: "card form-card  hidden-error" do
             span.form-axis-card_title= title
 
-  .form-group
+  .form-group.required
     = f.label :tool_category_id, class:" form-control-label"
     = render partial: 'help_popover', locals: {field: :tool_category_id}
     .row
       .col-lg-6
-        = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "form-control", data: {is_autocomplete_select: 'tool-category'}
+        = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "form-control required", data: {is_autocomplete_select: 'tool-category'}
 
   .form-group
     = f.label :public, class:" form-control-label"
@@ -64,7 +64,7 @@
   .form-group
     = f.label :tag_ids, class:" form-control-label"
     = render partial: 'help_popover', locals: {field: :tag_ids}
-    = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: tags_path}
+    = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control ",  data: {is_autocomplete_select: 'tag', path: tags_path}
 
   .d-flex.flex-row-reverse
     .p-6
