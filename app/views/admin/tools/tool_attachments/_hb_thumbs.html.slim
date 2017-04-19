@@ -2,31 +2,31 @@
 / Thumb affiché tant que l'upload est 'in progress'
 = handlebars_template(:AttachmentUpload) do
   .col-md-6 data-is-upload=true
-    .card
+    .card.media-card
       .card-block
-        p.card-text
+        p.card-text.font-weight-bold
         => "{{name}}"
         .progress
           .progress-bar.bar style="width: 0%"
 
 / Thumb final une fois l'upload effectué
 = handlebars_template(:AttachmentDownload) do
-  .col-md-6 data-is-download="{{id}}"
-    .card.media-card
-      |{{#if displayable }}
-      = link_to "{{url}}", target: "_blank", class: "card-img-top" do 
+  .col-md-6.media-card_wrapper data-is-download="{{id}}"
+    .card.media-card.media-card--reduced
+      = link_to "{{url}}", target: "_blank", class: "card-img-top img-fluid" do 
+        | {{#if displayable }}
         img.img-fluid src="{{thumbnail_url}}"
-      |{{else}}
-      i.fa> class="fa-{{format_icon}} media-card_icon"
-      |{{/if}}
+        |{{else}}
+        i.fa> class="fa-{{format_icon}} media-card_icon"
+        |{{/if}}
       .card-block
         p.card-text
-          / i.fa> class="fa-{{format_icon}}"
+          i.fa> class="fa-{{format_icon}}"
           => link_to "{{name}}", "{{url}}", target: :blank
         / p.small.text-muted
+        /   i.fa> class="fa-{{format_icon}}"
         /   => "{{format_title}}"
-    .pull-right.mt-2.mb-3
-      = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-2", data:{edit_attachment: "{{id}}"}  do 
-        i.fa.fa-edit
-      = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}", confirm: "Confirmer la suppression ?"} do
-        i.fa.fa-trash
+        = link_to "{{admin_edit_url}}", remote: true,  class: "btn btn-sm btn-info mr-1", data:{edit_attachment: "{{id}}"}  do 
+          i.fa.fa-edit
+        = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: "{{id}}", confirm: "Confirmer la suppression ?"} do
+          i.fa.fa-trash

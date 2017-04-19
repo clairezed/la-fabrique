@@ -84,7 +84,7 @@
             h3.section_title Médias
             .row
               - @tool.attachments.each do |attachment|
-                .col-4
+                .col-4.media-card_wrapper
                   = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
 
         - if @tool.links.any?

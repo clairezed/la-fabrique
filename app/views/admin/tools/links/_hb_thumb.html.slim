@@ -1,13 +1,14 @@
 
 / Thumb link
 = handlebars_template(:LinkThumb) do
-  .col-12 data-is-link="{{id}}"
+  .col-9 data-is-link="{{id}}"
     .card.link-card
       .card-block
         p.card-text
           = link_to "{{url}}", target: "_blank" do 
             i.fa> class="fa-{{format_icon}}"
             => "{{title}}"
+  .col-3 data-is-link="{{id}}"
     .pull-right.mt-2.mb-3
       = link_to "{{admin_delete_url}}", method: :delete, remote: true, class: "btn btn-sm btn-danger pull-right",  data: {delete_link: "{{id}}", confirm: "Confirmer la suppression ?"} do
         i.fa.fa-trash

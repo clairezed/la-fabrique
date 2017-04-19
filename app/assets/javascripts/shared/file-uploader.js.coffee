@@ -4,7 +4,7 @@ class @FileUploader
     scope: $(document)
     template:
       modal: """
-      <div class="modal fade>
+      <div class="modal fade">
         <div class="modal-dialog" role="document">
           <div class="modal-content" data-is-modal-content>
           </div>

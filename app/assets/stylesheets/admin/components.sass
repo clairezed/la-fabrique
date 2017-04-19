@@ -25,34 +25,6 @@
       background-color: darken(#fff, 4%)
 
 
-
-// ////////////////////////////
-// // COMPONENTS
-// ////////////////////////////
-
-.card
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
-  border: 0
-  background-color: #fff
-  border-radius: 3px
-
-.card-search
-  margin-bottom: 1rem
-  background-color: #fcfcfd
-  .lead
-    margin-bottom: 5px
-  .form-control
-    width: 100%
-
-// ////////////////////////////
-// // TABLES
-// ////////////////////////////
-
-// // table striped: surcharge bootstrap
-// .table-striped 
-//   > tbody > tr > td 
-//     border-top: none
-
 ////////////////////////////
 // BOUTON
 ////////////////////////////
@@ -93,7 +65,20 @@
 ////////////////////////////
 // CARD
 ////////////////////////////
+.card
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+  border: 0
+  background-color: #fff
+  border-radius: 3px
 
+.card-search
+  margin-bottom: 1rem
+  background-color: #fcfcfd
+  .lead
+    margin-bottom: 5px
+  .form-control
+    width: 100%
+    
 .link-card
   background-color: $color-bg
   margin-bottom: 10px
@@ -259,4 +244,23 @@ $border-color: #ccc
     &:hover
       cursor: pointer
 
+////////////////////////////
+// MEDIA THUMB
+////////////////////////////
 
+.media-card_wrapper
+  margin-bottom: 1rem
+
+.media-card
+  height: 100%
+  overflow: hidden
+  a 
+    text-align: center
+  .card-text
+    overflow: hidden
+.media-card--reduced
+  height: 100%
+.media-card_icon
+  font-size: 6rem
+  // margin: 0 auto
+  padding-top: 1rem

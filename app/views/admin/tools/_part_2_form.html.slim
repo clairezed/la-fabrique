@@ -93,24 +93,6 @@ fieldset
 
       div.row data-is-media-list=true data-list-url="#{admin_tool_attachments_path(f.object)}"
 
-        / - @tool.attachments.order(position: :desc).each do |attachment|
-        /   .col-md-3 data-is-download="#{attachment.id}"
-        /     .card
-        /       - if attachment.displayable?
-        /         = link_to attachment.asset.url(:original), target: "_blank", class: "card-img-top img-fluid" do 
-        /           = image_tag attachment.asset.url(:preview), class: 'img-fluid'
-        /       .card-block
-
-        /         p.card-text.font-weight-bold
-        /           => link_to attachment.custom_file_name, attachment.asset.url, target: :blank
-        /         p.small.text-muted
-        /           i.fa> class="fa-#{tool_format_type_icon(attachment.format_type)}"
-        /           => tool_format_type_title(attachment.format_type)
-
-        /         = link_to edit_admin_tool_attachment_path(attachment), remote: true, class: "btn btn-sm btn-info mr-1", data:{edit_attachment: attachment.id} do 
-        /           i.fa.fa-edit
-        /         = link_to admin_tool_attachment_path(attachment), method: :delete, remote: true, class: "btn btn-sm btn-danger", data:{delete_attachment: attachment.id} do
-        /           i.fa.fa-trash
   .col-12.col-lg-6
     fieldset
       legend Liens
