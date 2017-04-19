@@ -3,13 +3,13 @@
 fieldset
   legend Descriptif
 
-  .form-group.row
+  .form-group.row.required
     .form-label-default
       = f.label :goal
     .controls-xlarge
       = f.text_area :goal, class: "form-control", rows: 3
 
-  .form-group.row
+  .form-group.row.required
     .form-label-default
       = f.label :teaser
     .controls-xlarge
@@ -18,7 +18,7 @@ fieldset
   / DESCRIPTION =========================================================
 
   div#description-wrapper
-    .form-group.row
+    .form-group.row.required
       .form-label-default
         label 
           = f.label :description

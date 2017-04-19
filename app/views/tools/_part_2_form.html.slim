@@ -1,12 +1,12 @@
 = f.hm_form_errors
 
-.form-group
-  = f.label :goal
+.form-group.required
+  = f.label :goal, class:" form-control-label"
   = render partial: 'help_popover', locals: {field: :goal}
-  = f.text_area :goal, class: "form-control", rows: 3, autofocus: true
+  = f.text_area :goal, class: "form-control required", rows: 3, autofocus: true
 
-.form-group
-  = f.label :teaser
+.form-group.required
+  = f.label :teaser, class:" form-control-label"
   = render partial: 'help_popover', locals: {field: :teaser}
   = f.text_area :teaser, class: "form-control", rows: 3
 
@@ -14,9 +14,9 @@
 / DESCRIPTION =========================================================
 
 div#description-wrapper.mt-30
-  .form-group.row
+  .form-group.row.required
     .col-md-4
-      = f.label :description, class:"label-title "
+      = f.label :description, class:"label-title form-control-label"
     .col-md-8
       .btn-group data-toggle="buttons"
         - Tool.description_types.keys.each do |description_type|
@@ -137,9 +137,9 @@ div.mt-5
       = f.text_field :submitter_lastname, class: "form-control"
       //  p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
-.form-group
-  = f.label :display_contact, class: "", data: {} do
-    = f.check_box :display_contact, class: ""
+.form-check
+  = f.label :display_contact, class: "form-check-label" do
+    => f.check_box :display_contact, class: "form-check-input"
     ' Afficher mes informations de contact sur la fiche outil
 
 .d-flex.flex-row-reverse
