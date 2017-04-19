@@ -108,7 +108,7 @@ class ToolsController < ApplicationController
   # strong parameters -------------------------------------
   def part_1_params
     params.require(:tool).permit(
-      :axis_id, :tool_category_id, :title,
+      :axis_id, :tool_category_id, :title, :current_step,
       :group_size, :duration, :level, :public, tag_ids: []
     )
   end
