@@ -16,19 +16,19 @@
             h3.section_title Objectifs
             p = text_to_html @tool.goal
           .row
-            .col-lg-3.col-sm-6
-              .tool-header_badge
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
+              .tool-header_badge.align-middle
                 i.fa.fa-hourglass>
                 = tool_duration(@tool.duration)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
                 i.fa.fa-users>
                 = tool_group_size(@tool.group_size)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
                 i.fa.fa-signal>
                 = tool_level(@tool.level)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
                 i.fa.fa-tags>
                 = @tool.tool_category.title
