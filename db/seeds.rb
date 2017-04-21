@@ -38,6 +38,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :interculturality,
     theme_id: mobility_theme.id,
+    color: "#5d75db",
     enabled: true
   },
     {
@@ -45,6 +46,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :departure_preparation,
     theme_id: mobility_theme.id,
+    color: "#8f65c1",
     enabled: true
   },
     {
@@ -52,6 +54,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :return_preparation,
     theme_id: mobility_theme.id,
+    color: "#00cccc",
     enabled: true
   },
     {
@@ -59,6 +62,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :mobility_system,
     theme_id: mobility_theme.id,
+    color: "#99cc66",
     enabled: true
   }, 
   {
@@ -66,6 +70,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :skill_promotion,
     theme_id: mobility_theme.id,
+    color: "#ffd966",
     enabled: true
   }, 
   {
@@ -73,6 +78,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :conflict_management,
     theme_id: mobility_theme.id,
+    color: "#f1875d",
     enabled: true
   }, 
   {
@@ -80,6 +86,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :group_facilitation,
     theme_id: mobility_theme.id,
+    color: "#dd4780",
     enabled: true
   }, 
   {
@@ -87,14 +94,16 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :project_methodology,
     theme_id: mobility_theme.id,
+    color: "#c0a476",
     enabled: true
   }
 
 ].each do |option|
-  Axis.where(title: option[:title]).first_or_create(
+  axis = Axis.where(title: option[:title]).first_or_create(
     id_key: option[:id_key],
-    theme_id: option[:theme_id], 
     description: [ option[:description], option[:title]].join(" "), 
+    theme_id: option[:theme_id], 
+    color: option[:color], 
     enabled: option[:enabled]
   )
 end

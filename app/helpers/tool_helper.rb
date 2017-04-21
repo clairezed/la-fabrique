@@ -2,7 +2,7 @@
 
 module ToolHelper
 
-  DEFAULT_BLANK = "/"
+  DEFAULT_BLANK = "-"
   
   # Etat -----------------------------------------------
 

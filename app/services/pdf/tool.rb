@@ -3,7 +3,7 @@
 #
 # Gère la génération de PDF à partir d'une facture
 #
-class Pdf::Tool < Pdf::Base
+class Pdf::Tool < Pdf::ProjectBase
   include ToolHelper
   include ApplicationHelper
 
@@ -16,122 +16,183 @@ class Pdf::Tool < Pdf::Base
   end
 
   def filename
-    ['MobToolbox', @tool.title.parameterize].join('-') + '.pdf'
+    [self.project_name, @tool.title.parameterize].join('-') + '.pdf'
   end
 
   protected #========================================================
 
-  def contents
-    current_document = self
-    within_body do
-      %i(header characteristics description).each do |block|
-        current_document.send(block)
-      end
-    end
-    repeat(:all) do
-      footer
-    end
+  def body
+    title
+    main_characteristics
+    main_content
+    side_content
   end
 
-  # Header ----------------------------------------------------------
-  def header
-    bs_row do
-      h1 @tool.title
-    end
+  # BLOCKS ===========================================================
+
+  def title
+    h1 @tool.title.upcase
     move_down 10
-    bs_row do
-      bs_span(12) do
-        styled_text [text: @tool.teaser, styles: [:italic]], size: 12
-      end
-    end
+    styled_text [@tool.axis.title.upcase], size: 14, color: axis_color, styles: [:bold]
     move_down 15
   end
 
-  # characteristics -------------------------------------------------
-  def characteristics
+  def main_characteristics
+    goal
+    move_down 10
     bs_row do
-      h2 'Caractéristiques'
-    end
-
-    bs_row do
-      bs_span(6) do
-        styled_text [{ text: 'Axe : ', styles: [:bold] }, @tool.axis.title], size: 10
-        move_down 6
-        styled_text [{ text: 'Catégorie : ', styles: [:bold] }, @tool.tool_category.title], size: 10
-        move_down 6
-        styled_text [{ text: 'Public : ', styles: [:bold] }, @tool.public], size: 10
+      bs_span(3) do 
+        char_tag(tool_group_size(@tool.group_size), 'fa-hourglass')
       end
-      bs_span(6, 6) do
-        styled_text [{ text: 'Taille du groupe : ', styles: [:bold] }, tool_group_size(@tool.group_size)], size: 10
-        move_down 6
-        styled_text [{ text: 'Durée : ', styles: [:bold] }, tool_duration(@tool.duration)], size: 10
-        move_down 6
-        styled_text [{ text: 'Niveau de difficultée : ', styles: [:bold] }, tool_level(@tool.level)], size: 10
+      bs_span(3, 3) do
+        char_tag(tool_duration(@tool.duration), 'fa-users')
       end
-      move_down 6
-    end
-
-    bs_row do
-      bs_span(12) do
-        styled_text [{ text: 'Mots-clés : ', styles: [:bold] }, @tool.tags.pluck(:title).join(", ")], size: 10
+      bs_span(3, 6) do 
+        char_tag(tool_level(@tool.level), 'fa-signal')
+      end
+      bs_span(3, 9) do 
+        char_tag(@tool.tool_category.title, 'fa-tags')
       end
     end
   end
 
-  # Description -----------------------------------------------------
+  def main_content
+    teaser
+    description
+    advice
+  end
+
+  def side_content
+    public
+    source
+    licence
+    material
+    tags
+    contact
+  end
+
+
+  # ITEMS ===========================================================
+
+  def goal
+    h2 'Objectifs'
+    styled_text [text: @tool.goal], size: 11
+  end
+
+  def teaser
+    h2 'Résumé'
+    styled_text [text: @tool.teaser], size: 11
+  end
+
   def description
-    bs_row do
-      h2 'Description'
-    end
+    h2 'Marche à suivre'
 
-    bs_row do
-      bs_span(12) do
-        styled_text [{ text: 'Objectif : ', styles: [:bold] }, @tool.goal], size: 10
-        move_down 6
-        description_text
-        move_down 6
-        styled_text [{ text: 'Matériel : ', styles: [:bold] }, @tool.material], size: 10
-      end
-    end
-  end
-
-  def description_text
     if @tool.steps?
       @tool.steps.each do |step|
-        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, step.description], size: 10
+        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, step.description], size: 11
       end
     else
-        styled_text [{ text: 'Description : ', styles: [:bold] }, @tool.description], size: 10
+      styled_text [text: @tool.description], size: 11
     end
   end
 
-  # Footer ----------------------------------------------------------
-  def footer
-    bounding_box([0, 60], width: 525, height: 50) do
-      stroke do
-        stroke_color gray_color
-        horizontal_rule
-      end
-      move_down 8
+  def advice
+    return if @tool.advice.blank?
+    h3 'Conseils'
+    styled_text [text: @tool.advice], size: 11
+  end
 
-      bs_row do
-        bs_span(6) do
-          text = %(Fiche fournie par MobiMagic)
-          styled_text [text: text], { size: 9 }, align: :left
-          styled_text [text: 'www.mobimagic.fr', link: 'http://mirador-mt.clairezuliani.com/'], { size: 9 }, align: :left
-        end
-        bs_span(6, 6) do
-          styled_text [text: 'Source :'], { size: 9 }, align: :right
-          styled_text [text: @tool.source], { size: 9 }, align: :right
-        end
-        move_down 6
-      end
+  def public
+    return if @tool.public.blank?
+    h3 'Public privilégié'
+    styled_text [text: @tool.public], size: 11
+  end
 
-      bs_row do
-        bs_span(12) do
-          styled_text [text: @tool.licence], { styles: [:italic], size: 8 }, align: :center
-        end
-      end
+  def source
+    return if @tool.source.blank?
+    h3 'Source'
+    styled_text [text: @tool.source], size: 11
+  end
+
+  def licence
+    return if @tool.licence.blank?
+    h3 'Copyright'
+    styled_text [text: @tool.licence], size: 11
+  end
+
+  def material
+    return if @tool.material.blank?
+    h3 'Matériel'
+    styled_text [text: @tool.material], size: 11
+  end
+
+  def tags
+    return unless @tool.tags.any?
+    h3 'Mot-clés'
+    default_tags(@tool.tags.pluck(:title))
+  end
+
+  def contact
+    return unless @tool.display_contact?
+    h3 'Proposé par'
+    styled_text [text: [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")], size: 11
+    styled_text [text: @tool.submitter_organization], size: 11
+  end
+
+
+  # HELPERS ===========================================================
+
+  def axis_color_line(width = 150, line_width = 4)
+    original_line_width = self.line_width
+    stroke do
+      stroke_color axis_color
+      self.line_width = line_width
+      horizontal_line 0, width
+    end
+    self.line_width = original_line_width
+  end
+
+  def axis_color
+    @axis_color ||= @tool.axis.color[1..-1] # supprimer le diese
+  end
+
+  def h1(*fragments)
+    bs_row(height: 60) do
+      styled_text fragments,
+                  { styles: [:bold], size: 20 },
+                  valign: :center
+    end
+    bs_row(height: 10) do
+      axis_color_line(100)
     end
   end
+
+  def h2(*fragments)
+    move_down 10
+    bs_row(height: 30) do
+      styled_text fragments, { styles: [:bold], size: 14 }, valign: :center
+    end
+    bs_row(height: 10) do
+      axis_color_line(100)
+    end
+  end
+
+  def h3(*fragments)
+    move_down 10
+    bs_row(height: 25) do
+      styled_text fragments, { styles: [:bold], size: 12 }, valign: :center
+    end
+    bs_row(height: 10) do
+      axis_color_line(100)
+    end
+  end
+
+  def char_tag(text, icon)
+    icon_tag = CharTagCallback.new(color: axis_color, document: self)
+    add_icon = AddIconCallback.new(document: self, icon: icon)
+    formatted_text [ { text: text, callback: [icon_tag, add_icon] } ], 
+      color: "ffffff", size: 10, leading: 0, align: :center
+  end
+
+  
 end
