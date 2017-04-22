@@ -1,74 +1,73 @@
-.tool-form
-  = f.hm_form_errors
-  = f.hidden_field :current_step, value: 1
+= f.hm_form_errors
+= f.hidden_field :current_step, value: 1
 
-  .form-group.required
-    = f.label :title, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :title}
-    = f.text_field :title, class: "form-control required", autofocus: true
-
-
-  .form-group.required
-    = f.label :axis_id, value: "Axe thématique", class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :axis_id}
-    .row.lg-gutter
-      - current_theme.axes.enabled.each do |axis|
-        .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col class="form-card-col-#{axis.id_key}"
-          = f.radio_button :axis_id, axis.id, class: "hidden-error"
-          = f.label :axis_id, value: axis.id, class: "form-card form-axis-card hidden-error", data: {is_axis_tooltip: axis.description} do
-            span.form-axis-card_title= axis.title
-
-  .form-group
-    = f.label :duration, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :duration}
-    .row.lg-gutter
-      - tool_duration_options.each do |title, id|
-        .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
-          = f.radio_button :duration, id, class: "hidden-error"
-          = f.label :duration, value: id, class: "card form-card hidden-error" do
-            span.form-axis-card_title= title
-
-  .form-group
-    = f.label :group_size, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :group_size}
-    .row.lg-gutter
-      - tool_group_size_options.each do |title, id|
-        .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
-          = f.radio_button :group_size, id, class: "hidden-error"
-          = f.label :group_size, value: id, class: "card form-card  hidden-error" do
-            span.form-axis-card_title= title
-
-  .form-group
-    = f.label :level, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :level}
-    .row.lg-gutter
-      - tool_level_options.each do |title, id|
-        .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
-          = f.radio_button :level, id, class: "hidden-error"
-          = f.label :level, value: id, class: "card form-card  hidden-error" do
-            span.form-axis-card_title= title
-
-  .form-group.required
-    = f.label :tool_category_id, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :tool_category_id}
-    .row
-      .col-lg-6
-        = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "form-control required", data: {is_autocomplete_select: 'tool-category'}
-
-  .form-group
-    = f.label :public, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :public}
-    = f.text_field :public, class: "form-control"
+.form-group.required
+  = f.label :title, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :title}
+  = f.text_field :title, class: "form-control required", autofocus: true
 
 
-  .form-group
-    = f.label :tag_ids, class:" form-control-label"
-    = render partial: 'help_popover', locals: {field: :tag_ids}
-    = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control ",  data: {is_autocomplete_select: 'tag', path: tags_path}
+.form-group.required
+  = f.label :axis_id, value: "Axe thématique", class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :axis_id}
+  .row.lg-gutter
+    - current_theme.axes.enabled.each do |axis|
+      .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col class="form-card-col-#{axis.id_key}"
+        = f.radio_button :axis_id, axis.id, class: "hidden-error"
+        = f.label :axis_id, value: axis.id, class: "form-card form-axis-card hidden-error", data: {is_axis_tooltip: axis.description} do
+          span.form-axis-card_title= axis.title
 
-  .d-flex.flex-row-reverse
-    .p-6
-      => f.submit "Etape suivante", class: "btn btn-inverse uppercase"
+.form-group
+  = f.label :duration, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :duration}
+  .row.lg-gutter
+    - tool_duration_options.each do |title, id|
+      .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
+        = f.radio_button :duration, id, class: "hidden-error"
+        = f.label :duration, value: id, class: "card form-card hidden-error" do
+          span.form-axis-card_title= title
+
+.form-group
+  = f.label :group_size, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :group_size}
+  .row.lg-gutter
+    - tool_group_size_options.each do |title, id|
+      .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
+        = f.radio_button :group_size, id, class: "hidden-error"
+        = f.label :group_size, value: id, class: "card form-card  hidden-error" do
+          span.form-axis-card_title= title
+
+.form-group
+  = f.label :level, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :level}
+  .row.lg-gutter
+    - tool_level_options.each do |title, id|
+      .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
+        = f.radio_button :level, id, class: "hidden-error"
+        = f.label :level, value: id, class: "card form-card  hidden-error" do
+          span.form-axis-card_title= title
+
+.form-group.required
+  = f.label :tool_category_id, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :tool_category_id}
+  .row
+    .col-lg-6
+      = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "form-control required", data: {is_autocomplete_select: 'tool-category'}
+
+.form-group
+  = f.label :public, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :public}
+  = f.text_field :public, class: "form-control"
+
+
+.form-group
+  = f.label :tag_ids, class:" form-control-label"
+  = render partial: 'help_popover', locals: {field: :tag_ids}
+  = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control ",  data: {is_autocomplete_select: 'tag', path: tags_path}
+
+.d-flex.flex-row-reverse
+  .p-6
+    => f.submit "Etape suivante", class: "btn btn-inverse uppercase"
 
 coffee:
   new PartOneToolForm()
