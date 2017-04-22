@@ -5,6 +5,7 @@
 #
 class Pdf::Tool < Pdf::ProjectBase
   include ToolHelper
+  include FormatHelper
   include ApplicationHelper
 
   attr_reader :tool
@@ -89,7 +90,15 @@ class Pdf::Tool < Pdf::ProjectBase
 
     if @tool.steps?
       @tool.steps.each do |step|
-        styled_text [{ text: "Etape #{step.position} : ", styles: [:bold] }, step.description], size: 11
+        bs_row do
+          bs_span(1) do 
+            styled_text [text: leading_zero(step.position), styles: [:bold] ], size: 26, color: axis_color
+          end
+          bs_span(10, 1) do
+            styled_text [text: step.description], size: 11
+          end
+        end
+        move_down 8
       end
     else
       styled_text [text: @tool.description], size: 11

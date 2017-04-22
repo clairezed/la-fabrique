@@ -57,41 +57,46 @@
     / Main content ----------------------------------------------
     section.tool-content.row.mt-5
 
-      .col-md-8    
+      .col-md-8
         section.full-section
           h3.section_title Résumé
-          p = text_to_html @tool.teaser
+          .full-section_content
+            p = text_to_html @tool.teaser
 
         section.full-section
           h3.section_title Marche à suivre
-          - if @tool.steps?
-            - @tool.steps.order(:position).each do |step|
-              .row
-                .col-1
-                  span.section_step-number= leading_zero(step.position)
-                .col-11
-                  p = text_to_html step.description
-          - else
-            p = text_to_html @tool.description
+          .full-section_content
+            - if @tool.steps?
+              - @tool.steps.order(:position).each do |step|
+                .row
+                  .col-1
+                    span.section_step-number= leading_zero(step.position)
+                  .col-11
+                    p = text_to_html step.description
+            - else
+              p = text_to_html @tool.description
 
         - unless @tool.advice.blank?
           section.full-section
             h3.section_title Conseils
-            p = @tool.advice
+            .full-section_content
+              p = @tool.advice
 
         - if @tool.attachments.any?
           section.full-section
             h3.section_title Médias
-            .row
-              - @tool.attachments.each do |attachment|
-                .col-4.media-card_wrapper
-                  = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
+            .full-section_content
+              .row
+                - @tool.attachments.each do |attachment|
+                  .col-4.media-card_wrapper
+                    = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
 
         - if @tool.links.any?
           section.full-section
             h3.section_title Liens
-            - @tool.links.each do |link|
-              = render partial: "tools/links/show_thumb", locals: {link: link}
+            .full-section_content
+              - @tool.links.each do |link|
+                = render partial: "tools/links/show_thumb", locals: {link: link}
 
       / Aside ----------------------------------------------
       .col-md-4
