@@ -215,4 +215,10 @@ module ApplicationHelper
     content_tag :script, content, type: "text/x-handlebars-template", data: {template: name}
   end
 
+  # Theme management =====================================
+
+  def about_page
+    @about_page ||= BasicPage.enabled.where(id_key: 'about', theme: current_theme).first
+  end
+
 end

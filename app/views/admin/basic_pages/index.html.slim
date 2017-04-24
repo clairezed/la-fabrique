@@ -5,6 +5,7 @@
       tr
         th= hm_sort 'sort_by_position', label: 'Position'
         th= hm_sort 'sort_by_title', label: 'Titre'
+        th= hm_sort 'sort_by_theme', label: 'Thématique'
         th= hm_sort 'sort_by_enabled', label: 'Affiché?'
         th 
     tbody
@@ -19,6 +20,7 @@
                             onchange: '$(this).parent().submit();',
                             class: "form-control input-sm", style: "width:70px", id: nil 
           td= basic_page.title
+          td= basic_page.theme.try(:title) || "-"
           td
             span class="label label-#{basic_page.enabled? ? 'success' : 'warning'}" = basic_page.enabled? ? "Oui" : "Non"
           td.action-btns

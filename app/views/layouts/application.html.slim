@@ -35,7 +35,7 @@ html lang="#{I18n.locale}"
         .container
           = link_to root_path, class: "navbar-brand" do
             = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
-            ' Labo Labo
+            ' La Fabrique du Monde
           = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse btn-bold uppercase ml-auto pull-right hidden-sm-down"
 
           = link_to "#search-bar", class: "btn btn-secondary ml-auto pull-right hidden-md-up", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "search-bar"} do
@@ -90,11 +90,12 @@ html lang="#{I18n.locale}"
             p.footer_text.ml-3
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           .col-6.text-right
-            = link_to 'A propos', "#", class: "btn btn-inverse uppercase", disabled: true
+            - if about_page.present?
+              = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
             div.mt-3
-              - @basic_pages.each do |basic_page|
-                => link_to basic_page.title, basic_page_path(basic_page)
-                => "-" 
-              | LaboLabo © #{Date.today.year}
+              | La Fabrique du Monde © #{Date.today.year}
+            /   - @basic_pages.each do |basic_page|
+            /     => link_to basic_page.title, basic_page_path(basic_page)
+            /     => "-" 
 
 

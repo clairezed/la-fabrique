@@ -76,7 +76,7 @@ html lang="#{I18n.locale}"
                 .sidebar-divider
                 = submenu(raw("<i class='fa fa-cog'></i> Configurations"), %w(basic_pages seos admins))
                   = menu_link 'Gestion des admins', admin_admins_path, section: :admins
-                  / = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages
+                  = menu_link 'Pages Basiques', admin_basic_pages_path, section: :basic_pages
                   = menu_link 'SEO pages statiques', admin_seos_path, section: :seos
 
         article.content
