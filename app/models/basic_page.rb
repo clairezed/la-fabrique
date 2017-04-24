@@ -9,6 +9,8 @@ class BasicPage < ActiveRecord::Base
 
   # Associations ===============================================================
 
+  belongs_to :theme, optional: true
+
   # Callbacks ==================================================================
   validates :title, presence: true
 

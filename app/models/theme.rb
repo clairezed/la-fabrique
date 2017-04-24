@@ -11,9 +11,18 @@ class Theme < ApplicationRecord
 
   has_many :axes, dependent: :restrict_with_exception
   has_many :tools, through: :axes
+  has_one :basic_page, dependent: :destroy
+
+  # Validations ================================================================
+  validates :title, presence: true
 
   # Callbacks ==================================================================
-  validates :title, presence: true
+  private def create_about_page
+    page = BasicPage.where(theme_id: self.id, id_key: 'about').first_or_initialize
+    page.title = "A propos"
+    page.save
+  end
+  after_create :create_about_page
 
   # Scopes =====================================================================
   scope :enabled, -> { where(enabled: true) }

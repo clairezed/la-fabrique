@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420143136) do
+ActiveRecord::Schema.define(version: 20170424165432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20170420143136) do
     t.boolean  "enabled",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "theme_id"
+    t.string   "id_key"
+    t.index ["theme_id"], name: "index_basic_pages_on_theme_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -203,6 +206,7 @@ ActiveRecord::Schema.define(version: 20170420143136) do
   end
 
   add_foreign_key "axes", "themes"
+  add_foreign_key "basic_pages", "themes"
   add_foreign_key "steps", "tools"
   add_foreign_key "tool_tags", "tags"
   add_foreign_key "tool_tags", "tools"
