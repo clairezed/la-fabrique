@@ -4,11 +4,12 @@ set :rvm_ruby_string, 'RUBY-VERSION@GEMSET'
 
 #= Application ==============================================
 set :application, "mobility_toolbox" #nom différent en staging pour le moment
-set :deploy_to, "/home/deploy/www/stagings/#{application}"
+# set :deploy_to, "/home/deploy/www/stagings/#{application}" 
+set :deploy_to, "/home/deploy/www/#{application}"  # staging prévu à l'origine pour être al prod
 set :rails_env, 'staging'
 
 #= Git ======================================================
-set :branch, "master"
+set :branch, "staging"
 
 #= Serveur ==================================================
 set :user, "deploy"
