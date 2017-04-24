@@ -171,8 +171,12 @@ class Pdf::Base < Prawn::Document
          borders:           []
   end
 
-  def within_body
+  def within_document_boundaries
     bounding_box([bounds.left, bounds.top], width: bounds.width, height: bounds.height) { yield }
+  end
+
+  def within_body(left=bounds.left, top=bounds.top, width=bounds.width, height=bounds.height)
+    bounding_box([left, top], width: width, height: height) { yield }
   end
 
   # style helpers --------------------------------------------------------------
@@ -205,4 +209,5 @@ class Pdf::Base < Prawn::Document
   def gray_color
     'bbbbbb'
   end
+
 end

@@ -1,9 +1,10 @@
+
 .card.media-card
-  - if attachment.displayable?
-    = link_to attachment.asset.url, target: "_blank", class: "card-img-top" do 
+  = link_to attachment.asset.url, target: "_blank", class: "card-img-top tooltip_bottom", title: "Ouvrir le lien #{attachment.custom_file_name}" do 
+    - if attachment.displayable?
       img.img-fluid src="#{attachment.asset.url(:preview)}"
-  - else
-    i.fa> class="fa-#{tool_format_type_icon(attachment.format_type)} media-card_icon"
+    - else
+      i.fa> class="fa-#{tool_format_type_icon(attachment.format_type)} media-card_icon"
   .card-block
     p.card-text
       / i.fa> class="fa-{{format_icon}}"

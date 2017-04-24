@@ -7,6 +7,7 @@ class @LinkModal
         <div class="modal-dialog" role="document">
           <div class="modal-content" data-is-modal-content>
           </div>
+        </div>
       </div>
     """
     selectors:

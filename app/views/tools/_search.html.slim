@@ -1,69 +1,74 @@
-= form_tag tools_path, method: :get, data: {is_filter_form: true} do
+= form_tag tools_path, method: :get, data: {is_filter_form: true}, class:"search-bar_wrapper" do
 
-  #search-bar.search-bar.collapse
-    .row
-      .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--axis
-        label Dans l'axe
-        = select_tag :by_axis, \
-              options_for_select(axis_options(current_theme.axes), params[:by_axis]), \
-              prompt: "Filtrer",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
+  .collapse#search-bar
+    .search-bar
+      .row
+        .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--axis
+          label Dans l'axe
+          = select_tag :by_axis, \
+                options_for_select(axis_options(current_theme.axes), params[:by_axis]), \
+                prompt: "Tous",\
+                class: "nice-select", \
+                data: {is_nice_select: true}, \
+                onchange: "$('[data-is-filter-form]').submit()"
 
-      .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--category
-        label Type d'outil
-        = select_tag :by_tool_category, \
-              options_for_select(tool_category_options, params[:by_tool_category]), \
-              prompt: "Tous",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
+        .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--category
+          label Type d'outil
+          = select_tag :by_tool_category, \
+                options_for_select(tool_category_options, params[:by_tool_category]), \
+                prompt: "Tous",\
+                class: "nice-select", \
+                data: {is_nice_select: true}, \
+                onchange: "$('[data-is-filter-form]').submit()"
 
-      .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--format
-        label Format d'outil
-        = select_tag :by_format_type, \
-              options_for_select(tool_format_type_options, params[:by_format_type]), \
-              prompt: "Tous",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
+        .col-md.col-sm-6.search-bar-item.search-bar-item--group-size
+          label Nb de pers.
+          = select_tag :by_group_size, \
+                options_for_select(tool_group_size_options, params[:by_group_size]), \
+                prompt: "Tous",\
+                class: "nice-select", \
+                data: {is_nice_select: true}, \
+                onchange: "$('[data-is-filter-form]').submit()"
+
+        .col-lg-2.col-md-3.col-sm-6.search-bar-item.search-bar-item--format
+          label Format d'outil
+          = select_tag :by_format_type, \
+                options_for_select(tool_format_type_options, params[:by_format_type]), \
+                prompt: "Tous",\
+                class: "nice-select", \
+                data: {is_nice_select: true}, \
+                onchange: "$('[data-is-filter-form]').submit()"
 
 
-      .col-md.col-sm-6.search-bar-item.search-bar-item--group-size
-        label Nb de pers.
-        = select_tag :by_group_size, \
-              options_for_select(tool_group_size_options, params[:by_group_size]), \
-              prompt: "Tous",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
+        .col-md.col-sm-6.search-bar-item.search-bar-item--duration
+          label Durée (min)
+          = select_tag :by_duration, \
+                options_for_select(tool_duration_options, params[:by_duration]), \
+                prompt: "Toutes",\
+                class: "nice-select", \
+                data: {is_nice_select: true}, \
+                onchange: "$('[data-is-filter-form]').submit()"
 
-      .col-md.col-sm-6.search-bar-item.search-bar-item--duration
-        label Durée (min)
-        = select_tag :by_duration, \
-              options_for_select(tool_duration_options, params[:by_duration]), \
-              prompt: "Toutes",\
-              class: "nice-select", \
-              data: {is_nice_select: true}, \
-              onchange: "$('[data-is-filter-form]').submit()"
+        .col-md.col-sm-6.search-bar-item.search-bar-item--tag
+          div data-is-tt-container="tag" data-is-tt-path="#{tags_path}"
+            label Mots-clés
+            => text_field_tag 'tag_title', params[:tag_title], \
+              class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tag'}, autocomplete: 'off' 
+            = hidden_field_tag :by_tag_ids, params[:by_tag_ids], data: {is_tt_elt: 'tag'}
 
-      .col-md.col-sm-6.search-bar-item.search-bar-item--tag
-        div data-is-tt-container="tag" data-is-tt-path="#{tags_path}"
-          label Mots-clés
-          => text_field_tag 'tag_title', params[:tag_title], \
-            class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tag'}, autocomplete: 'off' 
-          = hidden_field_tag :by_tag_ids, params[:by_tag_ids], data: {is_tt_elt: 'tag'}
+        .search-bar-item_separator.hidden-sm-down: span OU
 
-      .search-bar-item_separator.hidden-sm-down: span OU
+        .search-bar-item_separator--horizontal.hidden-md-up: span OU
 
-      .search-bar-item_separator--horizontal.hidden-md-up: span OU
-
-      .col-12.col-lg-2.col-md-4.search-bar-item.search-bar-item--title
-        div data-is-tt-container='tool' data-is-tt-path="#{tools_path}"
-          label Nom de l'outil
-          => text_field_tag 'tool_title', params[:tool_title], \
-            class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
+        .col-12.col-lg-2.col-md-4.search-bar-item.search-bar-item--title
+          div data-is-tt-container='tool' data-is-tt-path="#{tools_path}"
+            label Nom de l'outil
+            => text_field_tag 'tool_title', params[:tool_title], \
+              class: "form-control", placeholder: "Rechercher...", data: {is_tt_input: 'tool'}, autocomplete: 'off' 
+    .search-reinit_strip
+      = link_to root_path, class: "search-reinit_label" do
+        i.fa.fa-search>
+        ' Réinitialiser
 
 coffee:
   new ToolSearch()

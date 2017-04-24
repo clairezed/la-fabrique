@@ -29,6 +29,7 @@ class ToolsController < ApplicationController
     respond_to do |format|
       format.html
         @comment = @tool.comments.new
+        set_back_path
       format.pdf do
         pdf = Pdf::Tool.new(@tool)
         send_data pdf.to_pdf, filename: pdf.filename, type: 'application/pdf'
@@ -101,13 +102,12 @@ class ToolsController < ApplicationController
   def build_tool_relations
     3.times { @tool.steps.build } if @tool.steps.empty?
     @attachment = @tool.attachments.build
-    # @tool.build_seo unless @tool.seo.present?
   end
 
   # strong parameters -------------------------------------
   def part_1_params
     params.require(:tool).permit(
-      :axis_id, :tool_category_id, :title,
+      :axis_id, :tool_category_id, :title, :current_step,
       :group_size, :duration, :level, :public, tag_ids: []
     )
   end
@@ -115,10 +115,11 @@ class ToolsController < ApplicationController
   def part_2_params
     params.require(:tool).permit(
       :description, :teaser, :description_type,
-      :public, :licence, :goal, :material, :source, :advice,
+      :public, :licence, :goal, :material, :source, :advice, :display_contact,
       :submitter_email, :submitter_organization, :submitter_firstname, :submitter_lastname,
       steps_attributes: %i(id description _destroy),
       seo_attributes: %i(slug title keywords description id)
     )
   end
+
 end

@@ -64,4 +64,18 @@ class ApplicationController < ActionController::Base
     Theme.where(id_key: 'mobility').first || Theme.first
   end
   helper_method :current_theme
+
+
+  def set_back_path(session_name = :back_path)
+    return if request.env['HTTP_REFERER'].blank?
+    referer = URI.parse(request.env['HTTP_REFERER']) rescue nil
+    return if referer.blank?
+    session[session_name] = URI(request.referer).to_s
+  end
+
+  def back_path(session_name = :back_path)
+    session[session_name]
+  end
+  helper_method :back_path
+
 end

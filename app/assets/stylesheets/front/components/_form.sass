@@ -11,11 +11,9 @@
 ////////////////////
 
 .required
-  label:after
+  label:not(.form-card):not(.btn):after
     content: " *" 
     color: #000
-  label
-    font-weight: bold
 
 .error_explanation
   @extend .alert

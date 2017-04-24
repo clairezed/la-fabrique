@@ -1,17 +1,5 @@
 = f.hm_form_errors
 
-/ .form-group.row
-/   .form-label-default
-/     | Affiché ?
-/   .controls-default
-/     .form-check.form-check-inline
-/       label.form-check-label
-/         => f.radio_button :enabled, true
-/         | Oui
-/       label.form-check-label
-/         => f.radio_button :enabled, false
-/         | Non
-
 .form-group.row.required
   .form-label-default
     = f.label :title
@@ -28,11 +16,11 @@ fieldset
     .controls-default
       = f.select :axis_id, axis_options, {include_blank: "Sélectionner un axe"}, class: "required form-control"
 
-  = f.hm_select :duration, tool_duration_options, {include_blank: "Sélectionner une durée"}, {}, {class: "required"}
+  = f.hm_select :duration, tool_duration_options, {include_blank: "Sélectionner une durée"}, {}, {class: ""}
 
-  = f.hm_select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, {}, {class: "required"}
+  = f.hm_select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, {}, {class: ""}
 
-  = f.hm_select :level, tool_level_options, {include_blank: "Sélectionner un niveau"}, {}, {class: "required"}
+  = f.hm_select :level, tool_level_options, {include_blank: "Sélectionner un niveau"}, {}, {class: ""}
 
   = f.hm_select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, {}, {class: "required"}
 
@@ -52,8 +40,6 @@ fieldset
       | Rechercher un mot clé
     .controls-xlarge
       = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: admin_tags_path}
-
-= render partial: "admin/seos/fields_for_form", locals: {f: f}
 
 .form-group.row
   .form-actions

@@ -16,26 +16,29 @@
             h3.section_title Objectifs
             p = text_to_html @tool.goal
           .row
-            .col-lg-3.col-sm-6
-              .tool-header_badge
-                i.fa.fa-hourglass>
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
+              .tool-header_badge.align-middle
+                i.fa.fa-hourglass.mr-2>
                 = tool_duration(@tool.duration)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-users>
+                i.fa.fa-users.mr-2>
                 = tool_group_size(@tool.group_size)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-signal>
+                i.fa.fa-signal.mr-2>
                 = tool_level(@tool.level)
-            .col-lg-3.col-sm-6
+            .col-lg-3.col-sm-6.tool-header_badge-wrapper
               .tool-header_badge
-                i.fa.fa-tags>
+                i.fa.fa-tags.mr-2>
                 = @tool.tool_category.title
 
   .container
     / Utilities -------------------------------------------------
     section.utility-section.pb-5
+      => link_to back_path, class: 'btn btn-secondary pull-right', title: "Retourner à la page de recherche" do
+        i.fa.fa-chevron-left>
+        ' Retour
       .row
         .col-md-8.d-flex.flex-row
           .btn-modul
@@ -49,48 +52,51 @@
                     | Formule magique
       
               p.mt-1.small= link_to "C'est magique ?", "javascript:void(0)", class:"btn-modul_help", data: {is_popover: true, content: "Grâce à la formule magique, découvrez des trucs fous !"}, title: "Qu'est-ce que la formule magique ?"
-        .col-md-4
-          p Partagez sur les réseaux
-          = social_share_button_tag(@tool.title)
+              
 
     / Main content ----------------------------------------------
     section.tool-content.row.mt-5
 
-      .col-md-8    
+      .col-md-8
         section.full-section
           h3.section_title Résumé
-          p = text_to_html @tool.teaser
+          .full-section_content
+            p = text_to_html @tool.teaser
 
         section.full-section
           h3.section_title Marche à suivre
-          - if @tool.steps?
-            - @tool.steps.order(:position).each do |step|
-              .row
-                .col-1
-                  span.section_step-number= leading_zero(step.position)
-                .col-11
-                  p = text_to_html step.description
-          - else
-            p = text_to_html @tool.description
+          .full-section_content
+            - if @tool.steps?
+              - @tool.steps.order(:position).each do |step|
+                .row
+                  .col-1
+                    span.section_step-number= leading_zero(step.position)
+                  .col-11
+                    p = text_to_html step.description
+            - else
+              p = text_to_html @tool.description
 
         - unless @tool.advice.blank?
           section.full-section
             h3.section_title Conseils
-            p = @tool.advice
+            .full-section_content
+              p = @tool.advice
 
         - if @tool.attachments.any?
           section.full-section
             h3.section_title Médias
-            .row
-              - @tool.attachments.each do |attachment|
-                .col-4
-                  = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
+            .full-section_content
+              .row
+                - @tool.attachments.each do |attachment|
+                  .col-4.media-card_wrapper
+                    = render partial: "tools/tool_attachments/show_thumb", locals: {attachment: attachment}
 
         - if @tool.links.any?
           section.full-section
             h3.section_title Liens
-            - @tool.links.each do |link|
-              = render partial: "tools/links/show_thumb", locals: {link: link}
+            .full-section_content
+              - @tool.links.each do |link|
+                = render partial: "tools/links/show_thumb", locals: {link: link}
 
       / Aside ----------------------------------------------
       .col-md-4
@@ -120,11 +126,15 @@
             - @tool.tags.each do |tag|
               span.badge.badge-default.mr-3 = tag.title
 
-        - if @tool.submitter_info_present?
+        - if @tool.display_contact?
           section.light-section
             h3.section_title Proposé par
             p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")
             p = @tool.submitter_organization
+
+        section.light-section
+          h3.section_title Partagez sur les réseaux
+          = social_share_button_tag(@tool.title)
 
     / Comment ----------------------------------------------
     section.comment-section

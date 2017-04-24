@@ -1,0 +1,42 @@
+$wizard-space: 10rem
+
+.wizard-container
+  background-color: #e2ded9
+  padding: 2rem
+  margin: 3rem 0
+  text-align: center
+
+.wizard-progress
+  padding: 0
+  margin: 0 
+
+.wizard-step
+  display: inline-block
+  margin-right: $wizard-space
+  z-index: 10
+  position: relative
+  &:last-of-type
+    margin-right: 0
+  &:not(:first-of-type):before
+    content: ""
+    display: block
+    background-color: $gray-dark
+    height: 2px
+    width: $wizard-space
+    position: absolute
+    top: 19px
+    left: - $wizard-space
+    z-index: -1
+  &.disabled:before
+    background-color: #ccc
+    // opacity: .65
+  // &:first-of-type:before
+  //   display: none
+  a 
+    @extend .btn
+    box-shadow: 0 0 0
+    @extend .btn-secondary
+
+.wizard-step.active
+  a 
+    @extend .btn-inverse

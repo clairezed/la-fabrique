@@ -1,10 +1,14 @@
 doctype html
 html lang="#{I18n.locale}"
   head
-    title= @seo_title 
+    title= @seo_title
     meta name="description" content="#{@seo_description}"
     meta name="keywords" content="#{@seo_keywords}"
-    meta name="author" content="Studio HB, Agence Web Ruby On Rails Lyon"
+    meta name="author" content="Claire Zuliani, développement web orienté humain"
+    meta property="og:title" content="#{@seo_title}"
+    meta property="og:description" content="#{@seo_description}"
+    meta name="twitter:title" content="#{@seo_title}"
+    meta property="twitter:description" content="#{@seo_description}"
     meta http-equiv="content-type" content="text/html;charset=UTF-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -28,13 +32,11 @@ html lang="#{I18n.locale}"
     = raw flash_messages
     header.main-header
       nav.navbar.navbar-light.navbar-toggleable-md.bg-white
-        / button.navbar-toggler.navbar-toggler-right data-target="#navbarSupportedContent" data-toggle="collapse" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-        /   span.navbar-toggler-icon
         .container
           = link_to root_path, class: "navbar-brand" do
             = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
             ' Labo Labo
-          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse uppercase ml-auto pull-right hidden-sm-down"
+          = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse btn-bold uppercase ml-auto pull-right hidden-sm-down"
 
           = link_to "#search-bar", class: "btn btn-secondary ml-auto pull-right hidden-md-up", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "search-bar"} do
             i.fa.fa-search

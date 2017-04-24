@@ -47,6 +47,7 @@ fr:
         tag_ids: Mots-clés
         tool_attachment: Média
         link: Liens
+        contact: Contact
 
   tool_states:
     title:

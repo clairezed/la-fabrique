@@ -8,6 +8,8 @@ class Tool < ApplicationRecord
   # Nb de jours après sa création pdt lesquels un outil est considéré comme "nouveau"
   NOVELTY_DELAY = 15
 
+  attr_accessor :current_step
+
   # State machine -------------------------------------------------------------
 
   include AASM
@@ -69,19 +71,9 @@ class Tool < ApplicationRecord
   }
 
   enum description_type: {
-    steps:       0,
-    description: 1
+    description: 0,
+    steps:       1
   }
-  # enum public: {
-  #   young:  0, # en attente de validation
-  #   pro:    1, # accepté
-  # }
-
-  # enum licence: {
-  #   mine:           0, # en attente de validation
-  #   known_source:   1, # accepté
-  #   unknown_source: 2  # rejeté
-  # }
 
   # Associations ===============================================================
   belongs_to :axis
@@ -110,23 +102,23 @@ class Tool < ApplicationRecord
   # validation de présence de axe et catégorie -> directement en base
 
   validates :title, presence: true
-  validates :group_size,
-            :duration,
-            :level,
-            presence: true
 
   # Etape 2 du formulaire de création ----------------------------
 
   validates :goal,
             :teaser,
-            presence: true, unless: :new_record?
+            presence: true, unless: :is_step_1?
 
   private def description_exists?
     return true if (self.steps? and steps.any?) || (self.description? and description.present?)
     errors.add(:description, 'doit être renseignée')
     false
   end
-  validate :description_exists?, unless: :new_record?
+  validate :description_exists?, unless: :is_step_1?
+
+  private def is_step_1?
+    current_step.to_i == 1
+  end
 
 
   # Scopes =====================================================================
@@ -204,13 +196,13 @@ class Tool < ApplicationRecord
     created_at > NOVELTY_DELAY.days.ago
   end
 
-  def submitter_info_present?
-    [submitter_firstname, submitter_lastname, submitter_organization].any? { |field| !field.blank? }
-  end
-
   def random_training
     return nil unless trainings.any?
     @random_training ||= self.trainings.order('random()').first
+  end
+
+  def description_for_seo
+    self.teaser
   end
 
   # private #=====================================================================

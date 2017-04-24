@@ -1,12 +1,12 @@
 = f.hm_form_errors
 
-.form-group
-  = f.label :goal
+.form-group.required
+  = f.label :goal, class:" form-control-label"
   = render partial: 'help_popover', locals: {field: :goal}
-  = f.text_area :goal, class: "form-control", rows: 3
+  = f.text_area :goal, class: "form-control required", rows: 3, autofocus: true
 
-.form-group
-  = f.label :teaser
+.form-group.required
+  = f.label :teaser, class:" form-control-label"
   = render partial: 'help_popover', locals: {field: :teaser}
   = f.text_area :teaser, class: "form-control", rows: 3
 
@@ -14,10 +14,9 @@
 / DESCRIPTION =========================================================
 
 div#description-wrapper.mt-30
-  / .card-block
-  .form-group.row
+  .form-group.row.required
     .col-md-4
-      = f.label :description, class:"label-title "
+      = f.label :description, class:"label-title form-control-label"
     .col-md-8
       .btn-group data-toggle="buttons"
         - Tool.description_types.keys.each do |description_type|
@@ -105,20 +104,23 @@ div#description-wrapper.mt-30
     div.item-list.row data-is-link-list="#{@tool.id}" data-list-url="#{tool_links_path(@tool)}"
 
 
+div.mt-5
+  = render partial: 'help_popover', locals: {field: :contact}
+  .label-title  Contact
 .row
   .col-6
     .form-group
       = f.label :submitter_email
-      = render partial: 'help_popover', locals: {field: :submitter_email}
+      // = render partial: 'help_popover', locals: {field: :submitter_email}
       = f.text_field :submitter_email, class: "form-control"
-      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
+      // p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
 
   .col-6
     .form-group
       = f.label :submitter_organization
       = render partial: 'help_popover', locals: {field: :submitter_organization}
       = f.text_field :submitter_organization, class: "form-control"
-      p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
+      // p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
 .row
   .col-6
@@ -126,14 +128,19 @@ div#description-wrapper.mt-30
       = f.label :submitter_firstname
       = render partial: 'help_popover', locals: {field: :submitter_firstname}
       = f.text_field :submitter_firstname, class: "form-control"
-      p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
+      // p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
 
   .col-6
     .form-group
       = f.label :submitter_lastname
       = render partial: 'help_popover', locals: {field: :submitter_lastname}
       = f.text_field :submitter_lastname, class: "form-control"
-      p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
+      //  p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
+
+.form-check
+  = f.label :display_contact, class: "form-check-label" do
+    => f.check_box :display_contact, class: "form-check-input"
+    ' Afficher mes informations de contact sur la fiche outil
 
 .d-flex.flex-row-reverse
   .p-6
