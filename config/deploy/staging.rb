@@ -1,6 +1,6 @@
 #= RVM ======================================================
 require "rvm/capistrano"                 
-set :rvm_ruby_string, 'RUBY-VERSION@GEMSET'
+set :rvm_ruby_string, '2.4.0@mobility_toolbox'
 
 #= Application ==============================================
 set :application, "mobility_toolbox" #nom différent en staging pour le moment
