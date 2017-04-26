@@ -38,7 +38,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :interculturality,
     theme_id: mobility_theme.id,
-    color: "#5d75db",
+    color: "#cc3333",
     enabled: true
   },
     {
@@ -46,7 +46,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :departure_preparation,
     theme_id: mobility_theme.id,
-    color: "#8f65c1",
+    color: "#99cc66",
     enabled: true
   },
     {
@@ -54,7 +54,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :return_preparation,
     theme_id: mobility_theme.id,
-    color: "#00cccc",
+    color: "#c0a476",
     enabled: true
   },
     {
@@ -62,7 +62,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :mobility_system,
     theme_id: mobility_theme.id,
-    color: "#99cc66",
+    color: "#663399",
     enabled: true
   }, 
   {
@@ -78,7 +78,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :conflict_management,
     theme_id: mobility_theme.id,
-    color: "#f1875d",
+    color: "#996633",
     enabled: true
   }, 
   {
@@ -86,7 +86,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :group_facilitation,
     theme_id: mobility_theme.id,
-    color: "#dd4780",
+    color: "#00cccc",
     enabled: true
   }, 
   {
@@ -94,7 +94,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :project_methodology,
     theme_id: mobility_theme.id,
-    color: "#c0a476",
+    color: "#f1875d",
     enabled: true
   }
 
@@ -106,7 +106,9 @@ mobility_theme = Theme.where(id_key: "mobility").first
     color: option[:color], 
     enabled: option[:enabled]
   )
+  axis.update(color: option[:color])
 end
+
 
 
 # Catégories d'outil ========================================================
