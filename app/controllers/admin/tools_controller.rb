@@ -5,7 +5,6 @@ class Admin::ToolsController < Admin::BaseController
 
   def index
     params[:sort] ||= 'sort_by_created_at desc'
-    # params[:by_theme] ||= Theme.order(:position).first.id
     @tools = Tool.apply_filters(params)
                  .includes(:axis)
                  .includes(:seo)
@@ -28,7 +27,7 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def create
-    @tool = ToolSetter.new(Tool.new, part_1_params).call
+    @tool = ToolSetter.new(Tool.new, part_1_params).set_part_1
     if @tool.save
       flash[:notice] = 'La fiche a été créé avec succès'
       redirect_to params[:continue].present? ? edit_part_2_admin_tool_path(@tool) : edit_part_1_admin_tool_path(@tool)
@@ -39,28 +38,10 @@ class Admin::ToolsController < Admin::BaseController
     end
   end
 
-  # def edit
-  #   build_tool_relations
-  # end
-
-  # def update
-  #   @tool = ToolSetter.new(@tool, tool_params).call
-  #   if @tool.save
-  #   # if @tool.update_attributes(tool_params)
-  #     @tool.accept! if @tool.may_accept?
-  #     flash[:notice] = "La fiche a été mise à jour avec succès"
-  #     redirect_to params[:continue].present? ? edit_admin_tool_path(@tool) : admin_tools_path
-  #   else
-  #     build_tool_relations
-  #     flash[:error] = "Une erreur s'est produite lors de la mise à jour de la fiche"
-  #     render :edit
-  #   end
-  # end
-
   def edit_part_1; end
 
   def part_1
-    @tool = ToolSetter.new(@tool, part_1_params).call
+    @tool = ToolSetter.new(@tool, part_1_params).set_part_1
     if @tool.save
       flash[:notice] = 'Les informations ont bien été enregistrées'
       redirect_to params[:continue].present? ? edit_part_2_admin_tool_path(@tool) : edit_part_1_admin_tool_path(@tool)
@@ -76,7 +57,7 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def part_2
-    @tool = ToolSetter.new(@tool, part_2_params).call
+    @tool = ToolSetter.new(@tool, part_2_params).set_part_2
     if @tool.save
       # @tool.accept! if @tool.may_accept?
       flash[:notice] = 'Les informations ont bien été enregistrées'

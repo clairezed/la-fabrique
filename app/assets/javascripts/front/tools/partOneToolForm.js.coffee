@@ -7,7 +7,7 @@ class @PartOneToolForm
     new Popover()
 
     # configuration des tooltip axis
-    $("[data-is-axis-tooltip").tooltip 
+    $("[data-is-axis-tooltip]").tooltip 
       title: () ->
         return $(this).data('is-axis-tooltip')
 

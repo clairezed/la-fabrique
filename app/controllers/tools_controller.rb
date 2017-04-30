@@ -44,7 +44,7 @@ class ToolsController < ApplicationController
   end
 
   def create
-    @tool = ToolSetter.new(Tool.new, part_1_params).call
+    @tool = ToolSetter.new(Tool.new, part_1_params).set_part_1
     if @tool.save
       flash[:notice] = 'Les informations ont bien été enregistrées'
       redirect_to edit_part_2_tool_path(@tool)
