@@ -48,41 +48,6 @@ class Pdf::ProjectBase < Pdf::Base
     # move_down 50
   end
 
-  # def footer
-  #   bounding_box [bounds.left, bounds.bottom + 60], width: bounds.width, height: 100 do
-  #     bs_row do
-  #       bs_row(height: 30) do
-  #         stroke do
-  #           fill_color "322332"
-  #           fill_rectangle [0, bounds.height], bounds.width, bounds.height
-  #           # reset_font_color
-
-  #         end
-  #         text "www.carredor-patrimoine.com - Groupe Carré d'Or Immobilier - 04.72.13.90.00",
-  #               size: 7,
-  #               align: :center,
-  #               valign: :center
-  #       end
-  #       bs_row(height: 30) do
-  #         stroke do
-  #           fill_color "000000"
-  #           fill_rectangle [0, bounds.height], bounds.width, bounds.height
-  #           # reset_font_color
-  #         end
-  #         text "INFORMATIONS NON CONTRACTUELLES",
-  #               size: 7,
-  #               align: :center,
-  #               color: "ffffff",
-  #               valign: :center
-  #       end
-  #     end
-  #     svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [40,bounds.bottom + 95], width: 40
-
-  #   end
-  # end
-
-
-
   # Footer ----------------------------------------------------------
   def footer
     bounding_box([bounds.left, bounds.bottom + 60], width: 525, height: 100) do

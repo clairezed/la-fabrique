@@ -207,7 +207,7 @@ class Pdf::Base < Prawn::Document
 
   # Colors -----------------------------------------------
   def gray_color
-    'bbbbbb'
+    'aaaaaa'
   end
 
 end

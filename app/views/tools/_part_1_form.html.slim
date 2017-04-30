@@ -24,7 +24,7 @@
     - tool_duration_options.each do |title, id|
       .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
         = f.radio_button :duration, id, class: "hidden-error"
-        = f.label :duration, value: id, class: "card form-card hidden-error" do
+        = f.label :duration, value: id, class: "card form-card hidden-error", data:{ uncheckable: true } do
           span.form-axis-card_title= title
 
 .form-group
@@ -34,7 +34,7 @@
     - tool_group_size_options.each do |title, id|
       .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
         = f.radio_button :group_size, id, class: "hidden-error"
-        = f.label :group_size, value: id, class: "card form-card  hidden-error" do
+        = f.label :group_size, value: id, class: "card form-card  hidden-error", data:{ uncheckable: true } do
           span.form-axis-card_title= title
 
 .form-group
@@ -44,7 +44,7 @@
     - tool_level_options.each do |title, id|
       .col-lg-3.col-md-4.col-sm-6.col-12.lg-gutter.form-card-col
         = f.radio_button :level, id, class: "hidden-error"
-        = f.label :level, value: id, class: "card form-card  hidden-error" do
+        = f.label :level, value: id, class: "card form-card  hidden-error", data:{ uncheckable: true } do
           span.form-axis-card_title= title
 
 .form-group.required

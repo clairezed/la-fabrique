@@ -58,7 +58,7 @@ class ToolsController < ApplicationController
   def edit_part_1; end
 
   def part_1
-    @tool = ToolSetter.new(@tool, part_1_params).call
+    @tool = ToolSetter.new(@tool, part_1_params).set_part_1
     if @tool.save
       flash[:notice] = 'Les informations ont bien été enregistrées'
       redirect_to params[:continue].present? ? edit_part_1_path(@tool) : edit_part_2_tool_path(@tool)
@@ -74,7 +74,7 @@ class ToolsController < ApplicationController
   end
 
   def part_2
-    @tool = ToolSetter.new(@tool, part_2_params).call
+    @tool = ToolSetter.new(@tool, part_2_params).set_part_2
     if @tool.save
       if params[:continue].present?
         flash[:notice] = 'Les informations ont bien été enregistrées'
@@ -85,7 +85,7 @@ class ToolsController < ApplicationController
       end
     else
       build_tool_relations
-      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil'"
+      flash[:error] = "Une erreur s'est produite lors de la mise à jour de l'outil"
       render :edit_part_2
     end
   end
