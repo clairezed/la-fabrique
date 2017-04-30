@@ -20,8 +20,7 @@ fieldset
   div#description-wrapper
     .form-group.row.required
       .form-label-default
-        label 
-          = f.label :description
+        = f.label :description
       .col-md-8
         .btn-group data-toggle="buttons"
           - Tool.description_types.keys.each do |description_type|
@@ -74,12 +73,7 @@ fieldset
       = f.label :licence
     .controls-xlarge
       = f.text_field :licence, class: "form-control"
-
   = f.hm_text_field :source, {}, {class: ""}
-  = f.hm_text_field :submitter_email, {}, {class: ""}
-  = f.hm_text_field :submitter_organization, {}, {class: ""}
-  = f.hm_text_field :submitter_firstname, {}, {class: ""}
-  = f.hm_text_field :submitter_lastname, {}, {class: ""}
 
 .row
   .col-12.col-lg-6
@@ -102,6 +96,21 @@ fieldset
         | Ajouter un lien
 
       div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_tool_links_path(f.object)}"
+
+fieldset
+  legend Contact
+
+  = f.hm_text_field :submitter_email, {}, {class: ""}
+  = f.hm_text_field :submitter_organization, {}, {class: ""}
+  = f.hm_text_field :submitter_firstname, {}, {class: ""}
+  = f.hm_text_field :submitter_lastname, {}, {class: ""}
+  .form-group.row
+    .col-md-8.offset-md-2
+      .form-check
+        = f.label :display_contact, class: "form-check-label" do
+          => f.check_box :display_contact, class: "form-check-input"
+          ' Afficher les informations de contact sur la fiche outil
+      
 
 
 = render partial: "admin/seos/fields_for_form", locals: {f: f}
