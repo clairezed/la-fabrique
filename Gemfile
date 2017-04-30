@@ -61,14 +61,15 @@ end
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platform: :mri
-  gem 'capybara'
-  gem 'email_spec'
-  gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
 end
 
 group :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
   gem 'database_cleaner'
+  gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'temping'
+  gem 'poltergeist'
 end

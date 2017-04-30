@@ -5,7 +5,7 @@ class @PartOneToolForm
     $('[data-is-autocomplete-select="tool-category"]').select2()
     new TagSelect()
 
-    $("[data-is-axis-tooltip").tooltip 
+    $("[data-is-axis-tooltip]").tooltip 
       title: () ->
         return $(this).data('is-axis-tooltip')
 
