@@ -17,7 +17,7 @@ class Pdf::Tool < Pdf::ProjectBase
   end
 
   def filename
-    [self.project_name, @tool.title.parameterize].join('-') + '.pdf'
+    [self.project_name.parameterize, @tool.title.parameterize].join('-') + '.pdf'
   end
 
   protected #========================================================
@@ -27,6 +27,8 @@ class Pdf::Tool < Pdf::ProjectBase
     main_characteristics
     main_content
     side_content
+    links
+    attachments
   end
 
   # BLOCKS ===========================================================
@@ -35,12 +37,10 @@ class Pdf::Tool < Pdf::ProjectBase
     h1 @tool.title.upcase
     move_down 10
     styled_text [@tool.axis.title.upcase], size: 14, color: axis_color, styles: [:bold]
-    move_down 15
+    move_down 25
   end
 
   def main_characteristics
-    goal
-    move_down 10
     bs_row do
       bs_span(3) do 
         char_tag(tool_group_size(@tool.group_size), 'fa-hourglass')
@@ -55,6 +55,8 @@ class Pdf::Tool < Pdf::ProjectBase
         char_tag(@tool.tool_category.title, 'fa-tags')
       end
     end
+    move_down 10
+    goal
   end
 
   def main_content
@@ -148,6 +150,28 @@ class Pdf::Tool < Pdf::ProjectBase
     styled_text [text: @tool.submitter_organization], size: 11
   end
 
+  def links
+    return unless @tool.links.any?
+    h3 'Liens'
+    @tool.links.each do |link|
+      formatted_text [{ text: link.title, size: 11 }]
+      formatted_text [text: "#{link.url}", size: 10, color: gray_color]
+      move_down 8
+    end
+  end
+
+  def attachments
+    return unless @tool.attachments.any?
+    h3 'Media'
+    formatted_text [ text: "Documents à télécharger sur la page de l'outil", styles: [:italic], size: 10, color: gray_color ]
+    move_down 8
+    @tool.attachments.each do |attachment|
+      formatted_text [{ text: " - #{attachment.custom_file_name}", size: 11 }]
+      # formatted_text [text: "(#{link.url})", size: 10, color: gray_color]
+      move_down 8
+    end
+  end
+
 
   # HELPERS ===========================================================
 
@@ -166,14 +190,17 @@ class Pdf::Tool < Pdf::ProjectBase
   end
 
   def h1(*fragments)
-    bs_row(height: 60) do
-      styled_text fragments,
-                  { styles: [:bold], size: 20 },
-                  valign: :center
-    end
-    bs_row(height: 10) do
-      axis_color_line(100)
-    end
+    styled_text fragments,
+                  { styles: [:bold], size: 20 }
+    axis_color_line(100)
+    # bs_row(height: 60) do
+    #   styled_text fragments,
+    #               { styles: [:bold], size: 20 },
+    #               valign: :center
+    # end
+    # bs_row(height: 10) do
+    #   axis_color_line(100)
+    # end
   end
 
   def h2(*fragments)

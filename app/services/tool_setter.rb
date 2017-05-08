@@ -6,11 +6,19 @@ class ToolSetter
     @params = params
   end
 
-  def call
+  def set_part_1
     manage_tags
+    manage_uncheckable_enums
     @tool.attributes = @params
     @tool
   end
+
+  def set_part_2
+    @tool.attributes = @params
+    @tool
+  end
+
+  private # ===================================================
 
   def manage_tags
     return if @params['tag_ids'].blank?
@@ -27,4 +35,12 @@ class ToolSetter
     # replace tag_titles with newly created tags ids
     @params['tag_ids'] = @params['tag_ids'] - new_tag_titles + new_tag_ids
   end
+
+  # certains enums peuvent finalement être blank
+  def manage_uncheckable_enums
+    ['group_size', 'duration', 'level'].each do |enum|
+      @params[enum] = nil unless @params[enum].present?
+    end
+  end
+
 end
