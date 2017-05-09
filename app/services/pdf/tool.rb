@@ -43,16 +43,16 @@ class Pdf::Tool < Pdf::ProjectBase
   def main_characteristics
     bs_row do
       bs_span(3) do 
-        char_tag(tool_group_size(@tool.group_size), 'fa-hourglass')
+        characteristic_tag(tool_group_size(@tool.group_size), 'fa-hourglass')
       end
       bs_span(3, 3) do
-        char_tag(tool_duration(@tool.duration), 'fa-users')
+        characteristic_tag(tool_duration(@tool.duration), 'fa-users')
       end
       bs_span(3, 6) do 
-        char_tag(tool_level(@tool.level), 'fa-signal')
+        characteristic_tag(tool_level(@tool.level), 'fa-signal')
       end
       bs_span(3, 9) do 
-        char_tag(@tool.tool_category.title, 'fa-tags')
+        characteristic_tag(@tool.tool_category.title, 'fa-tags')
       end
     end
     move_down 10
@@ -92,15 +92,10 @@ class Pdf::Tool < Pdf::ProjectBase
 
     if @tool.steps?
       @tool.steps.each do |step|
-        bs_row do
-          bs_span(1) do 
-            styled_text [text: leading_zero(step.position), styles: [:bold] ], size: 26, color: axis_color
-          end
-          bs_span(10, 1) do
-            styled_text [text: step.description], size: 11
-          end
-        end
-        move_down 8
+        number = { text: leading_zero(step.position), styles: [:bold], size: 26, color: axis_color }
+        step_description = { text: step.description, size: 11 }
+        formatted_text [number, { text: "  "}, step_description]
+        move_down 10
       end
     else
       styled_text [text: @tool.description], size: 11
@@ -167,7 +162,6 @@ class Pdf::Tool < Pdf::ProjectBase
     move_down 8
     @tool.attachments.each do |attachment|
       formatted_text [{ text: " - #{attachment.custom_file_name}", size: 11 }]
-      # formatted_text [text: "(#{link.url})", size: 10, color: gray_color]
       move_down 8
     end
   end
@@ -223,7 +217,7 @@ class Pdf::Tool < Pdf::ProjectBase
     end
   end
 
-  def char_tag(text, icon)
+  def characteristic_tag(text, icon)
     icon_tag = CharTagCallback.new(color: axis_color, document: self)
     add_icon = AddIconCallback.new(document: self, icon: icon)
     formatted_text [ { text: text, callback: [icon_tag, add_icon] } ], 

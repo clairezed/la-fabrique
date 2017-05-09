@@ -80,7 +80,7 @@
           section.full-section
             h3.section_title Conseils
             .full-section_content
-              p = @tool.advice
+              p = text_to_html @tool.advice
 
         - if @tool.attachments.any?
           section.full-section
@@ -118,7 +118,7 @@
         - unless @tool.material.blank?
           section.light-section
             h3.section_title Matériel
-            p = @tool.material
+            p = text_to_html @tool.material
 
         - if @tool.tags.any?
           section.light-section
