@@ -63,7 +63,7 @@ Rails.application.configure do
 
   HOST = "localhost:3000"
   URL = "http://#{HOST}"
-  SYSTEM_MAILER     = "CZ <noreply@clairezuliani.com>"
+  SYSTEM_MAILER     = "contact <noreply@lafabriquedumonde.fr>"
   DEFAULT_RECIPIENT = "Contact <clairezuliani@gmail.com>"
   routes.default_url_options = { :host => HOST }
   config.action_mailer.default_url_options = { :host => HOST }
