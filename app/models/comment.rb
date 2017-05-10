@@ -42,7 +42,7 @@ class Comment < ApplicationRecord
 
   # Callbacks ==================================================================
   private def notify_admin
-    AdminMailer.comment_created(self).deliver_later
+    AdminMailer.comment_created(self).deliver_now
   end
   after_create :notify_admin
 

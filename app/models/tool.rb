@@ -46,7 +46,7 @@ class Tool < ApplicationRecord
   end
 
   private def notify_submission
-    AdminMailer.tool_submitted(self).deliver_later
+    AdminMailer.tool_submitted(self).deliver_now
   end
 
   # Enums ----------------------------------------------------------------------
