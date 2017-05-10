@@ -3,6 +3,6 @@ production:
   encoding: unicode
   database: mobility_toolbox_production
   pool: 5
-  username: mirador
-  password: aqwxszedcvfr4321
+  username: <%= ENV['FABRIQUE_MOBILITE_DB_USER'] %>
+  password: <%= ENV['FABRIQUE_MOBILITE_DB_PASSWORD'] %>
   host: localhost
