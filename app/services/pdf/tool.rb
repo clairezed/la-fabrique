@@ -187,14 +187,6 @@ class Pdf::Tool < Pdf::ProjectBase
     styled_text fragments,
                   { styles: [:bold], size: 20 }
     axis_color_line(100)
-    # bs_row(height: 60) do
-    #   styled_text fragments,
-    #               { styles: [:bold], size: 20 },
-    #               valign: :center
-    # end
-    # bs_row(height: 10) do
-    #   axis_color_line(100)
-    # end
   end
 
   def h2(*fragments)

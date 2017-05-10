@@ -4,7 +4,7 @@ class Admin::CommentsController < Admin::BaseController
   before_action :find_comment, except: [:index]
 
   def index
-    params[:sort] ||= 'sort_by_created_at asc'
+    params[:sort] ||= 'sort_by_created_at desc'
     @comments = Comment.apply_filters(params).paginate(per_page: 20, page: params[:page])
   end
 
