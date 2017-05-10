@@ -8,8 +8,9 @@ class @TagSelect
 
     tagSelect2 = tagSelect.select2
       tags: true
+      tokenSeparators: [',', ';', '/']
       language: "fr"
-      debug: true
+      # debug: true
       ajax: 
         url: autocompleteUrl
         dataType: 'json'

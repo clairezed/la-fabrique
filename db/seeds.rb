@@ -86,7 +86,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :group_facilitation,
     theme_id: mobility_theme.id,
-    color: "#00cccc",
+    color: "#f1875d",
     enabled: true
   }, 
   {
@@ -94,7 +94,7 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :project_methodology,
     theme_id: mobility_theme.id,
-    color: "#f1875d",
+    color: "#40aeb4",
     enabled: true
   }
 
@@ -106,7 +106,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     color: option[:color], 
     enabled: option[:enabled]
   )
-  axis.update(color: option[:color])
 end
 
 
