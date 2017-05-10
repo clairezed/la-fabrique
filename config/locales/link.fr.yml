@@ -5,6 +5,7 @@ fr:
         custom_file_name: Le titre à afficher
         format_type: Le format
         url: L'url
+        title: Le titre
 
 
   helpers:
@@ -13,3 +14,4 @@ fr:
         custom_file_name: Titre à afficher
         format_type: Format
         url: Url
+        title: Titre

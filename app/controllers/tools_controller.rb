@@ -79,6 +79,9 @@ class ToolsController < ApplicationController
       if params[:continue].present?
         flash[:notice] = 'Les informations ont bien été enregistrées'
         redirect_to edit_part_2_tool_path(@tool)
+      elsif params[:previous].present?
+        flash[:notice] = 'Les informations ont bien été enregistrées'
+        redirect_to edit_part_1_tool_path(@tool)
       else
         @tool.submit! if @tool.may_submit?
         redirect_to submission_success_tool_path(@tool)

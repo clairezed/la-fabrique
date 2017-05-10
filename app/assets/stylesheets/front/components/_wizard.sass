@@ -1,10 +1,8 @@
 $wizard-space: 10rem
 
 .wizard-container
-  background-color: #e2ded9
-  padding: 2rem
-  margin: 3rem 0
-  text-align: center
+  padding: 2rem 0
+  margin: 3rem 0 5em
 
 .wizard-progress
   padding: 0
@@ -32,11 +30,36 @@ $wizard-space: 10rem
     // opacity: .65
   // &:first-of-type:before
   //   display: none
+  &.disabled
+    a
+      @extend .btn-secondary
   a 
     @extend .btn
     box-shadow: 0 0 0
-    @extend .btn-secondary
+
+    @extend .btn-inverse
+    
 
 .wizard-step.active
   a 
-    @extend .btn-inverse
+    &::before
+      position: absolute
+      content: ""
+      width: 0px
+      height: 0px
+      border-top: 15px solid transparent
+      border-right: 15px solid transparent
+      border-bottom: 15px solid white
+      border-left: 15px solid transparent
+      top: 22px
+      right: 5px
+    &::after
+      content: 'ÉTAPE'
+      font-weight: 600
+      color: $color-text
+      background-color: white
+      padding: 1rem
+      position: absolute
+      display: block
+      top: 45px
+      left: -15px
