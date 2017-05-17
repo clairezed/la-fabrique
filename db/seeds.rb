@@ -38,7 +38,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :interculturality,
     theme_id: mobility_theme.id,
-    color: "#cc3333",
     enabled: true
   },
     {
@@ -46,7 +45,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :departure_preparation,
     theme_id: mobility_theme.id,
-    color: "#99cc66",
     enabled: true
   },
     {
@@ -54,7 +52,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :return_preparation,
     theme_id: mobility_theme.id,
-    color: "#c0a476",
     enabled: true
   },
     {
@@ -62,7 +59,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :mobility_system,
     theme_id: mobility_theme.id,
-    color: "#663399",
     enabled: true
   }, 
   {
@@ -70,7 +66,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :skill_promotion,
     theme_id: mobility_theme.id,
-    color: "#ffd966",
     enabled: true
   }, 
   {
@@ -78,7 +73,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :conflict_management,
     theme_id: mobility_theme.id,
-    color: "#996633",
     enabled: true
   }, 
   {
@@ -86,7 +80,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :group_facilitation,
     theme_id: mobility_theme.id,
-    color: "#f1875d",
     enabled: true
   }, 
   {
@@ -94,7 +87,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     description: "Description de l'axe",
     id_key: :project_methodology,
     theme_id: mobility_theme.id,
-    color: "#40aeb4",
     enabled: true
   }
 
@@ -103,7 +95,6 @@ mobility_theme = Theme.where(id_key: "mobility").first
     id_key: option[:id_key],
     description: [ option[:description], option[:title]].join(" "), 
     theme_id: option[:theme_id], 
-    color: option[:color], 
     enabled: option[:enabled]
   )
 end

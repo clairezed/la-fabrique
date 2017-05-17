@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424165432) do
+ActiveRecord::Schema.define(version: 20170517125852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170424165432) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "id_key"
-    t.string   "color"
     t.index ["theme_id"], name: "index_axes_on_theme_id", using: :btree
   end
 
@@ -79,6 +78,21 @@ ActiveRecord::Schema.define(version: 20170424165432) do
     t.datetime "updated_at",               null: false
     t.string   "organization"
     t.index ["tool_id"], name: "index_comments_on_tool_id", using: :btree
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "links", force: :cascade do |t|

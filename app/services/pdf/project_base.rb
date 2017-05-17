@@ -9,10 +9,21 @@ class Pdf::ProjectBase < Pdf::Base
   HEADER_HEIGHT = 60
   FOOTER_HEIGHT = 100
 
+  def initialize(options = {}, &block)
+    super(options, &block)
+    fonts_path = Rails.root.join('app', 'assets', 'fonts')
+    font_families.update "Montserrat" => {
+      normal: fonts_path.join('Montserrat-Regular.ttf').to_s,
+      bold:   fonts_path.join('Montserrat-SemiBold.ttf').to_s,
+      italic: fonts_path.join('Montserrat-Italic.ttf').to_s,
+    }
+    font "Montserrat"
+  end
+
   protected #===================================================================
 
   # Structure -----------------------------------------------------
-  def contents
+  def contents   
     current_document = self
     within_document_boundaries do
       current_document.repeat :all do
@@ -35,17 +46,6 @@ class Pdf::ProjectBase < Pdf::Base
   
   def header
     svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [bounds.left, bounds.top], width: 45
-    # bounding_box([bounds.left, bounds.top], width: bounds.width, height: HEADER_HEIGHT) do
-    #   bs_row(height: HEADER_HEIGHT) do
-    #     svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [0,0], width: 45
-    #   end
-    # end
-    # bounding_box([bounds.left, bounds.top], width: bounds.width, height: HEADER_HEIGHT) do
-    #   # fill_color "cccccc"
-    #   # fill_rectangle [0, bounds.height], bounds.width, bounds.height
-    #   svg File.read("#{Rails.root}/app/assets/images/logo.svg"), position: :left, height: 45
-    # end
-    # move_down 50
   end
 
   # Footer ----------------------------------------------------------
@@ -72,7 +72,7 @@ class Pdf::ProjectBase < Pdf::Base
 
   def pagination(string = "page <page>", options={}) 
     # string = "page <page> of <total>" if string.blank?
-    options = { :at => [bounds.right - 85, bounds.bottom + 50],
+    options = { :at => [bounds.right - 90, bounds.bottom + 50],
                 :width => 100,
                 :align => :right,
                 :start_count_at => 1,
@@ -155,6 +155,6 @@ class AddIconCallback
   end
 
   def render_in_front(fragment)
-    @document.svg File.read("#{Rails.root}/app/assets/images/#{@icon}.svg"), width: 10, :at => [fragment.left - 15, fragment.top + 1]
+    @document.svg File.read("#{Rails.root}/app/assets/images/#{@icon}.svg"), width: 10, :at => [fragment.left - 15, fragment.top ]
   end
 end
