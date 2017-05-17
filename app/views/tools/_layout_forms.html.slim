@@ -4,7 +4,7 @@ h1 Proposer un outil
 .wizard-container
   ol.wizard-progress
     - if @tool.new_record?
-      = menu_link "1", new_tool_path, section: :part_1, title: "Aller à l'étape 1" ,li_class: 'wizard-step',  class: ""
+      = menu_link "1", new_tool_path, section: :part_1, title: "Etape actuelle" ,li_class: 'wizard-step',  class: ""
       = menu_link "2", "javascript:void(0)", section: :part_2, title: "Aller à l'étape 2", li_class: 'wizard-step disabled',  class: " disabled", aria: {disabled: true}
 
     - else
