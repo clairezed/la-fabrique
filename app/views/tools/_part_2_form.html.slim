@@ -138,12 +138,14 @@ div.mt-5
       //  p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
 .form-check
-  = f.label :display_contact, class: "form-check-label" do
+  => f.label :display_contact, class: "form-check-label" do
     => f.check_box :display_contact, class: "form-check-input"
-    ' Afficher mes informations de contact sur la fiche outil
+    '  Afficher mes informations de contact sur la fiche outil
 
-.d-flex.flex-row-reverse
-  .p-6
+.row
+  .col-6
+    => f.submit name: "previous", value: "Etape précédente", class: "btn btn-inverse uppercase"
+  .col-6.text-right
     => f.submit name: "continue", value: 'Enregistrer et continuer', class: "btn btn-default uppercase mr-2"
     => f.submit "Envoyer", class: "btn btn-inverse uppercase"
 

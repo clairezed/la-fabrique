@@ -63,7 +63,7 @@ class Pdf::ProjectBase < Pdf::Base
         bs_span(6) do
           text = %(Outil issu de La Fabrique du Monde)
           styled_text [text: text], { size: 9 }, align: :left
-          styled_text [text: 'www.lafabriquedumonde.fr', link: 'http://lafabriquedumonde.fr'], { size: 9 }, align: :left
+          styled_text [text: 'www.lafabriquedumonde.fr', link: 'https://lafabriquedumonde.fr'], { size: 9 }, align: :left
         end       
       end
 

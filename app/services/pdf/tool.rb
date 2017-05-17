@@ -149,8 +149,7 @@ class Pdf::Tool < Pdf::ProjectBase
     return unless @tool.links.any?
     h3 'Liens'
     @tool.links.each do |link|
-      formatted_text [{ text: link.title, size: 11 }]
-      formatted_text [text: "#{link.url}", size: 10, color: gray_color]
+      formatted_text [text: "- #{link.title}", link: link.url, size: 11]
       move_down 8
     end
   end
@@ -158,7 +157,7 @@ class Pdf::Tool < Pdf::ProjectBase
   def attachments
     return unless @tool.attachments.any?
     h3 'Media'
-    formatted_text [ text: "Documents à télécharger sur la page de l'outil", styles: [:italic], size: 10, color: gray_color ]
+    formatted_text [ text: "Document#{'s' if @tool.attachments.count > 1} à télécharger sur la page de l'outil", styles: [:italic], size: 10, color: "666666" ]
     move_down 8
     @tool.attachments.each do |attachment|
       formatted_text [{ text: " - #{attachment.custom_file_name}", size: 11 }]
