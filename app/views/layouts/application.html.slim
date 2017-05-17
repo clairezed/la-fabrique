@@ -34,8 +34,7 @@ html lang="#{I18n.locale}"
       nav.navbar.navbar-light.navbar-toggleable-md.bg-white
         .container
           = link_to root_path, class: "navbar-brand" do
-            = image_tag 'logo.svg', class:"", alt: 'projet', width: 30, height: 30
-            ' La Fabrique du Monde
+            = image_tag 'logo.svg', class:"", alt: 'projet', width: 200
           = link_to 'Proposer un outil', new_tool_path, class: "btn btn-inverse btn-bold uppercase ml-auto pull-right hidden-sm-down"
 
           = link_to "#search-bar", class: "btn btn-secondary ml-auto pull-right hidden-md-up", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "search-bar"} do
@@ -86,7 +85,7 @@ html lang="#{I18n.locale}"
       .container
         .row
           .col-6
-            = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 50, height: 50
+            = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 150
             p.footer_text.ml-3
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           .col-6.text-right

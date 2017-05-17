@@ -6,7 +6,7 @@
 class Pdf::ProjectBase < Pdf::Base
   include ApplicationHelper
 
-  HEADER_HEIGHT = 60
+  HEADER_HEIGHT = 80
   FOOTER_HEIGHT = 100
 
   def initialize(options = {}, &block)
@@ -45,7 +45,7 @@ class Pdf::ProjectBase < Pdf::Base
   # Shared components --------------------------------------------
   
   def header
-    svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [bounds.left, bounds.top], width: 45
+    svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [bounds.left, bounds.top], width: 200
   end
 
   # Footer ----------------------------------------------------------
