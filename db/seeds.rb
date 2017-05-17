@@ -203,97 +203,97 @@ end
   {
     field: "title",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "axis_id",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "duration",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "group_size",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "level",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "tool_category_id",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "public",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "tag_ids",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "goal",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "teaser",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "axis_id",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "description",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "advice",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "material",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "source",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "licence",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "tool_attachment",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "link",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   },
   {
     field: "contact",
     title: "",
-    content: "Ceci est un texte expliquant comment remplir le champs"
+    content: "Ceci est un texte expliquant comment remplir le champ"
   }
 ].each do |option|
   ToolHelp.where(field: option[:field]).first_or_create(
