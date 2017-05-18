@@ -91,6 +91,8 @@ html lang="#{I18n.locale}"
           .col-6.text-right
             - if about_page.present?
               = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
+            / div
+            /   = link_to "Plan du site", sitemap_path
             div.mt-3
               | La Fabrique du Monde © #{Date.today.year}
             /   - @basic_pages.each do |basic_page|

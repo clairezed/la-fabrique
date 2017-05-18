@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   end
   resources :tags, only: [:index]
   resources :basic_pages, only: [:show]
+  resource :sitemap, only: [:show]
   put "/accept_cookies", to: "home#accept_cookies"
   get "/:filename", to: "statics#show"
 
