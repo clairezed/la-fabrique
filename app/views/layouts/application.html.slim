@@ -84,11 +84,12 @@ html lang="#{I18n.locale}"
     footer.footer.bg-white
       .container
         .row
-          .col-6
+          .col-4
             = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 150
-            p.footer_text.ml-3
+          .col-4
+            p.footer_text
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          .col-6.text-right
+          .col-4.text-right
             - if about_page.present?
               = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
             / div

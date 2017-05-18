@@ -45,7 +45,8 @@ class Pdf::ProjectBase < Pdf::Base
   # Shared components --------------------------------------------
   
   def header
-    svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [bounds.left, bounds.top], width: 200
+    indentation = (bounds.width) / 2 - (200/2)
+    svg File.read("#{Rails.root}/app/assets/images/logo.svg"), at: [bounds.left + indentation, bounds.top], width: 200
   end
 
   # Footer ----------------------------------------------------------
