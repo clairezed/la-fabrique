@@ -1,7 +1,6 @@
-.container
-  .main
-    h1 Plan du site
-    hr
+.container#sitemap
+    h1.page-title Plan du site
 
-    - @site_map.each do |elements|
-     = raw site_map_html(elements)
+    .card.card-block
+      - @site_map.each do |elements|
+       = raw site_map_html(elements)
