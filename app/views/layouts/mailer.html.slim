@@ -7,10 +7,10 @@ div bgcolor="#eaeced" style="background-color:#eaeced"
             tbody
               tr
                 td height="20" bgcolor="#eaeced" style="font-size:0px!important;line-height:20px!important"  
-              tr
-                td align="center" valign="top" bgcolor="#eaeced"
-                  p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center'" 
-                    | Vous recevez cet email suite à votre visite sur TODO
+              / tr
+                / td align="center" valign="top" bgcolor="#eaeced"
+                /   p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center'" 
+                /     | Vous recevez cet email suite à votre visite sur TODO
 
               tr
                 td height="20" bgcolor="#eaeced" style="font-size:0px!important;line-height:20px!important" 
@@ -21,9 +21,9 @@ div bgcolor="#eaeced" style="background-color:#eaeced"
               tr
                 td height="30" bgcolor="#fff" style="font-size:0px!important;line-height:30px!important" 
               tr
-                / td align="center" valign="top" bgcolor="#fff"
-                /   | LOGO
-                  /= image_tag "logo.png", alt: "", width:'190px'
+                td align="center" valign="top" bgcolor="#fff"
+                  = link_to root_url, style: 'display: inline-block' do
+                    = image_tag "logo.png", alt: "", width:'190px'
               tr
                 td height="30" bgcolor="#fff" style="font-size:0px!important;line-height:30px!important" 
 
@@ -44,7 +44,7 @@ div bgcolor="#eaeced" style="background-color:#eaeced"
               tr
 
                 td align="center" valign="top" bgcolor="#fff" 
-                    p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center"  © 2017 TODO
+                    p style="font-size: 10px; color:#4d4d4d; margin:0; padding: 0; font-family:OpenSans, Arial,Helvetica,sans-serif;text-align:center"  © 2017 La Fabrique du monde
              
                   
               tr

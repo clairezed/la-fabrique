@@ -1,0 +1,7 @@
+.container
+  .main
+    h1 Plan du site
+    hr
+
+    - @site_map.each do |elements|
+     = raw site_map_html(elements)

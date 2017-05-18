@@ -79,12 +79,12 @@ class Pdf::Tool < Pdf::ProjectBase
 
   def goal
     h2 'Objectifs'
-    styled_text [text: @tool.goal], size: 11
+    styled_text [text: @tool.goal], size: 10
   end
 
   def teaser
     h2 'Résumé'
-    styled_text [text: @tool.teaser], size: 11
+    styled_text [text: @tool.teaser], size: 10
   end
 
   def description
@@ -93,43 +93,43 @@ class Pdf::Tool < Pdf::ProjectBase
     if @tool.steps?
       @tool.steps.each do |step|
         number = { text: leading_zero(step.position), styles: [:bold], size: 26, color: axis_color }
-        step_description = { text: step.description, size: 11 }
+        step_description = { text: step.description, size: 10 }
         formatted_text [number, { text: "  "}, step_description]
         move_down 10
       end
     else
-      styled_text [text: @tool.description], size: 11
+      styled_text [text: @tool.description], size: 10
     end
   end
 
   def advice
     return if @tool.advice.blank?
     h3 'Conseils'
-    styled_text [text: @tool.advice], size: 11
+    styled_text [text: @tool.advice], size: 10
   end
 
   def public
     return if @tool.public.blank?
     h3 'Public privilégié'
-    styled_text [text: @tool.public], size: 11
+    styled_text [text: @tool.public], size: 10
   end
 
   def source
     return if @tool.source.blank?
     h3 'Source'
-    styled_text [text: @tool.source], size: 11
+    styled_text [text: @tool.source], size: 10
   end
 
   def licence
     return if @tool.licence.blank?
     h3 'Copyright'
-    styled_text [text: @tool.licence], size: 11
+    styled_text [text: @tool.licence], size: 10
   end
 
   def material
     return if @tool.material.blank?
     h3 'Matériel'
-    styled_text [text: @tool.material], size: 11
+    styled_text [text: @tool.material], size: 10
   end
 
   def tags
@@ -141,15 +141,15 @@ class Pdf::Tool < Pdf::ProjectBase
   def contact
     return unless @tool.display_contact?
     h3 'Proposé par'
-    styled_text [text: [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")], size: 11
-    styled_text [text: @tool.submitter_organization], size: 11
+    styled_text [text: [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")], size: 10
+    styled_text [text: @tool.submitter_organization], size: 10
   end
 
   def links
     return unless @tool.links.any?
     h3 'Liens'
     @tool.links.each do |link|
-      formatted_text [text: "- #{link.title}", link: link.url, size: 11]
+      formatted_text [text: "- #{link.title}", link: link.url, size: 10]
       move_down 8
     end
   end
@@ -160,7 +160,7 @@ class Pdf::Tool < Pdf::ProjectBase
     formatted_text [ text: "Document#{'s' if @tool.attachments.count > 1} à télécharger sur la page de l'outil", styles: [:italic], size: 10, color: "666666" ]
     move_down 8
     @tool.attachments.each do |attachment|
-      formatted_text [{ text: " - #{attachment.custom_file_name}", size: 11 }]
+      formatted_text [{ text: " - #{attachment.custom_file_name}", size: 10 }]
       move_down 8
     end
   end
@@ -179,12 +179,12 @@ class Pdf::Tool < Pdf::ProjectBase
   end
 
   def axis_color
-    @axis_color ||= @tool.axis.color[1..-1] # supprimer le diese
+    @axis_color ||= ::MOBILITY_COLORS[@tool.axis.id_key.to_sym][1..-1] # supprimer le diese
   end
 
   def h1(*fragments)
-    styled_text fragments,
-                  { styles: [:bold], size: 20 }
+    styled_text fragments, { styles: [:bold], size: 20 }
+    move_down 8
     axis_color_line(100)
   end
 
@@ -212,7 +212,7 @@ class Pdf::Tool < Pdf::ProjectBase
     icon_tag = CharTagCallback.new(color: axis_color, document: self)
     add_icon = AddIconCallback.new(document: self, icon: icon)
     formatted_text [ { text: text, callback: [icon_tag, add_icon] } ], 
-      color: "ffffff", size: 10, leading: 0, align: :center
+      color: "ffffff", size: 9, leading: 0, align: :center
   end
 
   
