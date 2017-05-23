@@ -68,7 +68,7 @@ html lang="#{I18n.locale}"
     section.main-section
       = yield
 
-      - unless cookies[:cookies_accepted] == "true"
+      - unless cookies[:mt_cookies] == "true"
         #cookies_alert.alert.cookies_alert
           .container
             .row

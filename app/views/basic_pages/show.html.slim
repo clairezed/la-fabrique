@@ -1,3 +1,17 @@
 .container
-  h1 = @basic_page.title
-  = raw @basic_page.content
+  .row
+    .col-sm-10.offset-sm-1
+      h1.page-title = @basic_page.title
+
+      .card.card-block.page-card
+        = raw @basic_page.content
+
+
+        - if @basic_page.is_mobility_about_page?
+          .row.mb-5
+            .col
+              = image_tag 'logo-mirador.svg', class:"", alt: 'Logo Mirador', width: 200
+            .col
+              = image_tag 'logo_fej.png', class:"", alt: 'Logo Fonds d\'Expérimentation pour la Jeunesse', width: 200
+            .col
+              = image_tag 'logo_grand_est.jpg', class:"", alt: 'Logo Region Grand Est', width: 200

@@ -28,5 +28,17 @@ class BasicPage < ActiveRecord::Base
 
   # Instance Methods ===========================================================
 
+  def is_about_page?
+    self.id_key == 'about'
+  end
+
+  def is_mobility_page?
+    self.theme == Theme.where(id_key: 'mobility').first
+  end
+
+  def is_mobility_about_page?
+    is_about_page? && is_mobility_page?
+  end
+
   # private #=====================================================================
 end
