@@ -8,12 +8,12 @@ class @Popover
   POPOVER_OPTIONS:
     animation:  true
     # container:  'body'
-    content: ->
-      console.log this
+    # content: ->
+    #   console.log this
     delay:
       'show': 500
       'hide': 100
-    html: false
+    html: true
     template: """
       <div class="popover popover--help" role="tooltip">
         <div class="popover-arrow">

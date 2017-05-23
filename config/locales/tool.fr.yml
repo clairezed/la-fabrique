@@ -16,7 +16,7 @@ fr:
         material: Le matériel
         source: La source
         source_url: Le lien de la source
-        submitter_email: Soumis par
+        submitter_email: L'email de contact
         advice: Les conseils
       tool/steps:
         description: La description de l'étape

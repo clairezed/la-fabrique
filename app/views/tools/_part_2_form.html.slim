@@ -17,6 +17,7 @@ div#description-wrapper.mt-30
   .form-group.row.required
     .col-md-4
       = f.label :description, class:"label-title form-control-label"
+      p.form-text.text-muted.small: em Choisir description simple ou par étapes
     .col-md-8
       .btn-group data-toggle="buttons"
         - Tool.description_types.keys.each do |description_type|
@@ -107,12 +108,12 @@ div#description-wrapper.mt-30
 div.mt-5
   = render partial: 'help_popover', locals: {field: :contact}
   .label-title  Contact
-.row
+.row.input-margin-sm
   .col-6
-    .form-group
+    .form-group.required
       = f.label :submitter_email
       // = render partial: 'help_popover', locals: {field: :submitter_email}
-      = f.text_field :submitter_email, class: "form-control"
+      = f.text_field :submitter_email, class: "form-control required"
       // p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
 
   .col-6
@@ -122,7 +123,7 @@ div.mt-5
       = f.text_field :submitter_organization, class: "form-control"
       // p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
-.row
+.row.input-margin-sm
   .col-6
     .form-group
       = f.label :submitter_firstname
@@ -138,11 +139,11 @@ div.mt-5
       //  p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
 .form-check
-  => f.label :display_contact, class: "form-check-label" do
-    => f.check_box :display_contact, class: "form-check-input"
-    '  Afficher mes informations de contact sur la fiche outil
+  => f.label :hide_contact, class: "form-check-label" do
+    => f.check_box :hide_contact, class: "form-check-input"
+    span.ml-2  Merci de garder mes données confidentielles
 
-.row
+.row.mt-5
   .col-6
     => f.submit name: "previous", value: "Etape précédente", class: "btn btn-inverse uppercase"
   .col-6.text-right

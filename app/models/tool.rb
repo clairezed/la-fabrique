@@ -107,6 +107,7 @@ class Tool < ApplicationRecord
 
   validates :goal,
             :teaser,
+            :submitter_email,
             presence: true, unless: :is_step_1?
 
   private def description_exists?

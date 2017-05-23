@@ -139,7 +139,7 @@ class Pdf::Tool < Pdf::ProjectBase
   end
 
   def contact
-    return unless @tool.display_contact?
+    return if @tool.hide_contact?
     h3 'Proposé par'
     styled_text [text: [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")], size: 10
     styled_text [text: @tool.submitter_organization], size: 10

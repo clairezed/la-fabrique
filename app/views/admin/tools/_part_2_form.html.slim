@@ -97,19 +97,20 @@ fieldset
 
       div.row data-is-link-list="#{@tool.id}" data-list-url="#{admin_tool_links_path(f.object)}"
 
-fieldset
+fieldset.contact_fieldset
   legend Contact
 
   = f.hm_text_field :submitter_email, {}, {class: ""}
   = f.hm_text_field :submitter_organization, {}, {class: ""}
   = f.hm_text_field :submitter_firstname, {}, {class: ""}
   = f.hm_text_field :submitter_lastname, {}, {class: ""}
+
   .form-group.row
     .col-md-8.offset-md-2
       .form-check
-        = f.label :display_contact, class: "form-check-label" do
-          => f.check_box :display_contact, class: "form-check-input"
-          ' Afficher les informations de contact sur la fiche outil
+        = f.label :hide_contact, class: "form-check-label" do
+          => f.check_box :hide_contact, class: "form-check-input mr-4" 
+          '  Merci de garder mes données confidentielles
       
 
 

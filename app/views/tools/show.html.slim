@@ -126,7 +126,7 @@
             - @tool.tags.each do |tag|
               span.badge.badge-default.mr-3 = tag.title
 
-        - if @tool.display_contact?
+        - unless @tool.hide_contact?
           section.light-section
             h3.section_title Proposé par
             p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")

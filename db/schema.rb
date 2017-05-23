@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517125852) do
+ActiveRecord::Schema.define(version: 20170523153416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20170517125852) do
     t.string   "submitter_firstname"
     t.string   "submitter_lastname"
     t.string   "submitter_organization"
-    t.boolean  "display_contact",        default: false
+    t.boolean  "hide_contact",           default: false
     t.index ["axis_id"], name: "index_tools_on_axis_id", using: :btree
     t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
   end
