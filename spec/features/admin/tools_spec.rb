@@ -24,6 +24,7 @@ feature 'Admin creates a tool' do
     fill_in 'tool_goal', with: 'objectifs'
     fill_in 'tool_teaser', with: 'resume'
     fill_in 'tool_description', with: 'description'
+    fill_in 'tool_submitter_email', with: 'truc@stuce.com'
     click_button STEP_2_ADMIN_SUBMIT_BTN
     # save_and_open_page
     expect(page).to have_current_path(admin_tools_path)

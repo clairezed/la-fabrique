@@ -17,6 +17,7 @@ feature 'User creates a tool' do
     fill_in 'tool_goal', with: 'objectifs'
     fill_in 'tool_teaser', with: 'resume'
     fill_in 'tool_description', with: 'description'
+    fill_in 'tool_submitter_email', with: 'truc@stuce.com'
     click_button STEP_2_SUBMIT_BTN
     # save_and_open_page
     expect(page).to have_current_path(submission_success_tool_path(new_tool))
@@ -36,7 +37,7 @@ feature 'User creates a tool' do
 
     # Back to part 1 ------------------------------------------------------------------
     # pas d'erreur de part 2 ne doivent apparaitre sur part 1
-    click_link "Etape 1"
+    click_link "1"
     click_button STEP_1_SUBMIT_BTN
     expect(page).not_to have_content("erreurs")
   end

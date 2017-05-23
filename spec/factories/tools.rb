@@ -11,5 +11,6 @@ FactoryGirl.define do
     teaser 'Résumé'
     description 'Description'
     goal 'Objectif'
+    submitter_email 'truc@stuce.com'
   end
 end

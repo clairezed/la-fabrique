@@ -7,6 +7,10 @@ Rails.application.configure do
   routes.default_url_options = { :host => HOST }
   config.action_mailer.default_url_options = { :host => HOST }
   config.action_mailer.asset_host = URL
+
+  config.theme_hosts = {
+    "localhost" => "mobility"
+  }
     
   # Settings specified here will take precedence over those in config/application.rb.
 
