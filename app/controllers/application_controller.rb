@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :get_theme_key
   before_action :http_authentication
   before_action :set_default_seos!, :get_basic_pages
   after_action :flash_to_headers, if: -> { request.xhr? && flash.present? }
@@ -60,11 +61,21 @@ class ApplicationController < ActionController::Base
     cookies.permanent['visited'] = true
   end
 
+  # Theme management ================================================
+
   def current_theme
-    Theme.where(id_key: 'mobility').first || Theme.first
+    @current_theme ||= (Theme.where(id_key: @theme_key).first || Theme.default)
   end
   helper_method :current_theme
 
+  def get_theme_key
+    host = request.host
+    @theme_key = Rails.configuration.theme_hosts[host]
+    @theme_key = 'mobility' if @theme_key.blank?
+  end
+
+
+  # Back path =======================================================
 
   def set_back_path(session_name = :back_path)
     return if request.env['HTTP_REFERER'].blank?

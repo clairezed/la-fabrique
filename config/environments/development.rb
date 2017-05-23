@@ -60,6 +60,11 @@ Rails.application.configure do
     Bullet.add_footer = true
   end
 
+  config.theme_hosts = {
+    "dev-lafabriquedumonde.fr" => "mobility",
+    "dev-fabriquepaix.clairezualiani.com" => "peace"
+  }
+
 
   HOST = "localhost:3000"
   URL = "http://#{HOST}"

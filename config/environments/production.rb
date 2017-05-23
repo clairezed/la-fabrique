@@ -84,6 +84,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.theme_hosts = {
+    "lafabriquedumonde.fr" => "mobility",
+    "fabriquepaix.clairezualiani.com" => "peace"
+  }
+
   HOST = "lafabriquedumonde.fr"
   URL = "http://#{HOST}"
 
