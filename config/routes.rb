@@ -45,22 +45,23 @@ Rails.application.routes.draw do
   # Front ======================================
   
   resources :axes, only: [:index]
-  resources :tools, only: [:index, :show, :new, :create, :update] do
+  resources :tools, only: [:index, :show, :new, :create, :update], 
+    path: 'outils', path_names: {new: "nouveau"} do
     member do
-      get :edit_part_1
+      get :edit_part_1, path: "edition-1"
       put :part_1
-      get :edit_part_2
+      get :edit_part_2, path: "edition-2"
       put :part_2
-      get :submission_success
+      get :submission_success, path: "outil-soumis"
     end
     resources :comments, controller: "tools/comments", only: [:create]
     resources :steps, controller: "tools/steps", only: [:destroy]
     resources :tool_attachments, as: :attachments, controller: "tools/tool_attachments"
     resources :links, controller: "tools/links"
-    resources :trainings, controller: "tools/trainings", only: [:show]
+    resources :trainings, controller: "tools/trainings", only: [:show], path: "parcours-formations"
   end
   resources :tags, only: [:index]
-  resources :basic_pages, only: [:show]
+  resources :basic_pages, only: [:show], path: "pages"
   resource :sitemap, only: [:show]
   put "/accept_cookies", to: "home#accept_cookies"
   get "/:filename", to: "statics#show"
