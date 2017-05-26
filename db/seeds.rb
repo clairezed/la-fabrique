@@ -218,28 +218,28 @@ end
 [
   {
     field: "title",
-    title: "",
+    title: "Qu’est-ce que le champ « titre » ?",
     content: "Il correspond au nom de votre outil. Obligatoire, il permet aux utilisateurs de localiser rapidement ce dernier en utilisant le module de recherche « Nom de l'outil » disponible sur la page d'accueil."
   },
   {
     field: "axis_id",
-    title: "",
+    title: "Comment renseigner le champ « axe thématique » ?",
     content: "Utilisez les questions suivantes pour déterminer l'axe dans lequel répertorier votre outil. Certains outils sont transversaux et peuvent s'inscrire dans plusieurs axes. N'hésitez pas à l'indiquer dans la partie « conseils ».\r\n 
       Les questions ci-dessous ne sont pas limitatives : elles sont là pour vous aider à cerner la nature et le contenu de l'axe proposé."
   },
   {
     field: "duration",
-    title: "",
+    title: "Qu’est-ce que le champ « durée » ?",
     content: "Il permet aux utilisateurs d'estimer la durée nécessaire pour mettre en œuvre l'outil que vous proposez. Si cela ne vous paraît pas pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge.  Il n'est pas obligatoire."
   },
   {
     field: "group_size",
-    title: "",
+    title: "Qu’est-ce que le champ « Nombre de pers. » ?",
     content: "Il permet aux utilisateurs d’estimer le nombre de personnes souhaitées pour le bon fonctionnement de l’outil que vous proposez. Si cela ne vous paraît par pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge. Il n’est pas obligatoire."
   },
   {
     field: "level",
-    title: "",
+    title: "Qu’est-ce que le champ « Niveau de difficulté » ?",
     content: "Il permet aux utilisateurs d’estimer le niveau de difficulté pour mettre en œuvre l’outil que vous proposez. Si cela ne vous paraît par pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge. Il n’est pas obligatoire.\r\n
       Facile : La mise en œuvre de l’outil ne demande ni préparation spécifique, ni compétence d’animation particulière.\r\n
       Intermédiaire : La mise en œuvre de l’outil demande soit une préparation spécifique, soit des compétences d’animation particulières.\r\n 
@@ -247,69 +247,69 @@ end
   },
   {
     field: "tool_category_id",
-    title: "",
+    title: "Qu’est-ce que le champ « Type d’outil » ?",
     content: "Il correspond à ce qu’est votre outil (par exemple : technique de créativité, jeu de rôle, brise-glace). Obligatoire, il permet aux utilisateurs de localiser rapidement ce dernier en utilisant le module de recherche « Type d’outil » disponible sur la page d'accueil."
   },
   {
     field: "public",
-    title: "",
+    title: "Qu’est-ce que le champ « Public privilégié » ?",
     content: "Il permet aux utilisateurs de déterminer le public cible de votre outil (par exemple : professionnels, jeunes, tout public). Si cela ne vous paraît par pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge. Il n’est pas obligatoire."
   },
   {
     field: "tag_ids",
-    title: "",
+    title: "Qu’est-ce que le champ « Mots-clés » ? ",
     content: "Il indique aux utilisateurs les notions éventuellement liées à votre outil (par exemple : genre, handicap, discrimination). Il n’est pas obligatoire, mais permet aux utilisateurs de localiser rapidement votre outil en utilisant le module de recherche « Mots-clés » disponible sur la page d'accueil."
   },
   {
     field: "goal",
-    title: "",
+    title: "Qu’est-ce que le champ « Objectifs » ?",
     content: "Il indique aux utilisateurs les objectifs attendus suite à la mise en œuvre de votre outil. Il est obligatoire. Décrivez de préférence ces derniers en commençant par un verbe d’action indiquant des comportements précis et observables (par exemple : indiquer, démontrer, identifier)."
   },
   {
     field: "teaser",
-    title: "",
+    title: "Qu’est-ce que le champ « Résumé » ?",
     content: "Il donne aux utilisateurs une courte mise en bouche de ce qu’offre votre outil. Il est obligatoire."
   },
   {
     field: "description",
-    title: "",
+    title: "Qu’est-ce que le champ « Marche à suivre » ?",
     content: "Il concerne les modalités d’utilisation de votre outil. Il est obligatoire. Deux options s’offrent à vous : « Description simple » ou « Par étapes ».\r\n
       Si vous choisissez « Description simple », la marche à suivre pour la mise en œuvre de votre outil est composée d’un seul bloc de texte.\r\n
       Si vous choisissez « Par étapes », la marche à suivre pour la mise en œuvre de votre outil est composée de plusieurs blocs de texte numérotés de 1 à 100."
   },
   {
     field: "advice",
-    title: "",
+    title: "Qu’est-ce que le champ « Conseils » ?",
     content: "Il permet de suggérer aux utilisateurs « vos petits plus » pour mettre en œuvre votre outil. Si cela ne vous paraît par pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge. Il n’est pas obligatoire."
   },
   {
     field: "material",
-    title: "",
+    title: "Qu’est-ce que le champ « Matériel » ?",
     content: "Il indique aux utilisateurs le matériel requis pour mettre en œuvre votre outil. Si cela ne vous paraît par pertinent (par exemple, si vous voulez publier un livret pédagogique), vous pouvez le laisser vierge. Il n’est pas obligatoire."
   },
   {
     field: "source",
-    title: "",
+    title: "Qu’est-ce que le champ « Source » ?",
     content: "Il indique aux utilisateurs l’origine de votre outil. Si vous ne connaissez pas sa provenance, vous pouvez mentionner « inconnue ».  Il n’est pas obligatoire."
   },
   {
     field: "licence",
-    title: "",
+    title: "Qu’est-ce que le champ « Licence d’utilisation » ?",
     content: "Il indique aux utilisateurs la licence d’utilisation de l’outil. Il n’est pas obligatoire."
   },
   {
     field: "tool_attachment",
-    title: "",
+    title: "Qu’est-ce que le champ « Support » ?",
     content: "Il permet l’ajout de documents associés à votre outil. Les formats autorisés sont : .pdf, .jpeg, .gif, .png, .doc, .xls, .ppt, .mp3, .wav. La taille maximale du document est de 8 Mo. Lors de l’ajout du document, vous pourrez lui donner un titre et indiquer son format (image, document texte type word / pdf, présentation type powerpoint, son, vidéo, autre). Il n’est pas obligatoire." 
   },
   {
     field: "link",
-    title: "",
+    title: "Qu’est-ce que le champ « Liens » ?",
     content: "Il permet l’ajout de liens associés à votre outil. Lors de l’ajout du lien, vous pourrez lui donner un titre et indiquer son format (image, document texte type word / pdf, présentation type powerpoint, son, vidéo, autre). Il n’est pas obligatoire."
   },
   {
     field: "contact",
-    title: "",
+    title: "Qu’est-ce que le champ « Contact » ?",
     content: "Il permet d’indiquer aux utilisateurs vos coordonnées sur la fiche outil."
   }
 ].each do |option|
