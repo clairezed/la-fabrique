@@ -54,16 +54,16 @@ html lang="#{I18n.locale}"
         .container
           header.explanation_header Bienvenue dans la fabrique du monde
           .row.lg-gutter.explanation_content
-            .col
+            .col-lg-3.col-md-6.col-sm-12
               i.fa.fa-download
               p Téléchargez librement et gratuitement les outils qui constitueront la matière première de votre projet de mobilité
-            .col
+            .col-lg-3.col-md-6.col-sm-12
               i.fa.fa-share
               p Partagez votre expérience avec les autres artisans de la mobilité en commentant les outils
-            .col
+            .col-lg-3.col-md-6.col-sm-12
               i.fa.fa-magic
               p Construisez en un clic, un parcours d’activités ingénieux de la mobilité, grâce à la fonction baguette magique
-            .col
+            .col-lg-3.col-md-6.col-sm-12
               i.fa.fa-files-o
               p Enrichissez la Fabrique du Monde en proposant vos outils de la mobilité
       .explanation_collapser
@@ -91,12 +91,12 @@ html lang="#{I18n.locale}"
     footer.footer.bg-white
       .container
         .row
-          .col-4
+          .col-lg-4.col-md-4.col-sm-12
             = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 150
-          .col-4
+          .col-lg-4.col-md-4.col-sm-12
             p.footer_text
               ' La Fabrique du Monde est un espace de co-construction dédié à la mobilité, celle-ci étant entendue comme la rencontre de personnes porteuses d’une histoire singulière et désireuses d’en bâtir une commune.
-          .col-4.text-right
+          .col-lg-4.col-md-4.col-sm-12.text-right
             - if about_page.present?
               = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
             / div
