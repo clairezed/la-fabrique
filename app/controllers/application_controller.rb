@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_default_seos!
-    @seo_title       ||= 'Title du projet'
-    @seo_description ||= 'Description du projet'
-    @seo_keywords    ||= 'keywords du projet, projet'
+    @seo_title       ||= 'La fabrique du monde'
+    @seo_description ||= 'La Fabrique du Monde est un espace de co-construction dédié à la mobilité, celle-ci étant entendue comme la rencontre de personnes porteuses d’une histoire singulière et désireuses d’en bâtir une commune.'
+    @seo_keywords    ||= 'fabrique, monde, mobilité, outils'
   end
 
   # Pour les requêtes ajax

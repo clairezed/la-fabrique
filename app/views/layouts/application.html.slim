@@ -24,7 +24,8 @@ html lang="#{I18n.locale}"
       script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
     /<![endif]
 
-    = favicon_link_tag asset_path 'favicons/favicon.ico'
+    / = favicon_link_tag asset_path 'favicons/favicon.ico'
+    = favicon_link_tag asset_path 'favicon.png'
 
     = javascript_include_tag "application" 
     = render_document_ready_scripts 
