@@ -1,19 +1,21 @@
 $explanation-bg-color: $brand-inverse
-// $explanation-bg-color: lighten($brand-inverse, 10%)
 
 .explanation 
   color: $white
-  
+
+// /!\ pour permettre le slideToggle du block explanation, besoin de donner une hauteur fixe
 .explanation_main
   background-color: $explanation-bg-color
   overflow-y: hidden
-  max-height: 250px
+  max-height: 370px
   transition: max-height 1s ease-in-out
   .explanation_content
     margin-bottom: 4em
   .col 
     text-align: center
-
+    i 
+      font-size: 5rem
+      margin-bottom: 30px
 
 .explanation_header
   text-align: center
