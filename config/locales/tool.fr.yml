@@ -18,6 +18,7 @@ fr:
         source_url: Le lien de la source
         submitter_email: L'email de contact
         advice: Les conseils
+        cgu_accepted: Les conditions générales d'utilisation
       tool/steps:
         description: La description de l'étape
 
@@ -48,6 +49,7 @@ fr:
         tool_attachment: Média
         link: Liens
         contact: Contact
+        cgu_accepted: CGU
 
   tool_states:
     title:

@@ -143,6 +143,13 @@ div.mt-5
     => f.check_box :hide_contact, class: "form-check-input"
     span.ml-2  Merci de garder mes données confidentielles
 
+.form-check.mt-5.required
+  = f.label :cgu_accepted, class: "form-check-label" do
+    => f.check_box :cgu_accepted, class: "form-check-input required"
+    span.ml-2> J'ai lu et accepte les
+    => link_to " conditions générales d'utilisation de La fabrique du monde", "#", target: "_blank"
+    //# => link_to "conditions générales d'utilisation de La fabrique du monde", get_basic_page_path(:cgu), target: "_blank"
+
 .row.mt-5
   .col-6
     => f.submit name: "previous", value: "Etape précédente", class: "btn btn-inverse uppercase"

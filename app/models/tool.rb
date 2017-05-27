@@ -8,7 +8,7 @@ class Tool < ApplicationRecord
   # Nb de jours après sa création pdt lesquels un outil est considéré comme "nouveau"
   NOVELTY_DELAY = 15
 
-  attr_accessor :current_step
+  attr_accessor :current_step, :cgu_accepted
 
   # State machine -------------------------------------------------------------
 
@@ -109,6 +109,10 @@ class Tool < ApplicationRecord
             :teaser,
             :submitter_email,
             presence: true, unless: :is_step_1?
+
+    validates :cgu_accepted,
+          acceptance: {message: "doivent être acceptées"},
+          unless: :is_step_1?
 
   private def description_exists?
     return true if (self.steps? and steps.any?) || (self.description? and description.present?)

@@ -117,7 +117,7 @@ class ToolsController < ApplicationController
 
   def part_2_params
     params.require(:tool).permit(
-      :description, :teaser, :description_type,
+      :description, :teaser, :description_type, :cgu_accepted, 
       :public, :licence, :goal, :material, :source, :advice, :hide_contact,
       :submitter_email, :submitter_organization, :submitter_firstname, :submitter_lastname,
       steps_attributes: %i(id description _destroy),
