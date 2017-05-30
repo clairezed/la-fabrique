@@ -12,5 +12,7 @@ FactoryGirl.define do
     description 'Description'
     goal 'Objectif'
     submitter_email 'truc@stuce.com'
+    submitter_firstname 'truc'
+    submitter_lastname 'machin'
   end
 end

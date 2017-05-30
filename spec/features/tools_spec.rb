@@ -18,6 +18,9 @@ feature 'User creates a tool' do
     fill_in 'tool_teaser', with: 'resume'
     fill_in 'tool_description', with: 'description'
     fill_in 'tool_submitter_email', with: 'truc@stuce.com'
+    fill_in 'tool_submitter_firstname', with: 'truc'
+    fill_in 'tool_submitter_lastname', with: 'machin'
+    check 'tool_cgu_accepted'
     click_button STEP_2_SUBMIT_BTN
     # save_and_open_page
     expect(page).to have_current_path(submission_success_tool_path(new_tool))

@@ -108,6 +108,8 @@ class Tool < ApplicationRecord
 
   validates :goal,
             :teaser,
+            :submitter_firstname,
+            :submitter_lastname,
             :submitter_email,
             presence: true, unless: :is_step_1?
 

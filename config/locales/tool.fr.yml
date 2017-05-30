@@ -17,6 +17,8 @@ fr:
         source: La source
         source_url: Le lien de la source
         submitter_email: L'email de contact
+        submitter_lastname: Le nom de contact
+        submitter_firstname: Le prénom de contact
         advice: Les conseils
         cgu_accepted: Les conditions générales d'utilisation
       tool/steps:

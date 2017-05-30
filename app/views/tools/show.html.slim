@@ -130,6 +130,7 @@
           section.light-section
             h3.section_title Proposé par
             p = [@tool.submitter_firstname, @tool.submitter_lastname].compact.join(" ")
+            p = mail_to @tool.submitter_email
             p = @tool.submitter_organization
 
         section.light-section
