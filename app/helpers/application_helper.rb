@@ -221,4 +221,8 @@ module ApplicationHelper
     @about_page ||= BasicPage.enabled.where(id_key: 'about', theme: current_theme).first
   end
 
+  def cgu_page
+    @cgu_page ||= BasicPage.enabled.where(id_key: 'cgu', theme: current_theme).first
+  end
+
 end

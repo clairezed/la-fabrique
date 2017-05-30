@@ -97,16 +97,17 @@ html lang="#{I18n.locale}"
             p.footer_text
               ' La Fabrique du Monde est un espace de co-construction dédié à la mobilité, celle-ci étant entendue comme la rencontre de personnes porteuses d’une histoire singulière et désireuses d’en bâtir une commune.
           .col-lg-4.col-md-4.col-sm-12.text-right
-            - if about_page.present?
+            - if about_page.present? && about_page.enabled?
               = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
             div.mt-3
               | La Fabrique du Monde © #{Date.today.year}
 
         .row
           .col.text-center
-            p.footer_text 
-              => link_to 'Conditions générales d\'utilisation', '#'
-              ' / 
+            p.footer_text
+              - if cgu_page.present? && cgu_page.enabled?
+                => link_to 'Conditions générales d\'utilisation', basic_page_path(cgu_page)
+                ' / 
               => link_to 'Mentions légales', '#'
               ' / 
               => link_to 'Plan du site', sitemap_path
