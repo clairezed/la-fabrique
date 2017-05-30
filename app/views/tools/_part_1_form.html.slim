@@ -63,7 +63,7 @@
 .form-group
   = f.label :tag_ids, class:" form-control-label"
   = render partial: 'help_popover', locals: {field: :tag_ids}
-  = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control ",  data: {is_autocomplete_select: 'tag', path: tags_path}
+  = f.select :tag_ids, tool_tags_options, {prompt: "Rechercher un mot-clé"}, multiple: true,  class: "form-control ",  data: {is_autocomplete_select: 'tag', path: tags_path}     
 
 .d-flex.flex-row-reverse
   .p-6

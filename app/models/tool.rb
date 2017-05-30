@@ -46,6 +46,7 @@ class Tool < ApplicationRecord
   end
 
   private def notify_submission
+    ToolSubmissionSnapshot.new(self).save
     AdminMailer.tool_submitted(self).deliver_now
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523153416) do
+ActiveRecord::Schema.define(version: 20170530130520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,21 @@ ActiveRecord::Schema.define(version: 20170523153416) do
     t.datetime "updated_at",               null: false
     t.string   "organization"
     t.index ["tool_id"], name: "index_comments_on_tool_id", using: :btree
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "links", force: :cascade do |t|
@@ -182,6 +197,8 @@ ActiveRecord::Schema.define(version: 20170523153416) do
     t.string   "submitter_lastname"
     t.string   "submitter_organization"
     t.boolean  "hide_contact",           default: false
+    t.jsonb    "submitted_snapshot",     default: {},    null: false
+    t.datetime "submitted_at"
     t.index ["axis_id"], name: "index_tools_on_axis_id", using: :btree
     t.index ["tool_category_id"], name: "index_tools_on_tool_category_id", using: :btree
   end

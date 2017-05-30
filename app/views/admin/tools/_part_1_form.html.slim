@@ -42,6 +42,16 @@ fieldset
     .controls-xlarge
       = f.select :tag_ids, tool_tags_options, {include_blank: "Rechercher un mot-clé"}, multiple: true,  class: "form-control",  data: {is_autocomplete_select: 'tag', path: admin_tags_path}
 
+fieldset
+  legend Historique
+
+  = link_to "#submitted-history", class: "btn btn-link", data: {toggle: 'collapse'}, aria: {expanded:"false", controls: "submitted-history"} do
+    ' Voir la version soumise initialement par l'utilisateur
+
+  .collapse#submitted-history
+    pre = JSON.pretty_generate(@tool.submitted_snapshot)
+
+
 .form-group.row
   .form-actions
     hr
