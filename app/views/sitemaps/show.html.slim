@@ -3,6 +3,5 @@
     .col-sm-10.offset-sm-1
       h1.page-title Plan du site
 
-      .card.card-block.page-card
-        - @site_map.each do |elements|
-         = raw site_map_html(elements)
+      - @site_map.each do |elements|
+       = raw site_map_html(elements)
