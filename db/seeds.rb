@@ -287,7 +287,15 @@ end
   {
     field: "licence",
     title: "Qu’est-ce que le champ « Licence d’utilisation » ?",
-    content: "Il indique aux utilisateurs la licence d’utilisation de l’outil. Il n’est pas obligatoire."
+    content: "Qu’est-ce que le champ « Licence d’utilisation » ?\r\n
+      Il indique aux utilisateurs la licence d’utilisation de l’outil. Il n’est pas obligatoire. Si vous êtes le créateur de l’outil, vous pouvez ainsi limiter l’utilisation de votre outil sous certaines conditions.\r\n
+      Une fois que vous avez choisi votre licence, indiquez « CC » pour Creative Commons, suivi de la licence de votre choix, par exemple « BY ND », puis du terme « Licence », soit « CC BY ND Licence».   \r\n
+      1. Attribution (BY): Le titulaire des droits autorise toute exploitation de l’œuvre, y compris à des fins commerciales, ainsi que la création d’œuvres dérivées, dont la distribution est également autorisé sans restriction, à condition de l’attribuer à son l’auteur en citant son nom. Cette licence est recommandée pour la diffusion et l’utilisation maximale des œuvres.\r\n
+      2. Attribution + Pas de Modification (BY ND) : Le titulaire des droits autorise toute utilisation de l’œuvre originale (y compris à des fins commerciales), mais n’autorise pas la création d’œuvres dérivées.\r\n
+      3. Attribution + Pas d’Utilisation Commerciale + Pas de Modification (BY NC ND) : Le titulaire des droits autorise l’utilisation de l’œuvre originale à des fins non commerciales, mais n’autorise pas la création d’œuvres dérivés.\r\n
+      4. Attribution + Pas d’Utilisation Commerciale (BY NC) : le titulaire des droits autorise l’exploitation de l’œuvre, ainsi que la création d’œuvres dérivées, à condition qu’il ne s’agisse pas d’une utilisation commerciale (les utilisations commerciales restant soumises à son autorisation).\r\n
+      5. Attribution + Pas d’Utilisation Commerciale + Partage dans les mêmes conditions (BY NC SA): Le titulaire des droits autorise l’exploitation de l’œuvre originale à des fins non commerciales, ainsi que la création d’œuvres dérivées, à condition qu’elles soient distribuées sous une licence identique à celle qui régit l’œuvre originale.\r\n
+      6. Attribution + Partage dans les mêmes conditions (BY SA) : Le titulaire des droits autorise toute utilisation de l’œuvre originale (y compris à des fins commerciales) ainsi que la création d’œuvres dérivées, à condition qu’elles soient distribuées sous une licence identique à celle qui régit l’œuvre originale. Cette licence est souvent comparée aux licences « copyleft » des logiciels libres. C’est la licence utilisée par Wikipedia."
   },
   {
     field: "tool_attachment",
