@@ -4,15 +4,15 @@ default: &default
   timeout: 5000
 
 local_credentials: &local_credentials
-  login: zool
-  password: 
+  login: login
+  password: password
 
 development:
   <<: *default
   <<: *local_credentials
-  database: mir_bibnum_development
+  database: fabrique_development
 
 test:
   <<: *default
   <<: *local_credentials
-  database: mir_bibnum_test
+  database: fabrique_test

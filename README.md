@@ -1,11 +1,10 @@
-# Mobility Toolbox (temporary title)
+# La fabrique
 
-Toolbox gathering tools, methods, media contents to help european mobility. 
+Digital toolbox gathering tools, methods, media contents to foster projects.
 
 ## Getting Started
 
 *These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.*
--> TODO
 
 ### Prerequisites
 
@@ -19,46 +18,46 @@ Give examples
 
 ### Installing
 
-```
-git clone git@github.com:clairezed/mobility-toolbox.git
-cd mobility-toolbox
+```bash
+git clone git@github.com:clairezed/la-fabrique.git
+cd la-fabrique
 bundle install
-cd config
-touch database.yml
-```
-
-Fill database.yml from database_example.yml, but with your own database connection credentials
-
-```
-rake db:setup
+cp config/database_example.yml config/database.yml
+# Update database.yml to cope with your own database connection credentials
+bin/rake db:setup
+bin/rake db:seed
 rails server
 ```
 
 Your website should be accessible at [localhost:3000](http://localhost:3000/).
 
 
-*End with an example of getting some data out of the system or using it for a little demo*
--> TODO
+### Dummy data
+
+If you want to generate 20 fake lightweight tools, you can run : 
+
+```bash
+rake seeds:dummy_tools
+```
 
 ## Running the tests
 
-*Explain how to run the automated tests for this system*
--> TODO
+```bash
+RAILS_ENV=test rake db:setup
+RAILS_ENV=test bin/rake db:seed
+rspec
+```
 
-### Break down into end to end tests
-
-*Explain what these tests test and why*
--> TODO
-
-### And coding style tests
-
-*Explain what these tests test and why*
--> TODO
+The project could clearly have more tests. Don't hesitate to contribute, I'll be happy to help !
 
 ## Deployment
 
 *Add additional notes about how to deploy this on a live system*
 -> TODO
+
+```
+cp config/database_example.yml config/database_production.yml
+```
 
 ## Built With
 
@@ -69,28 +68,20 @@ Your website should be accessible at [localhost:3000](http://localhost:3000/).
 *Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.*
 -> TODO
 
-## Versioning
-
-*We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).*
--> TODO
 
 ## Authors
 
-* **Claire Zuliani** - [github account](https://github.com/clairezed)
+* Development, integration : **Claire Zuliani** - [github account](https://github.com/clairezed) - [website](http://www.clairezuliani.com/)
+* Design : **Phi²** - [website](http://phicarre.fr/)
 
 ## License
 
-*This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details*
--> TODO
+This project is licensed under the AGPL 3.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-- back office inspired by https://github.com/modularcode/modular-admin-html
+- back office inspired by [Modular Admin](https://github.com/modularcode/modular-admin-html)
 
-
-
-## TODO
-- [ ] régler le slideToggle 'open' du submenu
 
 ### end writing open source docs
 

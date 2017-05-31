@@ -44,7 +44,10 @@ def generate_dummy_tool
     you pointed out the versioning; I am using 1.9.2. apidock (mladen's comment) \
     does not have sample; neither does ruby-doc. In your opinion, what is the best \
     reference for Ruby, updated to 1.9?",
-    created_at: 15.days.ago
+    created_at: 15.days.ago,
+    submitter_email: 'truc@stuce.com',
+    submitter_firstname: 'truc',
+    submitter_lastname: 'machin'
   ).first_or_create
 
   tool.accept! if tool.may_accept?
