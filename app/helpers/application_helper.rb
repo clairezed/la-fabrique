@@ -225,4 +225,16 @@ module ApplicationHelper
     @cgu_page ||= BasicPage.enabled.where(id_key: 'cgu', theme: current_theme).first
   end
 
+  def data_policy_page
+    @data_policy_page ||= BasicPage.enabled.where(id_key: 'data_policy').first
+  end
+
+  def legal_mentions_page
+    @legal_mentions_page ||= BasicPage.enabled.where(id_key: 'legal_mentions').first
+  end
+
+  def cookies_page
+    @cookies_page ||= BasicPage.enabled.where(id_key: 'cookies').first
+  end
+
 end

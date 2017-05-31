@@ -8,10 +8,13 @@
 a1 = Admin.where(email: "clairezuliani+admin@gmail.com").first_or_initialize
 
 if ["production","staging"].include?(Rails.env)
-  a1.update_attributes(:password => "password")
+  a1.update_attributes(:password => "aqwxsz21")
 else
   a1.update_attributes(:password => "password")
 end
+
+a2 = Admin.where(email: "contact@project-mirador.org").first_or_initialize
+a2.update_attributes(:password => "Mirobs31")
 
 seo1 = Seo.where(param: "home").first_or_create
 
@@ -315,6 +318,19 @@ end
 ].each do |option|
   ToolHelp.where(field: option[:field]).first_or_create(
     content: option[:content], 
+    title: option[:title]
+  )
+end
+
+
+# Basïc Pages ==================================================
+[
+  { id_key: 'data_policy', title: "Charte des données personnelles", enabled: true },
+  { id_key: 'legal_mentions', title: "Mentions légales", enabled: true },
+  { id_key: 'cookies', title: "Cookies", enabled: true }
+].each do |option|
+  BasicPage.where(id_key: option[:id_key]).first_or_create(
+    enabled: option[:enabled], 
     title: option[:title]
   )
 end

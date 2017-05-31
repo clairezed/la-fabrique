@@ -26,8 +26,8 @@
           td.action-btns
             => link_to raw("<span class='glyphicon glyphicon-pencil'></span>"), edit_admin_basic_page_path(basic_page),
               class: "btn btn-sm btn-info", title: "Editer"
-            = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_basic_page_path(basic_page),
-              method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
+            / = link_to raw("<span class='glyphicon glyphicon-trash'></span>"), admin_basic_page_path(basic_page),
+            /   method: :delete, data: {confirm: "Confirmer la suppression ?"}, title: "Supprimer", class: "btn btn-sm btn-danger"
       
       - if @basic_pages.empty?
         tr

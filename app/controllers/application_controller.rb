@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_visited
-    cookies.permanent['visited'] = true
+    cookies.permanent['mt_visited'] = true
   end
 
   # Theme management ================================================

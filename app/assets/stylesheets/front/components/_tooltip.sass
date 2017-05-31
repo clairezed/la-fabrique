@@ -1,0 +1,29 @@
+$tooltip-arrow-color:         $tooltip-bg
+
+.tooltip
+  font-size: 1.1rem
+  &.show 
+    opacity: $tooltip-opacity
+  &.tooltip-top,
+  &.bs-tether-element-attached-bottom 
+    .tooltip-inner::before
+      border-top-color: $tooltip-arrow-color
+
+  &.tooltip-right,
+  &.bs-tether-element-attached-left
+    .tooltip-inner::before 
+      border-right-color: $tooltip-arrow-color
+
+  &.tooltip-bottom,
+  &.bs-tether-element-attached-top 
+    .tooltip-inner::before
+      border-bottom-color: $tooltip-arrow-color
+
+  &.tooltip-left,
+  &.bs-tether-element-attached-right
+    .tooltip-inner::before
+      border-left-color: $tooltip-arrow-color
+
+.tooltip-inner
+  padding: $tooltip-padding-y $tooltip-padding-x
+  background-color: $tooltip-bg

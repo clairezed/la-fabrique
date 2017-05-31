@@ -83,7 +83,7 @@ div#description-wrapper.mt-30
       .label-title  Support
       = label_tag :"asset_tool_attachment[asset]"
         span.btn.btn-inverse.btn-sm.uppercase.mr-2
-          | Ajouter un média
+          | Ajouter un support
         = file_field_tag :"asset_tool_attachment[asset]", data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
         / / filtre "accept" mal géré pour certains navigateurs (dont le mien pour les doc, xls, etc)
         / = file_field_tag :"asset_tool_attachment[asset]", accept: Asset::ToolAttachment::VALID_CONTENT_TYPES.map(&:to_s).join(','), data: {file_upload: true, url: tool_attachments_path(f.object), method: 'POST', type: 'script'}, style: "display:none"
@@ -125,17 +125,17 @@ div.mt-5
 
 .row.input-margin-sm
   .col-6
-    .form-group
+    .form-group.required
       = f.label :submitter_firstname
       = render partial: 'help_popover', locals: {field: :submitter_firstname}
-      = f.text_field :submitter_firstname, class: "form-control"
+      = f.text_field :submitter_firstname, class: "form-control required"
       // p.form-text.text-muted.small: em Pour que nous puissions vous recontacter si nécessaire. Ne sera pas affiché sur la fiche outil.
 
   .col-6
-    .form-group
+    .form-group.required
       = f.label :submitter_lastname
       = render partial: 'help_popover', locals: {field: :submitter_lastname}
-      = f.text_field :submitter_lastname, class: "form-control"
+      = f.text_field :submitter_lastname, class: "form-control required"
       //  p.form-text.text-muted.small: em Optionnel, affiché sur la fiche outil si renseigné.
 
 .form-check

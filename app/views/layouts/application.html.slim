@@ -49,7 +49,7 @@ html lang="#{I18n.locale}"
           /       = link_to 'Administration', admin_root_path, title: "Espace administration", class:"nav-link"
     
 
-    section.explanation class="#{'explanation--hidden' if cookies[:visited] == 'true'}" data-is-explanation-collapse="true" 
+    section.explanation class="#{'explanation--hidden' if cookies[:mt_visited] == 'true'}" data-is-explanation-collapse="true" 
       .explanation_main 
         .container
           header.explanation_header Bienvenue dans la fabrique du monde
@@ -86,7 +86,7 @@ html lang="#{I18n.locale}"
                     En continuant de naviguer sur le site, vous déclarez accepter leur utilisation.
               .col-lg-3.col-md-4.col-12
                 = link_to "J'ai compris", "javascript:void(0)", class: "btn btn-primary", onclick: "ajax_accept_cookies('#{accept_cookies_path}')"
-                = link_to "En savoir plus" , "/cookies_info", class: 'btn btn-secondary'
+                = link_to "En savoir plus" , basic_page_path(cookies_page), class: 'btn btn-secondary'
 
     footer.footer.bg-white
       .container
@@ -107,9 +107,16 @@ html lang="#{I18n.locale}"
             p.footer_text
               - if cgu_page.present? && cgu_page.enabled?
                 => link_to 'Conditions générales d\'utilisation', basic_page_path(cgu_page)
-                ' / 
-              => link_to 'Mentions légales', '#'
-              ' / 
+                ' -  
+              - if data_policy_page.present? && data_policy_page.enabled?
+                => link_to 'Charte des données personnelles', basic_page_path(data_policy_page)
+                ' - 
+              - if legal_mentions_page.present? && legal_mentions_page.enabled?
+                => link_to 'Mentions légales', basic_page_path(legal_mentions_page)
+                ' - 
+              - if cookies_page.present? && cookies_page.enabled?
+                => link_to 'Cookies', basic_page_path(cookies_page)
+                ' - 
               => link_to 'Plan du site', sitemap_path
 
 

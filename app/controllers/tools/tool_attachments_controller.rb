@@ -17,7 +17,7 @@ class Tools::ToolAttachmentsController < Tools::BaseController
     else
       # si pb de type de PJ -> message spécifique pour interrompre le process
       if @attachment.errors.keys.include?(:asset_content_type)
-        render status: 424, json: 'Ce type de média ne peut être ajouté'
+        render status: 424, json: 'Ce type de support ne peut être ajouté'
       else # pb sur des champs classiques, affichage standard des erreurs
         render status: 422, json: { errors: @attachment.errors.full_messages.uniq }
       end
