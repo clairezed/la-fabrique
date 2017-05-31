@@ -9,8 +9,6 @@ log/*.log
 tmp/*
 office_immo/*
 config/database.yml
-config/database_production.yml
-config/database_staging.yml
 config/deploy_secrets.yml
 public/tmp/*
 public/uploads
