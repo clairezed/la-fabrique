@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def accept_cookies
-    cookies.permanent['mt_cookies'] = true
+    cookies['mt_cookies'] = { value: true, expires: 13.month.from_now }
     render json: {
       cookies_accepted: true
     }

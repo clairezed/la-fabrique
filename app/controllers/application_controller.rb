@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_visited
-    cookies.permanent['mt_visited'] = true
+    cookies['mt_visited'] = { value: true, expires: 13.month.from_now }
   end
 
   # Theme management ================================================
