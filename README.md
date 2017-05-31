@@ -12,9 +12,6 @@ Digital toolbox gathering tools, methods, media contents to foster projects.
 - rails 5.0.1
 - postgresql
 
-```
-Give examples
-```
 
 ### Installing
 
@@ -30,6 +27,10 @@ rails server
 ```
 
 Your website should be accessible at [localhost:3000](http://localhost:3000/).
+
+Email notifications will be caught by [MailCatcher](https://mailcatcher.me/). Install it if you haven't yet. 
+
+Then, to see the emails sent by the platform, open your web browser at http://localhost:1080 to access the MailCatcher interface.
 
 
 ### Dummy data
@@ -52,11 +53,17 @@ The project could clearly have more tests. Don't hesitate to contribute, I'll be
 
 ## Deployment
 
-*Add additional notes about how to deploy this on a live system*
--> TODO
+Deployment successfully tested on servers with :
 
+- ubuntu LTS 16.04
+- nginx
+
+Capistrano is used.
+
+You have to copy and update a few files : 
 ```
 cp config/database_example.yml config/database_production.yml
+cp config/deploy_secrets.yml.example config/deploy_secrets.yml
 ```
 
 ## Built With

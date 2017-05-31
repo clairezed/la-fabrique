@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :get_theme_key
-  before_action :http_authentication
+  # before_action :http_authentication
   before_action :set_default_seos!, :get_basic_pages
   after_action :flash_to_headers, if: -> { request.xhr? && flash.present? }
   after_action :check_visited
