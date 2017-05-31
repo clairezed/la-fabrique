@@ -3,15 +3,15 @@ require "rvm/capistrano"
 set :rvm_ruby_string, '2.4.0@mobility_toolbox'
 
 #= Application ==============================================
-set :deploy_to, "/home/deploy/www/#{application}"
+set :deploy_to, "#{deploysecret(:deploy_to)}#{application}"
 set :rails_env, 'production'
 
 #= Git ======================================================
 set :branch, "production"
 
 #= Serveur ==================================================
-set :user, "deploy"
-set :domain, "94.23.32.222"
+set :user, deploysecret(:user)
+set :domain, deploysecret(:domain)
 server domain, :app, :web
 role :db, domain, :primary => true
 set :use_sudo, false

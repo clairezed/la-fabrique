@@ -1,3 +1,8 @@
+def deploysecret(key)
+  @deploy_secrets_yml ||= YAML.load_file('config/deploy-secrets.yml')[fetch(:stage).to_s]
+  @deploy_secrets_yml.fetch(key.to_s, 'undefined')
+end
+
 #= Multi-stages =============================================
 set :stages, %w(staging production)
 set :default_stage, "staging"
