@@ -287,8 +287,7 @@ end
   {
     field: "licence",
     title: "Qu’est-ce que le champ « Licence d’utilisation » ?",
-    content: "Qu’est-ce que le champ « Licence d’utilisation » ?\r\n
-      Il indique aux utilisateurs la licence d’utilisation de l’outil. Il n’est pas obligatoire. Si vous êtes le créateur de l’outil, vous pouvez ainsi limiter l’utilisation de votre outil sous certaines conditions.\r\n
+    content: "Il indique aux utilisateurs la licence d’utilisation de l’outil. Il n’est pas obligatoire. Si vous êtes le créateur de l’outil, vous pouvez ainsi limiter l’utilisation de votre outil sous certaines conditions.\r\n
       Une fois que vous avez choisi votre licence, indiquez « CC » pour Creative Commons, suivi de la licence de votre choix, par exemple « BY ND », puis du terme « Licence », soit « CC BY ND Licence».   \r\n
       1. Attribution (BY): Le titulaire des droits autorise toute exploitation de l’œuvre, y compris à des fins commerciales, ainsi que la création d’œuvres dérivées, dont la distribution est également autorisé sans restriction, à condition de l’attribuer à son l’auteur en citant son nom. Cette licence est recommandée pour la diffusion et l’utilisation maximale des œuvres.\r\n
       2. Attribution + Pas de Modification (BY ND) : Le titulaire des droits autorise toute utilisation de l’œuvre originale (y compris à des fins commerciales), mais n’autorise pas la création d’œuvres dérivées.\r\n

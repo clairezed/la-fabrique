@@ -29,7 +29,7 @@ class Admin::ToolsController < Admin::BaseController
   def create
     @tool = ToolSetter.new(Tool.new, part_1_params).set_part_1
     if @tool.save
-      flash[:notice] = 'La fiche a été créé avec succès'
+      flash[:notice] = 'La fiche outil a été créé avec succès'
       redirect_to params[:continue].present? ? edit_part_2_admin_tool_path(@tool) : edit_part_1_admin_tool_path(@tool)
     else
       flash[:error] = "Une erreur s'est produite lors de la création de la fiche"
@@ -80,7 +80,7 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def accept
-    flash[:notice] = 'Fiche validée avec succès'
+    flash[:notice] = 'Outil validé avec succès'
     begin
       @tool.accept!
     rescue AASM::InvalidTransition
@@ -90,7 +90,7 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def reject
-    flash[:notice] = 'Fiche refusée avec succès'
+    flash[:notice] = 'Outil refusé avec succès'
     begin
       @tool.reject!
     rescue AASM::InvalidTransition
@@ -102,14 +102,14 @@ class Admin::ToolsController < Admin::BaseController
   def position
     if params[:position].present?
       @tool.insert_at params[:position].to_i
-      flash[:notice] = 'Les fiches ont été réordonnées avec succès'
+      flash[:notice] = 'Les outils ont été réordonnées avec succès'
     end
     redirect_to admin_tools_path
   end
 
   def destroy
     @tool.destroy
-    flash[:notice] = "L'axe a été supprimé avec succès"
+    flash[:notice] = "L'outil a été supprimé avec succès"
     redirect_to admin_tools_path
   end
 
