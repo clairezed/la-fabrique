@@ -91,22 +91,19 @@ html lang="#{I18n.locale}"
     footer.footer.bg-white
       .container
         .row
-          .col-lg-4.col-md-4.col-sm-12
+          .col-md-4.col-sm-12
             = image_tag 'logo.svg', class:"align-top", alt: 'projet', width: 150
-          .col-lg-4.col-md-4.col-sm-12
+          .col-md-4.col-sm-12
             p.footer_text
               ' La Fabrique du Monde est un espace de co-construction dédié à la mobilité, celle-ci étant entendue comme la rencontre de personnes porteuses d’une histoire singulière et désireuses d’en bâtir une commune.
-          .col-lg-4.col-md-4.col-sm-12.text-right
+          .col-md-4.col-sm-12.text-right
             - if about_page.present? && about_page.enabled?
               = link_to 'A propos', basic_page_path(about_page), class: "btn btn-inverse uppercase"
-            div.mt-3
-              | La Fabrique du Monde © #{Date.today.year}
-
-        .row
-          .col.text-center
-            p.footer_text
+        .row.mt-3
+          .col-12.col-md-6.offset-md-3.text-center
+            p.footer_text.footer_text--sm
               - if cgu_page.present? && cgu_page.enabled?
-                => link_to 'Conditions générales d\'utilisation', basic_page_path(cgu_page)
+                => link_to 'CGU', basic_page_path(cgu_page)
                 ' -  
               - if data_policy_page.present? && data_policy_page.enabled?
                 => link_to 'Charte des données personnelles', basic_page_path(data_policy_page)
@@ -118,5 +115,6 @@ html lang="#{I18n.locale}"
                 => link_to 'Cookies', basic_page_path(cookies_page)
                 ' - 
               => link_to 'Plan du site', sitemap_path
-
+          .col-12.col-md-3.text-right
+            p.footer_text.footer_text--sm La Fabrique du Monde © #{Date.today.year}
 

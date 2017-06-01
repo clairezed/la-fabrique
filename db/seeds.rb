@@ -2,8 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Base admin. Don't forget to change password in staging and production
-a1 = Admin.where(email: "clairezuliani+admin@gmail.com").first_or_initialize
-a1.update_attributes(:password => "password")
+a1 = Admin.where(email: "clairezuliani+admin@gmail.com").first_or_create(:password => "password")
 
 seo1 = Seo.where(param: "home").first_or_create
 
