@@ -9,7 +9,7 @@ class Training < ApplicationRecord
 
   # Associations ===============================================================
 
-  has_many :training_tools, -> { order 'training_tools.position' }, dependent: :restrict_with_exception
+  has_many :training_tools, -> { order 'training_tools.position' }, dependent: :destroy
   has_many :tools, through: :training_tools
 
   # Callbacks ==================================================================
