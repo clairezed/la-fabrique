@@ -14,18 +14,26 @@ fieldset
   .form-group.row.required
     .form-label-default
       = f.label :axis
-    .controls-default
+    .controls-large
       = f.select :axis_id, axis_options, {include_blank: "Sélectionner un axe"}, class: "required form-control"
 
-  = f.hm_select :duration, tool_duration_options, {include_blank: "Sélectionner une durée"}, {}, {class: ""}
+  .form-group.row
+    .form-label-default
+      = f.label :duration
+    .controls-large
+      = f.select :duration, tool_duration_options, {include_blank: "Sélectionner une durée"}, class: " form-control"
 
-  = f.hm_select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, {}, {class: ""}
+  .form-group.row
+    .form-label-default
+      = f.label :group_size
+    .controls-large
+      = f.select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, class: " form-control"
 
-  = f.hm_select :level, tool_level_options, {include_blank: "Sélectionner un niveau"}, {}, {class: ""}
-
-  = f.hm_select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, {}, {class: "required"}
-
-  / = f.hm_select :public, tool_public_options, {include_blank: "Sélectionner un public"}, {}, {class: "required"}
+  .form-group.row.required
+    .form-label-default
+      = f.label :tool_category_id
+    .controls-large
+      = f.select :tool_category_id, tool_category_options, {include_blank: "Sélectionner une catégorie"}, class: "required form-control"
 
   .form-group.row
     .form-label-default
