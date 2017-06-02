@@ -122,7 +122,7 @@ class Pdf::Tool < Pdf::ProjectBase
 
   def licence
     return if @tool.licence.blank?
-    h3 'Copyright'
+    h3 'Licence'
     styled_text [text: @tool.licence], size: 10
   end
 
@@ -212,7 +212,7 @@ class Pdf::Tool < Pdf::ProjectBase
     icon_tag = CharTagCallback.new(color: axis_color, document: self)
     add_icon = AddIconCallback.new(document: self, icon: icon)
     formatted_text [ { text: text, callback: [icon_tag, add_icon] } ], 
-      color: "ffffff", size: 9, leading: 0, align: :center
+      color: "ffffff", size: 8.5, leading: 0, align: :center
   end
 
   
