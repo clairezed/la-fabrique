@@ -43,10 +43,7 @@ fieldset
         = f.fields_for :steps do |sf|
           .form-group.row data-is-step-idx="#{sf.index}" data-is-step="#{sf.object.id}"
             = sf.hidden_field :id
-            .form-label-default
-              label 
-                | Etape 
-                / => sf.index + 1
+            .form-label-default: label = "Etape #{sf.index + 1}"
             .col-md-6
               = sf.text_area :description, class: "form-control", rows: 5
             .col-md-2

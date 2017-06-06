@@ -92,7 +92,7 @@ class Tool < ApplicationRecord
   has_many :links, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :steps, dependent: :destroy
+  has_many :steps, -> { order 'steps.position' }, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
 
   has_many :training_tools, dependent: :destroy
