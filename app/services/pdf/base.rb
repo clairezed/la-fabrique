@@ -210,4 +210,10 @@ class Pdf::Base < Prawn::Document
     'aaaaaa'
   end
 
+  # Sanitize
+
+  def sanitized(string)
+    string.gsub("\t", ' ')
+  end
+
 end

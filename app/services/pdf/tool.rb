@@ -79,12 +79,12 @@ class Pdf::Tool < Pdf::ProjectBase
 
   def goal
     h2 'Objectifs'
-    styled_text [text: @tool.goal], size: 10
+    styled_text [text: sanitized(@tool.goal)], size: 10
   end
 
   def teaser
     h2 'Résumé'
-    styled_text [text: @tool.teaser], size: 10
+    styled_text [text: sanitized(@tool.teaser)], size: 10
   end
 
   def description
@@ -93,19 +93,19 @@ class Pdf::Tool < Pdf::ProjectBase
     if @tool.steps?
       @tool.steps.each do |step|
         number = { text: leading_zero(step.position), styles: [:bold], size: 26, color: axis_color }
-        step_description = { text: step.description, size: 10 }
+        step_description = { text: sanitized(step.description), size: 10 }
         formatted_text [number, { text: "  "}, step_description]
         move_down 10
       end
     else
-      styled_text [text: @tool.description], size: 10
+      styled_text [text: sanitized(@tool.description)], size: 10
     end
   end
 
   def advice
     return if @tool.advice.blank?
     h3 'Conseils'
-    styled_text [text: @tool.advice], size: 10
+    styled_text [text: sanitized(@tool.advice)], size: 10
   end
 
   def public
@@ -129,7 +129,7 @@ class Pdf::Tool < Pdf::ProjectBase
   def material
     return if @tool.material.blank?
     h3 'Matériel'
-    styled_text [text: @tool.material], size: 10
+    styled_text [text: sanitized(@tool.material)], size: 10
   end
 
   def tags
