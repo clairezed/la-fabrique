@@ -29,6 +29,12 @@ fieldset
     .controls-large
       = f.select :group_size, tool_group_size_options, {include_blank: "Sélectionner une taille"}, class: " form-control"
 
+  .form-group.row
+    .form-label-default
+      = f.label :level
+    .controls-large
+      = f.select :level, tool_level_options, {include_blank: "Sélectionner un niveau de difficulté"}, class: " form-control"
+
   .form-group.row.required
     .form-label-default
       = f.label :tool_category_id
