@@ -20,7 +20,7 @@ gem 'devise', '~> 4.2.0'
 
 # Uploads ------------------------------------------------
 gem 'jquery-fileupload-rails'
-gem 'paperclip', '~> 5.0'
+gem 'paperclip', '~> 5.2'
 # gem 'aws-sdk', '< 2.0' # compatibilité paperclip
 
 # View ====================================================
@@ -61,7 +61,7 @@ end
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platform: :mri
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.49', require: false
 end
 
 group :test do
